@@ -11,12 +11,17 @@ h1,h1,h3,h4,h5,h6,p{
   color: #000;
 }
 
+input:focus{
+  outline: none;
+}
+
 :root{
   font-size: 62.5%;
   --primary-color:#000;
   --secondary-color:#fff;
   --tertiary-color:#EEEDED;
   --tertiary-color-2:#A4A4A4;
+  --tertiary-color-3:#3b3b3bca;
   --quarterny-color:#3ded97;
 }
 
