@@ -11,6 +11,10 @@ const Public = () => {
     navigate('/barbersignin')
   }
 
+  const joinqueueClicked = () => {
+    navigate('/joinqueue')
+  }
+
   return (
     <main className='public__main__container'>
         <div className='public__main__top'>
@@ -25,7 +29,7 @@ const Public = () => {
         <div className='public__main__bottom'>
           <div>
             <button>Queue List</button>
-            <button>Join Queue</button>
+            <button onClick={joinqueueClicked}>Join Queue</button>
           </div>
         </div>
     </main>

@@ -1,8 +1,9 @@
 @media((min-width:940px) and (max-width:1194px)){
     .public__main__container{
         width:100%;
-        height:auto;
+        height:100vh;
         background-color: var(--secondary-color); 
+        overflow-y: hidden;
     }
 
     .public__main__top{
