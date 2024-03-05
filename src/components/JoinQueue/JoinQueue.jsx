@@ -81,6 +81,14 @@ const JoinQueue = () => {
         setModal4(false)
     }
 
+
+    const selectserviceHandler = () => {
+        setModal1(false)
+        setModal2(false)
+        setModal3(false)
+        setModal4(true)
+    }
+
     return (
         <main className='joinqueue__main__container'>
             <div className='joinqueue__main__left'>
@@ -310,7 +318,55 @@ const JoinQueue = () => {
                             </>}
 
                             {modal3 && <>
-                                <h1>I am modal 3</h1>
+                                <h1>Select Services</h1>
+                                <div className='select_barber_services_container'>
+                                    {
+                                        services.map((item) => (
+                                            <div className='select_barber_services_item' key={item._id}>
+                                                <div className='select_barber_services_item_header'>
+                                                    <h1>Service</h1>
+                                                    <h1>PRICE</h1>
+                                                    <h1>EWT</h1>
+                                                    <div></div>
+                                                </div>
+
+                                                <div className='select_barber_services_item_content'>
+                                                    <h1>{item.services}</h1>
+                                                    <h1>${item.price}</h1>
+                                                    <h1>{item.EWT}</h1>
+                                                    {
+                                                        selectedServices.find((select) => select._id === item._id) ?
+                                                            <div onClick={() => deleteSelectServicesHandler(item._id)}
+                                                            style={{
+                                                                boxShadow:"0px 0px 4px red",
+                                                                color:"red"
+                                                            }}
+                                                            ><DeleteIcon/></div> :
+                                                            <div onClick={() => selectedServicesHandler(item)}
+                                                            style={{
+                                                                boxShadow:"0px 0px 4px #1e2e97",
+                                                                color:"#1e2f97"
+                                                            }}
+                                                            ><AddIcon /></div>
+                                                    }
+
+
+                                                </div>
+
+                                                <div>
+                                                    <h1>({item.rating})</h1><p>{item.reviews} reviews</p>
+                                                </div>
+
+                                            </div>
+                                        ))
+                                    }
+
+                                </div>
+                                <div className='select_barber_services_btn'><button onClick={selectserviceHandler}>Select Barber</button></div>
+                            </>}
+
+                            {modal4 && <>
+                                <h1>Select Barber</h1>
                                 <div className='select_barber_container'>
 
                                     <div className='select_barber_item'>
@@ -418,7 +474,7 @@ const JoinQueue = () => {
                                     </div>
                                 </div>
 
-                                <div className='select_barber_services_btn'><button onClick={selectbarberHandler}>Select Services</button></div>
+                                <div className='select_barber_services_btn'><button onClick={() => {}}>Continue</button></div>
                             </>}
 
                         </Modal>
