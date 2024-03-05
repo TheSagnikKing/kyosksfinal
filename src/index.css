@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+h1,h1,h3,h4,h5,h6,p{
+  color: #000;
+}
+
+:root{
+  font-size: 62.5%;
+  --primary-color:#000;
+  --secondary-color:#fff;
+  --tertiary-color:#EEEDED;
+  --tertiary-color-2:#A4A4A4;
+  --quarterny-color:#3ded97;
+}
+
+@media((min-width:400px) and (max-width:900px)){
+  :root{
+    font-size: 40%;
+  }
+}
+
+@media((min-width:900px) and (max-width:940px)){
+  :root{
+    font-size: 48%;
+  }
+}
+
+@media((min-width:940px) and (max-width:1194px)){
+  :root{
+    font-size: 52%;
+  }
+}
+
