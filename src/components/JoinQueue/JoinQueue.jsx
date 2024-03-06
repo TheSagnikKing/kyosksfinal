@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './JoinQueue.css'
-import { AddIcon, DeleteIcon, DropdownIcon } from '../../icons'
+import { AddIcon, BackIcon, DeleteIcon, DropdownIcon } from '../../icons'
 import Modal from '../modal/Modal'
 
 const services = [
@@ -38,6 +38,33 @@ const services = [
     }
 ]
 
+const barbers = [
+    {
+        _id: 1,
+        barberName: "Whisker Cutters",
+        nextposition: 4,
+        EWT: 15
+    },
+    {
+        _id: 2,
+        barberName: "The Rebel Hairs",
+        nextposition: 5,
+        EWT: 18
+    },
+    {
+        _id: 3,
+        barberName: "Dapper Dan's",
+        nextposition: 1,
+        EWT: 20
+    },
+    {
+        _id: 4,
+        barberName: "The Sideburn",
+        nextposition: 6,
+        EWT: 25
+    }
+]
+
 const JoinQueue = () => {
 
     const [isOpen, setIsOpen] = useState(false)
@@ -45,6 +72,13 @@ const JoinQueue = () => {
     const [modal2, setModal2] = useState(false)
     const [modal3, setModal3] = useState(false)
     const [modal4, setModal4] = useState(false)
+
+
+    const [selectedBarber, setSelectedBarber] = useState(null)
+
+    const [selecteBarberdata, setSelectedBarberData] = useState(null)
+    const [selectedBarberServices, setSelectedBarberServices] = useState([])
+   
 
     const SelectBarberDropdownHandler = () => {
         setIsOpen(true)
@@ -54,6 +88,7 @@ const JoinQueue = () => {
         setModal4(false)
     }
 
+
     const selectbarberHandler = () => {
         setModal1(false)
         setModal2(true)
@@ -62,7 +97,6 @@ const JoinQueue = () => {
     }
 
     const [selectedServices, setSelectedServices] = useState([])
-
 
     const selectedServicesHandler = (item) => {
         setSelectedServices([...selectedServices, item])
@@ -83,10 +117,52 @@ const JoinQueue = () => {
 
 
     const selectserviceHandler = () => {
+        setSelectedBarberServices(selectedServices) 
         setModal1(false)
         setModal2(false)
         setModal3(false)
         setModal4(true)
+    }
+
+    const modaltwobackHandler = () => {
+        setModal2(false)
+        setModal1(true)
+    }
+
+    const modalfourbackHandler = () => {
+        setModal4(false)
+        setModal3(true)
+    }
+
+    const searchSelectedBarber = (barber) => {
+        setSelectedBarber(barber.barberName)
+        setSelectedBarberData(barber.barberName)
+    }
+
+
+    const selectbarbercontinueHandler = () => {
+        setSelectedBarberServices(selectedServices) 
+        setSelectedServices([])
+        setSelectedBarber(null)
+        setModal1(false)
+        setModal2(false)
+        setIsOpen(false)
+    }
+
+    const selectservicecontinueHandler = () => {
+        setSelectedServices([])
+        setSelectedBarber(null)
+        setModal3(false)
+        setModal4(false)
+        setIsOpen(false)
+    }
+
+    console.log("current services",selectedBarberServices)
+    console.log("selected services",selectedServices)
+
+    const finaldata = {
+        selectedBarberServices,
+        selectedBarber
     }
 
     return (
@@ -129,7 +205,7 @@ const JoinQueue = () => {
 
                     <div className='joinqueue__main__right__form_bottom'>
                         <div>
-                            <p>Select Barber</p>
+                            <p>Select Barber: {selecteBarberdata}</p>
                             <div>
                                 <input
                                     type="text"
@@ -141,7 +217,7 @@ const JoinQueue = () => {
                         </div>
 
                         <div>
-                            <p>Select Services</p>
+                            <p>Select Services: {selectedBarberServices.map((s) => s.services + " ")}</p>
                             <div>
                                 <input
                                     type="text"
@@ -156,125 +232,60 @@ const JoinQueue = () => {
                     <button>Join</button>
 
                     {
-                        isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen} setModal1={setModal1} setModal2={setModal2} setModal3={setModal3} setModal4={setModal4} setSelectedServices={setSelectedServices}>
+                        isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen} setModal1={setModal1} setModal2={setModal2} setModal3={setModal3} setModal4={setModal4} setSelectedServices={setSelectedServices} setSelectedBarber={setSelectedBarber}>
                             {modal1 && <>
-                                <h1>Select Barber</h1>
+                                <h1>Select Barber MODAL ONE</h1>
                                 <div className='select_barber_container'>
+                                    {
+                                        barbers?.length > 0 ? barbers.map((b) => (
+                                            <div className='select_barber_item' key={b._id} onClick={() => searchSelectedBarber(b)}
+                                            style={{
+                                                background: selectedBarber === b.barberName ? "var(--quarterny-color)" : "var(--secondary-color)"
+                                            }}
+                                            >
+                                                <div className='select_barber_item_top'>
+                                                    <div><img src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp" alt="barbername" /></div>
+                                                    <div>
+                                                        <p>{b.barberName}</p>
+                                                        {/* <p>Cutting, Styling, Hair Color, Straightening</p> */}
+                                                    </div>
 
-                                    <div className='select_barber_item'>
-                                        <div className='select_barber_item_top'>
-                                            <div><img src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp" alt="barbername" /></div>
-                                            <div>
-                                                <p>(4.5)</p>
-                                                <p>Cutting, Styling, Hair Color, Straightening</p>
-                                            </div>
+                                                </div>
+                                                <div className='select_barber_item_top_border' />
 
-                                        </div>
-                                        <div className='select_barber_item_top_border' />
+                                                <div className='select_barber_item_bottom'>
+                                                    <div>
+                                                        <p>Next Available</p>
+                                                        <p>Position</p>
+                                                        <p>{b.nextposition}</p>
+                                                    </div>
+                                                    <div className='select_barber_item_bottom_border' />
+                                                    <div>
+                                                        <p>Estimated</p>
+                                                        <p>Time</p>
+                                                        <p>{b.EWT} mins</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )) : (<h2>No barber Available</h2>)
+                                    }
 
-                                        <div className='select_barber_item_bottom'>
-                                            <div>
-                                                <p>Next Available</p>
-                                                <p>Position</p>
-                                                <p>3</p>
-                                            </div>
-                                            <div className='select_barber_item_bottom_border' />
-                                            <div>
-                                                <p>Estimated</p>
-                                                <p>Time</p>
-                                                <p>0 mins</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className='select_barber_item'>
-                                        <div className='select_barber_item_top'>
-                                            <div><img src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp" alt="barbername" /></div>
-                                            <div>
-                                                <p>(4.5)</p>
-                                                <p>Cutting, Styling, Hair Color, Straightening</p>
-                                            </div>
-
-                                        </div>
-                                        <div className='select_barber_item_top_border' />
-
-                                        <div className='select_barber_item_bottom'>
-                                            <div>
-                                                <p>Next Available</p>
-                                                <p>Position</p>
-                                                <p>3</p>
-                                            </div>
-                                            <div className='select_barber_item_bottom_border' />
-                                            <div>
-                                                <p>Estimated</p>
-                                                <p>Time</p>
-                                                <p>0 mins</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className='select_barber_item'>
-                                        <div className='select_barber_item_top'>
-                                            <div><img src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp" alt="barbername" /></div>
-                                            <div>
-                                                <p>(4.5)</p>
-                                                <p>Cutting, Styling, Hair Color, Straightening</p>
-                                            </div>
-
-                                        </div>
-                                        <div className='select_barber_item_top_border' />
-
-                                        <div className='select_barber_item_bottom'>
-                                            <div>
-                                                <p>Next Available</p>
-                                                <p>Position</p>
-                                                <p>3</p>
-                                            </div>
-                                            <div className='select_barber_item_bottom_border' />
-                                            <div>
-                                                <p>Estimated</p>
-                                                <p>Time</p>
-                                                <p>0 mins</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className='select_barber_item'>
-                                        <div className='select_barber_item_top'>
-                                            <div><img src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp" alt="barbername" /></div>
-                                            <div>
-                                                <p>(4.5)</p>
-                                                <p>Cutting, Styling, Hair Color, Straightening</p>
-                                            </div>
-
-                                        </div>
-                                        <div className='select_barber_item_top_border' />
-
-                                        <div className='select_barber_item_bottom'>
-                                            <div>
-                                                <p>Next Available</p>
-                                                <p>Position</p>
-                                                <p>3</p>
-                                            </div>
-                                            <div className='select_barber_item_bottom_border' />
-                                            <div>
-                                                <p>Estimated</p>
-                                                <p>Time</p>
-                                                <p>0 mins</p>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div className='select_barber_services_btn'><button onClick={selectbarberHandler}>Select Services</button></div>
                             </>}
 
                             {modal2 && <>
-                                <h1>Select Services</h1>
+                                <div className='select__barber__modal2__head'>
+                                    <div onClick={modaltwobackHandler}><BackIcon /></div>
+                                    <h1>Select Services MODAL TWO</h1>
+                                </div>
                                 <div className='select_barber_services_container'>
                                     {
                                         services.map((item) => (
-                                            <div className='select_barber_services_item' key={item._id}>
+                                            <div className='select_barber_services_item' key={item._id}
+                                                style={{ background: selectedServices.find((select) => select._id === item._id) ? "var(--quarterny-color)" : "" }}
+                                            >
                                                 <div className='select_barber_services_item_header'>
                                                     <h1>Service</h1>
                                                     <h1>PRICE</h1>
@@ -289,16 +300,16 @@ const JoinQueue = () => {
                                                     {
                                                         selectedServices.find((select) => select._id === item._id) ?
                                                             <div onClick={() => deleteSelectServicesHandler(item._id)}
-                                                            style={{
-                                                                boxShadow:"0px 0px 4px red",
-                                                                color:"red"
-                                                            }}
-                                                            ><DeleteIcon/></div> :
+                                                                style={{
+                                                                    boxShadow: "0px 0px 4px red",
+                                                                    color: "red"
+                                                                }}
+                                                            ><DeleteIcon /></div> :
                                                             <div onClick={() => selectedServicesHandler(item)}
-                                                            style={{
-                                                                boxShadow:"0px 0px 4px #1e2e97",
-                                                                color:"#1e2f97"
-                                                            }}
+                                                                style={{
+                                                                    boxShadow: "0px 0px 4px #1e2e97",
+                                                                    color: "#1e2f97"
+                                                                }}
                                                             ><AddIcon /></div>
                                                     }
 
@@ -314,15 +325,17 @@ const JoinQueue = () => {
                                     }
 
                                 </div>
-                                <div className='select_barber_services_btn'><button onClick={selectbarberHandler}>Continue</button></div>
+                                <div className='select_barber_services_btn'><button onClick={selectbarbercontinueHandler}>Continue</button></div>
                             </>}
 
                             {modal3 && <>
-                                <h1>Select Services</h1>
+                                <h1>Select Services MODAL THREE</h1>
                                 <div className='select_barber_services_container'>
                                     {
                                         services.map((item) => (
-                                            <div className='select_barber_services_item' key={item._id}>
+                                            <div className='select_barber_services_item' key={item._id}
+                                                style={{ background: selectedServices.find((select) => select._id === item._id) ? "var(--quarterny-color)" : "" }}
+                                            >
                                                 <div className='select_barber_services_item_header'>
                                                     <h1>Service</h1>
                                                     <h1>PRICE</h1>
@@ -337,16 +350,16 @@ const JoinQueue = () => {
                                                     {
                                                         selectedServices.find((select) => select._id === item._id) ?
                                                             <div onClick={() => deleteSelectServicesHandler(item._id)}
-                                                            style={{
-                                                                boxShadow:"0px 0px 4px red",
-                                                                color:"red"
-                                                            }}
-                                                            ><DeleteIcon/></div> :
+                                                                style={{
+                                                                    boxShadow: "0px 0px 4px red",
+                                                                    color: "red"
+                                                                }}
+                                                            ><DeleteIcon /></div> :
                                                             <div onClick={() => selectedServicesHandler(item)}
-                                                            style={{
-                                                                boxShadow:"0px 0px 4px #1e2e97",
-                                                                color:"#1e2f97"
-                                                            }}
+                                                                style={{
+                                                                    boxShadow: "0px 0px 4px #1e2e97",
+                                                                    color: "#1e2f97"
+                                                                }}
                                                             ><AddIcon /></div>
                                                     }
 
@@ -366,115 +379,49 @@ const JoinQueue = () => {
                             </>}
 
                             {modal4 && <>
-                                <h1>Select Barber</h1>
+                                <div className='select__barber__modal2__head'>
+                                    <div onClick={modalfourbackHandler}><BackIcon /></div>
+                                    <h1>Select Barber MODAL FOUR</h1>
+                                </div>
                                 <div className='select_barber_container'>
+                                    {
+                                        barbers?.length > 0 ? barbers.map((b) => (
+                                            <div className='select_barber_item' key={b._id}
+                                            onClick={() => searchSelectedBarber(b)}
+                                            style={{
+                                                background: selectedBarber === b.barberName ? "var(--quarterny-color)" : "var(--secondary-color)"
+                                            }}
+                                            >
+                                                <div className='select_barber_item_top'>
+                                                    <div><img src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp" alt="barbername" /></div>
+                                                    <div>
+                                                        <p>{b.barberName}</p>
+                                                        {/* <p>Cutting, Styling, Hair Color, Straightening</p> */}
+                                                    </div>
 
-                                    <div className='select_barber_item'>
-                                        <div className='select_barber_item_top'>
-                                            <div><img src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp" alt="barbername" /></div>
-                                            <div>
-                                                <p>(4.5)</p>
-                                                <p>Cutting, Styling, Hair Color, Straightening</p>
-                                            </div>
+                                                </div>
+                                                <div className='select_barber_item_top_border' />
 
-                                        </div>
-                                        <div className='select_barber_item_top_border' />
+                                                <div className='select_barber_item_bottom'>
+                                                    <div>
+                                                        <p>Next Available</p>
+                                                        <p>Position</p>
+                                                        <p>{b.nextposition}</p>
+                                                    </div>
+                                                    <div className='select_barber_item_bottom_border' />
+                                                    <div>
+                                                        <p>Estimated</p>
+                                                        <p>Time</p>
+                                                        <p>{b.EWT} mins</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )) : (<h2>No barber Available</h2>)
+                                    }
 
-                                        <div className='select_barber_item_bottom'>
-                                            <div>
-                                                <p>Next Available</p>
-                                                <p>Position</p>
-                                                <p>3</p>
-                                            </div>
-                                            <div className='select_barber_item_bottom_border' />
-                                            <div>
-                                                <p>Estimated</p>
-                                                <p>Time</p>
-                                                <p>0 mins</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className='select_barber_item'>
-                                        <div className='select_barber_item_top'>
-                                            <div><img src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp" alt="barbername" /></div>
-                                            <div>
-                                                <p>(4.5)</p>
-                                                <p>Cutting, Styling, Hair Color, Straightening</p>
-                                            </div>
-
-                                        </div>
-                                        <div className='select_barber_item_top_border' />
-
-                                        <div className='select_barber_item_bottom'>
-                                            <div>
-                                                <p>Next Available</p>
-                                                <p>Position</p>
-                                                <p>3</p>
-                                            </div>
-                                            <div className='select_barber_item_bottom_border' />
-                                            <div>
-                                                <p>Estimated</p>
-                                                <p>Time</p>
-                                                <p>0 mins</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className='select_barber_item'>
-                                        <div className='select_barber_item_top'>
-                                            <div><img src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp" alt="barbername" /></div>
-                                            <div>
-                                                <p>(4.5)</p>
-                                                <p>Cutting, Styling, Hair Color, Straightening</p>
-                                            </div>
-
-                                        </div>
-                                        <div className='select_barber_item_top_border' />
-
-                                        <div className='select_barber_item_bottom'>
-                                            <div>
-                                                <p>Next Available</p>
-                                                <p>Position</p>
-                                                <p>3</p>
-                                            </div>
-                                            <div className='select_barber_item_bottom_border' />
-                                            <div>
-                                                <p>Estimated</p>
-                                                <p>Time</p>
-                                                <p>0 mins</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className='select_barber_item'>
-                                        <div className='select_barber_item_top'>
-                                            <div><img src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp" alt="barbername" /></div>
-                                            <div>
-                                                <p>(4.5)</p>
-                                                <p>Cutting, Styling, Hair Color, Straightening</p>
-                                            </div>
-
-                                        </div>
-                                        <div className='select_barber_item_top_border' />
-
-                                        <div className='select_barber_item_bottom'>
-                                            <div>
-                                                <p>Next Available</p>
-                                                <p>Position</p>
-                                                <p>3</p>
-                                            </div>
-                                            <div className='select_barber_item_bottom_border' />
-                                            <div>
-                                                <p>Estimated</p>
-                                                <p>Time</p>
-                                                <p>0 mins</p>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
 
-                                <div className='select_barber_services_btn'><button onClick={() => {}}>Continue</button></div>
+                                <div className='select_barber_services_btn'><button onClick={() => selectservicecontinueHandler()}>Continue</button></div>
                             </>}
 
                         </Modal>

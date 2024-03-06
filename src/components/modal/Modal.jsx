@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import './Modal.css';
 import { MdClose } from "react-icons/md";
 
-const Modal = ({ isOpen, setIsOpen, setModal1,setModal2, setModal3,setModal4,setSelectedServices,children }) => {
+const Modal = ({ isOpen, setIsOpen, setModal1,setModal2, setModal3,setModal4,setSelectedServices,setSelectedBarber,children }) => {
 
   const closeModal = () => {
 
@@ -14,6 +14,7 @@ const Modal = ({ isOpen, setIsOpen, setModal1,setModal2, setModal3,setModal4,set
     setModal3(false)
     setModal4(false)
     setSelectedServices([])
+    setSelectedBarber(null)
   }
 
   return ReactDOM.createPortal(
