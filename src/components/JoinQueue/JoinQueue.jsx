@@ -162,7 +162,7 @@ const JoinQueue = () => {
 
     const finaldata = {
         selectedBarberServices,
-        selectedBarber
+        selecteBarberdata
     }
 
     return (
@@ -234,7 +234,7 @@ const JoinQueue = () => {
                     {
                         isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen} setModal1={setModal1} setModal2={setModal2} setModal3={setModal3} setModal4={setModal4} setSelectedServices={setSelectedServices} setSelectedBarber={setSelectedBarber}>
                             {modal1 && <>
-                                <h1>Select Barber MODAL ONE</h1>
+                                <h1>Select Barber</h1>
                                 <div className='select_barber_container'>
                                     {
                                         barbers?.length > 0 ? barbers.map((b) => (
@@ -278,7 +278,7 @@ const JoinQueue = () => {
                             {modal2 && <>
                                 <div className='select__barber__modal2__head'>
                                     <div onClick={modaltwobackHandler}><BackIcon /></div>
-                                    <h1>Select Services MODAL TWO</h1>
+                                    <h1>Select Services</h1>
                                 </div>
                                 <div className='select_barber_services_container'>
                                     {
@@ -329,7 +329,7 @@ const JoinQueue = () => {
                             </>}
 
                             {modal3 && <>
-                                <h1>Select Services MODAL THREE</h1>
+                                <h1>Select Services</h1>
                                 <div className='select_barber_services_container'>
                                     {
                                         services.map((item) => (
@@ -381,7 +381,7 @@ const JoinQueue = () => {
                             {modal4 && <>
                                 <div className='select__barber__modal2__head'>
                                     <div onClick={modalfourbackHandler}><BackIcon /></div>
-                                    <h1>Select Barber MODAL FOUR</h1>
+                                    <h1>Select Barber </h1>
                                 </div>
                                 <div className='select_barber_container'>
                                     {
