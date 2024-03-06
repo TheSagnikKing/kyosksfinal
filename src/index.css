@@ -22,12 +22,12 @@ input:focus{
   --tertiary-color:#EEEDED;
   --tertiary-color-2:#A4A4A4;
   --tertiary-color-3:#3b3b3bca;
-  --quarterny-color:#3ded97;
+  --quarterny-color:#87a96b;
 }
 
-@media((min-width:400px) and (max-width:900px)){
+@media((min-width:800px) and (max-width:900px)){
   :root{
-    font-size: 40%;
+    font-size: 50%;
   }
 }
 

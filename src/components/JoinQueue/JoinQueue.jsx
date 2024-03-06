@@ -333,7 +333,7 @@ const JoinQueue = () => {
                         </div>
                     </div>
 
-                    { joinQueueKioskloading ? <button>Loading...</button> : <button onClick={joinqueueHandler}>Join</button>}
+                    { joinQueueKioskloading ? <div className='joinqueuebtn'>Loading...</div> : <div className='joinqueuebtn' onClick={joinqueueHandler}>Join</div>}
 
                     {
                         isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen} setModal1={setModal1} setModal2={setModal2} setModal3={setModal3} setModal4={setModal4} setSelectedServices={setSelectedServices} setSelectedBarber={setSelectedBarber}>
