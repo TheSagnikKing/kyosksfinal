@@ -124,7 +124,7 @@ const JoinQueue = () => {
     ] = useJoinQueueKioskMutation()
 
     const [customerName, setCustomerName] = useState("")
-    const [mobileNumber, setMobileNumber] = useState("")
+    const [mobileNumber, setMobileNumber] = useState(0)
     const [customerEmail, setCustomerEmail] = useState("")
 
     const [isOpen, setIsOpen] = useState(false)
@@ -248,12 +248,8 @@ const JoinQueue = () => {
 
     const joinqueueHandler = () => {
 
-        if(!customerName || !customerEmail || !mobileNumber){
+        if(!customerName){
             alert("Please Fill All The Fields")
-        }else if(mobileNumber.length > 10){
-            alert("Contact Number cannot exceed 10 digit")
-        }else if(mobileNumber.length < 10){
-            alert("Contact Number must be 10 digit")
         }else if(selectedBarberId === false){
             alert("BarberId is not present")
         }else if(selectedBarberServices.length === 0){
@@ -261,7 +257,8 @@ const JoinQueue = () => {
         }else if(selecteBarberdata === false){
             alert("Barber Name is not Present")
         }else{
-            joinQueueKiosk(joinqueuedata)
+            console.log(joinqueuedata)
+            // joinQueueKiosk(joinqueuedata)
         }
         
     }
@@ -290,9 +287,9 @@ const JoinQueue = () => {
                         <div>
                             <p>Contact No. (Optional)</p>
                             <input
-                                type="text"
+                                type="Number"
                                 placeholder="Enter Your Contact No."
-                                value={mobileNumber}
+                                value={mobileNumber === 0 ? "" : mobileNumber}
                                 onChange={(e) => setMobileNumber(e.target.value)}
                             />
                         </div>
