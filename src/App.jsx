@@ -7,6 +7,7 @@ const BarberSignin = React.lazy(() => import("./components/barber/Signin/Signin"
 const Table = React.lazy(() => import("./components/barber/demo/Table"))
 
 const App = () => {
+
   return (
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>

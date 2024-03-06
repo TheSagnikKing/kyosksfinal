@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './JoinQueue.css'
 import { AddIcon, BackIcon, DeleteIcon, DropdownIcon } from '../../icons'
 import Modal from '../modal/Modal'
+import { useGetBarberByServicesKioskMutation, useGetServicesByBarberKioskMutation, useJoinQueueKioskMutation, useLazyGetAllSalonServicesKioskQuery, useLazyGetAvailableBarbersForQKioskQuery } from './joinqueueApiSlice'
 
 const services = [
     {
@@ -67,6 +68,65 @@ const barbers = [
 
 const JoinQueue = () => {
 
+    const [
+        getavailablebarber,
+        {
+            data: getavailablebarberdata,
+            isSuccess: getavailablebarberisSuccess,
+            isError: getavailablebarberisError,
+            isLoading: getavailablebarberloading,
+            error: getavailablebarbererror
+        }
+    ] = useLazyGetAvailableBarbersForQKioskQuery()
+
+    const [
+        getServicesByBarber,
+        {
+            data: getServicesByBarberdata,
+            isSuccess: getServicesByBarberisSuccess,
+            isError: getServicesByBarberisError,
+            isLoading: getServicesByBarberloading,
+            error: getServicesByBarbererror
+        }
+    ] = useGetServicesByBarberKioskMutation()
+
+    const [
+        getAllSalonServices,
+        {
+            data: getAllSalonServicesdata,
+            isSuccess: getAllSalonServicesisSuccess,
+            isError: getAllSalonServicesisError,
+            isLoading: getAllSalonServicesloading,
+            error: getAllSalonServiceserror
+        }
+    ] = useLazyGetAllSalonServicesKioskQuery()
+
+    const [
+        getBarberByServicesKiosk,
+        {
+            data: getBarberByServicesKioskdata,
+            isSuccess: getBarberByServicesKioskisSuccess,
+            isError: getBarberByServicesKioskisError,
+            isLoading: getBarberByServicesKioskloading,
+            error: getBarberByServicesKioskerror
+        }
+    ] = useGetBarberByServicesKioskMutation()
+
+    const [
+        joinQueueKiosk,
+        {
+            data: joinQueueKioskdata,
+            isSuccess: joinQueueKioskisSuccess,
+            isError: joinQueueKioskisError,
+            isLoading: joinQueueKioskloading,
+            error: joinQueueKioskerror
+        }
+    ] = useJoinQueueKioskMutation()
+
+    const [customerName, setCustomerName] = useState("")
+    const [mobileNumber, setMobileNumber] = useState("")
+    const [customerEmail, setCustomerEmail] = useState("")
+
     const [isOpen, setIsOpen] = useState(false)
     const [modal1, setModal1] = useState(false)
     const [modal2, setModal2] = useState(false)
@@ -74,24 +134,27 @@ const JoinQueue = () => {
     const [modal4, setModal4] = useState(false)
 
 
-    const [selectedBarber, setSelectedBarber] = useState(null)
+    const [selectedBarber, setSelectedBarber] = useState(false)
 
-    const [selecteBarberdata, setSelectedBarberData] = useState(null)
+    const [selecteBarberdata, setSelectedBarberData] = useState(false)
     const [selectedBarberServices, setSelectedBarberServices] = useState([])
-   
+
+    const [selectedBarberId, setSelectedBarberId] = useState(false)
 
     const SelectBarberDropdownHandler = () => {
         setIsOpen(true)
         setModal1(true)
+        getavailablebarber()
         setModal2(false)
         setModal3(false)
         setModal4(false)
     }
 
 
-    const selectbarberHandler = () => {
+    const selectbarberHandler = async () => {
         setModal1(false)
         setModal2(true)
+        await getServicesByBarber(selectedBarberId)
         setModal3(false)
         setModal4(false)
     }
@@ -112,15 +175,23 @@ const JoinQueue = () => {
         setModal1(false)
         setModal2(false)
         setModal3(true)
+        getAllSalonServices()
         setModal4(false)
     }
 
 
     const selectserviceHandler = () => {
-        setSelectedBarberServices(selectedServices) 
+        setSelectedBarberServices(selectedServices)
         setModal1(false)
         setModal2(false)
         setModal3(false)
+
+        const services = {
+            salonId: 1,
+            serviceIds: selectedServices.map((s) => s.serviceId)
+        }
+        console.log(services)
+        getBarberByServicesKiosk(services)
         setModal4(true)
     }
 
@@ -134,14 +205,17 @@ const JoinQueue = () => {
         setModal3(true)
     }
 
+
+
     const searchSelectedBarber = (barber) => {
-        setSelectedBarber(barber.barberName)
-        setSelectedBarberData(barber.barberName)
+        setSelectedBarber(barber.name)
+        setSelectedBarberData(barber.name)
+        setSelectedBarberId(barber.barberId)
     }
 
 
     const selectbarbercontinueHandler = () => {
-        setSelectedBarberServices(selectedServices) 
+        setSelectedBarberServices(selectedServices)
         setSelectedServices([])
         setSelectedBarber(null)
         setModal1(false)
@@ -157,12 +231,39 @@ const JoinQueue = () => {
         setIsOpen(false)
     }
 
-    console.log("current services",selectedBarberServices)
-    console.log("selected services",selectedServices)
+    console.log("current services", selectedBarberServices)
+    console.log("selected services", selectedServices)
 
-    const finaldata = {
-        selectedBarberServices,
-        selecteBarberdata
+    const joinqueuedata = {
+        salonId: 1,
+        name:customerName,
+        customerEmail: customerEmail,
+        joinedQType: "Single-Join",
+        methodUsed: "Walk-In",
+        mobileNumber,
+        barberName: selecteBarberdata,
+        barberId: selectedBarberId,
+        services:selectedBarberServices
+    }
+
+    const joinqueueHandler = () => {
+
+        if(!customerName || !customerEmail || !mobileNumber){
+            alert("Please Fill All The Fields")
+        }else if(mobileNumber.length > 10){
+            alert("Contact Number cannot exceed 10 digit")
+        }else if(mobileNumber.length < 10){
+            alert("Contact Number must be 10 digit")
+        }else if(selectedBarberId === false){
+            alert("BarberId is not present")
+        }else if(selectedBarberServices.length === 0){
+            alert("Please Choose services")
+        }else if(selecteBarberdata === false){
+            alert("Barber Name is not Present")
+        }else{
+            joinQueueKiosk(joinqueuedata)
+        }
+        
     }
 
     return (
@@ -181,6 +282,8 @@ const JoinQueue = () => {
                             <input
                                 type="text"
                                 placeholder="Enter Your Full Name"
+                                value={customerName}
+                                onChange={(e) => setCustomerName(e.target.value)}
                             />
                         </div>
 
@@ -189,6 +292,8 @@ const JoinQueue = () => {
                             <input
                                 type="text"
                                 placeholder="Enter Your Contact No."
+                                value={mobileNumber}
+                                onChange={(e) => setMobileNumber(e.target.value)}
                             />
                         </div>
                     </div>
@@ -199,6 +304,8 @@ const JoinQueue = () => {
                             <input
                                 type="text"
                                 placeholder="Enter Your Email ID"
+                                value={customerEmail}
+                                onChange={(e) => setCustomerEmail(e.target.value)}
                             />
                         </div>
                     </div>
@@ -217,7 +324,7 @@ const JoinQueue = () => {
                         </div>
 
                         <div>
-                            <p>Select Services: {selectedBarberServices.map((s) => s.services + " ")}</p>
+                            <p>Select Services: {selectedBarberServices.map((s) => s.serviceName + " ")}</p>
                             <div>
                                 <input
                                     type="text"
@@ -229,7 +336,7 @@ const JoinQueue = () => {
                         </div>
                     </div>
 
-                    <button>Join</button>
+                    { joinQueueKioskloading ? <button>Loading...</button> : <button onClick={joinqueueHandler}>Join</button>}
 
                     {
                         isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen} setModal1={setModal1} setModal2={setModal2} setModal3={setModal3} setModal4={setModal4} setSelectedServices={setSelectedServices} setSelectedBarber={setSelectedBarber}>
@@ -237,16 +344,16 @@ const JoinQueue = () => {
                                 <h1>Select Barber</h1>
                                 <div className='select_barber_container'>
                                     {
-                                        barbers?.length > 0 ? barbers.map((b) => (
+                                        getavailablebarberloading ? <div><h2>Loading...</h2></div> : getavailablebarberisSuccess && getavailablebarberdata?.response?.length > 0 ? getavailablebarberdata?.response?.map((b) => (
                                             <div className='select_barber_item' key={b._id} onClick={() => searchSelectedBarber(b)}
-                                            style={{
-                                                background: selectedBarber === b.barberName ? "var(--quarterny-color)" : "var(--secondary-color)"
-                                            }}
+                                                style={{
+                                                    background: selectedBarber === b.name ? "var(--quarterny-color)" : "var(--secondary-color)"
+                                                }}
                                             >
                                                 <div className='select_barber_item_top'>
                                                     <div><img src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp" alt="barbername" /></div>
                                                     <div>
-                                                        <p>{b.barberName}</p>
+                                                        <p>{b.name}</p>
                                                         {/* <p>Cutting, Styling, Hair Color, Straightening</p> */}
                                                     </div>
 
@@ -257,13 +364,13 @@ const JoinQueue = () => {
                                                     <div>
                                                         <p>Next Available</p>
                                                         <p>Position</p>
-                                                        <p>{b.nextposition}</p>
+                                                        <p>{b.queueCount + 1}</p>
                                                     </div>
                                                     <div className='select_barber_item_bottom_border' />
                                                     <div>
                                                         <p>Estimated</p>
                                                         <p>Time</p>
-                                                        <p>{b.EWT} mins</p>
+                                                        <p>{b.barberEWT} mins</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -272,7 +379,7 @@ const JoinQueue = () => {
 
                                 </div>
 
-                                <div className='select_barber_services_btn'><button onClick={selectbarberHandler}>Select Services</button></div>
+                                {selectedBarber !== false && <div className='select_barber_services_btn'><button onClick={selectbarberHandler}>Select Services</button></div>}
                             </>}
 
                             {modal2 && <>
@@ -282,7 +389,7 @@ const JoinQueue = () => {
                                 </div>
                                 <div className='select_barber_services_container'>
                                     {
-                                        services.map((item) => (
+                                        getServicesByBarberloading ? <div><h2>Loading...</h2></div> : getServicesByBarberisSuccess && getServicesByBarberdata?.response.map((item) => (
                                             <div className='select_barber_services_item' key={item._id}
                                                 style={{ background: selectedServices.find((select) => select._id === item._id) ? "var(--quarterny-color)" : "" }}
                                             >
@@ -294,9 +401,9 @@ const JoinQueue = () => {
                                                 </div>
 
                                                 <div className='select_barber_services_item_content'>
-                                                    <h1>{item.services}</h1>
-                                                    <h1>${item.price}</h1>
-                                                    <h1>{item.EWT}</h1>
+                                                    <h1>{item.serviceName}</h1>
+                                                    <h1>${item.servicePrice}</h1>
+                                                    <h1>{item.barberServiceEWT}</h1>
                                                     {
                                                         selectedServices.find((select) => select._id === item._id) ?
                                                             <div onClick={() => deleteSelectServicesHandler(item._id)}
@@ -317,7 +424,7 @@ const JoinQueue = () => {
                                                 </div>
 
                                                 <div>
-                                                    <h1>({item.rating})</h1><p>{item.reviews} reviews</p>
+                                                    <h1>(5.0)</h1><p>20 reviews</p>
                                                 </div>
 
                                             </div>
@@ -325,14 +432,14 @@ const JoinQueue = () => {
                                     }
 
                                 </div>
-                                <div className='select_barber_services_btn'><button onClick={selectbarbercontinueHandler}>Continue</button></div>
+                                {selectedServices.length > 0 && <div className='select_barber_services_btn'><button onClick={selectbarbercontinueHandler}>Continue</button></div>}
                             </>}
 
                             {modal3 && <>
                                 <h1>Select Services</h1>
                                 <div className='select_barber_services_container'>
                                     {
-                                        services.map((item) => (
+                                        getAllSalonServicesloading ? <div><h2>Loading...</h2></div> : getAllSalonServicesisSuccess && getAllSalonServicesdata?.response.map((item) => (
                                             <div className='select_barber_services_item' key={item._id}
                                                 style={{ background: selectedServices.find((select) => select._id === item._id) ? "var(--quarterny-color)" : "" }}
                                             >
@@ -344,9 +451,9 @@ const JoinQueue = () => {
                                                 </div>
 
                                                 <div className='select_barber_services_item_content'>
-                                                    <h1>{item.services}</h1>
-                                                    <h1>${item.price}</h1>
-                                                    <h1>{item.EWT}</h1>
+                                                    <h1>{item.serviceName}</h1>
+                                                    <h1>${item.servicePrice}</h1>
+                                                    <h1>{item.serviceEWT}</h1>
                                                     {
                                                         selectedServices.find((select) => select._id === item._id) ?
                                                             <div onClick={() => deleteSelectServicesHandler(item._id)}
@@ -367,7 +474,7 @@ const JoinQueue = () => {
                                                 </div>
 
                                                 <div>
-                                                    <h1>({item.rating})</h1><p>{item.reviews} reviews</p>
+                                                    <h1>(5.0)</h1><p>40 reviews</p>
                                                 </div>
 
                                             </div>
@@ -375,7 +482,7 @@ const JoinQueue = () => {
                                     }
 
                                 </div>
-                                <div className='select_barber_services_btn'><button onClick={selectserviceHandler}>Select Barber</button></div>
+                                {selectedServices.length > 0 && <div className='select_barber_services_btn'><button onClick={selectserviceHandler}>Select Barber</button></div>}
                             </>}
 
                             {modal4 && <>
@@ -385,17 +492,17 @@ const JoinQueue = () => {
                                 </div>
                                 <div className='select_barber_container'>
                                     {
-                                        barbers?.length > 0 ? barbers.map((b) => (
+                                        getBarberByServicesKioskloading ? <div><h2>Loading...</h2></div> : getBarberByServicesKioskisSuccess && barbers?.length > 0 ? getBarberByServicesKioskdata?.response.map((b) => (
                                             <div className='select_barber_item' key={b._id}
-                                            onClick={() => searchSelectedBarber(b)}
-                                            style={{
-                                                background: selectedBarber === b.barberName ? "var(--quarterny-color)" : "var(--secondary-color)"
-                                            }}
+                                                onClick={() => searchSelectedBarber(b)}
+                                                style={{
+                                                    background: selectedBarber === b.name ? "var(--quarterny-color)" : "var(--secondary-color)"
+                                                }}
                                             >
                                                 <div className='select_barber_item_top'>
                                                     <div><img src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp" alt="barbername" /></div>
                                                     <div>
-                                                        <p>{b.barberName}</p>
+                                                        <p>{b.name}</p>
                                                         {/* <p>Cutting, Styling, Hair Color, Straightening</p> */}
                                                     </div>
 
@@ -406,13 +513,13 @@ const JoinQueue = () => {
                                                     <div>
                                                         <p>Next Available</p>
                                                         <p>Position</p>
-                                                        <p>{b.nextposition}</p>
+                                                        <p>{b.queueCount + 1}</p>
                                                     </div>
                                                     <div className='select_barber_item_bottom_border' />
                                                     <div>
                                                         <p>Estimated</p>
                                                         <p>Time</p>
-                                                        <p>{b.EWT} mins</p>
+                                                        <p>{b.barberEWT} mins</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -421,7 +528,7 @@ const JoinQueue = () => {
 
                                 </div>
 
-                                <div className='select_barber_services_btn'><button onClick={() => selectservicecontinueHandler()}>Continue</button></div>
+                                { selectedBarber && <div className='select_barber_services_btn'><button onClick={() => selectservicecontinueHandler()}>Continue</button></div> }
                             </>}
 
                         </Modal>
