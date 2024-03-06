@@ -257,8 +257,8 @@ const JoinQueue = () => {
         }else if(selecteBarberdata === false){
             alert("Barber Name is not Present")
         }else{
-            console.log(joinqueuedata)
-            // joinQueueKiosk(joinqueuedata)
+            // console.log(joinqueuedata)
+            joinQueueKiosk(joinqueuedata)
         }
         
     }
