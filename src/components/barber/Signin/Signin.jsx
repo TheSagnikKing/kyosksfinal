@@ -1,21 +1,20 @@
 import React, { useState } from 'react'
 import './Signin.css'
 import { DropdownIcon } from '../../../icons'
-import { useGetAllBarbersKioskQuery } from './signinApiSlice'
+import { useLazyGetAllBarbersKioskQuery } from './signinApiSlice'
 
 const Signin = () => {
 
-    const { data, error, isLoading, isSuccess } = useGetAllBarbersKioskQuery(undefined, {
-        transformResponse: (rawData) => {
-            if (rawData.success) {
-                const emailArray = rawData.response.map((barber) => barber.email);
-                return emailArray;
-            } else {
-                // Handle error or other cases
-                return rawData;
-            }
-        },
-    });
+    const [
+        getAllBarbersKiosk,
+        {
+            data,
+            isSuccess,
+            isError,
+            error,
+            isLoading
+        }
+    ] = useLazyGetAllBarbersKioskQuery()
 
     const [password, setPassword] = useState("")
     const [barberemail, setBarberEmail] = useState("")
@@ -29,6 +28,33 @@ const Signin = () => {
 
     const dropdownHandler = () => {
         setDrop((prev) => !prev)
+        getAllBarbersKiosk(barberemail)
+    }
+
+    const [emailTimeout, setEmailTimeout] = useState(null);
+
+    const debounceSearch = (value) => {
+        if (emailTimeout) {
+            clearTimeout(emailTimeout);
+        }
+
+        setBarberEmail(value);
+
+        setEmailTimeout(setTimeout(() => {
+            setBarberEmail(value);
+            getAllBarbersKiosk(value);
+        }, 500));
+    };
+
+    const setBarberEmailHandler = (e) => {
+        const searchTerm = e.target.value;
+        setDrop(true)
+        debounceSearch(searchTerm);
+    }
+
+    const selectEmailClick = (b) => {
+        setBarberEmail(b.email)
+        setDrop(false)
     }
 
     return (
@@ -48,18 +74,18 @@ const Signin = () => {
                             <input
                                 type="text"
                                 value={barberemail}
-                                onChange={(e) => setBarberEmail(e.target.value)}
+                                onChange={(e) => setBarberEmailHandler(e)}
                             />
                             <div onClick={dropdownHandler}>
                                 <DropdownIcon />
                             </div>
                         </div>
 
-                        { drop && <main className='barber__signin__main__form_dropdown'>
-                                <div><h2>sagniknandy27@gmail.com</h2></div>
-                                <div><h2>sagniknandy27@gmail.com</h2></div>
-                                <div><h2>sagniknandy27@gmail.com</h2></div>
-                            </main>}
+                        {drop && <main className='barber__signin__main__form_dropdown'>
+                            {isLoading ? <h2>Loading...</h2> : isSuccess && data?.response.length > 0 ? data?.response.map((b) => (
+                                <div key={b._id} onClick={() => selectEmailClick(b)}><h2>{b.email}</h2></div>
+                            )) : <h2>No barber available with email</h2>}
+                        </main>}
                     </div>
 
                     <div>
