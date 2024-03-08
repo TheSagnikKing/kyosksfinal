@@ -33,7 +33,7 @@ const Dashboard = () => {
     ] = useChangeBarberOnlineStatusKioskMutation()
 
     const [salonbtnCheck, setSalonbtnCheck] = useState(false)
-    const [barberbtnCheck, setBarberbtnCheck] = useState(false)
+    const [barberbtnCheck, setBarberbtnCheck] = useState(selectCurrentBarberdata?.isOnline)
 
     const salondata = {
         salonId: 1,

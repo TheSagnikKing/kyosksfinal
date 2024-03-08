@@ -3,6 +3,7 @@ import './AdminSignin.css'
 import { useNavigate } from 'react-router-dom'
 import { useAdminLoginKioskMutation } from './adminsigninApiSlice'
 import toast from 'react-hot-toast'
+import axios from 'axios'
 
 const AdminSignin = () => {
 
@@ -37,13 +38,15 @@ const AdminSignin = () => {
         }
     },[isSuccess,isError,navigate])
 
-    const loginHandler = () => {
+    const loginHandler = async() => {
         const admindata = { email, password }
         console.log(admindata)
 
         adminlogin(admindata)
 
-        // navigate('/kiyosk')
+        // const {data} = await axios.post('https://iqb-kiosk.onrender.com/kiosk/adminLoginKiosk',admindata)
+        // console.log(data)
+
     }
 
     return (
