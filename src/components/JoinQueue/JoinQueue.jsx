@@ -3,7 +3,7 @@ import './JoinQueue.css'
 import { AddIcon, BackIcon, DeleteIcon, DropdownIcon } from '../../icons'
 import Modal from '../modal/Modal'
 import { useGetBarberByServicesKioskMutation, useGetServicesByBarberKioskMutation, useJoinQueueKioskMutation, useLazyGetAllSalonServicesKioskQuery, useLazyGetAvailableBarbersForQKioskQuery } from './joinqueueApiSlice'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Toaster, toast } from 'react-hot-toast';
 
 const services = [
@@ -261,10 +261,14 @@ const JoinQueue = () => {
                     color: '#fff',
                 },
             });
+
             setSelectedBarber("")
             setSelectedBarberData("")
             setSelectedBarberServices([])
             setSelectedServices([])
+            setCustomerName("")
+            setCustomerEmail("")
+            setMobileNumber("")
         } else if (joinQueueKioskisError) {
             toast.error(joinQueueKioskerror?.message, {
                 duration: 3000,
@@ -334,6 +338,7 @@ const JoinQueue = () => {
 
             <div className='joinqueue__main__right'>
                 <h1>Join Queue</h1>
+                <Link to="/kiyosk" style={{background:"black",color:"white",position:"absolute",top:"20px",left:"20px",padding:"1rem",fontSize:"1.2rem"}}>Home</Link>
 
                 <div className='joinqueue__main__right__form'>
                     <div className='joinqueue__main__right__form_top'>

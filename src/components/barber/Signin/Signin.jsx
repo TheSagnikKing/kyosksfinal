@@ -4,7 +4,7 @@ import { DropdownIcon } from '../../../icons'
 import { useBarberLoginKioskMutation, useLazyGetAllBarbersKioskQuery } from './signinApiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setCredentials } from './barberauthSlice'
+import { setCredentials, setToken } from './barberauthSlice'
 import toast from 'react-hot-toast'
 
 const Signin = () => {
@@ -95,6 +95,10 @@ const Signin = () => {
         setBarberEmail(b.email)
         setDrop(false)
     }
+
+    useEffect(() => {
+        dispatch(setToken())
+    },[dispatch])
 
     return (
         <main className='barber__signin__main__container'>

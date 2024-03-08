@@ -7,11 +7,15 @@ const barberauthSlice = createSlice({
         setCredentials: (state, action) => {
             state.barbertoken = action.payload.barberToken
             state.barberInfo = action.payload.foundUser
+        },
+        setToken: (state,action) => {
+            state.barbertoken = null
+            state.barberInfo = {}
         }
     }
 })
 
-export const { setCredentials } = barberauthSlice.actions
+export const { setCredentials, setToken } = barberauthSlice.actions
 
 export default barberauthSlice.reducer
 
