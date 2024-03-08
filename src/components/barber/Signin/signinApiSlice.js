@@ -8,8 +8,15 @@ export const signinApiSlice = apiSlice.injectEndpoints({
                 url: `/kiosk/getAllBarbersKiosk?salonId=1&email=${email}`,
                 method: 'GET',
             })
+        }),
+        BarberLoginKiosk: builder.mutation({
+            query: (barberdata) => ({
+                url: '/kiosk/barberLoginKiosk',
+                method: 'POST',
+                body: barberdata
+            })
         })
     })
 })
 
-export const { useLazyGetAllBarbersKioskQuery } = signinApiSlice
+export const { useLazyGetAllBarbersKioskQuery, useBarberLoginKioskMutation } = signinApiSlice

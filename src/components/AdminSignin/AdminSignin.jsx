@@ -1,19 +1,48 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './AdminSignin.css'
 import { useNavigate } from 'react-router-dom'
+import { useAdminLoginKioskMutation } from './adminsigninApiSlice'
+import toast from 'react-hot-toast'
 
 const AdminSignin = () => {
+
+    const [adminlogin, {
+        data,
+        isSuccess,
+        isError,
+        isLoading,
+        error
+    }] = useAdminLoginKioskMutation()
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
     const navigate = useNavigate()
 
+
+    useEffect(() => {
+        if(isSuccess){
+            navigate("/kiyosk")
+        }else if(isError){
+            toast.error(error?.data?.message, {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        }
+    },[isSuccess,isError,navigate])
+
     const loginHandler = () => {
         const admindata = { email, password }
         console.log(admindata)
 
-        navigate('/kiyosk')
+        adminlogin(admindata)
+
+        // navigate('/kiyosk')
     }
 
     return (
@@ -50,7 +79,7 @@ const AdminSignin = () => {
                         />
                     </div>
 
-                    <div><button onClick={loginHandler}>LOGIN</button></div>
+                    <div>{isLoading ? <button>Loading...</button> : <button onClick={loginHandler}>LOGIN</button>}</div>
 
                 </div>
             </div>

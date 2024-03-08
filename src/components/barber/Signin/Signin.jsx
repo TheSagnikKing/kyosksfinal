@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Signin.css'
 import { DropdownIcon } from '../../../icons'
-import { useLazyGetAllBarbersKioskQuery } from './signinApiSlice'
+import { useBarberLoginKioskMutation, useLazyGetAllBarbersKioskQuery } from './signinApiSlice'
 import { useNavigate } from 'react-router-dom'
 
 const Signin = () => {
@@ -17,15 +17,28 @@ const Signin = () => {
         }
     ] = useLazyGetAllBarbersKioskQuery()
 
+    const [
+        barberLoginKiosk, 
+        {
+            data:barberlogindata,
+            isSuccess:barberloginisSuccess,
+            isError:barberloginisError,
+            error:barbererror,
+            isLoading:barberisloading
+        }
+    ] =  useBarberLoginKioskMutation()
+
     const [password, setPassword] = useState("")
     const [barberemail, setBarberEmail] = useState("")
 
     const navigate = useNavigate()
 
     const barberSigninHandler = () => {
-        const barberdata = { barberemail, password }
+        const barberdata = { email:barberemail, password }
         console.log(barberdata)
-        navigate('/kiyoskdashboard')
+
+        barberLoginKiosk(barberdata)
+
     }
 
     const [drop, setDrop] = useState(false)

@@ -16,7 +16,7 @@ const App = () => {
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/adminsignin" element={<AdminSignin />} />
+          <Route path="/" element={<AdminSignin />} />
           <Route path="/kiyosk" element={<Public />} />
           <Route path="/joinqueue" element={<JoinQueue />} />
           <Route path="/barbersignin" element={<BarberSignin />} />
