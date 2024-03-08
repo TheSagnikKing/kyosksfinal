@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Public.css'
 import { SettingsIcon } from '../../icons'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Public = () => {
+
+  const [dropdown, setDropdown] = useState(false) 
 
   const navigate = useNavigate()
 
   const settingClicked = () => {
-    navigate('/barbersignin')
+    setDropdown(!dropdown)
+    // navigate('/barbersignin')
   }
 
   const joinqueueClicked = () => {
@@ -20,6 +23,11 @@ const Public = () => {
         <div className='public__main__top'>
           <div><img src="/iqb_logo.jpg" alt="" /></div>
           <div onClick={() => settingClicked()}><SettingsIcon/></div>
+
+          {dropdown && <div className='public__main__top__logoutdiv'>
+            <Link to="/barbersignin">Barber Signin</Link>
+            <p onClick={() => alert("logout")}>Logout</p>
+          </div> }
         </div>
 
         <div className='public__main__middle'> 
