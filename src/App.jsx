@@ -9,6 +9,9 @@ const AdminSignin = React.lazy(() => import("./components/AdminSignin/AdminSigni
 const Table = React.lazy(() => import("./components/barber/demo/Table"))
 const KiyoskDashboard = React.lazy(() => import("./components/Dashboard/Dashboard"))
 
+const ProtectedAuthRoute = React.lazy(() => import('./components/Protected/Admin/ProtectedAuthRoute'))
+const ProtectedRoute = React.lazy(() => import('./components/Protected/Admin/ProtectedRoute'))
+
 const App = () => {
 
   return (<>
@@ -16,12 +19,21 @@ const App = () => {
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/" element={<AdminSignin />} />
-          <Route path="/kiyosk" element={<Public />} />
-          <Route path="/joinqueue" element={<JoinQueue />} />
-          <Route path="/barbersignin" element={<BarberSignin />} />
-          <Route path="/kiyoskdashboard" element={<KiyoskDashboard/>}/>
+
+          <Route element={<ProtectedAuthRoute />}>
+            <Route path="/" element={<AdminSignin />} />
+          </Route>
+
+          <Route element={<ProtectedRoute />}>
+            <Route path="/kiyosk" element={<Public />} />
+            <Route path="/joinqueue" element={<JoinQueue />} />
+            <Route path="/barbersignin" element={<BarberSignin />} />
+            <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />
+          </Route>
+
+
           <Route path='/table' element={<Table />} />
+
         </Routes>
       </Suspense>
     </BrowserRouter>

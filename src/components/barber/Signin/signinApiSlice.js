@@ -1,6 +1,5 @@
 import { apiSlice } from "../../app/api/apiSlice"
 
-
 export const signinApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         GetAllBarbersKiosk: builder.query({

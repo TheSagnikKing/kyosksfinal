@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Signin.css'
 import { DropdownIcon } from '../../../icons'
 import { useBarberLoginKioskMutation, useLazyGetAllBarbersKioskQuery } from './signinApiSlice'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setCredentials } from './barberauthSlice'
+import toast from 'react-hot-toast'
 
 const Signin = () => {
 
@@ -32,6 +35,24 @@ const Signin = () => {
     const [barberemail, setBarberEmail] = useState("")
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if(barberloginisSuccess){
+            dispatch(setCredentials(barberlogindata))
+            navigate('/kiyoskdashboard')
+        }else if(barberloginisError){
+            toast.error(barbererror?.data?.message, {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        }
+    },[dispatch,navigate,barberloginisSuccess,barberloginisError])
 
     const barberSigninHandler = () => {
         const barberdata = { email:barberemail, password }
@@ -115,7 +136,7 @@ const Signin = () => {
                         />
                     </div>
 
-                    <div><button onClick={barberSigninHandler}>LOGIN</button></div>
+                    <div>{ barberisloading ? <button>Loading...</button> : <button onClick={barberSigninHandler}>LOGIN</button>}</div>
 
                 </div>
             </div>

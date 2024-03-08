@@ -22,6 +22,7 @@ const AdminSignin = () => {
 
     useEffect(() => {
         if(isSuccess){
+            localStorage.setItem('adminkiyoskloggin','true')
             navigate("/kiyosk")
         }else if(isError){
             toast.error(error?.data?.message, {

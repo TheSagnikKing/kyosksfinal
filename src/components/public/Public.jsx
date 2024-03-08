@@ -18,6 +18,11 @@ const Public = () => {
     navigate('/joinqueue')
   }
 
+  const logoutHandler = () => {
+    localStorage.setItem('adminkiyoskloggin','false')
+    navigate('/')
+  }
+
   return (
     <main className='public__main__container'>
         <div className='public__main__top'>
@@ -26,7 +31,7 @@ const Public = () => {
 
           {dropdown && <div className='public__main__top__logoutdiv'>
             <Link to="/barbersignin">Barber Signin</Link>
-            <p onClick={() => alert("logout")}>Logout</p>
+            <p onClick={logoutHandler}>Logout</p>
           </div> }
         </div>
 
