@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './JoinQueue.css'
 import { AddIcon, BackIcon, DeleteIcon, DropdownIcon } from '../../icons'
 import Modal from '../modal/Modal'
 import { useGetBarberByServicesKioskMutation, useGetServicesByBarberKioskMutation, useJoinQueueKioskMutation, useLazyGetAllSalonServicesKioskQuery, useLazyGetAvailableBarbersForQKioskQuery } from './joinqueueApiSlice'
+import { useNavigate } from 'react-router-dom'
+import { Toaster, toast } from 'react-hot-toast';
 
 const services = [
     {
@@ -217,7 +219,7 @@ const JoinQueue = () => {
     const selectbarbercontinueHandler = () => {
         setSelectedBarberServices(selectedServices)
         setSelectedServices([])
-        setSelectedBarber(null)
+        setSelectedBarber(false)
         setModal1(false)
         setModal2(false)
         setIsOpen(false)
@@ -225,7 +227,7 @@ const JoinQueue = () => {
 
     const selectservicecontinueHandler = () => {
         setSelectedServices([])
-        setSelectedBarber(null)
+        setSelectedBarber(false)
         setModal3(false)
         setModal4(false)
         setIsOpen(false)
@@ -236,32 +238,93 @@ const JoinQueue = () => {
 
     const joinqueuedata = {
         salonId: 1,
-        name:customerName,
+        name: customerName,
         customerEmail: customerEmail,
         joinedQType: "Single-Join",
         methodUsed: "Walk-In",
         mobileNumber,
         barberName: selecteBarberdata,
         barberId: selectedBarberId,
-        services:selectedBarberServices
+        services: selectedBarberServices
     }
 
-    const joinqueueHandler = () => {
+    const navigate = useNavigate()
 
-        if(!customerName){
-            alert("Please Fill All The Fields")
-        }else if(selectedBarberId === false){
-            alert("BarberId is not present")
-        }else if(selectedBarberServices.length === 0){
-            alert("Please Choose services")
-        }else if(selecteBarberdata === false){
-            alert("Barber Name is not Present")
-        }else{
+    useEffect(() => {
+        if (joinQueueKioskisSuccess) {
+            toast.success("Join Queue Successfully", {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+            setSelectedBarber("")
+            setSelectedBarberData("")
+            setSelectedBarberServices([])
+            setSelectedServices([])
+        } else if (joinQueueKioskisError) {
+            toast.error(joinQueueKioskerror?.message, {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        }
+    }, [joinQueueKioskisSuccess, joinQueueKioskisError, navigate])
+
+    const joinqueueHandler = () => {
+        if (!customerName) {
+            toast.error("Please Fill All the Fields", {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        } else if (selectedBarberId === false) {
+            toast.error("BarberId not Present", {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        } else if (selectedBarberServices.length === 0) {
+            toast.error("Please Choose Services", {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        } else if (selecteBarberdata === false) {
+            toast.error("Barber Name not Present", {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        } else {
             // console.log(joinqueuedata)
             joinQueueKiosk(joinqueuedata)
         }
-        
     }
+
 
     return (
         <main className='joinqueue__main__container'>
@@ -333,7 +396,7 @@ const JoinQueue = () => {
                         </div>
                     </div>
 
-                    { joinQueueKioskloading ? <div className='joinqueuebtn'>Loading...</div> : <div className='joinqueuebtn' onClick={joinqueueHandler}>Join</div>}
+                    {joinQueueKioskloading ? <div className='joinqueuebtn'>Loading...</div> : <div className='joinqueuebtn' onClick={joinqueueHandler}>Join</div>}
 
                     {
                         isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen} setModal1={setModal1} setModal2={setModal2} setModal3={setModal3} setModal4={setModal4} setSelectedServices={setSelectedServices} setSelectedBarber={setSelectedBarber}>
@@ -525,13 +588,11 @@ const JoinQueue = () => {
 
                                 </div>
 
-                                { selectedBarber && <div className='select_barber_services_btn'><button onClick={() => selectservicecontinueHandler()}>Continue</button></div> }
+                                {selectedBarber && <div className='select_barber_services_btn'><button onClick={() => selectservicecontinueHandler()}>Continue</button></div>}
                             </>}
 
                         </Modal>
                     }
-
-
                 </div>
             </div>
         </main>

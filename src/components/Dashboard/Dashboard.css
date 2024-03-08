@@ -1,0 +1,67 @@
+@media((min-width:940px) and (max-width:1194px)){
+    .kiyosk__dashboard__main__container{
+        padding: 2rem;
+    }
+
+    .kiyosk__dashboard__main__container>h1{
+        font-size: 3rem;
+    }
+
+    .kiyosk__dashboard__main__container_btnbox{
+        margin-block: 3rem;
+        display: flex;
+        align-items: center;
+        gap: 5rem;
+    }
+
+    .kiyosk__dashboard__main__container_btnbox>div{
+        width: 25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .kiyosk__dashboard__main__container_btnbox>div>div{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .kiyosk__dashboard__main__container_btnbox>div>div>div{
+        width: 3rem;
+        height: 3rem;
+        background-color: var(--secondary-color);
+        border: 1px solid var(--primary-color);
+        border-radius: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        font-weight: bold;
+        cursor: pointer
+    }
+
+    .kiyosk__dashboard__main__barber_detailbox{
+        height: auto;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0px 0px 4px rgba(0,0,0,0.6);
+        width: 40%;
+        margin-top: 5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .kiyosk__dashboard__main__barber_detailbox>h1{
+        font-size: 2.5rem;
+        font-weight: 500;
+    }
+
+    .kiyosk__dashboard__main__barber_detailbox>h2{
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+}

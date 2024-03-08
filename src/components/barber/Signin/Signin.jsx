@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Signin.css'
 import { DropdownIcon } from '../../../icons'
 import { useLazyGetAllBarbersKioskQuery } from './signinApiSlice'
+import { useNavigate } from 'react-router-dom'
 
 const Signin = () => {
 
@@ -19,9 +20,12 @@ const Signin = () => {
     const [password, setPassword] = useState("")
     const [barberemail, setBarberEmail] = useState("")
 
+    const navigate = useNavigate()
+
     const barberSigninHandler = () => {
         const barberdata = { barberemail, password }
         console.log(barberdata)
+        navigate('/kiyoskdashboard')
     }
 
     const [drop, setDrop] = useState(false)
