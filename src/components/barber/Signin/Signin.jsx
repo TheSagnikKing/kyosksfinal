@@ -40,6 +40,7 @@ const Signin = () => {
     useEffect(() => {
         if(barberloginisSuccess){
             dispatch(setCredentials(barberlogindata))
+            localStorage.setItem('barberkiyoskloggin','true')
             navigate('/kiyoskdashboard')
         }else if(barberloginisError){
             toast.error(barbererror?.data?.message, {
