@@ -29,9 +29,13 @@ const ProtectedRoute = () => {
       localStorage.setItem("adminkiyoskloggin", "false")
       navigate('/')
     } else if (isError) {
-      if (error?.data?.message === "Invalid Admin Token" || error?.data?.message === "Expired Admin Token" || error?.data?.message === "Forbidden Admin" || error?.data?.message === "Internal Server Error") {
-        // localStorage.setItem("adminkiyoskloggin","false")
-        // navigate('/')
+      if (error?.data?.message === "Invalid Admin Token" || error?.data?.message === "Forbidden Admin" || error?.data?.message === "Internal Server Error") {
+        localStorage.setItem("adminkiyoskloggin","false")
+        navigate('/')
+      }else if(error?.data?.message === "Expired Admin Token"){
+        window.location.reload()
+        localStorage.setItem("adminkiyoskloggin","false")
+        navigate('/')
       }
     } else if (isSuccess) {
        dispatch(setAdminCredentials(data))

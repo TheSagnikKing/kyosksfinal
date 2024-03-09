@@ -3,8 +3,8 @@ import { apiSlice } from "../app/api/apiSlice"
 export const joinqueueApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         GetAvailableBarbersForQKiosk: builder.query({
-            query: () => ({
-                url: '/kiosk/getAvailableBarbersForQKiosk?salonId=1',
+            query: (data) => ({
+                url: `/kiosk/getAvailableBarbersForQKiosk?salonId=${data.salonId}`,
                 method: 'GET',
             })
         }),
@@ -16,8 +16,8 @@ export const joinqueueApiSlice = apiSlice.injectEndpoints({
             })
         }),
         GetAllSalonServicesKiosk: builder.query({
-            query: () => ({
-                url:'/kiosk/getAllSalonServicesKiosk?salonId=1',
+            query: (data) => ({
+                url:`/kiosk/getAllSalonServicesKiosk?salonId=${data.salonId}`,
                 method:'GET'
             })
         }),

@@ -16,8 +16,15 @@ export const publicApiSlice = apiSlice.injectEndpoints({
                 body: admidata
             }),
             invalidatesTags: ['adminloggin']
+        }),
+        GetAllSalonsByAdmin: builder.mutation({
+            query: (adminEmail) => ({
+                url: '/kiosk/getAllSalonsByAdmin',
+                method: 'POST',
+                body: {adminEmail}
+            })
         })
     })
 })
 
-export const { useGetDefaultSalonByAdminKioskMutation, useAdminConnectKioskMutation } = publicApiSlice
+export const { useGetDefaultSalonByAdminKioskMutation, useAdminConnectKioskMutation,useGetAllSalonsByAdminMutation } = publicApiSlice

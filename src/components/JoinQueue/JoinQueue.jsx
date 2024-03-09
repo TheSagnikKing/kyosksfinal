@@ -5,70 +5,12 @@ import Modal from '../modal/Modal'
 import { useGetBarberByServicesKioskMutation, useGetServicesByBarberKioskMutation, useJoinQueueKioskMutation, useLazyGetAllSalonServicesKioskQuery, useLazyGetAvailableBarbersForQKioskQuery } from './joinqueueApiSlice'
 import { Link, useNavigate } from 'react-router-dom'
 import { Toaster, toast } from 'react-hot-toast';
-
-const services = [
-    {
-        _id: 1,
-        services: "Hair",
-        price: 390,
-        EWT: 15,
-        rating: "4.0",
-        reviews: 20
-    },
-    {
-        _id: 2,
-        services: "Spa",
-        price: 450,
-        EWT: 16,
-        rating: "4.1",
-        reviews: 18
-    },
-    {
-        _id: 3,
-        services: "Message",
-        price: 580,
-        EWT: 20,
-        rating: "5.0",
-        reviews: 35
-    },
-    {
-        _id: 4,
-        services: "Cutting",
-        price: 980,
-        EWT: 30,
-        rating: "5.0",
-        reviews: 15
-    }
-]
-
-const barbers = [
-    {
-        _id: 1,
-        barberName: "Whisker Cutters",
-        nextposition: 4,
-        EWT: 15
-    },
-    {
-        _id: 2,
-        barberName: "The Rebel Hairs",
-        nextposition: 5,
-        EWT: 18
-    },
-    {
-        _id: 3,
-        barberName: "Dapper Dan's",
-        nextposition: 1,
-        EWT: 20
-    },
-    {
-        _id: 4,
-        barberName: "The Sideburn",
-        nextposition: 6,
-        EWT: 25
-    }
-]
+import { useSelector } from 'react-redux'
+import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 
 const JoinQueue = () => {
+
+    const adminInfo = useSelector(selectCurrentAdminInfo)
 
     const [
         getavailablebarber,
@@ -146,7 +88,7 @@ const JoinQueue = () => {
     const SelectBarberDropdownHandler = () => {
         setIsOpen(true)
         setModal1(true)
-        getavailablebarber()
+        getavailablebarber({salonId:adminInfo?.salonId})
         setModal2(false)
         setModal3(false)
         setModal4(false)
@@ -177,7 +119,7 @@ const JoinQueue = () => {
         setModal1(false)
         setModal2(false)
         setModal3(true)
-        getAllSalonServices()
+        getAllSalonServices({salonId:adminInfo?.salonId})
         setModal4(false)
     }
 
@@ -189,7 +131,7 @@ const JoinQueue = () => {
         setModal3(false)
 
         const services = {
-            salonId: 1,
+            salonId: adminInfo?.salonId,
             serviceIds: selectedServices.map((s) => s.serviceId)
         }
         console.log(services)
@@ -237,7 +179,7 @@ const JoinQueue = () => {
     console.log("selected services", selectedServices)
 
     const joinqueuedata = {
-        salonId: 1,
+        salonId: adminInfo?.salonId,
         name: customerName,
         customerEmail: customerEmail,
         joinedQType: "Single-Join",
@@ -270,7 +212,7 @@ const JoinQueue = () => {
             setCustomerEmail("")
             setMobileNumber("")
         } else if (joinQueueKioskisError) {
-            toast.error(joinQueueKioskerror?.message, {
+            toast.error(joinQueueKioskerror?.data?.message, {
                 duration: 3000,
                 style: {
                     fontSize: "1.4rem",

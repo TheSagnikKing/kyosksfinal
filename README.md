@@ -31,4 +31,10 @@ Proper input validation in the join queue on each input not show please fill all
 
 
 
+//jwt token jodi kaj korte korte remove hoejai ba expire hoe jai tokhn
+
+// if jwt token is expired tokhon ami kikorbo notun akta token ami create kore pathia debo
+
+
+
 

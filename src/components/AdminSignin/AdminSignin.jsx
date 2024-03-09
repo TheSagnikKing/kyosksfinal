@@ -28,7 +28,7 @@ const AdminSignin = () => {
             localStorage.setItem('adminkiyosktoken',data?.adminToken)
             localStorage.setItem('adminkiyoskloggin','true')
             dispatch(setAdminToken(data))
-            navigate("/kiyosk",{state:data.salons})
+            navigate("/kiyosk")
         }else if(isError){
             toast.error(error?.data?.message, {
                 duration: 3000,

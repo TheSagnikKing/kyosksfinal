@@ -4,16 +4,12 @@ import { DropdownIcon, SettingsIcon } from '../../icons'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
-import { useAdminConnectKioskMutation, useGetDefaultSalonByAdminKioskMutation } from './publicApiSlice'
+import { useAdminConnectKioskMutation, useGetAllSalonsByAdminMutation, useGetDefaultSalonByAdminKioskMutation } from './publicApiSlice'
 import toast from 'react-hot-toast'
 
 const Public = () => {
 
   const adminInfo = useSelector(selectCurrentAdminInfo)
-
-  // console.log("public",adminInfo)
-
-  const location = useLocation()
 
   const [salonId, setSalonId] = useState(adminInfo?.salonId)
   const [salonName, setSalonName] = useState("")
@@ -40,9 +36,23 @@ const Public = () => {
     }
   ] = useAdminConnectKioskMutation()
 
+  const [
+    getAllSalonsByAdmin,
+    {
+      data:getAllSalonsByAdmindata,
+      isSuccess:getAllSalonsByAdminisSuccess,
+      isError:getAllSalonsByAdminisError,
+      error:getAllSalonsByAdminerror,
+      isLoading:getAllSalonsByAdminisLoading
+    }
+  ] = useGetAllSalonsByAdminMutation()
+
+
+
   useEffect(() => {
     if(adminInfo){
       getDefaultSalonByAdminKiosk(adminInfo?.email)
+      getAllSalonsByAdmin(adminInfo?.email)
     }
   },[adminInfo])
 
@@ -60,9 +70,7 @@ const Public = () => {
     }
   },[adminConnectKioskisSuccess])
 
-  const salonlistdata = location?.state
 
-  console.log(salonlistdata)
 
   const [dropdown, setDropdown] = useState(false)
 
@@ -129,8 +137,8 @@ const Public = () => {
 
             {salonlistdrop && (
               <div className='salonlistdropdown__box__content'>
-                {salonlistdata.length > 0 &&
-                  salonlistdata.map((s) => (
+                {getAllSalonsByAdmindata?.salons?.length > 0 &&
+                  getAllSalonsByAdmindata?.salons.map((s) => (
                     <div key={s._id} onClick={() => salonHandler(s)} 
                     style={{
                       backgroundColor:salonName === s.salonName ? "var(--quarterny-color)" : ""

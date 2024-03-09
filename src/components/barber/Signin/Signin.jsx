@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Signin.css'
 import { DropdownIcon } from '../../../icons'
 import { useBarberLoginKioskMutation, useLazyGetAllBarbersKioskQuery } from './signinApiSlice'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCredentials, setToken } from './barberauthSlice'
 import toast from 'react-hot-toast'
@@ -72,7 +72,7 @@ const Signin = () => {
     const dropdownHandler = () => {
         setDrop((prev) => !prev)
         const salonId = adminInfo?.salonId
-        
+
         getAllBarbersKiosk({
             salonId,
             email:barberemail
@@ -90,9 +90,10 @@ const Signin = () => {
 
         setEmailTimeout(setTimeout(() => {
             setBarberEmail(value);
-            getAllBarbersKiosk(value,adminInfo?.salonId);
+            const salonId = adminInfo?.salonId
+            getAllBarbersKiosk({email:value, salonId});
         }, 500));
-    };
+    }; 
 
     const setBarberEmailHandler = (e) => {
         const searchTerm = e.target.value;
@@ -116,8 +117,9 @@ const Signin = () => {
             </div>
 
             <div className='barber__signin__main__right'>
-                <h1>Barber Login</h1>
+            {/* <Link to="/kiyosk" style={{marginTop:"10rem",background:"black",color:"white",padding:"1rem",fontSize:"1.2rem"}}>Home</Link> */}
 
+                <h1>Barber Login</h1>
                 <div className='barber__signin__main__form'>
                     <div>
                         <h1>Select Barber Email</h1>

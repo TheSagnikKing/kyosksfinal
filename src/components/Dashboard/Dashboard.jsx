@@ -13,7 +13,7 @@ const Dashboard = () => {
     const selectCurrentBarberTokendata = useSelector(selectCurrentBarberToken)
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
-    console.log('dash',adminInfo)
+    console.log('dash',selectCurrentBarberdata)
 
     const [
         changeSalonOnlineStatusKiosk,
@@ -37,8 +37,10 @@ const Dashboard = () => {
         }
     ] = useChangeBarberOnlineStatusKioskMutation()
 
-    const [salonbtnCheck, setSalonbtnCheck] = useState(false)
-    const [barberbtnCheck, setBarberbtnCheck] = useState(selectCurrentBarberdata?.isOnline)
+    const [salonbtnCheck, setSalonbtnCheck] = useState(selectCurrentBarberdata?.isSalonOnline)
+    const [barberbtnCheck, setBarberbtnCheck] = useState(selectCurrentBarberdata?.foundUser?.isOnline)
+
+    console.log(salonbtnCheck,"sdvdv")
 
     const navigate = useNavigate()
 
@@ -95,10 +97,10 @@ const Dashboard = () => {
 
             <div className='kiyosk__dashboard__main__barber_detailbox'>
                 <h1>Barber Detail</h1>
-                <h2>Barber Email: <p>{selectCurrentBarberdata?.email}</p></h2>
-                <h2>Barber Mobile Verified: <p>{selectCurrentBarberdata?.mobileVerified === false ? "false" : "true"}</p></h2>
-                <h2>Barber SalonId: <p>{selectCurrentBarberdata?.salonId}</p></h2>
-                <h2>Barber EWT: <p>{selectCurrentBarberdata?.barberEWT}</p></h2>
+                <h2>Barber Email: <p>{selectCurrentBarberdata?.foundUser?.email}</p></h2>
+                <h2>Barber Mobile Verified: <p>{selectCurrentBarberdata?.foundUser?.mobileVerified === false ? "false" : "true"}</p></h2>
+                <h2>Barber SalonId: <p>{selectCurrentBarberdata?.foundUser?.salonId}</p></h2>
+                <h2>Barber EWT: <p>{selectCurrentBarberdata?.foundUser?.barberEWT}</p></h2>
             </div>
         </main>
     )

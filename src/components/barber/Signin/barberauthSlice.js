@@ -6,7 +6,7 @@ const barberauthSlice = createSlice({
     reducers: {
         setCredentials: (state, action) => {
             state.barbertoken = action.payload.barberToken
-            state.barberInfo = action.payload.foundUser
+            state.barberInfo = action.payload
         },
         setToken: (state,action) => {
             state.barbertoken = null
