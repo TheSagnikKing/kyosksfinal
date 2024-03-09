@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import BarberKiyoskDashboardProtect from './components/Protected/Barber/BarberKiyoskDashboardProtect';
 
 const Public = React.lazy(() => import("./components/public/Public"));
 const JoinQueue = React.lazy(() => import("./components/JoinQueue/JoinQueue"));
@@ -28,7 +29,9 @@ const App = () => {
             <Route path="/kiyosk" element={<Public />} />
             <Route path="/joinqueue" element={<JoinQueue />} />
             <Route path="/barbersignin" element={<BarberSignin />} />
-            <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />
+            <Route element={<BarberKiyoskDashboardProtect />}>
+              <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />
+            </Route>
           </Route>
 
 

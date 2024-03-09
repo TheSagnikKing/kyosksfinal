@@ -44,11 +44,11 @@ const Dashboard = () => {
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if(selectCurrentBarberTokendata === null){
-            navigate('/barbersignin')
-        }
-    },[selectCurrentBarberTokendata])
+    // useEffect(() => {
+    //     if(selectCurrentBarberTokendata === null){
+    //         navigate('/barbersignin')
+    //     }
+    // },[selectCurrentBarberTokendata])
 
     const salondata = {
         salonId: adminInfo?.salonId,

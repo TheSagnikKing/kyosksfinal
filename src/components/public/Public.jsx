@@ -4,7 +4,7 @@ import { DropdownIcon, SettingsIcon } from '../../icons'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
-import { useAdminConnectKioskMutation, useGetAllSalonsByAdminMutation, useGetDefaultSalonByAdminKioskMutation } from './publicApiSlice'
+import { useAdminConnectKioskMutation, useGerAllAdvertisementsKioskMutation, useGetAllSalonsByAdminMutation, useGetDefaultSalonByAdminKioskMutation } from './publicApiSlice'
 import toast from 'react-hot-toast'
 
 const Public = () => {
@@ -13,6 +13,8 @@ const Public = () => {
 
   const [salonId, setSalonId] = useState(adminInfo?.salonId)
   const [salonName, setSalonName] = useState("")
+
+  const [salonLogo, setSalonLogo] = useState("")
 
   const [
     getDefaultSalonByAdminKiosk,
@@ -47,7 +49,16 @@ const Public = () => {
     }
   ] = useGetAllSalonsByAdminMutation()
 
-
+  const [
+    gerAllAdvertisementsKiosk,
+    {
+      data:gerAllAdvertisementsKioskdata,
+      isSuccess:gerAllAdvertisementsKioskisSuccess,
+      isError:gerAllAdvertisementsKioskisError,
+      error:gerAllAdvertisementsKioskerror,
+      isLoading:gerAllAdvertisementsKioskisLoading
+    }
+  ] = useGerAllAdvertisementsKioskMutation()
 
   useEffect(() => {
     if(adminInfo){
@@ -60,6 +71,7 @@ const Public = () => {
     if(adminInfo && isSuccess){
       setSalonName(data?.response?.salonName)
       setSalonId(data?.response?.salonId)
+      gerAllAdvertisementsKiosk(data?.response?.salonId)
     }
   },[adminInfo,isSuccess])
 
@@ -128,7 +140,7 @@ const Public = () => {
   return (
     <main className='public__main__container'>
       <div className='public__main__top'>
-        <div><img src="/iqb_logo.jpg" alt="" /></div>
+        <div><img src={isSuccess && data?.response?.salonLogo[0].url} alt={isSuccess && data?.response?.salonName} /></div>
 
         <div>
           <div className='salonlistdropdown__box'>
@@ -164,7 +176,7 @@ const Public = () => {
       </div>
 
       <div className='public__main__middle'>
-        <img src="/iqb_banner.png" alt="" />
+        <img src={gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements[0]?.url} alt="advertisement image" />
       </div>
 
       <div className='public__main__bottom'>

@@ -211,6 +211,7 @@ const JoinQueue = () => {
             setCustomerName("")
             setCustomerEmail("")
             setMobileNumber("")
+            navigate('/kiyosk')
         } else if (joinQueueKioskisError) {
             toast.error(joinQueueKioskerror?.data?.message, {
                 duration: 3000,
@@ -309,11 +310,12 @@ const JoinQueue = () => {
 
                     <div className='joinqueue__main__right__form_bottom'>
                         <div>
-                            <p>Select Barber: {selecteBarberdata}</p>
+                            <p>Select Barber:</p>
                             <div>
                                 <input
                                     type="text"
                                     placeholder="Any Barber"
+                                    value={selecteBarberdata === false ? "" : selecteBarberdata}
                                 />
                                 <div onClick={SelectBarberDropdownHandler}><DropdownIcon /></div>
                             </div>
@@ -321,11 +323,12 @@ const JoinQueue = () => {
                         </div>
 
                         <div>
-                            <p>Select Services: {selectedBarberServices.map((s) => s.serviceName + " ")}</p>
+                            <p>Select Services:</p>
                             <div>
                                 <input
                                     type="text"
                                     placeholder="Click to Choose"
+                                    value= {selectedBarberServices.map((s) => s.serviceName + " ")}
                                 />
                                 <div onClick={SelectServicesDropdownHandler}><DropdownIcon /></div>
                             </div>
@@ -348,7 +351,7 @@ const JoinQueue = () => {
                                                 }}
                                             >
                                                 <div className='select_barber_item_top'>
-                                                    <div><img src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp" alt="barbername" /></div>
+                                                    <div><img src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=" alt="barbername" /></div>
                                                     <div>
                                                         <p>{b.name}</p>
                                                         {/* <p>Cutting, Styling, Hair Color, Straightening</p> */}
@@ -489,7 +492,7 @@ const JoinQueue = () => {
                                 </div>
                                 <div className='select_barber_container'>
                                     {
-                                        getBarberByServicesKioskloading ? <div><h2>Loading...</h2></div> : getBarberByServicesKioskisSuccess && barbers?.length > 0 ? getBarberByServicesKioskdata?.response.map((b) => (
+                                        getBarberByServicesKioskloading ? <div><h2>Loading...</h2></div> : getBarberByServicesKioskisSuccess ? getBarberByServicesKioskdata?.response.map((b) => (
                                             <div className='select_barber_item' key={b._id}
                                                 onClick={() => searchSelectedBarber(b)}
                                                 style={{
@@ -497,7 +500,7 @@ const JoinQueue = () => {
                                                 }}
                                             >
                                                 <div className='select_barber_item_top'>
-                                                    <div><img src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp" alt="barbername" /></div>
+                                                    <div><img src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=" alt="barbername" /></div>
                                                     <div>
                                                         <p>{b.name}</p>
                                                         {/* <p>Cutting, Styling, Hair Color, Straightening</p> */}

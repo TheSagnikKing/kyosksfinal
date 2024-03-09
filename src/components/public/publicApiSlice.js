@@ -23,8 +23,15 @@ export const publicApiSlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: {adminEmail}
             })
+        }),
+        GerAllAdvertisementsKiosk: builder.mutation({
+            query: (salonId) => ({
+                url: '/kiosk/getAllAdvertisementsKiosk',
+                method:"POST",
+                body:{salonId}
+            })
         })
     })
 })
 
-export const { useGetDefaultSalonByAdminKioskMutation, useAdminConnectKioskMutation,useGetAllSalonsByAdminMutation } = publicApiSlice
+export const { useGetDefaultSalonByAdminKioskMutation, useAdminConnectKioskMutation,useGetAllSalonsByAdminMutation,useGerAllAdvertisementsKioskMutation } = publicApiSlice
