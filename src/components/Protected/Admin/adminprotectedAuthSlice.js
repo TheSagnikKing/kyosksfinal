@@ -2,13 +2,15 @@ import { apiSlice } from "../../app/api/apiSlice"
 
 export const adminprotectedAuthSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
-        AdminloggedinKiosk: builder.query({
-            query: () => ({
+        AdminloggedinKiosk: builder.mutation({
+            query: (adminToken) => ({
                 url: `/kiosk/adminloggedinKiosk`,
-                method: 'GET',
-            })
+                method: 'POST',
+                body:{adminToken:adminToken}
+            }),
+            providesTags: ['adminloggin'] //GET API KORTE HBE POST HBENA
         })
     })
 })
 
-export const { useLazyAdminloggedinKioskQuery } = adminprotectedAuthSlice
+export const { useAdminloggedinKioskMutation } = adminprotectedAuthSlice

@@ -3,11 +3,16 @@ import './Signin.css'
 import { DropdownIcon } from '../../../icons'
 import { useBarberLoginKioskMutation, useLazyGetAllBarbersKioskQuery } from './signinApiSlice'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setCredentials, setToken } from './barberauthSlice'
 import toast from 'react-hot-toast'
+import { selectCurrentAdminInfo } from '../../AdminSignin/adminauthSlice'
 
 const Signin = () => {
+
+    const adminInfo = useSelector(selectCurrentAdminInfo)
+
+    console.log("dvsdv",adminInfo)
 
     const [
         getAllBarbersKiosk,
@@ -58,7 +63,6 @@ const Signin = () => {
     const barberSigninHandler = () => {
         const barberdata = { email:barberemail, password }
         console.log(barberdata)
-
         barberLoginKiosk(barberdata)
 
     }
@@ -67,7 +71,12 @@ const Signin = () => {
 
     const dropdownHandler = () => {
         setDrop((prev) => !prev)
-        getAllBarbersKiosk(barberemail)
+        const salonId = adminInfo?.salonId
+        
+        getAllBarbersKiosk({
+            salonId,
+            email:barberemail
+        })
     }
 
     const [emailTimeout, setEmailTimeout] = useState(null);
@@ -81,7 +90,7 @@ const Signin = () => {
 
         setEmailTimeout(setTimeout(() => {
             setBarberEmail(value);
-            getAllBarbersKiosk(value);
+            getAllBarbersKiosk(value,adminInfo?.salonId);
         }, 500));
     };
 

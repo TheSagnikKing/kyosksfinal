@@ -1,46 +1,49 @@
 import React, { useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
-import { useLazyAdminloggedinKioskQuery } from './adminprotectedAuthSlice'
+import { useAdminloggedinKioskMutation } from './adminprotectedAuthSlice'
+import { useDispatch } from 'react-redux'
+import { setAdminCredentials, setAdminToken } from '../../AdminSignin/adminauthSlice'
 
 const ProtectedRoute = () => {
-    const loggedinAdmin = localStorage.getItem('adminkiyoskloggin')
-    const adminkiyosktoken = localStorage.getItem('adminkiyosktoken')
+  const loggedinAdmin = localStorage.getItem('adminkiyoskloggin')
+  const adminkiyosktoken = localStorage.getItem('adminkiyosktoken')
 
-    console.log(loggedinAdmin)
-    console.log("admin ", adminkiyosktoken)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-    const navigate = useNavigate()
+  const [
+    adminloggedinKiosk,
+    {
+      isSuccess,
+      data,
+      isError,
+      error,
+      isLoading
+    }
+  ] = useAdminloggedinKioskMutation()
 
-    // useEffect(() => {
+  console.log(data)
 
-    // })
-
-    const [
-      adminloggedinKiosk,
-      {
-        isSuccess,
-        data,
-        isError,
-        error,
-        isLoading
+  useEffect(() => {
+    if (loggedinAdmin === 'false' || loggedinAdmin === undefined || loggedinAdmin === 'undefined' || loggedinAdmin === null || !adminkiyosktoken || adminkiyosktoken === null || adminkiyosktoken === undefined || adminkiyosktoken === "undefined" || adminkiyosktoken === "") {
+      localStorage.setItem("adminkiyoskloggin", "false")
+      navigate('/')
+    } else if (isError) {
+      if (error?.data?.message === "Invalid Admin Token" || error?.data?.message === "Expired Admin Token" || error?.data?.message === "Forbidden Admin" || error?.data?.message === "Internal Server Error") {
+        // localStorage.setItem("adminkiyoskloggin","false")
+        // navigate('/')
       }
-    ] = useLazyAdminloggedinKioskQuery()
+    } else if (isSuccess) {
+       dispatch(setAdminCredentials(data))
+    } else {
+      adminloggedinKiosk(adminkiyosktoken)
+    }
+  }, [loggedinAdmin, adminkiyosktoken, navigate, isError,isSuccess,dispatch])
 
-    let content;
-
-    useEffect(() => {
-        if( loggedinAdmin === 'false' || loggedinAdmin === undefined || loggedinAdmin === 'undefined' || loggedinAdmin === null || !adminkiyosktoken || adminkiyosktoken === null || adminkiyosktoken === undefined || adminkiyosktoken === "undefined" || adminkiyosktoken === ""){
-            localStorage.setItem("adminkiyoskloggin","false")
-            navigate('/')
-        }else{
-          adminloggedinKiosk()
-        }
-    },[loggedinAdmin])
-
-    //ar adminkiyosktoken jodi valid thake akhane && lagate hbe
+  //ar adminkiyosktoken jodi valid thake akhane && lagate hbe
 
   return (
-    <div>{ loggedinAdmin === 'true' && adminkiyosktoken && <Outlet />}</div>
+    <div>{loggedinAdmin === 'true' && <Outlet />}</div>
   )
 }
 

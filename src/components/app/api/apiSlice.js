@@ -4,7 +4,7 @@ export const apiSlice = createApi({
     reducerPath: "api",
     credentials: 'include',
     baseQuery: fetchBaseQuery({ baseUrl: 'https://iqb-kiosk.onrender.com' }),
-    tagTypes: [],
+    tagTypes: ['adminloggin'],
     endpoints: builder => ({})
 })
 

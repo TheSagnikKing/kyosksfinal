@@ -4,11 +4,16 @@ import { CheckIcon } from '../../icons'
 import { useSelector } from 'react-redux'
 import { selectCurrentBarberInfo, selectCurrentBarberToken } from '../barber/Signin/barberauthSlice'
 import { useChangeBarberOnlineStatusKioskMutation, useChangeSalonOnlineStatusKioskMutation } from './dashboardApiSlice'
+import { useNavigate } from 'react-router-dom'
+import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 
 const Dashboard = () => {
 
     const selectCurrentBarberdata = useSelector(selectCurrentBarberInfo)
     const selectCurrentBarberTokendata = useSelector(selectCurrentBarberToken)
+    const adminInfo = useSelector(selectCurrentAdminInfo)
+
+    console.log('dash',adminInfo)
 
     const [
         changeSalonOnlineStatusKiosk,
@@ -35,8 +40,16 @@ const Dashboard = () => {
     const [salonbtnCheck, setSalonbtnCheck] = useState(false)
     const [barberbtnCheck, setBarberbtnCheck] = useState(selectCurrentBarberdata?.isOnline)
 
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if(selectCurrentBarberTokendata === null){
+            navigate('/barbersignin')
+        }
+    },[selectCurrentBarberTokendata])
+
     const salondata = {
-        salonId: 1,
+        salonId: adminInfo?.salonId,
         isOnline: salonbtnCheck,
         barberToken: selectCurrentBarberTokendata
     }
@@ -46,7 +59,7 @@ const Dashboard = () => {
     }, [salonbtnCheck])
 
     const barberdata = {
-        salonId: 1,
+        salonId: adminInfo?.salonId,
         barberId: selectCurrentBarberdata?.barberId,
         isOnline: barberbtnCheck,
         barberToken: selectCurrentBarberTokendata

@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { useAdminLoginKioskMutation } from './adminsigninApiSlice'
 import toast from 'react-hot-toast'
 import axios from 'axios'
+import { setAdminCredentials, setAdminToken } from './adminauthSlice'
+import { useDispatch } from 'react-redux'
 
 const AdminSignin = () => {
 
@@ -19,13 +21,14 @@ const AdminSignin = () => {
     const [password, setPassword] = useState("")
 
     const navigate = useNavigate()
-
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if(isSuccess){
             localStorage.setItem('adminkiyosktoken',data?.adminToken)
             localStorage.setItem('adminkiyoskloggin','true')
-            navigate("/kiyosk")
+            dispatch(setAdminToken(data))
+            navigate("/kiyosk",{state:data.salons})
         }else if(isError){
             toast.error(error?.data?.message, {
                 duration: 3000,
