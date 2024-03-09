@@ -23,6 +23,7 @@ const AdminSignin = () => {
 
     useEffect(() => {
         if(isSuccess){
+            localStorage.setItem('adminkiyosktoken',data?.adminToken)
             localStorage.setItem('adminkiyoskloggin','true')
             navigate("/kiyosk")
         }else if(isError){

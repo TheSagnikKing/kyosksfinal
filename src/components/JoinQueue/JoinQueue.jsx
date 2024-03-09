@@ -284,7 +284,7 @@ const JoinQueue = () => {
 
     const joinqueueHandler = () => {
         if (!customerName) {
-            toast.error("Please Fill All the Fields", {
+            toast.error("Please Enter Customer Name", {
                 duration: 3000,
                 style: {
                     fontSize: "1.4rem",
@@ -293,17 +293,7 @@ const JoinQueue = () => {
                     color: '#fff',
                 },
             });
-        } else if (selectedBarberId === false) {
-            toast.error("BarberId not Present", {
-                duration: 3000,
-                style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
-                    background: '#333',
-                    color: '#fff',
-                },
-            });
-        } else if (selectedBarberServices.length === 0) {
+        }else if (selectedBarberServices.length === 0) {
             toast.error("Please Choose Services", {
                 duration: 3000,
                 style: {

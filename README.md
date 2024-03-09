@@ -27,5 +27,8 @@ mainpage -> kiyosk button -> click -> open admin loggin -> after loggin redirect
 setting -> two button logout and barberlogin -> logout -> success -> admin logged out.
 barberlogin -> clicked -> barberlogin page -> success -> will get barberdata and a token -> take the data -> redirect to kiyosk dashboard -> just a rough design of dashboard. There two button salon (Online/Offline) and barber(Online/Offline) . take that barberloggin token and make the request to salon or barber. After success redirect him to kiyosk make joinqueue and queulist page. Also if the page get refresh redirect him to that page. Also show the barber details
 
+Proper input validation in the join queue on each input not show please fill all the fields
+
+
 
 
