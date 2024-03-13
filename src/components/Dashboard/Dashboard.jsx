@@ -140,7 +140,7 @@ const Dashboard = () => {
     const selectCurrentBarberTokendata = useSelector(selectCurrentBarberToken)
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
-    console.log('dash', selectCurrentBarberdata)
+    console.log('barber', selectCurrentBarberdata)
 
     const [
         changeSalonOnlineStatusKiosk,
@@ -219,7 +219,7 @@ const Dashboard = () => {
 
     const barberdata = {
         salonId: adminInfo?.salonId,
-        barberId: selectCurrentBarberdata?.barberId,
+        barberId: selectCurrentBarberdata?.foundUser?.barberId,
         isOnline: barberbtnCheck,
         barberToken: selectCurrentBarberTokendata
     }
@@ -295,7 +295,7 @@ const Dashboard = () => {
 
                 <div className='kiyosk__dashboard__main__body'>
                     <div>
-                        <h2>#</h2>
+                        <h2>Days</h2>
                         <h2>Week Date</h2>
                         <h2>Time-In</h2>
                         <h2>Time-Out</h2>

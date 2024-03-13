@@ -351,7 +351,7 @@ const JoinQueue = () => {
                                                 }}
                                             >
                                                 <div className='select_barber_item_top'>
-                                                    <div><img src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=" alt="barbername" /></div>
+                                                    <div><img src="./queue-no-image.jpg" alt="barbername" /></div>
                                                     <div>
                                                         <p>{b.name}</p>
                                                         {/* <p>Cutting, Styling, Hair Color, Straightening</p> */}
@@ -500,7 +500,7 @@ const JoinQueue = () => {
                                                 }}
                                             >
                                                 <div className='select_barber_item_top'>
-                                                    <div><img src="https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=" alt="barbername" /></div>
+                                                    <div><img src="./queue-no-image.jpg" alt="barbername" /></div>
                                                     <div>
                                                         <p>{b.name}</p>
                                                         {/* <p>Cutting, Styling, Hair Color, Straightening</p> */}
