@@ -36,5 +36,26 @@ Proper input validation in the join queue on each input not show please fill all
 // if jwt token is expired tokhon ami kikorbo notun akta token ami create kore pathia debo
 
 
+    <div class="skeleton"></div>
+
+    
+    @keyframes skeleton-animation {
+        0% {
+          background-position: -500px 0;
+        }
+        100% {
+          background-position: 500px 0;
+        }
+      }
+      
+      .skeleton {
+        width: 500px;
+        height: 200px;
+        background: linear-gradient(90deg, #d0d0d0 25%, #b0b0b0 50%, #d0d0d0 75%);
+        background-size: 200% 100%;
+        animation: skeleton-animation 1.5s infinite linear;
+        border-radius: 8px; /* optional: adds rounded corners */
+      }
+
 
 

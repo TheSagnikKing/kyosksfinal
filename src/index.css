@@ -25,21 +25,18 @@ input:focus{
   --quarterny-color:#87a96b;
 }
 
-@media((min-width:800px) and (max-width:900px)){
+@media((min-width:0px) and (max-width:430px)){
   :root{
-    font-size: 50%;
+    font-size: 38%;
   }
 }
 
-@media((min-width:900px) and (max-width:940px)){
+@media((min-width:430px) and (max-width:940px)){
   :root{
-    font-size: 48%;
+    font-size: 45%;
   }
 }
 
-@media((min-width:940px) and (max-width:1194px)){
-  :root{
-    font-size: 52%;
-  }
-}
+
+
 

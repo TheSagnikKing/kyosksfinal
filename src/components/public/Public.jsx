@@ -61,7 +61,7 @@ const Public = () => {
   ] = useGerAllAdvertisementsKioskMutation()
 
   useEffect(() => {
-    if(adminInfo){
+    if(adminInfo?.email){
       getDefaultSalonByAdminKiosk(adminInfo?.email)
       getAllSalonsByAdmin(adminInfo?.email)
     }
@@ -140,8 +140,11 @@ const Public = () => {
   return (
     <main className='public__main__container'>
       <div className='public__main__top'>
-        <div><img src={isSuccess && data?.response?.salonLogo[0].url} alt={isSuccess && data?.response?.salonName} /></div>
-
+        {
+          isSuccess ? <div><img src={data?.response?.salonLogo[0].url} alt={data?.response?.salonName} />
+          </div> : <div><img src='/no-image.webp'/></div>
+        }
+        
         <div>
           <div className='salonlistdropdown__box'>
             <p>{salonName !== "" && salonName}</p>
@@ -174,10 +177,13 @@ const Public = () => {
           <p onClick={logoutHandler}>Logout</p>
         </div>}
       </div>
-
-      <div className='public__main__middle'>
-        <img src={gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements[0]?.url} alt="advertisement image" />
-      </div>
+      
+      {
+        gerAllAdvertisementsKioskisSuccess ? <div className='public__main__middle'>
+        <img src={ gerAllAdvertisementsKioskdata?.advertisements[0]?.url} alt="advertisement image" />
+      </div> : <div className='public__main__middle' ><img src='/no-image.webp'/></div>
+      }
+      
 
       <div className='public__main__bottom'>
         <div>
@@ -185,6 +191,8 @@ const Public = () => {
           <button onClick={joinqueueClicked}>Join Queue</button>
         </div>
       </div>
+
+      
     </main>
   )
 }
