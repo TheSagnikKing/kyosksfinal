@@ -717,4 +717,8 @@
     .joinqueuebtn{
         margin: auto;
     }
+
+    .select_barber_services_item{
+        height: 16rem;
+    }
 }
