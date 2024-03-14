@@ -4,7 +4,7 @@ import { CheckIcon } from '../../icons'
 import { useSelector } from 'react-redux'
 import { selectCurrentBarberInfo, selectCurrentBarberToken } from '../barber/Signin/barberauthSlice'
 import { useChangeBarberOnlineStatusKioskMutation, useChangeSalonOnlineStatusKioskMutation, useGetAttendenceByBarberIdKioskMutation } from './dashboardApiSlice'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import toast from 'react-hot-toast'
 
@@ -304,6 +304,7 @@ const Dashboard = () => {
     return (
         <main className='kiyosk__dashboard__main__container'>
             <div className='kiyosk__dashboard__main__box'>
+                <Link to="/barbersignin" className='cross_dashboard_icon'>X</Link>
 
                 <div className='kiyosk__dashboard__main__header'>
                     <div className='kiyosk__dashboard__main__header__left'>
@@ -319,7 +320,7 @@ const Dashboard = () => {
                             <p><b>Contact No :</b> {selectCurrentBarberdata?.foundUser?.mobileNumber}</p>
                             <p><b>Barber Salon ID :</b> {selectCurrentBarberdata?.foundUser?.salonId}</p>
                             <p><b>Barber EWT :</b> {selectCurrentBarberdata?.foundUser?.barberEWT}</p>
-                            {/* <p>You are currently logged-out!</p> */}
+                            {barberbtnCheck ? <p style={{color:"green",fontWeight:"500"}}>You are currently logged-in!</p> : <p>You are currently logged-out!</p>}
                         </div>
                     </div>
                 </div>
@@ -364,7 +365,7 @@ const Dashboard = () => {
                                 background: barberbtnCheck ? "limegreen" : "red",
                                 color: "#fff"
                             }}
-                        >{barberbtnCheck ? "Check-In" : "Check-Out"}</button>
+                        >{barberbtnCheck ? "Clock-In" : "Clock-Out"}</button>
                     </div>
                 </div>
             </div>

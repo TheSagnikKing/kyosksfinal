@@ -9,10 +9,10 @@ export const joinqueueApiSlice = apiSlice.injectEndpoints({
             })
         }),
         GetServicesByBarberKiosk: builder.mutation({
-            query: (barberId) => ({
+            query: (barberdata) => ({
                 url: '/kiosk/getServicesByBarberKiosk',
                 method: 'POST',
-                body: {barberId}
+                body: barberdata
             })
         }),
         GetAllSalonServicesKiosk: builder.query({

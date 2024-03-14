@@ -98,7 +98,10 @@ const JoinQueue = () => {
     const selectbarberHandler = async () => {
         setModal1(false)
         setModal2(true)
-        await getServicesByBarber(selectedBarberId)
+        await getServicesByBarber({
+            salonId:adminInfo?.salonId,
+            barberId:selectedBarberId
+        })
         setModal3(false)
         setModal4(false)
     }
@@ -149,7 +152,7 @@ const JoinQueue = () => {
         setModal3(true)
     }
 
-
+    console.log(selectedBarberId)
 
     const searchSelectedBarber = (barber) => {
         setSelectedBarber(barber.name)
