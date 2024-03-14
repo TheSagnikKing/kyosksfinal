@@ -367,7 +367,7 @@
     }
 
     .admin__signin__main__form>div>div{
-        height: 4.4rem;
+        height: 6rem;
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -378,7 +378,7 @@
     }
 
     .admin__signin__main__form>div>div>input{
-        height: 4.4rem;
+        height: 6rem;
         width: 90%;
         background-color: var(--secondary-color);
         border: none;
@@ -388,7 +388,7 @@
     }
 
     .admin__signin__main__form>div>div>div{
-        height: 4.4rem;
+        height: 6rem;
         width: 10%;
         font-size: 3rem;
         display: flex;
@@ -401,7 +401,7 @@
     }
 
     .admin__signin__main__form>div:nth-child(2)>input{
-        height: 4.4rem;
+        height: 6rem;
         width: 100%;
         border-radius: 2rem;
         border: none;
@@ -412,14 +412,14 @@
     }
 
     .admin__signin__main__form>div:nth-child(3){
-        height: 4.4rem;
+        height: 6rem;
         width: 32.4rem;
         margin: auto;
         margin-top: 2rem;
     }
 
     .admin__signin__main__form>div:nth-child(3)>button{
-        height: 4.4rem;
+        height: 6rem;
         width: 32.4rem;
         border-radius: 2rem;
         border: 1px solid var(--primary-color);
