@@ -196,6 +196,20 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
+        if (getAttendenceByBarberIdKioskisError) {
+            toast.error(getAttendenceByBarberIdKioskerror?.data?.message, {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        }
+    },[getAttendenceByBarberIdKioskisError])
+
+    useEffect(() => {
         if (isError) {
             toast.error(error?.data?.message, {
                 duration: 3000,

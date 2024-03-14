@@ -141,7 +141,7 @@ const Public = () => {
     <main className='public__main__container'>
       <div className='public__main__top'>
         {
-          isSuccess ? <div><img src={data?.response?.salonLogo[0].url} alt={data?.response?.salonName} />
+          isSuccess ? <div><img src={data?.response?.salonLogo[0]?.url} alt={data?.response?.salonName} />
           </div> : <div><img src='/no-image.webp'/></div>
         }
         

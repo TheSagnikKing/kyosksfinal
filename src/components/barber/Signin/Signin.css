@@ -142,6 +142,20 @@
         color: orangered;
     }
 
+    .google-btn{
+        height: 4.4rem;
+        width: 32.4em;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow:none;
+        border-radius: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 3rem;
+        border: none !important;
+    }
+
 
 @media((min-width:430px) and (max-width:940px)){
     .barber__signin__main__container{
@@ -288,6 +302,21 @@
     .barber__signin__main__form_dropdown>div:hover{
         color: orangered;
     }
+
+    .google-btn{
+        height: 4.4rem;
+        width: 32.4em;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow:none;
+        border-radius: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 3rem;
+        border: none !important;
+    }
+
 }
 
 @media((min-width:0px) and (max-width:430px)){
@@ -435,5 +464,20 @@
     .barber__signin__main__form_dropdown>div:hover{
         color: orangered;
     }
+
+    .google-btn{
+        height: 4.4rem;
+        width: 32.4em;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow:none;
+        border-radius: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 3rem;
+        border: none !important;
+    }
+
 }
 

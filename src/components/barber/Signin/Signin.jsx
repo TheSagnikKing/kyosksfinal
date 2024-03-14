@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import './Signin.css'
 import { DropdownIcon } from '../../../icons'
-import { useBarberLoginKioskMutation, useLazyGetAllBarbersKioskQuery } from './signinApiSlice'
+import { useBarberLoginKioskMutation, useGoogleBarberLoginKioskMutation, useLazyGetAllBarbersKioskQuery } from './signinApiSlice'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCredentials, setToken } from './barberauthSlice'
 import toast from 'react-hot-toast'
 import { selectCurrentAdminInfo } from '../../AdminSignin/adminauthSlice'
+import { GoogleLogin } from '@react-oauth/google'
 
 const Signin = () => {
 
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
-    console.log("dvsdv",adminInfo)
+    console.log("dvsdv", adminInfo)
 
     const [
         getAllBarbersKiosk,
@@ -26,15 +27,26 @@ const Signin = () => {
     ] = useLazyGetAllBarbersKioskQuery()
 
     const [
-        barberLoginKiosk, 
+        googleBarberLoginKiosk,
         {
-            data:barberlogindata,
-            isSuccess:barberloginisSuccess,
-            isError:barberloginisError,
-            error:barbererror,
-            isLoading:barberisloading
+            data:googleBarberLoginKioskdata,
+            isSuccess:googleBarberLoginKioskisSuccess,
+            isError:googleBarberLoginKioskisError,
+            error:googleBarberLoginKioskerror,
+            isLoading:googleBarberLoginKioskisLoading
         }
-    ] =  useBarberLoginKioskMutation()
+    ] = useGoogleBarberLoginKioskMutation()
+
+    const [
+        barberLoginKiosk,
+        {
+            data: barberlogindata,
+            isSuccess: barberloginisSuccess,
+            isError: barberloginisError,
+            error: barbererror,
+            isLoading: barberisloading
+        }
+    ] = useBarberLoginKioskMutation()
 
     const [password, setPassword] = useState("")
     const [barberemail, setBarberEmail] = useState("")
@@ -43,11 +55,29 @@ const Signin = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if(barberloginisSuccess){
+        if (barberloginisSuccess) {
             dispatch(setCredentials(barberlogindata))
-            localStorage.setItem('barberkiyoskloggin','true')
+            localStorage.setItem('barberkiyoskloggin', 'true')
             navigate('/kiyoskdashboard')
-        }else if(barberloginisError){
+        } else if (barberloginisError) {
+            toast.error(googleBarberLoginKioskerror?.data?.message, {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        }
+    }, [dispatch, navigate, barberloginisSuccess, barberloginisError])
+
+    useEffect(() => {
+        if (googleBarberLoginKioskisSuccess) {
+            dispatch(setCredentials(googleBarberLoginKioskdata))
+            localStorage.setItem('barberkiyoskloggin', 'true')
+            navigate('/kiyoskdashboard')
+        } else if (googleBarberLoginKioskisError) {
             toast.error(barbererror?.data?.message, {
                 duration: 3000,
                 style: {
@@ -58,10 +88,10 @@ const Signin = () => {
                 },
             });
         }
-    },[dispatch,navigate,barberloginisSuccess,barberloginisError])
+    }, [dispatch, navigate, googleBarberLoginKioskisSuccess, googleBarberLoginKioskisError])
 
     const barberSigninHandler = () => {
-        const barberdata = { email:barberemail, password }
+        const barberdata = { email: barberemail, password }
         console.log(barberdata)
         barberLoginKiosk(barberdata)
 
@@ -75,7 +105,7 @@ const Signin = () => {
 
         getAllBarbersKiosk({
             salonId,
-            email:barberemail
+            email: barberemail
         })
     }
 
@@ -91,9 +121,9 @@ const Signin = () => {
         setEmailTimeout(setTimeout(() => {
             setBarberEmail(value);
             const salonId = adminInfo?.salonId
-            getAllBarbersKiosk({email:value, salonId});
+            getAllBarbersKiosk({ email: value, salonId });
         }, 500));
-    }; 
+    };
 
     const setBarberEmailHandler = (e) => {
         const searchTerm = e.target.value;
@@ -108,7 +138,31 @@ const Signin = () => {
 
     useEffect(() => {
         dispatch(setToken())
-    },[dispatch])
+    }, [dispatch])
+
+    //Google barber Action
+    const responseBarberMessage = async (response) => {
+        console.log("barber",response.credential)
+        googleBarberLoginKiosk(response.credential)
+    };
+
+    const errorBarberMessage = (error) => {
+        console.log(error);
+    };
+
+    const [screenwidth, setScreenWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     return (
         <main className='barber__signin__main__container'>
@@ -117,7 +171,7 @@ const Signin = () => {
             </div>
 
             <div className='barber__signin__main__right'>
-            {/* <Link to="/kiyosk" style={{marginTop:"10rem",background:"black",color:"white",padding:"1rem",fontSize:"1.2rem"}}>Home</Link> */}
+                {/* <Link to="/kiyosk" style={{marginTop:"10rem",background:"black",color:"white",padding:"1rem",fontSize:"1.2rem"}}>Home</Link> */}
 
                 <h1>Barber Login</h1>
                 <div className='barber__signin__main__form'>
@@ -152,7 +206,21 @@ const Signin = () => {
                         />
                     </div>
 
-                    <div>{ barberisloading ? <button>Loading...</button> : <button onClick={barberSigninHandler}>LOGIN</button>}</div>
+                    <div>
+                        {barberisloading ? <button>Loading...</button> : <button onClick={barberSigninHandler}>LOGIN</button>}
+                        <button className='google-btn'>
+                            <GoogleLogin
+                                onSuccess={responseBarberMessage}
+                                onError={errorBarberMessage}
+                                size='large'
+                                shape='circle'
+                                width={screenwidth <= 400 ? 200 : screenwidth >= 400 && screenwidth <= 940 ? 235 : 324}
+                                logo_alignment='left'
+                                text='continue_with'
+                            />
+
+                        </button>
+                    </div>
 
                 </div>
             </div>
