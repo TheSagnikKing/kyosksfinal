@@ -5,6 +5,7 @@ import BarberKiyoskDashboardProtect from './components/Protected/Barber/BarberKi
 
 const Public = React.lazy(() => import("./components/public/Public"));
 const JoinQueue = React.lazy(() => import("./components/JoinQueue/JoinQueue"));
+const QueueList = React.lazy(() => import("./components/QueueList/QueueList"))
 const BarberSignin = React.lazy(() => import("./components/barber/Signin/Signin"));
 const AdminSignin = React.lazy(() => import("./components/AdminSignin/AdminSignin"))
 const Table = React.lazy(() => import("./components/barber/demo/Table"))
@@ -28,6 +29,7 @@ const App = () => {
           <Route element={<ProtectedRoute />}>
             <Route path="/kiyosk" element={<Public />} />
             <Route path="/joinqueue" element={<JoinQueue />} />
+            <Route path="/queuelist" element={<QueueList/>}/>
             <Route path="/barbersignin" element={<BarberSignin />} />
             <Route element={<BarberKiyoskDashboardProtect />}>
               <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />
