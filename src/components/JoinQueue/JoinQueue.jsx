@@ -88,7 +88,7 @@ const JoinQueue = () => {
     const SelectBarberDropdownHandler = () => {
         setIsOpen(true)
         setModal1(true)
-        getavailablebarber({salonId:adminInfo?.salonId})
+        getavailablebarber({ salonId: adminInfo?.salonId })
         setModal2(false)
         setModal3(false)
         setModal4(false)
@@ -99,8 +99,8 @@ const JoinQueue = () => {
         setModal1(false)
         setModal2(true)
         await getServicesByBarber({
-            salonId:adminInfo?.salonId,
-            barberId:selectedBarberId
+            salonId: adminInfo?.salonId,
+            barberId: selectedBarberId
         })
         setModal3(false)
         setModal4(false)
@@ -122,7 +122,7 @@ const JoinQueue = () => {
         setModal1(false)
         setModal2(false)
         setModal3(true)
-        getAllSalonServices({salonId:adminInfo?.salonId})
+        getAllSalonServices({ salonId: adminInfo?.salonId })
         setModal4(false)
     }
 
@@ -239,7 +239,7 @@ const JoinQueue = () => {
                     color: '#fff',
                 },
             });
-        }else if (selectedBarberServices.length === 0) {
+        } else if (selectedBarberServices.length === 0) {
             toast.error("Please Choose Services", {
                 duration: 3000,
                 style: {
@@ -274,7 +274,7 @@ const JoinQueue = () => {
 
             <div className='joinqueue__main__right'>
                 <h1>Join Queue</h1>
-                <Link to="/kiyosk" style={{background:"black",color:"white",position:"absolute",top:"20px",left:"20px",padding:"1rem",fontSize:"1.2rem"}}>Home</Link>
+                <Link to="/kiyosk" style={{ background: "black", color: "white", position: "absolute", top: "20px", left: "20px", padding: "1rem", fontSize: "1.2rem" }}>Home</Link>
 
                 <div className='joinqueue__main__right__form'>
                     <div className='joinqueue__main__right__form_top'>
@@ -291,10 +291,14 @@ const JoinQueue = () => {
                         <div>
                             <p>Contact No. (Optional)</p>
                             <input
-                                type="Number"
+                                type="text"
+                                pattern="[0-9]*"
                                 placeholder="Enter Your Contact No."
-                                value={mobileNumber === 0 ? "" : mobileNumber}
-                                onChange={(e) => setMobileNumber(e.target.value)}
+                                value={mobileNumber}
+                                onChange={(e) => {
+                                    const enteredValue = e.target.value.replace(/\D/, ''); // Remove non-numeric characters
+                                    setMobileNumber(enteredValue);
+                                }}
                             />
                         </div>
                     </div>
@@ -320,7 +324,7 @@ const JoinQueue = () => {
                                     placeholder="Any Barber"
                                     value={selecteBarberdata === false ? "" : selecteBarberdata}
                                 />
-                                <div onClick={SelectBarberDropdownHandler} style={{cursor:"pointer"}}><DropdownIcon /></div>
+                                <div onClick={SelectBarberDropdownHandler} style={{ cursor: "pointer" }}><DropdownIcon /></div>
                             </div>
 
                         </div>
@@ -331,9 +335,9 @@ const JoinQueue = () => {
                                 <input
                                     type="text"
                                     placeholder="Click to Choose"
-                                    value= {selectedBarberServices.map((s) => s.serviceName + " ")}
+                                    value={selectedBarberServices.map((s) => s.serviceName + " ")}
                                 />
-                                <div onClick={SelectServicesDropdownHandler} style={{cursor:"pointer"}}><DropdownIcon /></div>
+                                <div onClick={SelectServicesDropdownHandler} style={{ cursor: "pointer" }}><DropdownIcon /></div>
                             </div>
 
                         </div>
