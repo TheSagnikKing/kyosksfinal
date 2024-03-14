@@ -156,74 +156,43 @@
     align-items: center;
 }
 
-.kiyosk__dashboard__main__body>div{
-    width: 10rem;
+.kiyosk__dashboard__main__body>div:nth-child(1){
+    display: inline-block;
+    width: 20rem;
     height: 100%;
 }
 
-.kiyosk__dashboard__main__body>div>h2{
-    height: 25%;
-    margin-bottom: 0.5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.kiyosk__dashboard__main__body>div:nth-child(1)>div{
+    display: inline-block;
+    width: 20rem;
+    height: 100%;
+    padding-block: 2rem;
 }
+
+.kiyosk__dashboard__main__body>div:nth-child(1)>div>h2{
+    margin-bottom: 30%;
+    text-align: center;
+}
+
 
 .kiyosk__dashboard__main__body>div:nth-child(2){
-    width: 100%;
-    overflow: scroll;
+    width:100%;
+    height: 100%;
+    overflow: auto;
+    white-space: nowrap;
 }
 
-.kiyosk__dashboard__main__body_header{
-    height: 25%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(7,1fr);
+.kiyosk__dashboard__main__body__item{
+    display: inline-block;
+    width: 20rem;
+    height: 100%;
+    padding-block: 2rem;
 }
 
-.kiyosk__dashboard__main__body_header>h2{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.kiyosk__dashboard__main__body_weekdate{
-    height: 25%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(7,1fr);
-}
-
-.kiyosk__dashboard__main__body_weekdate>h2{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.kiyosk__dashboard__main__body_timein{
-    height: 25%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(7,1fr);
-}
-
-.kiyosk__dashboard__main__body_timein>h2{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.kiyosk__dashboard__main__body_timeout{
-    height: 25%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(7,1fr);
-}
-
-.kiyosk__dashboard__main__body_timeout>h2{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.kiyosk__dashboard__main__body__item>h2{
+    margin-bottom: 30%;
+    text-align: center;
 }
 
 
@@ -292,3 +261,4 @@
         margin-top: 5rem;
     }
 }
+

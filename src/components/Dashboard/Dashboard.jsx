@@ -3,7 +3,7 @@ import './Dashboard.css'
 import { CheckIcon } from '../../icons'
 import { useSelector } from 'react-redux'
 import { selectCurrentBarberInfo, selectCurrentBarberToken } from '../barber/Signin/barberauthSlice'
-import { useChangeBarberOnlineStatusKioskMutation, useChangeSalonOnlineStatusKioskMutation } from './dashboardApiSlice'
+import { useChangeBarberOnlineStatusKioskMutation, useChangeSalonOnlineStatusKioskMutation, useGetAttendenceByBarberIdKioskMutation } from './dashboardApiSlice'
 import { useNavigate } from 'react-router-dom'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import toast from 'react-hot-toast'
@@ -164,6 +164,18 @@ const Dashboard = () => {
         }
     ] = useChangeBarberOnlineStatusKioskMutation()
 
+    const [
+        getAttendenceByBarberIdKiosk,
+        {
+            data: getAttendenceByBarberIdKioskdata,
+            isSuccess: getAttendenceByBarberIdKioskisSuccess,
+            isError: getAttendenceByBarberIdKioskisError,
+            error: getAttendenceByBarberIdKioskerror,
+            isLoading: getAttendenceByBarberIdKioskisLoading
+        }
+    ] = useGetAttendenceByBarberIdKioskMutation()
+
+
     const [salonbtnCheck, setSalonbtnCheck] = useState(selectCurrentBarberdata?.isSalonOnline)
     const [barberbtnCheck, setBarberbtnCheck] = useState(selectCurrentBarberdata?.foundUser?.isOnline)
 
@@ -184,7 +196,7 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        if(isError){
+        if (isError) {
             toast.error(error?.data?.message, {
                 duration: 3000,
                 style: {
@@ -196,10 +208,10 @@ const Dashboard = () => {
             });
             setBarberbtnCheck(selectCurrentBarberdata?.isSalonOnline)
         }
-    },[isError])
+    }, [isError])
 
     useEffect(() => {
-        if(barberonlineisError){
+        if (barberonlineisError) {
             toast.error(barberonlineerror?.data?.message, {
                 duration: 3000,
                 style: {
@@ -211,7 +223,7 @@ const Dashboard = () => {
             });
             setBarberbtnCheck(selectCurrentBarberdata?.foundUser?.isOnline)
         }
-    },[barberonlineisError])
+    }, [barberonlineisError])
 
     useEffect(() => {
         changeSalonOnlineStatusKiosk(salondata)
@@ -233,44 +245,49 @@ const Dashboard = () => {
     const salonOnlineHandler = () => {
         const confirm = window.confirm("Change Salon Status ?")
 
-        if(confirm){
+        if (confirm) {
             setSalonbtnCheck((prev) => !prev)
         }
-        
+
     }
 
     const barberOnlineHandler = () => {
         const confirm = window.confirm("Change Barber Status ?")
 
-        if(confirm){
+        if (confirm) {
             setBarberbtnCheck((prev) => !prev)
         }
-        
+
     }
 
+
+    useEffect(() => {
+        getAttendenceByBarberIdKiosk({
+            salonId: selectCurrentBarberdata?.foundUser?.salonId,
+            barberId: selectCurrentBarberdata?.foundUser?.barberId
+        })
+    }, [selectCurrentBarberdata])
+
+
+
+    const attendanceexample = [
+        {
+            day: "Monday",
+            date: "2024-03-11",
+            signInTime: "16:55:04",
+            _id: "65eeea10c731552642ea8880",
+            signOutTime: "16:57:13"
+        },
+        {
+            day: "Wednesday",
+            date: "2024-03-13",
+            signInTime: "18:17:46",
+            _id: "65f1a07207a860bac4e1c14c",
+            signOutTime: "18:18:05"
+        }
+    ]
+
     return (
-        // <main className='kiyosk__dashboard__main__container'>
-        //     <h1>Welcome To Kiyosk Dashboard</h1>
-
-        //     <div className='kiyosk__dashboard__main__container_btnbox'>
-        //         <div>
-        //             <div><h1>Salon Online / Offline</h1> <div onClick={salonOnlineHandler} style={{ background: salonbtnCheck && "limegreen", color: salonbtnCheck && "#fff" }}>{salonbtnCheck && <CheckIcon />}</div></div>
-        //         </div>
-
-        //         <div>
-        //             <div><h1>Barber Online / Offline</h1> <div onClick={barberOnlineHandler} style={{ background: barberbtnCheck && "limegreen", color: barberbtnCheck && "#fff" }}>{barberbtnCheck && <CheckIcon />}</div></div>
-        //         </div>
-        //     </div>
-
-        //     <div className='kiyosk__dashboard__main__barber_detailbox'>
-        //         <h1>Barber Detail</h1>
-        //         <h2>Barber Email: <p>{selectCurrentBarberdata?.foundUser?.email}</p></h2>
-        //         <h2>Barber Mobile Verified: <p>{selectCurrentBarberdata?.foundUser?.mobileVerified === false ? "false" : "true"}</p></h2>
-        //         <h2>Barber SalonId: <p>{selectCurrentBarberdata?.foundUser?.salonId}</p></h2>
-        //         <h2>Barber EWT: <p>{selectCurrentBarberdata?.foundUser?.barberEWT}</p></h2>
-        //     </div>
-        // </main>
-
         <main className='kiyosk__dashboard__main__container'>
             <div className='kiyosk__dashboard__main__box'>
 
@@ -295,48 +312,26 @@ const Dashboard = () => {
 
                 <div className='kiyosk__dashboard__main__body'>
                     <div>
-                        <h2>Days</h2>
-                        <h2>Week Date</h2>
-                        <h2>Time-In</h2>
-                        <h2>Time-Out</h2>
+                        <div>
+                            <h2>Days</h2>
+                            <h2>Week Date</h2>
+                            <h2>Time-In</h2>
+                            <h2>Time-Out</h2>
+                        </div>
                     </div>
 
                     <div>
-                        <div className='kiyosk__dashboard__main__body_header'>
-                            {
-                                weekdays.map((w) => (
-                                    <h2 key={w._id}>{w.name}</h2>
-                                ))
-                            }
+                        {
+                            getAttendenceByBarberIdKioskisSuccess && getAttendenceByBarberIdKioskdata.response.attendance.map((b) => (
+                                <div className='kiyosk__dashboard__main__body__item' key={b._id}>
+                                    <h2>{b.day}</h2>
+                                    <h2>{b.date}</h2>
+                                    <h2>{b.signInTime}</h2>
+                                    <h2>{b.signOutTime}</h2>
+                                </div>
+                            ))
+                        }
 
-                        </div>
-
-                        <div className='kiyosk__dashboard__main__body_weekdate'>
-                            {
-                                weekdatevalue.map((w) => (
-                                    <h2 key={w._id}>{w.name}</h2>
-                                ))
-                            }
-
-                        </div>
-
-                        <div className='kiyosk__dashboard__main__body_timein'>
-                            {
-                                timeinvalue.map((w) => (
-                                    <h2 key={w._id}>{w.name}</h2>
-                                ))
-                            }
-
-                        </div>
-
-                        <div className='kiyosk__dashboard__main__body_timeout'>
-                            {
-                                timeoutvalue.map((w) => (
-                                    <h2 key={w._id}>{w.name}</h2>
-                                ))
-                            }
-
-                        </div>
                     </div>
                 </div>
 
@@ -344,17 +339,17 @@ const Dashboard = () => {
                     <div>
                         <button
                             onClick={salonOnlineHandler}
-                            style={{ 
-                              background: salonbtnCheck ? "limegreen" : "red", 
-                              color: "#fff" 
-                        }}
+                            style={{
+                                background: salonbtnCheck ? "limegreen" : "red",
+                                color: "#fff"
+                            }}
                         >{salonbtnCheck ? "Open Salon" : "Close Salon"}</button>
                         <button
                             onClick={barberOnlineHandler}
-                            style={{ 
-                                background: barberbtnCheck ? "limegreen" : "red", 
-                                color: "#fff" 
-                          }}
+                            style={{
+                                background: barberbtnCheck ? "limegreen" : "red",
+                                color: "#fff"
+                            }}
                         >{barberbtnCheck ? "Check-In" : "Check-Out"}</button>
                     </div>
                 </div>
