@@ -21,7 +21,7 @@ const Modal = ({ isOpen, setIsOpen, setModal1,setModal2, setModal3,setModal4,set
     <div className="main__modal__container">
       <div>
         <div className="modal__content">
-            <button onClick={closeModal} className='main__modal__close'><MdClose /></button>
+            <button onClick={closeModal} className='main__modal__close' style={{cursor:"pointer"}}><MdClose /></button>
             <br/>
           {children}
         </div>

@@ -74,9 +74,10 @@
         justify-content: center;
         align-items: center;
         background-color: var(--secondary-color);
-        color: var(--tertiary-color-2);
+        color: var(--primary-color);
         border-top-right-radius: 2rem;
         border-bottom-right-radius: 2rem;
+        cursor: pointer;
     }
 
     .barber__signin__main__form>div:nth-child(2)>input{
@@ -235,9 +236,10 @@
         justify-content: center;
         align-items: center;
         background-color: var(--secondary-color);
-        color: var(--tertiary-color-2);
+        color: var(--primary-color);
         border-top-right-radius: 2rem;
         border-bottom-right-radius: 2rem;
+        cursor: pointer;
     }
 
     .barber__signin__main__form>div:nth-child(2)>input{
@@ -397,9 +399,10 @@
         justify-content: center;
         align-items: center;
         background-color: var(--secondary-color);
-        color: var(--tertiary-color-2);
+        color: var(--primary-color);
         border-top-right-radius: 2rem;
         border-bottom-right-radius: 2rem;
+        cursor: pointer;
     }
 
     .barber__signin__main__form>div:nth-child(2)>input{

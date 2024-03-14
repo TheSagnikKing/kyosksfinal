@@ -60,7 +60,7 @@ const Signin = () => {
             localStorage.setItem('barberkiyoskloggin', 'true')
             navigate('/kiyoskdashboard')
         } else if (barberloginisError) {
-            toast.error(googleBarberLoginKioskerror?.data?.message, {
+            toast.error(barbererror?.data?.message, {
                 duration: 3000,
                 style: {
                     fontSize: "1.4rem",
@@ -78,7 +78,7 @@ const Signin = () => {
             localStorage.setItem('barberkiyoskloggin', 'true')
             navigate('/kiyoskdashboard')
         } else if (googleBarberLoginKioskisError) {
-            toast.error(barbererror?.data?.message, {
+            toast.error(googleBarberLoginKioskerror?.data?.message, {
                 duration: 3000,
                 style: {
                     fontSize: "1.4rem",

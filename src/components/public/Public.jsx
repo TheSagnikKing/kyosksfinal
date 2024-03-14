@@ -174,7 +174,7 @@ const Public = () => {
 
         {dropdown && <div className='public__main__top__logoutdiv'>
           <Link to="/barbersignin">Barber Signin</Link>
-          <p onClick={logoutHandler}>Logout</p>
+          <p onClick={logoutHandler} style={{cursor:"pointer"}}>Logout</p>
         </div>}
       </div>
       

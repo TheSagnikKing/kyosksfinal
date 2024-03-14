@@ -320,7 +320,7 @@ const JoinQueue = () => {
                                     placeholder="Any Barber"
                                     value={selecteBarberdata === false ? "" : selecteBarberdata}
                                 />
-                                <div onClick={SelectBarberDropdownHandler}><DropdownIcon /></div>
+                                <div onClick={SelectBarberDropdownHandler} style={{cursor:"pointer"}}><DropdownIcon /></div>
                             </div>
 
                         </div>
@@ -333,7 +333,7 @@ const JoinQueue = () => {
                                     placeholder="Click to Choose"
                                     value= {selectedBarberServices.map((s) => s.serviceName + " ")}
                                 />
-                                <div onClick={SelectServicesDropdownHandler}><DropdownIcon /></div>
+                                <div onClick={SelectServicesDropdownHandler} style={{cursor:"pointer"}}><DropdownIcon /></div>
                             </div>
 
                         </div>
