@@ -294,7 +294,7 @@ const JoinQueue = () => {
                                 type="text"
                                 pattern="[0-9]*"
                                 placeholder="Enter Your Contact No."
-                                value={mobileNumber}
+                                value={mobileNumber === 0 ? "" : mobileNumber}
                                 onChange={(e) => {
                                     const enteredValue = e.target.value.replace(/\D/, ''); // Remove non-numeric characters
                                     setMobileNumber(enteredValue);
