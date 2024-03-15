@@ -30,57 +30,57 @@ const Public = () => {
   const [
     adminConnectKiosk,
     {
-      data:adminConnectKioskdata,
-      isSuccess:adminConnectKioskisSuccess,
-      isError:adminConnectKioskisError,
-      error:adminConnectKioskerror,
-      isLoading:adminConnectKioskisLoading
+      data: adminConnectKioskdata,
+      isSuccess: adminConnectKioskisSuccess,
+      isError: adminConnectKioskisError,
+      error: adminConnectKioskerror,
+      isLoading: adminConnectKioskisLoading
     }
   ] = useAdminConnectKioskMutation()
 
   const [
     getAllSalonsByAdmin,
     {
-      data:getAllSalonsByAdmindata,
-      isSuccess:getAllSalonsByAdminisSuccess,
-      isError:getAllSalonsByAdminisError,
-      error:getAllSalonsByAdminerror,
-      isLoading:getAllSalonsByAdminisLoading
+      data: getAllSalonsByAdmindata,
+      isSuccess: getAllSalonsByAdminisSuccess,
+      isError: getAllSalonsByAdminisError,
+      error: getAllSalonsByAdminerror,
+      isLoading: getAllSalonsByAdminisLoading
     }
   ] = useGetAllSalonsByAdminMutation()
 
   const [
     gerAllAdvertisementsKiosk,
     {
-      data:gerAllAdvertisementsKioskdata,
-      isSuccess:gerAllAdvertisementsKioskisSuccess,
-      isError:gerAllAdvertisementsKioskisError,
-      error:gerAllAdvertisementsKioskerror,
-      isLoading:gerAllAdvertisementsKioskisLoading
+      data: gerAllAdvertisementsKioskdata,
+      isSuccess: gerAllAdvertisementsKioskisSuccess,
+      isError: gerAllAdvertisementsKioskisError,
+      error: gerAllAdvertisementsKioskerror,
+      isLoading: gerAllAdvertisementsKioskisLoading
     }
   ] = useGerAllAdvertisementsKioskMutation()
 
   useEffect(() => {
-    if(adminInfo?.email){
+    if (adminInfo?.email) {
       getDefaultSalonByAdminKiosk(adminInfo?.email)
       getAllSalonsByAdmin(adminInfo?.email)
     }
-  },[adminInfo])
+  }, [adminInfo])
 
   useEffect(() => {
-    if(adminInfo && isSuccess){
+    if (adminInfo && isSuccess) {
       setSalonName(data?.response?.salonName)
       setSalonId(data?.response?.salonId)
       gerAllAdvertisementsKiosk(data?.response?.salonId)
     }
-  },[adminInfo,isSuccess])
+  }, [adminInfo, isSuccess])
 
 
   useEffect(() => {
-    if(adminConnectKioskisSuccess){
+    if (adminConnectKioskisSuccess) {
       window.location.reload()
     }
-  },[adminConnectKioskisSuccess])
+  }, [adminConnectKioskisSuccess])
 
 
 
@@ -116,19 +116,19 @@ const Public = () => {
   }
 
   const applySalonHandler = () => {
-    if(salonId === adminInfo?.salonId){
+    if (salonId === adminInfo?.salonId) {
       toast.error("Choose different Salon", {
         duration: 3000,
         style: {
-            fontSize: "1.4rem",
-            borderRadius: '10px',
-            background: '#333',
-            color: '#fff',
+          fontSize: "1.4rem",
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
         },
-    });
-    }else{
+      });
+    } else {
       const admindata = {
-        adminEmail:adminInfo?.email,
+        adminEmail: adminInfo?.email,
         salonId
       }
 
@@ -144,11 +144,14 @@ const Public = () => {
   return (
     <main className='public__main__container'>
       <div className='public__main__top'>
-        {
-          isSuccess ? <div><img src={data?.response?.salonLogo[0]?.url} alt={data?.response?.salonName} />
-          </div> : <div><img src='/no-image.webp'/></div>
-        }
-        
+        <div>
+          {isSuccess && data?.response?.salonLogo.length > 0 ? (
+            <img src={data.response.salonLogo[0].url} alt={data.response.salonName} />
+          ) : (
+            <img src='/no-image.webp' alt="no image available" />
+          )}
+        </div>
+
         <div>
           <div className='salonlistdropdown__box'>
             <p>{salonName !== "" && salonName}</p>
@@ -158,12 +161,12 @@ const Public = () => {
               <div className='salonlistdropdown__box__content'>
                 {getAllSalonsByAdmindata?.salons?.length > 0 &&
                   getAllSalonsByAdmindata?.salons.map((s) => (
-                    <div key={s._id} onClick={() => salonHandler(s)} 
-                    style={{
-                      backgroundColor:salonName === s.salonName ? "var(--quarterny-color)" : ""
-                    }}
+                    <div key={s._id} onClick={() => salonHandler(s)}
+                      style={{
+                        backgroundColor: salonName === s.salonName ? "var(--quarterny-color)" : ""
+                      }}
                     ><p style={{
-                      color:salonName === s.salonName ? "var(--secondary-color)" : "var(--primary-color)"
+                      color: salonName === s.salonName ? "var(--secondary-color)" : "var(--primary-color)"
                     }}>{s.salonName}</p></div>
                   ))
                 }
@@ -178,16 +181,18 @@ const Public = () => {
 
         {dropdown && <div className='public__main__top__logoutdiv'>
           <Link to="/barbersignin">Barber Signin</Link>
-          <p onClick={logoutHandler} style={{cursor:"pointer"}}>Logout</p>
+          <p onClick={logoutHandler} style={{ cursor: "pointer" }}>Logout</p>
         </div>}
       </div>
-      
-      {
-        gerAllAdvertisementsKioskisSuccess ? <div className='public__main__middle'>
-        <img src={ gerAllAdvertisementsKioskdata?.advertisements[0]?.url} alt="advertisement image" />
-      </div> : <div className='public__main__middle' ><img src='/no-image.webp'/></div>
-      }
-      
+
+      <div className='public__main__middle'>
+        {gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements.length > 0 ? (
+          <img src={gerAllAdvertisementsKioskdata.advertisements[0].url} alt="advertisement image" />
+        ) : (
+          <img src='/no-image.webp' alt="no image available" />
+        )}
+      </div>
+
 
       <div className='public__main__bottom'>
         <div>
@@ -196,7 +201,7 @@ const Public = () => {
         </div>
       </div>
 
-      
+
     </main>
   )
 }

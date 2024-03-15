@@ -7,6 +7,7 @@ import axios from 'axios'
 import { setAdminCredentials, setAdminToken } from './adminauthSlice'
 import { useDispatch } from 'react-redux'
 import { GoogleLogin } from '@react-oauth/google'
+import { ColorRing } from 'react-loader-spinner'
 
 const AdminSignin = () => {
 
@@ -146,7 +147,15 @@ const AdminSignin = () => {
 
 
                     <div>
-                        {isLoading ? <button>Loading...</button> : <button onClick={loginHandler}>LOGIN</button>}
+                        {isLoading ? <button><ColorRing
+                            visible={true}
+                            height="4rem"
+                            width="4rem"
+                            ariaLabel="color-ring-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="color-ring-wrapper"
+                            colors={['#87a96b', '#87a96b', '#87a96b', '#87a96b', '#87a96b']}
+                        /></button> : <button onClick={loginHandler}>LOGIN</button>}
                         <button className='google-btn'>
                             <GoogleLogin
                                 onSuccess={responseMessage}

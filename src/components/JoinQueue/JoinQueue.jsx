@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Toaster, toast } from 'react-hot-toast';
 import { useSelector } from 'react-redux'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
+import { ColorRing } from 'react-loader-spinner'
 
 const JoinQueue = () => {
 
@@ -343,7 +344,15 @@ const JoinQueue = () => {
                         </div>
                     </div>
 
-                    {joinQueueKioskloading ? <div className='joinqueuebtn'>Loading...</div> : <div className='joinqueuebtn' onClick={joinqueueHandler}>Join</div>}
+                    {joinQueueKioskloading ? <div className='joinqueuebtn'><ColorRing
+                            visible={true}
+                            height="4rem"
+                            width="4rem"
+                            ariaLabel="color-ring-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="color-ring-wrapper"
+                            colors={['#87a96b', '#87a96b', '#87a96b', '#87a96b', '#87a96b']}
+                        /></div> : <div className='joinqueuebtn' onClick={joinqueueHandler}>Join</div>}
 
                     {
                         isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen} setModal1={setModal1} setModal2={setModal2} setModal3={setModal3} setModal4={setModal4} setSelectedServices={setSelectedServices} setSelectedBarber={setSelectedBarber}>

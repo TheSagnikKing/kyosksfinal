@@ -8,6 +8,7 @@ import { setCredentials, setToken } from './barberauthSlice'
 import toast from 'react-hot-toast'
 import { selectCurrentAdminInfo } from '../../AdminSignin/adminauthSlice'
 import { GoogleLogin } from '@react-oauth/google'
+import { ColorRing } from 'react-loader-spinner'
 
 const Signin = () => {
 
@@ -207,7 +208,15 @@ const Signin = () => {
                     </div>
 
                     <div>
-                        {barberisloading ? <button>Loading...</button> : <button onClick={barberSigninHandler}>LOGIN</button>}
+                        {barberisloading ? <button><ColorRing
+                            visible={true}
+                            height="4rem"
+                            width="4rem"
+                            ariaLabel="color-ring-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="color-ring-wrapper"
+                            colors={['#87a96b', '#87a96b', '#87a96b', '#87a96b', '#87a96b']}
+                        /></button> : <button onClick={barberSigninHandler}>LOGIN</button>}
                         <button className='google-btn'>
                             <GoogleLogin
                                 onSuccess={responseBarberMessage}

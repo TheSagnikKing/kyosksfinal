@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BarberKiyoskDashboardProtect from './components/Protected/Barber/BarberKiyoskDashboardProtect';
+import { Grid } from 'react-loader-spinner';
 
 const Public = React.lazy(() => import("./components/public/Public"));
 const JoinQueue = React.lazy(() => import("./components/JoinQueue/JoinQueue"));
@@ -19,7 +20,17 @@ const App = () => {
   return (<>
     <Toaster />
     <BrowserRouter>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className='page_loader'><div><Grid
+        visible={true}
+        height="80"
+        width="80"
+        color="#4fa94d"
+        ariaLabel="grid-loading"
+        radius="12.5"
+        wrapperStyle={{}}
+        wrapperClass="grid-wrapper"
+      /></div>
+      </div>}>
         <Routes>
 
           <Route element={<ProtectedAuthRoute />}>
@@ -29,7 +40,7 @@ const App = () => {
           <Route element={<ProtectedRoute />}>
             <Route path="/kiyosk" element={<Public />} />
             <Route path="/joinqueue" element={<JoinQueue />} />
-            <Route path="/queuelist" element={<QueueList/>}/>
+            <Route path="/queuelist" element={<QueueList />} />
             <Route path="/barbersignin" element={<BarberSignin />} />
             <Route element={<BarberKiyoskDashboardProtect />}>
               <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />

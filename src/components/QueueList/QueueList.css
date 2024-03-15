@@ -1,0 +1,63 @@
+.queuelist__container__main{
+    width: 80%;
+    height: 90vh;
+    margin: auto;
+    margin-top: 3rem;
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 2rem;
+}
+
+.queuelist__container__main__container{
+    margin-top: 1rem;
+    width: 100%;
+    height: 80vh;
+    overflow: scroll;
+    padding: 1rem;
+}
+
+.queuelist__container__main__container>th{
+    width: 150rem;
+    height: 6rem;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    align-items: center;
+    box-shadow: rgba(58, 58, 58, 0.3) 0px 2px 8px 0px;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+}
+
+.queuelist__container__main__container>th>td{
+    font-size: 1.4rem;
+}
+
+.queuelist__container__main__container>tr{
+    width: 150rem;
+    height: 6rem;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    align-items: center;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+}
+
+.queuelist__container__main__container>tr>td{
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+}
+
+@media((min-width:0px) and (max-width:430px)){
+    .queuelist__container__main{
+        width: 95%;
+    }
+}
+
+@media((min-width:430px) and (max-width:1200px)){
+    .queuelist__container__main{
+        width: 95%;
+    }
+}
