@@ -13,7 +13,7 @@
     padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
     border-radius: 1rem;
-    background: linear-gradient(to bottom, skyblue, white);
+    background: linear-gradient(to bottom, rgb(135, 170, 235), white);
 }
 
 .kiyosk__dashboard__main__header{

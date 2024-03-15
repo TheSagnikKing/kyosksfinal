@@ -339,10 +339,10 @@ const Dashboard = () => {
                         {
                             getAttendenceByBarberIdKioskisSuccess && getAttendenceByBarberIdKioskdata.response.attendance.map((b) => (
                                 <div className='kiyosk__dashboard__main__body__item' key={b._id}>
-                                    <h2>{b.day}</h2>
-                                    <h2>{b.date}</h2>
-                                    <h2>{b.signInTime}</h2>
-                                    <h2>{b.signOutTime}</h2>
+                                    <h2>{b.day === "" ? "-" : b.day}</h2>
+                                    <h2>{b.date === "" ? "-" : b.date}</h2>
+                                    <h2>{b.signInTime === "" ? "-" : b.signInTime}</h2>
+                                    <h2>{b.signOutTime === "" ? "-" : b.signOutTime}</h2>
                                 </div>
                             ))
                         }
