@@ -310,7 +310,7 @@ const Dashboard = () => {
                     <div className='kiyosk__dashboard__main__header__left'>
                         <div>
                             <div><img src="./no-profile-img.webp" alt="profile" /></div>
-                            <h2>Sagnik Nandy</h2>
+                            <h2>{selectCurrentBarberdata?.foundUser?.name}</h2>
                         </div>
                     </div>
 
