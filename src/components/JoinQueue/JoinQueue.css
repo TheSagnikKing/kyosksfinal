@@ -158,7 +158,7 @@
     }
 
     .select_barber_item {
-        height: 14rem;
+        height: auto;
         width: 98%;
         margin: auto;
         margin-top: 1rem;
@@ -170,8 +170,9 @@
 
     .select_barber_item_top {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        gap: 1.5rem;
+        justify-content: center;
         padding-block: 0.5rem;
         padding-inline: 1rem;
     }
@@ -191,6 +192,8 @@
     .select_barber_item_top>div:nth-child(2)>p {
         font-size: 1.4rem;
         font-weight: 500;
+        text-align: center;
+        margin-top: 0.5rem;
     }
 
     .select_barber_item_top_border {
@@ -217,6 +220,12 @@
         font-weight: 500;
     }
 
+    .select_barber_item_bottom>div:nth-child(1)>p:nth-child(2) {
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: 500;
+    }
+
     .select_barber_item_bottom>div:nth-child(1)>p:nth-child(3) {
         font-size: 1.7rem;
     }
@@ -236,6 +245,13 @@
         font-size: 1.4rem;
         font-weight: 500;
     }
+
+    .select_barber_item_bottom>div:nth-child(3)>p:nth-child(2) {
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: 500;
+    }
+
 
     .select_barber_item_bottom>div:nth-child(3)>p:nth-child(3) {
         font-size: 1.7rem;
@@ -505,7 +521,7 @@
     }
 
     .select_barber_item {
-        height: 14rem;
+        height: auto;
         width: 98%;
         margin: auto;
         margin-top: 1rem;
@@ -513,14 +529,6 @@
         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.6);
         margin-bottom: 2rem;
         border-radius: 1.2rem;
-    }
-
-    .select_barber_item_top {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        padding-block: 0.5rem;
-        padding-inline: 1rem;
     }
 
     .select_barber_item_top>div:nth-child(1) {

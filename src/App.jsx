@@ -10,7 +10,7 @@ const QueueList = React.lazy(() => import("./components/QueueList/QueueList"))
 const BarberSignin = React.lazy(() => import("./components/barber/Signin/Signin"));
 const AdminSignin = React.lazy(() => import("./components/AdminSignin/AdminSignin"))
 const Table = React.lazy(() => import("./components/barber/demo/Table"))
-const KiyoskDashboard = React.lazy(() => import("./components/Dashboard/Dashboard"))
+const KiyoskDashboard = React.lazy(() => import("./components/Dashboard/Dashboard2"))
 
 const ProtectedAuthRoute = React.lazy(() => import('./components/Protected/Admin/ProtectedAuthRoute'))
 const ProtectedRoute = React.lazy(() => import('./components/Protected/Admin/ProtectedRoute'))

@@ -266,7 +266,20 @@ const JoinQueue = () => {
         }
     }
 
+    const modelcolorfnc = (b) => {
+        // const modelcolor = selectedBarber === b.name ? "var(--secondary-color)" : "var(--primary-color)"
+        const modelcolor = selectedBarber === b.name ? "var(--primary-color)" : "var(--primary-color)"
+        return modelcolor
+    }
 
+    const modelcolorfnc2 = (selectedServices,item) => {
+        // const modelcolor2 = selectedServices.find((select) => select._id === item._id) ? "var(--secondary-color)" : "var(--primary-color)"
+        const modelcolor2 = selectedServices.find((select) => select._id === item._id) ? "var(--primary-color)" : "var(--primary-color)"
+        return  modelcolor2;
+    }
+
+    //rating bole kono property nai getAvailable Barbere
+    
     return (
         <main className='joinqueue__main__container'>
             <div className='joinqueue__main__left'>
@@ -363,30 +376,32 @@ const JoinQueue = () => {
                                         getavailablebarberloading ? <div><h2>Loading...</h2></div> : getavailablebarberisSuccess && getavailablebarberdata?.response?.length > 0 ? getavailablebarberdata?.response?.map((b) => (
                                             <div className='select_barber_item' key={b._id} onClick={() => searchSelectedBarber(b)}
                                                 style={{
-                                                    background: selectedBarber === b.name ? "var(--quarterny-color)" : "var(--secondary-color)"
+                                                    background: selectedBarber === b.name ? "var(--queue-modal-bg)" : "var(--secondary-color)"
                                                 }}
                                             >
                                                 <div className='select_barber_item_top'>
                                                     <div><img src="./queue-no-image.jpg" alt="barbername" /></div>
                                                     <div>
-                                                        <p>{b.name}</p>
-                                                        {/* <p>Cutting, Styling, Hair Color, Straightening</p> */}
+                                                        <p style={{color:modelcolorfnc(b)}}>{b.name}</p>
+                                                        <p style={{color:modelcolorfnc(b)}}>Cutting, Styling, Hair Color, Straightening</p>
                                                     </div>
 
                                                 </div>
-                                                <div className='select_barber_item_top_border' />
+                                                <div className='select_barber_item_top_border' style={{background:modelcolorfnc(b)}}/>
 
                                                 <div className='select_barber_item_bottom'>
                                                     <div>
-                                                        <p>Next Available</p>
-                                                        <p>Position</p>
-                                                        <p>{b.queueCount + 1}</p>
+                                                        <p style={{color:modelcolorfnc(b)}}>Next Available Positon</p>
+                                                        {/* <p style={{color:modelcolorfnc(b)}}>Position</p> */}
+                                                        <p style={{color:modelcolorfnc(b)}}>{b.queueCount + 1}</p>
                                                     </div>
-                                                    <div className='select_barber_item_bottom_border' />
+                                                    <div className='select_barber_item_bottom_border' 
+                                                    style={{background:modelcolorfnc(b)}}
+                                                    />
                                                     <div>
-                                                        <p>Estimated</p>
-                                                        <p>Time</p>
-                                                        <p>{b.barberEWT} mins</p>
+                                                        <p style={{color:modelcolorfnc(b)}}>Estimated Time</p>
+                                                        {/* <p style={{color:modelcolorfnc(b)}}>Time</p> */}
+                                                        <p style={{color:modelcolorfnc(b)}}>{b.barberEWT} mins</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -407,19 +422,19 @@ const JoinQueue = () => {
                                     {
                                         getServicesByBarberloading ? <div><h2>Loading...</h2></div> : getServicesByBarberisSuccess && getServicesByBarberdata?.response.map((item) => (
                                             <div className='select_barber_services_item' key={item._id}
-                                                style={{ background: selectedServices.find((select) => select._id === item._id) ? "var(--quarterny-color)" : "" }}
+                                                style={{ background: selectedServices.find((select) => select._id === item._id) ? "var(--queue-modal-bg)" : "" }}
                                             >
                                                 <div className='select_barber_services_item_header'>
-                                                    <h1>Service</h1>
-                                                    <h1>PRICE</h1>
-                                                    <h1>EWT</h1>
+                                                    <h1 style={{color:modelcolorfnc2(selectedServices,item)}}>Service</h1>
+                                                    <h1 style={{color:modelcolorfnc2(selectedServices,item)}}>PRICE</h1>
+                                                    <h1 style={{color:modelcolorfnc2(selectedServices,item)}}>EWT</h1>
                                                     <div></div>
                                                 </div>
 
                                                 <div className='select_barber_services_item_content'>
-                                                    <h1>{item.serviceName}</h1>
-                                                    <h1>${item.servicePrice}</h1>
-                                                    <h1>{item.barberServiceEWT}</h1>
+                                                    <h1 style={{color:modelcolorfnc2(selectedServices,item)}}>{item.serviceName}</h1>
+                                                    <h1 style={{color:modelcolorfnc2(selectedServices,item)}}>${item.servicePrice}</h1>
+                                                    <h1 style={{color:modelcolorfnc2(selectedServices,item)}}>{item.barberServiceEWT}</h1>
                                                     {
                                                         selectedServices.find((select) => select._id === item._id) ?
                                                             <div onClick={() => deleteSelectServicesHandler(item._id)}
@@ -440,7 +455,7 @@ const JoinQueue = () => {
                                                 </div>
 
                                                 <div>
-                                                    <h1>(5.0)</h1><p>20 reviews</p>
+                                                    <h1 style={{color:modelcolorfnc2(selectedServices,item)}}>(5.0)</h1><p style={{color:modelcolorfnc2(selectedServices,item)}}>20 reviews</p>
                                                 </div>
 
                                             </div>
@@ -457,19 +472,19 @@ const JoinQueue = () => {
                                     {
                                         getAllSalonServicesloading ? <div><h2>Loading...</h2></div> : getAllSalonServicesisSuccess && getAllSalonServicesdata?.response.map((item) => (
                                             <div className='select_barber_services_item' key={item._id}
-                                                style={{ background: selectedServices.find((select) => select._id === item._id) ? "var(--quarterny-color)" : "" }}
+                                                style={{ background: selectedServices.find((select) => select._id === item._id) ? "var(--queue-modal-bg)" : "" }}
                                             >
                                                 <div className='select_barber_services_item_header'>
-                                                    <h1>Service</h1>
-                                                    <h1>PRICE</h1>
-                                                    <h1>EWT</h1>
+                                                    <h1 style={{color:modelcolorfnc2(selectedServices,item)}}>Service</h1>
+                                                    <h1 style={{color:modelcolorfnc2(selectedServices,item)}}>PRICE</h1>
+                                                    <h1 style={{color:modelcolorfnc2(selectedServices,item)}}>EWT</h1>
                                                     <div></div>
                                                 </div>
 
                                                 <div className='select_barber_services_item_content'>
-                                                    <h1>{item.serviceName}</h1>
-                                                    <h1>${item.servicePrice}</h1>
-                                                    <h1>{item.serviceEWT}</h1>
+                                                    <h1 style={{color:modelcolorfnc2(selectedServices,item)}}>{item.serviceName}</h1>
+                                                    <h1 style={{color:modelcolorfnc2(selectedServices,item)}}>${item.servicePrice}</h1>
+                                                    <h1 style={{color:modelcolorfnc2(selectedServices,item)}}>{item.serviceEWT}</h1>
                                                     {
                                                         selectedServices.find((select) => select._id === item._id) ?
                                                             <div onClick={() => deleteSelectServicesHandler(item._id)}
@@ -490,7 +505,7 @@ const JoinQueue = () => {
                                                 </div>
 
                                                 <div>
-                                                    <h1>(5.0)</h1><p>40 reviews</p>
+                                                    <h1 style={{color:modelcolorfnc2(selectedServices,item)}}>(5.0)</h1><p style={{color:modelcolorfnc2(selectedServices,item)}}>40 reviews</p>
                                                 </div>
 
                                             </div>
@@ -512,30 +527,30 @@ const JoinQueue = () => {
                                             <div className='select_barber_item' key={b._id}
                                                 onClick={() => searchSelectedBarber(b)}
                                                 style={{
-                                                    background: selectedBarber === b.name ? "var(--quarterny-color)" : "var(--secondary-color)"
+                                                    background: selectedBarber === b.name ? "var(--queue-modal-bg)" : "var(--secondary-color)"
                                                 }}
                                             >
                                                 <div className='select_barber_item_top'>
                                                     <div><img src="./queue-no-image.jpg" alt="barbername" /></div>
                                                     <div>
-                                                        <p>{b.name}</p>
-                                                        {/* <p>Cutting, Styling, Hair Color, Straightening</p> */}
+                                                        <p style={{color:modelcolorfnc(b)}}>{b.name}</p>
+                                                        <p style={{color:modelcolorfnc(b)}}>Cutting, Styling, Hair Color, Straightening</p>
                                                     </div>
 
                                                 </div>
-                                                <div className='select_barber_item_top_border' />
+                                                <div className='select_barber_item_top_border' style={{background:modelcolorfnc(b)}}/>
 
                                                 <div className='select_barber_item_bottom'>
                                                     <div>
-                                                        <p>Next Available</p>
-                                                        <p>Position</p>
-                                                        <p>{b.queueCount + 1}</p>
+                                                        <p style={{color:modelcolorfnc(b)}}>Next Available Position</p>
+                                                        {/* <p style={{color:modelcolorfnc(b)}}>Position</p> */}
+                                                        <p style={{color:modelcolorfnc(b)}}>{b.queueCount + 1}</p>
                                                     </div>
-                                                    <div className='select_barber_item_bottom_border' />
+                                                    <div className='select_barber_item_bottom_border' style={{background:modelcolorfnc(b)}} />
                                                     <div>
-                                                        <p>Estimated</p>
-                                                        <p>Time</p>
-                                                        <p>{b.barberEWT} mins</p>
+                                                        <p style={{color:modelcolorfnc(b)}}>Estimated Time</p>
+                                                        {/* <p style={{color:modelcolorfnc(b)}}>Time</p> */}
+                                                        <p style={{color:modelcolorfnc(b)}}>{b.barberEWT} mins</p>
                                                     </div>
                                                 </div>
                                             </div>

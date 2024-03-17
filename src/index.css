@@ -23,6 +23,8 @@ input:focus{
   --tertiary-color-2:#A4A4A4;
   --tertiary-color-3:#3b3b3bca;
   --quarterny-color:#87a96b;
+  --queue-modal-bg: #87a96b;
+  --dashboard_bf-color: #F2F0F0;
 }
 
 .page_loader{
