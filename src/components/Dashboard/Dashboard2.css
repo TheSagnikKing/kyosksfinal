@@ -193,3 +193,78 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+
+@media((min-width:0px) and (max-width:430px)){
+    .dash_main_container>div{
+        width: 95vw;
+    }
+    .dash_div_profile{
+        grid-template-columns: 1fr;
+    }
+
+    .dash_div_header>div:nth-child(1)>div:nth-child(2){
+        width: 150%;
+    }
+
+    .dash_div_header {
+        height: 5%;
+    }
+
+    .dash_div_header>div:nth-child(2){
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .dash_div_btn_group{
+        width: 75%;
+    }
+
+    .dash_div_profile {
+        height: 45%;
+        margin-top: 0rem;
+    }
+}
+
+@media((min-width:430px) and (max-width:940px)){
+    .dash_main_container>div{
+        width: 95vw;
+        height: 80vh;
+    }
+
+    .dash_div_header>div:nth-child(1)>div:nth-child(2){
+        width: 150%;
+    }
+
+    .dash_div_header {
+        height: 5%;
+    }
+
+    .dash_div_header>div:nth-child(2){
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .dash_div_btn_group{
+        width: 75%;
+    }
+
+    .dash_div_profile{
+        height: 20%;
+    }
+
+    .kiyosk__dashboard__main__body{
+        height: 35%;
+    }
+    .dash_div_btn_group {
+        height: 6rem;
+    }
+
+    .dash_div_btn_group>button{
+        width: 20rem;
+    }
+
+    .dash_div_btn_box{
+        height: calc(100% - 60%);
+    }
+}
