@@ -113,27 +113,26 @@ const SalonSelection = () => {
     }
 
     const applySalonHandler = () => {
-        if (salonId === adminInfo?.salonId) {
-            toast.error("Choose different Salon", {
-                duration: 3000,
-                style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
-                    background: '#333',
-                    color: '#fff',
-                },
-            });
-        } else {
-            const admindata = {
-                adminEmail: adminInfo?.email,
-                salonId
-            }
 
-            adminConnectKiosk(admindata)
+        const admindata = {
+            adminEmail: adminInfo?.email,
+            salonId
         }
+
+        adminConnectKiosk(admindata)
     }
 
     console.log(salonId)
+
+    const salonSelect = localStorage.getItem("salonSelect")
+
+    useEffect(() => {
+        if (salonSelect === "true") {
+            navigate("/kiyosk")
+        } else if (salonSelect === "false") {
+
+        }
+    }, [salonSelect])
 
     return (
         <main className='selectSalonContainer'>
@@ -141,14 +140,14 @@ const SalonSelection = () => {
                 <h1>Select Salon <span>{salonName !== "" && salonName}</span></h1>
                 <div className='salonlistdropdown__box'>
                     <div onClick={salonlistHandler}>
-                    <p>{salonName !== "" && salonName}</p>
-                    <div><DropdownIcon /></div>
+                        <p>{salonName !== "" && salonName}</p>
+                        <div><DropdownIcon /></div>
                     </div>
 
                     {salonlistdrop && (
                         <div className='salonlistdropdown__box__content'>
                             {getAllSalonsByAdmindata?.salons?.length > 0 &&
-                                getAllSalonsByAdmindata?.salons.map((s,i) => (
+                                getAllSalonsByAdmindata?.salons.map((s, i) => (
                                     <div key={s._id} onClick={() => salonHandler(s)}
                                         style={{
                                             backgroundColor: salonName === s.salonName ? "var(--quarterny-color)" : "",
@@ -173,23 +172,24 @@ const SalonSelection = () => {
 export default SalonSelection
 
 
+
 // import React, { useEffect, useState } from 'react'
 
 // const SalonSelection = () => {
 //     const [content, setContent] = useState(null);
 //     const [salonSelect, setSalonSelect] = useState(localStorage.getItem("salonSelect"));
 
-//     useEffect(() => {
-//         if (salonSelect === "true") {
-//             setContent(<h1>True</h1>);
-//         } else if (salonSelect === "loggedin") {
-//             setContent(<h1>Logged In</h1>);
-//         } else if (salonSelect === "false") {
-//             setContent(<h1>False</h1>);
-//         } else {
-//             setContent(<h1>Yessss</h1>);
-//         }
-//     }, [salonSelect]);
+// useEffect(() => {
+//     if (salonSelect === "true") {
+//         setContent(<h1>True</h1>);
+//     } else if (salonSelect === "loggedin") {
+//         setContent(<h1>Logged In</h1>);
+//     } else if (salonSelect === "false") {
+//         setContent(<h1>False</h1>);
+//     } else {
+//         setContent(<h1>Yessss</h1>);
+//     }
+// }, [salonSelect]);
 
 //     return content
 // }

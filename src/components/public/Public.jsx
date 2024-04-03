@@ -100,6 +100,7 @@ const Public = () => {
   const logoutHandler = () => {
     localStorage.setItem('adminkiyoskloggin', 'false')
     localStorage.setItem('adminkiyosktoken', '')
+    localStorage.getItem("false")
     navigate('/')
   }
 
