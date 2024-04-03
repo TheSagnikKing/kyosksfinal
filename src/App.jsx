@@ -15,6 +15,8 @@ const SalonSelection = React.lazy(() => import("./components/SalonSelection/Salo
 
 const ProtectedAuthRoute = React.lazy(() => import('./components/Protected/Admin/ProtectedAuthRoute'))
 const ProtectedRoute = React.lazy(() => import('./components/Protected/Admin/ProtectedRoute'))
+const SalonProtectRoute = React.lazy(() => import('./components/SalonSelection/SalonProtectRoute'))
+const AllRoutesProtect = React.lazy(() => import('./components/public/AllRoutesProtect'))
 
 const App = () => {
 
@@ -35,17 +37,22 @@ const App = () => {
         <Routes>
 
           {/* <Route element={<ProtectedAuthRoute />}> */}
-            <Route path="/" element={<AdminSignin />} />
+          <Route path="/" element={<AdminSignin />} />
           {/* </Route> */}
 
           <Route element={<ProtectedRoute />}>
-            <Route path="/selectsalon" element={<SalonSelection/>}/>
-            <Route path="/kiyosk" element={<Public />} />
-            <Route path="/joinqueue" element={<JoinQueue />} />
-            <Route path="/queuelist" element={<QueueList />} />
-            <Route path="/barbersignin" element={<BarberSignin />} />
-            <Route element={<BarberKiyoskDashboardProtect />}>
-              <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />
+            <Route element={<SalonProtectRoute />}>
+              <Route path="/selectsalon" element={<SalonSelection />} />
+            </Route>
+
+            <Route element={<AllRoutesProtect />}>
+              <Route path="/kiyosk" element={<Public />} />
+              <Route path="/joinqueue" element={<JoinQueue />} />
+              <Route path="/queuelist" element={<QueueList />} />
+              <Route path="/barbersignin" element={<BarberSignin />} />
+              <Route element={<BarberKiyoskDashboardProtect />}>
+                <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />
+              </Route>
             </Route>
           </Route>
 

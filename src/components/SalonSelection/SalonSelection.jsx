@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import './SalonSelection.css'
-import { useAdminConnectKioskMutation, useGerAllAdvertisementsKioskMutation, useGetAllSalonsByAdminMutation, useGetDefaultSalonByAdminKioskMutation } from '../public/publicApiSlice'
+import { useAdminConnectKioskMutation, useGetAllSalonsByAdminMutation, useGetDefaultSalonByAdminKioskMutation } from '../public/publicApiSlice'
 import { useSelector } from 'react-redux'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useNavigate } from 'react-router-dom'
-import { DropdownIcon, SettingsIcon } from '../../icons'
-import toast from 'react-hot-toast'
+import { DropdownIcon } from '../../icons'
+
 
 const SalonSelection = () => {
 
     const navigate = useNavigate()
 
-    const [salonLogo, setSalonLogo] = useState("")
     const [salonId, setSalonId] = useState("")
     const [salonName, setSalonName] = useState("")
     const adminInfo = useSelector(selectCurrentAdminInfo)
@@ -49,16 +48,6 @@ const SalonSelection = () => {
         }
     ] = useGetAllSalonsByAdminMutation()
 
-    const [
-        gerAllAdvertisementsKiosk,
-        {
-            data: gerAllAdvertisementsKioskdata,
-            isSuccess: gerAllAdvertisementsKioskisSuccess,
-            isError: gerAllAdvertisementsKioskisError,
-            error: gerAllAdvertisementsKioskerror,
-            isLoading: gerAllAdvertisementsKioskisLoading
-        }
-    ] = useGerAllAdvertisementsKioskMutation()
 
     useEffect(() => {
         if (adminInfo?.email) {
@@ -71,7 +60,6 @@ const SalonSelection = () => {
         if (adminInfo && isSuccess) {
             setSalonName(data?.response?.salonName)
             setSalonId(data?.response?.salonId)
-            gerAllAdvertisementsKiosk(data?.response?.salonId)
         }
     }, [adminInfo, isSuccess])
 
@@ -83,22 +71,6 @@ const SalonSelection = () => {
         }
     }, [adminConnectKioskisSuccess, navigate])
 
-    const [dropdown, setDropdown] = useState(false)
-
-    const settingClicked = () => {
-        setDropdown(!dropdown)
-        // navigate('/barbersignin')
-    }
-
-    const joinqueueClicked = () => {
-        navigate('/joinqueue')
-    }
-
-    const logoutHandler = () => {
-        localStorage.setItem('adminkiyoskloggin', 'false')
-        localStorage.setItem('adminkiyosktoken', '')
-        navigate('/')
-    }
 
     const [salonlistdrop, setSalonListDrop] = useState(false)
 
@@ -121,18 +93,6 @@ const SalonSelection = () => {
 
         adminConnectKiosk(admindata)
     }
-
-    console.log(salonId)
-
-    const salonSelect = localStorage.getItem("salonSelect")
-
-    useEffect(() => {
-        if (salonSelect === "true") {
-            navigate("/kiyosk")
-        } else if (salonSelect === "false") {
-
-        }
-    }, [salonSelect])
 
     return (
         <main className='selectSalonContainer'>
