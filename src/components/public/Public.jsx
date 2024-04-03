@@ -152,7 +152,7 @@ const Public = () => {
           )}
         </div>
 
-        <div>
+        {/* <div>
           <div className='salonlistdropdown__box'>
             <p>{salonName !== "" && salonName}</p>
             <div onClick={salonlistHandler}><DropdownIcon /></div>
@@ -175,7 +175,9 @@ const Public = () => {
           </div>
 
           {Object.keys(adminInfo).length > 0 && <div onClick={applySalonHandler}><p>Apply</p></div>}
-        </div>
+        </div> */}
+
+        <div/>
 
         <div onClick={() => settingClicked()}><SettingsIcon /></div>
 

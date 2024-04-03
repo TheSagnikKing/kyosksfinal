@@ -42,7 +42,8 @@ const AdminSignin = () => {
             localStorage.setItem('adminkiyosktoken', data?.adminToken)
             localStorage.setItem('adminkiyoskloggin', 'true')
             dispatch(setAdminToken(data))
-            navigate("/kiyosk")
+            localStorage.setItem("salonSelect","loggedin")
+            navigate("/selectsalon")
         } else if (isError) {
             toast.error(error?.data?.message, {
                 duration: 3000,
@@ -61,7 +62,7 @@ const AdminSignin = () => {
             localStorage.setItem('adminkiyosktoken', googleAdminLoginKioskdata?.adminToken)
             localStorage.setItem('adminkiyoskloggin', 'true')
             dispatch(setAdminToken(googleAdminLoginKioskdata))
-            navigate("/kiyosk")
+            navigate("/selectsalon")
         } else if (googleAdminLoginKioskisError) {
             toast.error(googleAdminLoginKioskerror?.data?.message, {
                 duration: 3000,

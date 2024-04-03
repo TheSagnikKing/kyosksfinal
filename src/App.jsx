@@ -11,6 +11,7 @@ const BarberSignin = React.lazy(() => import("./components/barber/Signin/Signin"
 const AdminSignin = React.lazy(() => import("./components/AdminSignin/AdminSignin"))
 const Table = React.lazy(() => import("./components/barber/demo/Table"))
 const KiyoskDashboard = React.lazy(() => import("./components/Dashboard/Dashboard2"))
+const SalonSelection = React.lazy(() => import("./components/SalonSelection/SalonSelection"))
 
 const ProtectedAuthRoute = React.lazy(() => import('./components/Protected/Admin/ProtectedAuthRoute'))
 const ProtectedRoute = React.lazy(() => import('./components/Protected/Admin/ProtectedRoute'))
@@ -33,11 +34,12 @@ const App = () => {
       </div>}>
         <Routes>
 
-          <Route element={<ProtectedAuthRoute />}>
+          {/* <Route element={<ProtectedAuthRoute />}> */}
             <Route path="/" element={<AdminSignin />} />
-          </Route>
+          {/* </Route> */}
 
           <Route element={<ProtectedRoute />}>
+            <Route path="/selectsalon" element={<SalonSelection/>}/>
             <Route path="/kiyosk" element={<Public />} />
             <Route path="/joinqueue" element={<JoinQueue />} />
             <Route path="/queuelist" element={<QueueList />} />
