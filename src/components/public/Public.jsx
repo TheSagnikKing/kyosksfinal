@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Public.css'
 import { DropdownIcon, SettingsIcon } from '../../icons'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -100,7 +100,7 @@ const Public = () => {
   const logoutHandler = () => {
     localStorage.setItem('adminkiyoskloggin', 'false')
     localStorage.setItem('adminkiyosktoken', '')
-    localStorage.setItem("salonSelect","false")
+    localStorage.setItem("salonSelect", "false")
     navigate('/')
   }
 
@@ -153,39 +153,15 @@ const Public = () => {
           )}
         </div>
 
-        {/* <div>
-          <div className='salonlistdropdown__box'>
-            <p>{salonName !== "" && salonName}</p>
-            <div onClick={salonlistHandler}><DropdownIcon /></div>
+        <div />
 
-            {salonlistdrop && (
-              <div className='salonlistdropdown__box__content'>
-                {getAllSalonsByAdmindata?.salons?.length > 0 &&
-                  getAllSalonsByAdmindata?.salons.map((s) => (
-                    <div key={s._id} onClick={() => salonHandler(s)}
-                      style={{
-                        backgroundColor: salonName === s.salonName ? "var(--quarterny-color)" : ""
-                      }}
-                    ><p style={{
-                      color: salonName === s.salonName ? "var(--secondary-color)" : "var(--primary-color)"
-                    }}>{s.salonName}</p></div>
-                  ))
-                }
-              </div>
-            )}
-          </div>
-
-          {Object.keys(adminInfo).length > 0 && <div onClick={applySalonHandler}><p>Apply</p></div>}
-        </div> */}
-
-        <div/>
-
-        <div onClick={() => settingClicked()}><SettingsIcon /></div>
+        <button onClick={() => settingClicked()}><SettingsIcon /></button>
 
         {dropdown && <div className='public__main__top__logoutdiv'>
           <Link to="/barbersignin">Barber Signin</Link>
           <p onClick={logoutHandler} style={{ cursor: "pointer" }}>Logout</p>
         </div>}
+
       </div>
 
       <div className='public__main__middle'>
