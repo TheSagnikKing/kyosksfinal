@@ -6,6 +6,7 @@
         display: grid;
         grid-template-columns: 43.2rem calc(100% - 43.2rem);
         overflow-y: hidden;
+        position: relative;
     }
 
     .joinqueue__main__left {
@@ -24,16 +25,13 @@
 
     .joinqueue__main__right {
         background-color: var(--secondary-color);
-        position: relative;
     }
 
-    .joinqueue__main__right>h1 {
+    .joinqueue__main__right__form>h1 {
         font-size: 4rem;
         font-weight: bold;
-        position: absolute;
-        left: 50%;
-        top: 12.5rem;
-        transform: translateX(-50%);
+        margin-bottom: 5rem;
+        text-align: center;
     }
 
     .joinqueue__main__right__form {
@@ -300,17 +298,26 @@
     .select_barber_services_item_header {
         height: 30px;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 0.3fr;
+        grid-template-columns: 1fr 1fr 1fr 0.5fr 0.3fr;
     }
 
     .select_barber_services_item_content {
         height: 30px;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 0.3fr;
+        grid-template-columns: 1fr 1fr 1fr 0.5fr 0.3fr;
     }
 
     .select_barber_services_item_content>h1 {
         font-weight: 500;
+    }
+
+    .select_barber_services_item_content>div:nth-child(4){
+        height: 3.5rem;
+        font-size: 3rem;
+        color: #000;
+        background-color: red;
+        margin-right: 20px;
+        background:transparent;
     }
 
     .select_barber_services_item>div:nth-child(3) {
@@ -358,6 +365,15 @@
         cursor: pointer;
     }
 
+    .homeiconClass{
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        font-size: 4rem;
+        color: black;
+        padding: 1rem;
+    }
+
 @media((min-width:430px) and (max-width:940px)) {
     .joinqueue__main__container {
         height: 100vh;
@@ -366,6 +382,17 @@
         display: grid;
         grid-template-columns: 1fr;
         overflow-y: hidden;
+        position: relative;
+    }
+
+    .homeiconClass{
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        font-size: 4rem;
+        color: black;
+        padding: 1rem;
+        display: block;
     }
 
     .joinqueue__main__left {
@@ -387,7 +414,6 @@
     .joinqueue__main__right {
         height: 60vh;
         background-color: var(--secondary-color);
-        position: relative;
     }
 
     .joinqueue__main__right>h1 {
@@ -636,17 +662,6 @@
         padding: 1rem;
     }
 
-    .select_barber_services_item_header {
-        height: 30px;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 0.3fr;
-    }
-
-    .select_barber_services_item_content {
-        height: 30px;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 0.3fr;
-    }
 
     .select_barber_services_item_content>h1 {
         font-weight: 500;
@@ -701,6 +716,7 @@
 @media((min-width:0px) and (max-width:430px)) {
     .joinqueue__main__container{
         grid-template-columns: 1fr;
+        position: relative;
     }
     .joinqueue__main__left{
         display: none;

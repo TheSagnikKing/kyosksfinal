@@ -36,9 +36,9 @@ const App = () => {
       </div>}>
         <Routes>
 
-          {/* <Route element={<ProtectedAuthRoute />}> */}
+          <Route element={<ProtectedAuthRoute />}>
           <Route path="/" element={<AdminSignin />} />
-          {/* </Route> */}
+          </Route>
 
           <Route element={<ProtectedRoute />}>
             <Route element={<SalonProtectRoute />}>
