@@ -158,6 +158,10 @@
     background-color: var(--tertiary-color);
 }
 
+.public__main__top__logoutdiv {
+    z-index: 200;
+}
+
 
 @media((min-width:430px) and (max-width:940px)) {
     .public__main__container {
