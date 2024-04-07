@@ -75,6 +75,16 @@
     object-fit: cover;
 }
 
+.slick-slide img {
+    height: 55vh;
+    object-fit: cover;
+}
+
+.slick-dots li button:before{
+    background-color: #000;
+    border-radius: 50%;
+}
+
 .public__main__bottom {
     width: 100%;
     height: calc(100vh - 55vh - 14.1rem);

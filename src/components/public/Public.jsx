@@ -9,6 +9,9 @@ import toast from 'react-hot-toast'
 
 import Slider from "react-slick";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 const Public = () => {
 
   const adminInfo = useSelector(selectCurrentAdminInfo)
@@ -149,8 +152,22 @@ const Public = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    arrows: false,
   };
+
+  const sliderRef = useRef(null);
+
+  const data2 = [
+    {
+      id: 1,
+      img: "Img1"
+    },
+    {
+      id: 2,
+      img: "Img2"
+    },
+  ]
 
   return (
     <main className='public__main__container'>
@@ -174,14 +191,26 @@ const Public = () => {
 
       </div>
 
-      <div className='public__main__middle'>
+      {/* <div className='public__main__middle'>
         {gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements.length > 0 ? (
           <img src={gerAllAdvertisementsKioskdata.advertisements[0].url} alt="advertisement image" />
         ) : (
           <img src='/no-image.webp' alt="no image available" />
         )}
+      </div> */}
+
+      <div className='public__main__middle'>
+        {gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements.length > 0 ? (
+          <Slider {...settings}>
+            {gerAllAdvertisementsKioskdata?.advertisements.map((c) => (
+              <img key={c.id} src={c.url} alt={c.alt} />
+            ))}
+          </Slider>
+        ) : (
+          <img src='/no-image.webp' alt="no image available" />
+        )}
       </div>
-      
+
       <div className='public__main__bottom'>
         <div>
           <button onClick={queuelistClicked}>Queue List</button>
