@@ -63,7 +63,19 @@ const QueueList = () => {
   }
 
   if (isError) {
-    return <div>Error: {error.data.message}</div>
+    // return <div>Error: {error.data.message}</div>
+    return (
+      <div className='queuelist__container__main__wrapper'>
+        <Link to="/kiyosk"
+            className='homeiconClassQueue'
+          ><IoMdHome /></Link>
+        <div className='queuelist__container__main'>
+          <h1 
+          style={{color:"red",fontWeight:"bold",fontSize:"3rem"}}
+          >Salon Not Found</h1>
+        </div>
+      </div>
+    )
   }
 
   // Default return if none of the above conditions match

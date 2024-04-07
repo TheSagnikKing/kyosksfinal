@@ -141,18 +141,12 @@
         color: orangered;
     }
 
-    .google-btn{
-        height: 4.4rem;
-        width: 32.4em;
-        margin: auto;
+    .admin__signin__main__form>div:nth-child(3)>div{
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        box-shadow:none;
-        border-radius: 2rem;
-        margin-top: 2rem;
-        margin-bottom: 3rem;
-        border: none !important;
+        margin-top: 30px;
+        height: auto;
     }
 
 
@@ -174,6 +168,7 @@
         justify-content: center;
         align-items: center;
         order: 2;
+        display: none;
     }
 
     .admin__signin__main__left>img{
@@ -302,18 +297,12 @@
         color: orangered;
     }
 
-    .google-btn{
-        height: 4.4rem;
-        width: 32.4em;
-        margin: auto;
+    .admin__signin__main__form>div:nth-child(3)>div{
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        box-shadow:none;
-        border-radius: 2rem;
-        margin-top: 2rem;
-        margin-bottom: 3rem;
-        border: none !important;
+        margin-top: 30px;
+        height: auto;
     }
 }
 
@@ -335,6 +324,7 @@
         justify-content: center;
         align-items: center;
         order: 2;
+        display: none;
     }
 
     .admin__signin__main__left>img{
@@ -463,18 +453,12 @@
         color: #ff4500;
     }
 
-    .google-btn{
-        height: 4.4rem;
-        width: 32.4em;
-        margin: auto;
+    .admin__signin__main__form>div:nth-child(3)>div{
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        box-shadow:none;
-        border-radius: 2rem;
-        margin-top: 2rem;
-        margin-bottom: 3rem;
-        border: none !important;
+        margin-top: 30px;
+        height: auto;
     }
 }
 

@@ -31,11 +31,11 @@ const Signin = () => {
     const [
         googleBarberLoginKiosk,
         {
-            data:googleBarberLoginKioskdata,
-            isSuccess:googleBarberLoginKioskisSuccess,
-            isError:googleBarberLoginKioskisError,
-            error:googleBarberLoginKioskerror,
-            isLoading:googleBarberLoginKioskisLoading
+            data: googleBarberLoginKioskdata,
+            isSuccess: googleBarberLoginKioskisSuccess,
+            isError: googleBarberLoginKioskisError,
+            error: googleBarberLoginKioskerror,
+            isLoading: googleBarberLoginKioskisLoading
         }
     ] = useGoogleBarberLoginKioskMutation()
 
@@ -144,7 +144,7 @@ const Signin = () => {
 
     //Google barber Action
     const responseBarberMessage = async (response) => {
-        console.log("barber",response.credential)
+        console.log("barber", response.credential)
         googleBarberLoginKiosk(response.credential)
     };
 
@@ -218,7 +218,7 @@ const Signin = () => {
                             wrapperClass="color-ring-wrapper"
                             colors={['#87a96b', '#87a96b', '#87a96b', '#87a96b', '#87a96b']}
                         /></button> : <button onClick={barberSigninHandler}>LOGIN</button>}
-                        <button className='google-btn'>
+                        <div>
                             <GoogleLogin
                                 onSuccess={responseBarberMessage}
                                 onError={errorBarberMessage}
@@ -229,7 +229,7 @@ const Signin = () => {
                                 text='continue_with'
                             />
 
-                        </button>
+                        </div>
                     </div>
 
                 </div>

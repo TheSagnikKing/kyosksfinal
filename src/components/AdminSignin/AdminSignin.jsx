@@ -157,7 +157,8 @@ const AdminSignin = () => {
                             wrapperClass="color-ring-wrapper"
                             colors={['#87a96b', '#87a96b', '#87a96b', '#87a96b', '#87a96b']}
                         /></button> : <button onClick={loginHandler}>LOGIN</button>}
-                        <button className='google-btn'>
+                        {/* <button className='google-btn'> */}
+                        <div>
                             <GoogleLogin
                                 onSuccess={responseMessage}
                                 onError={errorMessage}
@@ -167,8 +168,9 @@ const AdminSignin = () => {
                                 logo_alignment='left'
                                 text='continue_with'
                             />
+                            </div>
 
-                        </button>
+                        {/* </button> */}
                     </div>
 
                 </div>
