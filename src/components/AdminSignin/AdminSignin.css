@@ -147,6 +147,7 @@
         align-items: center;
         margin-top: 30px;
         height: auto;
+        border-radius: 20px;
     }
 
 
@@ -303,6 +304,7 @@
         align-items: center;
         margin-top: 30px;
         height: auto;
+        border-radius: 20px;
     }
 }
 
@@ -459,6 +461,7 @@
         align-items: center;
         margin-top: 30px;
         height: auto;
+        border-radius: 20px;
     }
 }
 
