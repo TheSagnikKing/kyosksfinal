@@ -72,7 +72,7 @@ const QueueList = () => {
         <div className='queuelist__container__main'>
           <h1 
           style={{color:"red",fontWeight:"bold",fontSize:"3rem"}}
-          >Salon Not Found</h1>
+          >No QueueList Available</h1>
         </div>
       </div>
     )

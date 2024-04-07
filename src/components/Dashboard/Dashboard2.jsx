@@ -65,6 +65,7 @@ const Dashboard2 = () => {
 
     const salondata = {
         salonId: adminInfo?.salonId,
+        // salonId:selectCurrentBarberdata?.foundUser?.salonId,
         isOnline: salonbtnCheck,
         barberToken: selectCurrentBarberTokendata
     }

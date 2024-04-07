@@ -172,7 +172,6 @@ const Public = () => {
         )}
       </div>
 
-
       <div className='public__main__bottom'>
         <div>
           <button onClick={queuelistClicked}>Queue List</button>
@@ -186,3 +185,4 @@ const Public = () => {
 }
 
 export default Public
+

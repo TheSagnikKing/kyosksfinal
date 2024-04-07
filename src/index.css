@@ -15,6 +15,7 @@ input:focus{
   outline: none;
 }
 
+
 :root{
   font-size: 62.5%;
   --primary-color:#000;
