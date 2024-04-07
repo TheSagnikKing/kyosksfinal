@@ -113,6 +113,7 @@
 
     .selectSalonContainer>div:nth-child(1){
         order: 2;
+        display: none;
     }
 
     .selectSalonContainer>div:nth-child(2) {

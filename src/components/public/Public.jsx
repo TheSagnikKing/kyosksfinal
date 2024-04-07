@@ -6,6 +6,10 @@ import { useSelector } from 'react-redux'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useAdminConnectKioskMutation, useGerAllAdvertisementsKioskMutation, useGetAllSalonsByAdminMutation, useGetDefaultSalonByAdminKioskMutation } from './publicApiSlice'
 import toast from 'react-hot-toast'
+import { Carousel } from 'react-responsive-carousel';
+
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 
 import Slider from "react-slick";
 
@@ -151,13 +155,49 @@ const Public = () => {
     dots: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1,
+    // slidesToScroll: 1,
     arrows: false,
-    initialSlide: 0,
     infinite: true,
     autoplay: true,
     autoplaySpeed: 2000,
+
+    // responsive: [
+    //   {
+    //     breakpoint: 1024,
+    //     settings: {
+    //       slidesToShow: 2,
+    //       slidesToScroll: 1,
+    //       infinite: true,
+    //       dots: false,
+    //       centerMode: false,
+    //     }
+    //   },
+    //   {
+    //     breakpoint: 600,
+    //     settings: {
+    //       slidesToShow: 1,
+    //       slidesToScroll: 1,
+    //       initialSlide: 2,
+    //       centerMode: false,
+    //     }
+    //   },
+    //   {
+    //     breakpoint: 480,
+    //     settings: {
+    //       slidesToShow: 1,
+    //       slidesToScroll: 1,
+    //       centerMode: false,
+    //     }
+    //   }
+    // ]
   };
+
+  const data2 = [
+    {
+      id: 1,
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv5XRVQ7xxHNWBa1Hj590AOOFQpP2FxYemRENy37Igew&s"
+    }
+  ]
 
   return (
     <main className='public__main__container'>
@@ -189,7 +229,7 @@ const Public = () => {
         )}
       </div> */}
 
-      <div className='public__main__middle'>
+      {/* <div className='public__main__middle'>
         {gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements.length > 0 ? (
           <Slider {...settings}>
             {gerAllAdvertisementsKioskdata?.advertisements.map((c) => (
@@ -199,7 +239,24 @@ const Public = () => {
         ) : (
           <img src='/no-image.webp' alt="no image available" />
         )}
+      </div> */}
+
+      <div className='public__main__middle'>
+        {gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements.length > 0 ? (
+          <Carousel
+          showThumbs={false}
+          infiniteLoop={true}
+          autoPlay={true}
+          >
+            {gerAllAdvertisementsKioskdata?.advertisements.map((c) => (
+              <img key={c.id} src={c.url} alt={c.alt} style={{height:"55vh",objectFit:"cover"}}/>
+            ))}
+          </Carousel>
+        ) : (
+          <img src='/no-image.webp' alt="no image available" />
+        )}
       </div>
+
 
       <div className='public__main__bottom'>
         <div>

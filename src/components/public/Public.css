@@ -5,6 +5,11 @@
     overflow: hidden;
 }
 
+.carousel .control-dots .dot{
+    width: 20px !important;
+    height: 20px !important;
+}
+
 .public__main__top {
     height: auto;
     width: 100%;
