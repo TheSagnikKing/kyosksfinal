@@ -161,28 +161,3 @@ const SalonSelection = () => {
 }
 
 export default SalonSelection
-
-
-
-// import React, { useEffect, useState } from 'react'
-
-// const SalonSelection = () => {
-//     const [content, setContent] = useState(null);
-//     const [salonSelect, setSalonSelect] = useState(localStorage.getItem("salonSelect"));
-
-// useEffect(() => {
-//     if (salonSelect === "true") {
-//         setContent(<h1>True</h1>);
-//     } else if (salonSelect === "loggedin") {
-//         setContent(<h1>Logged In</h1>);
-//     } else if (salonSelect === "false") {
-//         setContent(<h1>False</h1>);
-//     } else {
-//         setContent(<h1>Yessss</h1>);
-//     }
-// }, [salonSelect]);
-
-//     return content
-// }
-
-// export default SalonSelection;
