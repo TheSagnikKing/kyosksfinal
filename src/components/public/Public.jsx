@@ -149,7 +149,6 @@ const Public = () => {
 
   var settings = {
     dots: true,
-    infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -157,9 +156,7 @@ const Public = () => {
     initialSlide: 0,
     infinite: true,
     autoplay: true,
-    speed: 2000,
     autoplaySpeed: 2000,
-    speed: 500
   };
 
   return (
