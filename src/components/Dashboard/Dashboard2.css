@@ -221,7 +221,7 @@
     }
 
     .dash_div_profile {
-        height: 45%;
+        height: auto%;
         margin-top: 0rem;
     }
 }
@@ -229,7 +229,7 @@
 @media((min-width:430px) and (max-width:940px)){
     .dash_main_container>div{
         width: 95vw;
-        height: 80vh;
+        height: 90vh !important;
     }
 
     .dash_div_header>div:nth-child(1)>div:nth-child(2){
@@ -265,6 +265,10 @@
     }
 
     .dash_div_btn_box{
-        height: calc(100% - 60%);
+        height: calc(100% - 65%);
+    }
+
+    .dash_div_profile{
+        height: 25%;
     }
 }
