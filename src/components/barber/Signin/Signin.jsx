@@ -174,7 +174,9 @@ const Signin = () => {
 
             <div className='barber__signin__main__right'>
                 {/* <Link to="/kiyosk" style={{marginTop:"10rem",background:"black",color:"white",padding:"1rem",fontSize:"1.2rem"}}>Home</Link> */}
-
+                <Link to="/kiyosk"
+                    className='barbersigniniconClassQueue'
+                ><IoMdHome /></Link>
                 <h1>Barber Login</h1>
                 <div className='barber__signin__main__form'>
                     <div>

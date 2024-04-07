@@ -7,6 +7,8 @@ import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useAdminConnectKioskMutation, useGerAllAdvertisementsKioskMutation, useGetAllSalonsByAdminMutation, useGetDefaultSalonByAdminKioskMutation } from './publicApiSlice'
 import toast from 'react-hot-toast'
 
+import Slider from "react-slick";
+
 const Public = () => {
 
   const adminInfo = useSelector(selectCurrentAdminInfo)
@@ -142,6 +144,14 @@ const Public = () => {
     navigate('/queuelist')
   }
 
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
+
   return (
     <main className='public__main__container'>
       <div className='public__main__top'>
@@ -171,7 +181,7 @@ const Public = () => {
           <img src='/no-image.webp' alt="no image available" />
         )}
       </div>
-
+      
       <div className='public__main__bottom'>
         <div>
           <button onClick={queuelistClicked}>Queue List</button>

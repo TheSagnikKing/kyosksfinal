@@ -71,7 +71,7 @@ const JoinQueue = () => {
     ] = useJoinQueueKioskMutation()
 
     const [customerName, setCustomerName] = useState("")
-    const [mobileNumber, setMobileNumber] = useState(0)
+    const [mobileNumber, setMobileNumber] = useState("")
     const [customerEmail, setCustomerEmail] = useState("")
 
     const [isOpen, setIsOpen] = useState(false)

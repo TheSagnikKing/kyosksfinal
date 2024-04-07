@@ -271,15 +271,8 @@
         color: var(--primary-color);
     }
 
-    .public__main__middle {
-        width: 100%;
-        height: 55vh;
-    }
 
-    .public__main__middle>img {
-        width: 100%;
-        height: 100%;
-    }
+
 
     .public__main__bottom {
         width: 100%;
@@ -478,16 +471,6 @@
         color: var(--primary-color);
     }
 
-    .public__main__middle {
-        width: 100%;
-        height: 55vh;
-    }
-
-    .public__main__middle>img {
-        width: 100%;
-        height: 100%;
-    }
-
     .public__main__bottom {
         width: 100%;
         height: calc(100vh - 55vh - 14.1rem);
@@ -682,16 +665,6 @@
         font-size: 3.4rem;
         cursor: pointer;
         color: var(--primary-color);
-    }
-
-    .public__main__middle {
-        width: 100%;
-        height: 55vh;
-    }
-
-    .public__main__middle>img {
-        width: 100%;
-        height: 100%;
     }
 
     .public__main__bottom {
