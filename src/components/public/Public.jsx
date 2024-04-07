@@ -154,20 +154,13 @@ const Public = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
+    initialSlide: 0,
+    infinite: true,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    speed: 500
   };
-
-  const sliderRef = useRef(null);
-
-  const data2 = [
-    {
-      id: 1,
-      img: "Img1"
-    },
-    {
-      id: 2,
-      img: "Img2"
-    },
-  ]
 
   return (
     <main className='public__main__container'>
