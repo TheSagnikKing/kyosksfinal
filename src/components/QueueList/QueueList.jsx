@@ -33,9 +33,9 @@ const QueueList = () => {
               <td>Name</td>
               <td>Time Joined Q</td>
               <td>Barber Name</td>
-              <td>Q Position</td>
-              <td>Method Used</td>
               <td>Services</td>
+              <td>Method Used</td>
+              <td>Q Position</td>
             </th>
 
             {
@@ -44,9 +44,9 @@ const QueueList = () => {
                   <td>{q.name}</td>
                   <td>{q.timeJoinedQ}</td>
                   <td>{q.barberName}</td>
-                  <td>{q.qPosition}</td>
-                  <td>{q.methodUsed}</td>
                   <td>{q.services.map((s) => <span style={{ marginRight: "0.5rem" }}>{s.serviceName}</span>)}</td>
+                  <td>{q.methodUsed}</td>
+                  <td>{q.qPosition}</td>
                 </tr>
               ))
             }
