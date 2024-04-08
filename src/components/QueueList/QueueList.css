@@ -21,7 +21,7 @@
     width: 150rem;
     height: 6rem;
     display: grid;
-    grid-template-columns: repeat(6,1fr);
+    grid-template-columns: 0.8fr 1fr 1fr 1fr 1fr 1fr 0.5fr 0.5fr;
     align-items: center;
     box-shadow: rgba(58, 58, 58, 0.3) 0px 2px 8px 0px;
     border-radius: 0.5rem;
@@ -36,7 +36,7 @@
     width: 150rem;
     height: 6rem;
     display: grid;
-    grid-template-columns: repeat(6,1fr);
+    grid-template-columns: 0.8fr 1fr 1fr 1fr 1fr 1fr 0.5fr 0.5fr;
     align-items: center;
     margin-top: 1rem;
     border-radius: 0.5rem;
@@ -61,6 +61,28 @@
     padding: 1rem;
     color: #000;
     margin: 2rem;
+}
+
+.que-serve{
+    width: 3.5rem;
+    height: 3.5rem;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    margin: auto;
+    font-weight: 500;
+    color: limegreen;
+}
+
+.que-cancel{
+    width: 3.5rem;
+    height: 3.5rem;
+    box-shadow: 0px 0px 4px red;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: auto;
+    font-weight: 500;
+    color: red;
 }
 
 @media((min-width:0px) and (max-width:430px)){
