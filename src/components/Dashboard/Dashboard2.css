@@ -198,6 +198,7 @@
 @media((min-width:0px) and (max-width:430px)){
     .dash_main_container>div{
         width: 95vw;
+        height: 95vh;
     }
     .dash_div_profile{
         grid-template-columns: 1fr;
@@ -221,7 +222,7 @@
     }
 
     .dash_div_profile {
-        height: auto%;
+        height: auto;
         margin-top: 0rem;
     }
 }
