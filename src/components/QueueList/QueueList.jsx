@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './QueueList.css'
-import { useBarberServedQueueMutation, useGetQlistBySalonIdKioskQuery } from './QueueApiSlice'
+import { useBarberServedQueueMutation, useCancelQKiyoskMutation, useGetQlistBySalonIdKioskQuery } from './QueueApiSlice'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -34,6 +34,18 @@ const QueueList = () => {
       isLoading:servequeueisLoading
     }
   ] = useBarberServedQueueMutation()
+
+
+  const [
+    cancelqueuefunction,
+    {
+      data:cancelqueuedata,
+      isSuccess: cancelqueueisSuccess,
+      isError: cancelqueueisError,
+      error: cancelError,
+      isLoading: cancelqueueisLoading
+    }
+  ] = useCancelQKiyoskMutation()
 
   useEffect(() => {
     if(servequeueisError){
@@ -81,11 +93,49 @@ const QueueList = () => {
 
   }
 
-  const cancelHandler = () => {
+
+  
+  useEffect(() => {
+    if(cancelqueueisError){
+      toast.error(cancelError?.data?.message, {
+        duration: 3000,
+        style: {
+          fontSize: "1.4rem",
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+    }
+  },[cancelqueueisError])
+
+
+  useEffect(() => {
+    if(cancelqueueisSuccess){
+      toast.success(cancelqueuedata.message, {
+        duration: 3000,
+        style: {
+          fontSize: "1.4rem",
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+      window.location.reload()
+    }
+  },[cancelqueueisSuccess])
+
+  const cancelHandler = (barberId,_id) => {
     const confirm = window.confirm("Are you Sure ?")
 
+    const cancelqueuedata = {
+      salonId:adminInfo?.salonId,
+      barberId,
+      _id,
+    } 
+    
     if(confirm){
-
+      cancelqueuefunction(cancelqueuedata)
     }
   }
 
@@ -117,13 +167,13 @@ const QueueList = () => {
                   <td>{q.name}</td>
                   <td>{q.timeJoinedQ}</td>
                   <td>{q.barberName}</td>
-                  <td>{q.services.map((s) => <span style={{ marginRight: "0.5rem" }}>{s.serviceName}</span>)}</td>
+                  <td>{q.services.map((s) => <span style={{ marginRight: "0.5rem" }} key={s._id}>{s.serviceName}</span>)}</td>
                   <td>{q.methodUsed}</td>
                   <td>{q.qPosition}</td>
                   <td className='que-serve' onClick={() => serverHandler(q.barberId, q.services, q._id)}>
                     <PiQueueBold />
                   </td>
-                  <td className='que-cancel' onClick={() => cancelHandler()}>
+                  <td className='que-cancel' onClick={() => cancelHandler(q.barberId, q._id)}>
                     <GiCancel />
                   </td>
                 </tr>

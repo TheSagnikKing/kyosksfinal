@@ -14,8 +14,15 @@ export const queueApiSlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: queueData
             })
+        }),
+        cancelQKiyosk: builder.mutation({
+            query: (queueData) => ({
+                url: `/kiosk/canceledQKiosk`,
+                method: "POST",
+                body: queueData
+            })
         })
     })
 })
 
-export const { useGetQlistBySalonIdKioskQuery, useBarberServedQueueMutation } = queueApiSlice
+export const { useGetQlistBySalonIdKioskQuery, useBarberServedQueueMutation, useCancelQKiyoskMutation } = queueApiSlice
