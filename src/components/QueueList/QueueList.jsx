@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './QueueList.css'
-import { useGetQlistBySalonIdKioskQuery } from './QueueApiSlice'
+import { useBarberServedQueueMutation, useGetQlistBySalonIdKioskQuery } from './QueueApiSlice'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { IoMdHome } from 'react-icons/io'
 import { PiQueueBold } from 'react-icons/pi'
 import { GiCancel } from 'react-icons/gi'
+import toast from 'react-hot-toast'
 
 const QueueList = () => {
 
   const adminInfo = useSelector(selectCurrentAdminInfo)
+
+  // console.log(adminInfo)
 
   const {
     data,
@@ -21,16 +24,69 @@ const QueueList = () => {
   } = useGetQlistBySalonIdKioskQuery(adminInfo?.salonId)
 
 
-  console.log(data)
+  const [
+    servequeuefunction,
+    {
+      data:servequeuedata,
+      isSuccess:serverqueueisSuccess,
+      isError:servequeueisError,
+      error:servequeueError,
+      isLoading:servequeueisLoading
+    }
+  ] = useBarberServedQueueMutation()
 
-  const serverHandler = (barberId,service,_id) => {
-    console.log(barberId)
-    console.log(service)
-    console.log(_id)
+  useEffect(() => {
+    if(servequeueisError){
+      toast.error(servequeueError?.data?.message, {
+        duration: 3000,
+        style: {
+          fontSize: "1.4rem",
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+    }
+  },[servequeueisError])
+
+
+  useEffect(() => {
+    if(serverqueueisSuccess){
+      toast.success(servequeuedata.message, {
+        duration: 3000,
+        style: {
+          fontSize: "1.4rem",
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+      window.location.reload()
+    }
+  },[serverqueueisSuccess])
+
+  const serverHandler = (barberId,services,_id) => {
+    const confirm = window.confirm("Are you Sure ?")
+
+    const queueData = {
+      salonId:adminInfo?.salonId,
+      barberId,
+      _id,
+      services
+    }
+
+    if(confirm){
+      servequeuefunction(queueData)
+    }
+
   }
 
   const cancelHandler = () => {
+    const confirm = window.confirm("Are you Sure ?")
 
+    if(confirm){
+
+    }
   }
 
   // Check if data is available and it is not loading or erroring
@@ -57,7 +113,7 @@ const QueueList = () => {
 
             {
               data.response.map((q) => (
-                <tr>
+                <tr key={q._id}>
                   <td>{q.name}</td>
                   <td>{q.timeJoinedQ}</td>
                   <td>{q.barberName}</td>
