@@ -134,7 +134,9 @@ const SalonSelection = () => {
                             </div>
 
                             {salonlistdrop && (
-                                <div className='salonlistdropdown__box__content'>
+                                <div className='salonlistdropdown__box__content'
+                                style={{height:getAllSalonsByAdmindata?.salons?.length >= 4 ? "auto" : "20rem"}}
+                                >
                                     {getAllSalonsByAdmindata?.salons?.length > 0 &&
                                         getAllSalonsByAdmindata?.salons.map((s, i) => (
                                             <div key={s._id} onClick={() => salonHandler(s)}

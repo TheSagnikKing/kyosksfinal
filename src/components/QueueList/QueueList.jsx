@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import './QueueList.css'
-import { useBarberServedQueueMutation, useCancelQKiyoskMutation, useGetQlistBySalonIdKioskQuery } from './QueueApiSlice'
+import { useCancelQKiyoskMutation, useLazyGetQlistBySalonIdKioskQuery } from './QueueApiSlice'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import { IoMdHome } from 'react-icons/io'
 import { PiQueueBold } from 'react-icons/pi'
 import { GiCancel } from 'react-icons/gi'
@@ -13,130 +13,59 @@ const QueueList = () => {
 
   const adminInfo = useSelector(selectCurrentAdminInfo)
 
-  // console.log(adminInfo)
-
-  const {
-    data,
-    isSuccess,
-    isError,
-    error,
-    isLoading
-  } = useGetQlistBySalonIdKioskQuery(adminInfo?.salonId)
-
-
   const [
-    servequeuefunction,
+    useLazyGetQlistBySalonIdKioskfunc,
     {
-      data:servequeuedata,
-      isSuccess:serverqueueisSuccess,
-      isError:servequeueisError,
-      error:servequeueError,
-      isLoading:servequeueisLoading
+      data,
+      isSuccess,
+      isError,
+      error,
+      isLoading
     }
-  ] = useBarberServedQueueMutation()
-
-
-  const [
-    cancelqueuefunction,
-    {
-      data:cancelqueuedata,
-      isSuccess: cancelqueueisSuccess,
-      isError: cancelqueueisError,
-      error: cancelError,
-      isLoading: cancelqueueisLoading
-    }
-  ] = useCancelQKiyoskMutation()
+  ] = useLazyGetQlistBySalonIdKioskQuery()
 
   useEffect(() => {
-    if(servequeueisError){
-      toast.error(servequeueError?.data?.message, {
-        duration: 3000,
-        style: {
-          fontSize: "1.4rem",
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-        },
-      });
+    if(adminInfo){
+      useLazyGetQlistBySalonIdKioskfunc(adminInfo?.salonId)
     }
-  },[servequeueisError])
+    
+  },[adminInfo])
 
 
-  useEffect(() => {
-    if(serverqueueisSuccess){
-      toast.success(servequeuedata.message, {
-        duration: 3000,
-        style: {
-          fontSize: "1.4rem",
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-        },
-      });
-      window.location.reload()
-    }
-  },[serverqueueisSuccess])
+ 
+
+ 
+  const navigate = useNavigate()
 
   const serverHandler = (barberId,services,_id) => {
-    const confirm = window.confirm("Are you Sure ?")
-
-    const queueData = {
-      salonId:adminInfo?.salonId,
+    navigate("/barberservelogn",{state: {
       barberId,
-      _id,
-      services
-    }
-
-    if(confirm){
-      servequeuefunction(queueData)
-    }
-
+      services,
+      _id
+    }})
   }
+ 
 
+  // const cancelHandler = (barberId,_id) => {
+  //   const confirm = window.confirm("Are you Sure ?")
 
-  
-  useEffect(() => {
-    if(cancelqueueisError){
-      toast.error(cancelError?.data?.message, {
-        duration: 3000,
-        style: {
-          fontSize: "1.4rem",
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-        },
-      });
-    }
-  },[cancelqueueisError])
-
-
-  useEffect(() => {
-    if(cancelqueueisSuccess){
-      toast.success(cancelqueuedata.message, {
-        duration: 3000,
-        style: {
-          fontSize: "1.4rem",
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-        },
-      });
-      window.location.reload()
-    }
-  },[cancelqueueisSuccess])
+  //   const cancelqueuedata = {
+  //     salonId:adminInfo?.salonId,
+  //     barberId,
+  //     _id,
+  //   } 
+    
+  //   if(confirm){
+  //     cancelqueuefunction(cancelqueuedata)
+  //   }
+  // }
 
   const cancelHandler = (barberId,_id) => {
-    const confirm = window.confirm("Are you Sure ?")
-
-    const cancelqueuedata = {
-      salonId:adminInfo?.salonId,
+    navigate("/cancelservelogn",{state: {
       barberId,
-      _id,
-    } 
-    
-    if(confirm){
-      cancelqueuefunction(cancelqueuedata)
-    }
+      services,
+      _id
+    }})
   }
 
   // Check if data is available and it is not loading or erroring

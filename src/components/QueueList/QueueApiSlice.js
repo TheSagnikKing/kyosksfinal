@@ -25,4 +25,4 @@ export const queueApiSlice = apiSlice.injectEndpoints({
     })
 })
 
-export const { useGetQlistBySalonIdKioskQuery, useBarberServedQueueMutation, useCancelQKiyoskMutation } = queueApiSlice
+export const { useLazyGetQlistBySalonIdKioskQuery, useBarberServedQueueMutation, useCancelQKiyoskMutation } = queueApiSlice

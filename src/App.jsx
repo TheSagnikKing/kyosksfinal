@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BarberKiyoskDashboardProtect from './components/Protected/Barber/BarberKiyoskDashboardProtect';
 import { Grid } from 'react-loader-spinner';
+import CancelServeLogin from './components/QueueList/CancelServeLogin/CancelServeLogin';
 
 const Public = React.lazy(() => import("./components/public/Public"));
 const JoinQueue = React.lazy(() => import("./components/JoinQueue/JoinQueue"));
@@ -17,6 +18,8 @@ const ProtectedAuthRoute = React.lazy(() => import('./components/Protected/Admin
 const ProtectedRoute = React.lazy(() => import('./components/Protected/Admin/ProtectedRoute'))
 const SalonProtectRoute = React.lazy(() => import('./components/SalonSelection/SalonProtectRoute'))
 const AllRoutesProtect = React.lazy(() => import('./components/public/AllRoutesProtect'))
+
+const BarberServeLogin = React.lazy(() => import('./components/QueueList/BarberServeLogin/BarberServeLogin'))
 
 const App = () => {
 
@@ -49,6 +52,8 @@ const App = () => {
               <Route path="/kiyosk" element={<Public />} />
               <Route path="/joinqueue" element={<JoinQueue />} />
               <Route path="/queuelist" element={<QueueList />} />
+              <Route path="/barberservelogn" element={<BarberServeLogin/>}/>
+              {/* <Route path="/cancelservelogn" element={<CancelServeLogin/>}/> */}
               <Route path="/barbersignin" element={<BarberSignin />} />
               <Route element={<BarberKiyoskDashboardProtect />}>
                 <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />
