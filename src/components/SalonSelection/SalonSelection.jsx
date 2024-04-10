@@ -135,7 +135,7 @@ const SalonSelection = () => {
 
                             {salonlistdrop && (
                                 <div className='salonlistdropdown__box__content'
-                                style={{height:getAllSalonsByAdmindata?.salons?.length >= 4 ? "auto" : "20rem"}}
+                                style={{height:getAllSalonsByAdmindata?.salons?.length > 0 && getAllSalonsByAdmindata?.salons?.length <= 4? "auto" : "20rem"}}
                                 >
                                     {getAllSalonsByAdmindata?.salons?.length > 0 &&
                                         getAllSalonsByAdmindata?.salons.map((s, i) => (
