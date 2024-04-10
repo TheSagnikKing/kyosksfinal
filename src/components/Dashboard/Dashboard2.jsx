@@ -209,7 +209,7 @@ const Dashboard2 = () => {
                         <p>Contact Number: {selectCurrentBarberdata?.foundUser?.mobileNumber}</p>
                         <p>Barber Salon Id: {selectCurrentBarberdata?.foundUser?.salonId}</p>
                         <p>Barber EWT: {selectCurrentBarberdata?.foundUser?.barberEWT}</p>
-                        {barberbtnCheck ? <p style={{ color: "#03A100" }}>You are currently logged-in!</p> : <p style={{ color: "red" }}>You are currently logged-out!</p>}
+                        {barberOnlineCheck ? <p style={{ color: "#03A100" }}>You are currently Online</p> : <p style={{ color: "red" }}>You are currently Offline</p>}
                     </div>
                 </div>
 
