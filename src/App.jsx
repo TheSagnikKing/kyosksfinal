@@ -21,6 +21,8 @@ const AllRoutesProtect = React.lazy(() => import('./components/public/AllRoutesP
 
 const BarberServeLogin = React.lazy(() => import('./components/QueueList/BarberServeLogin/BarberServeLogin'))
 
+const AccountSettings = React.lazy(() => import('./components/AccountSettings/AccountSettings'))
+
 const App = () => {
 
   return (<>
@@ -50,10 +52,11 @@ const App = () => {
 
             <Route element={<AllRoutesProtect />}>
               <Route path="/kiyosk" element={<Public />} />
+              <Route path="/accountsettings" element={<AccountSettings/>}/>
               <Route path="/joinqueue" element={<JoinQueue />} />
               <Route path="/queuelist" element={<QueueList />} />
               <Route path="/barberservelogn" element={<BarberServeLogin/>}/>
-              {/* <Route path="/cancelservelogn" element={<CancelServeLogin/>}/> */}
+              <Route path="/cancelservelogn" element={<CancelServeLogin/>}/>
               <Route path="/barbersignin" element={<BarberSignin />} />
               <Route element={<BarberKiyoskDashboardProtect />}>
                 <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />

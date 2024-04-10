@@ -22,8 +22,16 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: barberdata
             })
+        }),
+        ChangeBarberOnlineStatusKiosk: builder.mutation({
+            query: (barberdata) => ({
+                url: '/kiosk/changeBarberOnlineStatusKiosk',
+                method: "POST",
+                body:barberdata
+            })
         })
+        
     })
 })
 
-export const { useChangeSalonOnlineStatusKioskMutation, useChangeBarberClockedInStatusKioskMutation, useGetAttendenceByBarberIdKioskMutation } = dashboardApiSlice
+export const { useChangeSalonOnlineStatusKioskMutation, useChangeBarberClockedInStatusKioskMutation, useGetAttendenceByBarberIdKioskMutation,useChangeBarberOnlineStatusKioskMutation } = dashboardApiSlice

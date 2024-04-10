@@ -8,6 +8,7 @@ import { IoMdHome } from 'react-icons/io'
 import { PiQueueBold } from 'react-icons/pi'
 import { GiCancel } from 'react-icons/gi'
 import toast from 'react-hot-toast'
+import { RiVipCrownFill } from 'react-icons/ri'
 
 const QueueList = () => {
 
@@ -31,10 +32,6 @@ const QueueList = () => {
     
   },[adminInfo])
 
-
- 
-
- 
   const navigate = useNavigate()
 
   const serverHandler = (barberId,services,_id) => {
@@ -63,7 +60,6 @@ const QueueList = () => {
   const cancelHandler = (barberId,_id) => {
     navigate("/cancelservelogn",{state: {
       barberId,
-      services,
       _id
     }})
   }
@@ -98,7 +94,10 @@ const QueueList = () => {
                   <td>{q.barberName}</td>
                   <td>{q.services.map((s) => <span style={{ marginRight: "0.5rem" }} key={s._id}>{s.serviceName}</span>)}</td>
                   <td>{q.methodUsed}</td>
-                  <td>{q.qPosition}</td>
+                  <td className='serve_type'>
+                    {q.serviceType === "VIP" ? <div><RiVipCrownFill /></div> : <div></div>}
+                    <p>{q.qPosition}</p>
+                  </td>
                   <td className='que-serve' onClick={() => serverHandler(q.barberId, q.services, q._id)}>
                     <PiQueueBold />
                   </td>

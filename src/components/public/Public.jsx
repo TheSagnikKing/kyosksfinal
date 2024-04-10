@@ -207,13 +207,13 @@ const Public = () => {
         <div>
 
           {
-             isLoading ? <Skeleton 
-             count={1}
-             circle={true}
-             borderRadius={"50%"}
-             height={"10.1rem"}
-             width={"10.1rem"}
-             /> : isSuccess && data?.response?.salonLogo.length > 0 ? (
+            isLoading ? <Skeleton
+              count={1}
+              circle={true}
+              borderRadius={"50%"}
+              height={"10.1rem"}
+              width={"10.1rem"}
+            /> : isSuccess && data?.response?.salonLogo.length > 0 ? (
               <img src={data.response.salonLogo[0].url} alt={data.response.salonName} />
             ) : (
               <img src='/no-image.webp' alt="no image available" />
@@ -227,6 +227,7 @@ const Public = () => {
 
         {dropdown && <div className='public__main__top__logoutdiv'>
           <Link to="/barbersignin">Barber Signin</Link>
+          <Link to="/accountsettings">Account Settings</Link>
           <p onClick={logoutHandler} style={{ cursor: "pointer" }}>Logout</p>
         </div>}
 
@@ -234,23 +235,28 @@ const Public = () => {
 
       <div className='public__main__middle'>
         {
-          gerAllAdvertisementsKioskisLoading ? <Skeleton 
-          count={1}
-          height="50vh"
-          /> : gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements.length > 0 ? (
-            <Carousel
-            showThumbs={false}
-            infiniteLoop={true}
-            autoPlay={true}
-            >
-              {gerAllAdvertisementsKioskdata?.advertisements.map((c) => (
-                <img key={c.id} src={c.url} alt={c.alt} style={{height:"50vh",objectFit:"cover"}}/>
-              ))}
-            </Carousel>
+          // If advertisements are loading or admin salon ID is not present, show a skeleton.
+          gerAllAdvertisementsKioskisLoading || !adminInfo?.salonId ? (
+            <Skeleton count={1} height="50vh" />
           ) : (
-            <img src='/no-image.webp' alt="no image available" />
+            // If advertisements are successfully fetched and there's at least one advertisement, display them in a carousel.
+            gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements.length > 0 ? (
+              <Carousel
+                showThumbs={false}
+                infiniteLoop={true}
+                autoPlay={true}
+              >
+                {gerAllAdvertisementsKioskdata?.advertisements.map((c) => (
+                  <img key={c.id} src={c.url} alt={c.alt} style={{ height: "50vh", objectFit: "cover" }} />
+                ))}
+              </Carousel>
+            ) : (
+              // If there are no advertisements or if there was an error fetching them, show a default image.
+              <img src='/no-image.webp' alt="no image available" />
+            )
           )
         }
+
       </div>
 
 

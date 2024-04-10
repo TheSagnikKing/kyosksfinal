@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { DropdownIcon } from '../../../icons'
 import "./CancelServeLogin.css"
-import { Link, useNavigate,useLocation } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import toast from 'react-hot-toast'
@@ -12,7 +12,7 @@ import { IoMdHome } from 'react-icons/io'
 import { useBarberLoginKioskMutation, useGoogleBarberLoginKioskMutation, useLazyGetAllBarbersKioskQuery } from '../../barber/Signin/signinApiSlice'
 import { selectCurrentAdminInfo } from '../../AdminSignin/adminauthSlice'
 import { setCredentials, setToken } from '../../barber/Signin/barberauthSlice'
-import { useBarberServedQueueMutation } from '../QueueApiSlice'
+import { useBarberServedQueueMutation, useCancelQKiyoskMutation } from '../QueueApiSlice'
 
 const CancelServeLogin = () => {
 
@@ -41,68 +41,63 @@ const CancelServeLogin = () => {
     const [
         cancelqueuefunction,
         {
-          data:cancelqueuedata,
-          isSuccess: cancelqueueisSuccess,
-          isError: cancelqueueisError,
-          error: cancelError,
-          isLoading: cancelqueueisLoading
+            data: cancelqueuedata,
+            isSuccess: cancelqueueisSuccess,
+            isError: cancelqueueisError,
+            error: cancelError,
+            isLoading: cancelqueueisLoading
         }
-      ] = useCancelQKiyoskMutation()
-
-       
-  useEffect(() => {
-    if(cancelqueueisError){
-      toast.error(cancelError?.data?.message, {
-        duration: 3000,
-        style: {
-          fontSize: "1.4rem",
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-        },
-      });
-    }
-  },[cancelqueueisError])
+    ] = useCancelQKiyoskMutation()
 
 
-  useEffect(() => {
-    if(cancelqueueisSuccess){
-      toast.success(cancelqueuedata.message, {
-        duration: 3000,
-        style: {
-          fontSize: "1.4rem",
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-        },
-      });
-      window.location.reload()
-    }
-  },[cancelqueueisSuccess])
+    useEffect(() => {
+        if (cancelqueueisError) {
+            toast.error(cancelError?.data?.message, {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        }
+    }, [cancelqueueisError])
 
-  
+
+    useEffect(() => {
+        if (cancelqueueisSuccess) {
+            toast.success(cancelqueuedata.message, {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+            navigate("/queuelist",{ ...location, state: {} });
+        }
+    }, [cancelqueueisSuccess,navigate])
+
+
     const cancelQueueHandler = () => {
 
-        // const confirm = window.confirm("Are you Sure ?")
+        const confirm = window.confirm("Are you Sure ?")
 
-        const queueData = {
-            barberEmail:barberemail,
-            password:password,
+        const cancelqueuedata = {
+            barberEmail: barberemail,
+            password: password,
             barberId: location?.state?.barberId,
             salonId: adminInfo?.salonId,
-            services: location?.state?.services,
             _id: location?.state?._id
         }
 
-        console.log("Console ",queueData)
+        console.log("Console ", cancelqueuedata)
 
-        if(confirm){
-            servequeuefunction(queueData)
+        if (confirm) {
+            cancelqueuefunction(cancelqueuedata)
         }
-        
-        // after submit make the location state == {}
-        navigate({ ...location, state: {} });
-        
     }
 
     const [drop, setDrop] = useState(false)

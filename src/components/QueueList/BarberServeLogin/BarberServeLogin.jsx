@@ -75,10 +75,10 @@ const BarberServeLogin = () => {
               color: '#fff',
             },
           });
-          navigate("/queuelist")
-          window.location.reload()
+
+          navigate("/queuelist",{ ...location, state: {} });
         }
-      },[serverqueueisSuccess])
+      },[serverqueueisSuccess,navigate])
 
     const serveQueueHandler = () => {
 
@@ -98,9 +98,6 @@ const BarberServeLogin = () => {
         if(confirm){
             servequeuefunction(queueData)
         }
-        
-        // after submit make the location state == {}
-        navigate({ ...location, state: {} });
         
     }
 
