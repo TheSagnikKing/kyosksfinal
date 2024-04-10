@@ -9,6 +9,8 @@ import toast from 'react-hot-toast'
 import { Carousel } from 'react-responsive-carousel';
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 import Slider from "react-slick";
@@ -159,7 +161,7 @@ const Public = () => {
     arrows: false,
     infinite: true,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 5000,
 
     // responsive: [
     //   {
@@ -203,11 +205,20 @@ const Public = () => {
     <main className='public__main__container'>
       <div className='public__main__top'>
         <div>
-          {isSuccess && data?.response?.salonLogo.length > 0 ? (
-            <img src={data.response.salonLogo[0].url} alt={data.response.salonName} />
-          ) : (
-            <img src='/no-image.webp' alt="no image available" />
-          )}
+
+          {
+             isLoading ? <Skeleton 
+             count={1}
+             circle={true}
+             borderRadius={"50%"}
+             height={"10.1rem"}
+             width={"10.1rem"}
+             /> : isSuccess && data?.response?.salonLogo.length > 0 ? (
+              <img src={data.response.salonLogo[0].url} alt={data.response.salonName} />
+            ) : (
+              <img src='/no-image.webp' alt="no image available" />
+            )
+          }
         </div>
 
         <div />
@@ -221,40 +232,25 @@ const Public = () => {
 
       </div>
 
-      {/* <div className='public__main__middle'>
-        {gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements.length > 0 ? (
-          <img src={gerAllAdvertisementsKioskdata.advertisements[0].url} alt="advertisement image" />
-        ) : (
-          <img src='/no-image.webp' alt="no image available" />
-        )}
-      </div> */}
-
-      {/* <div className='public__main__middle'>
-        {gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements.length > 0 ? (
-          <Slider {...settings}>
-            {gerAllAdvertisementsKioskdata?.advertisements.map((c) => (
-              <img key={c.id} src={c.url} alt={c.alt} />
-            ))}
-          </Slider>
-        ) : (
-          <img src='/no-image.webp' alt="no image available" />
-        )}
-      </div> */}
-
       <div className='public__main__middle'>
-        {gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements.length > 0 ? (
-          <Carousel
-          showThumbs={false}
-          infiniteLoop={true}
-          autoPlay={true}
-          >
-            {gerAllAdvertisementsKioskdata?.advertisements.map((c) => (
-              <img key={c.id} src={c.url} alt={c.alt} style={{height:"55vh",objectFit:"cover"}}/>
-            ))}
-          </Carousel>
-        ) : (
-          <img src='/no-image.webp' alt="no image available" />
-        )}
+        {
+          gerAllAdvertisementsKioskisLoading ? <Skeleton 
+          count={1}
+          height="50vh"
+          /> : gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements.length > 0 ? (
+            <Carousel
+            showThumbs={false}
+            infiniteLoop={true}
+            autoPlay={true}
+            >
+              {gerAllAdvertisementsKioskdata?.advertisements.map((c) => (
+                <img key={c.id} src={c.url} alt={c.alt} style={{height:"50vh",objectFit:"cover"}}/>
+              ))}
+            </Carousel>
+          ) : (
+            <img src='/no-image.webp' alt="no image available" />
+          )
+        }
       </div>
 
 

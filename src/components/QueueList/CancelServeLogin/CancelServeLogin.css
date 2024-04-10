@@ -21,8 +21,8 @@
 }
 
 .barber__signin__main__right {
-    height: 60vh;
-    /* background-color: red; */
+    height: 100vh !important;
+    /* background-color: blue; */
     position: relative;
 }
 
@@ -37,7 +37,7 @@
     width: 85%;
     height: 30rem;
     margin: auto;
-    margin-top: 10rem;
+    margin-top: 5rem;
 }
 
 .barber__signin__main__form>div>h1 {

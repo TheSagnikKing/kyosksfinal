@@ -3,7 +3,7 @@ import './Dashboard2.css'
 import { CrossIcon } from '../../icons'
 import { selectCurrentBarberInfo, selectCurrentBarberToken } from '../barber/Signin/barberauthSlice'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
-import { useChangeBarberOnlineStatusKioskMutation, useChangeSalonOnlineStatusKioskMutation, useGetAttendenceByBarberIdKioskMutation } from './dashboardApiSlice'
+import { useChangeBarberClockedInStatusKioskMutation, useChangeSalonOnlineStatusKioskMutation, useGetAttendenceByBarberIdKioskMutation } from './dashboardApiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
@@ -28,15 +28,15 @@ const Dashboard2 = () => {
     ] = useChangeSalonOnlineStatusKioskMutation()
 
     const [
-        ChangeBarberOnlineStatusKiosk,
+        changeBarberClockedInStatusKiosk,
         {
-            data: barberonlinedata,
-            isSuccess: barberonlineisSuccess,
-            isError: barberonlineisError,
-            error: barberonlineerror,
-            isLoading: barberonlineisLoading
+            data: barberclockonlinedata,
+            isSuccess: barberclockonlineisSuccess,
+            isError: barberclockonlineisError,
+            error: barberclockonlineerror,
+            isLoading: barberclockonlineisLoading
         }
-    ] = useChangeBarberOnlineStatusKioskMutation()
+    ] = useChangeBarberClockedInStatusKioskMutation()
 
     const [
         getAttendenceByBarberIdKiosk,
@@ -57,15 +57,8 @@ const Dashboard2 = () => {
 
     const navigate = useNavigate()
 
-    // useEffect(() => {
-    //     if(selectCurrentBarberTokendata === null){
-    //         navigate('/barbersignin')
-    //     }
-    // },[selectCurrentBarberTokendata])
-
     const salondata = {
         salonId: adminInfo?.salonId,
-        // salonId:selectCurrentBarberdata?.foundUser?.salonId,
         isOnline: salonbtnCheck,
         barberToken: selectCurrentBarberTokendata
     }
@@ -99,20 +92,7 @@ const Dashboard2 = () => {
         }
     }, [isError])
 
-    useEffect(() => {
-        if (barberonlineisError) {
-            toast.error(barberonlineerror?.data?.message, {
-                duration: 3000,
-                style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
-                    background: '#333',
-                    color: '#fff',
-                },
-            });
-            setBarberbtnCheck(selectCurrentBarberdata?.foundUser?.isOnline)
-        }
-    }, [barberonlineisError])
+
 
     useEffect(() => {
         changeSalonOnlineStatusKiosk(salondata)
@@ -121,13 +101,49 @@ const Dashboard2 = () => {
     const barberdata = {
         salonId: adminInfo?.salonId,
         barberId: selectCurrentBarberdata?.foundUser?.barberId,
-        isOnline: barberbtnCheck,
+        isClockedIn: barberbtnCheck,
         barberToken: selectCurrentBarberTokendata
     }
 
     useEffect(() => {
+        if (barberclockonlineisError) {
+            toast.error(barberclockonlineerror?.data?.message, {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+            setBarberbtnCheck(barberclockonlinedata?.response?.isClockedIn)
+        }
+    }, [barberclockonlineisError])
+
+
+    useEffect(() => {
+        if (barberclockonlineisSuccess) {
+            toast.success(barberclockonlinedata?.message, {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+            setBarberbtnCheck(barberclockonlinedata?.response?.isClockedIn)
+
+            getAttendenceByBarberIdKiosk({
+                salonId: selectCurrentBarberdata?.foundUser?.salonId,
+                barberId: selectCurrentBarberdata?.foundUser?.barberId
+            })
+        }
+    }, [barberclockonlineisSuccess, selectCurrentBarberdata])
+
+    useEffect(() => {
         console.log(barberdata)
-        ChangeBarberOnlineStatusKiosk(barberdata)
+        changeBarberClockedInStatusKiosk(barberdata)
     }, [barberbtnCheck])
 
 
@@ -140,8 +156,8 @@ const Dashboard2 = () => {
 
     }
 
-    const barberOnlineHandler = () => {
-        const confirm = window.confirm("Change Barber Status ?")
+    const clockHandler = () => {
+        const confirm = window.confirm("Change Clock Status ?")
 
         if (confirm) {
             setBarberbtnCheck((prev) => !prev)
@@ -201,10 +217,10 @@ const Dashboard2 = () => {
                             getAttendenceByBarberIdKioskisSuccess && getAttendenceByBarberIdKioskdata.response.attendance.map((b) => (
                                 <div className='kiyosk__dashboard__main__body__item' key={b._id}>
                                     <div>
-                                    <h2>{b.day === "" ? "-" : b.day}</h2>
-                                    <h2>{b.date === "" ? "-" : b.date}</h2>
-                                    <h2>{b.signInTime === "" ? "-" : b.signInTime}</h2>
-                                    <h2>{b.signOutTime === "" ? "-" : b.signOutTime}</h2>
+                                        <h2>{b.day === "" ? "-" : b.day}</h2>
+                                        <h2>{b.date === "" ? "-" : b.date}</h2>
+                                        <h2>{b.signInTime === "" ? "-" : b.signInTime}</h2>
+                                        <h2>{b.signOutTime === "" ? "-" : b.signOutTime}</h2>
                                     </div>
                                 </div>
                             ))
@@ -219,12 +235,12 @@ const Dashboard2 = () => {
                         <button
                             onClick={salonOnlineHandler}
                             style={{
-                                background: salonbtnCheck ? "limegreen" : "red",
+                                background: salonbtnCheck ? "red" : "limegreen",
                                 color: "#fff"
                             }}
-                        >{salonbtnCheck ? "Open Salon" : "Close Salon"}</button>
+                        >{salonbtnCheck ? "Salon Offline" : "Salon Online"}</button>
                         <button
-                            onClick={barberOnlineHandler}
+                            onClick={clockHandler}
                             style={{
                                 background: barberbtnCheck ? "red" : "limegreen",
                                 color: "#fff"
@@ -238,3 +254,6 @@ const Dashboard2 = () => {
 }
 
 export default Dashboard2
+
+
+

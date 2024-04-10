@@ -50,6 +50,11 @@ input:focus{
   }
 }
 
+@media((min-width:940px) and (max-width:1200px)){
+  :root{
+    font-size: 52.5%;
+  }
+}
 
 
 
