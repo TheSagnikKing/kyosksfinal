@@ -33,6 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .accountSettings_content{
@@ -58,6 +59,14 @@
     font-weight: bold;
     border: 1px solid black;
     cursor: pointer;
+}
+
+.accountsettingshomeicon{
+    font-size: 4rem;
+    color: black;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
 }
 
 @media((min-width:0px) and (max-width:430px)){

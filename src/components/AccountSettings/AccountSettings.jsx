@@ -4,6 +4,8 @@ import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useChangeSalonOnlineStatusKioskMutation } from '../Dashboard/dashboardApiSlice'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
+import { Link } from 'react-router-dom'
+import { IoMdHome } from 'react-icons/io'
 
 const AccountSettings = () => {
 
@@ -42,7 +44,7 @@ const AccountSettings = () => {
       });
       setSalonbtnCheck(data?.response?.isOnline)
     }
-  },[isSuccess])
+  }, [isSuccess])
 
   useEffect(() => {
     if (isError) {
@@ -60,11 +62,11 @@ const AccountSettings = () => {
   }, [isError])
 
   useEffect(() => {
-    if(adminInfo){
+    if (adminInfo) {
       changeSalonOnlineStatusKiosk(salondata)
       console.log(salondata)
     }
-  }, [salonbtnCheck,adminInfo])
+  }, [salonbtnCheck, adminInfo])
 
 
   const salonOnlineHandler = () => {
@@ -86,6 +88,9 @@ const AccountSettings = () => {
 
 
       <div>
+        <Link to="/kiyosk"
+          className='accountsettingshomeicon'
+        ><IoMdHome /></Link>
         <div className='accountSettings_content'>
           <div>
             <h1>Salon Status</h1>
@@ -94,10 +99,10 @@ const AccountSettings = () => {
               <button
                 onClick={salonOnlineHandler}
                 style={{
-                  background: salonbtnCheck === true  ? "red" : "limegreen",
+                  background: salonbtnCheck === true ? "red" : "limegreen",
                   color: "#fff"
                 }}
-              >{salonbtnCheck === true  ? "Salon Offline" : "Salon Online"}</button>
+              >{salonbtnCheck === true ? "Salon Offline" : "Salon Online"}</button>
             </div>
           </div>
 
