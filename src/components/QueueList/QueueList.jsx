@@ -95,7 +95,8 @@ const QueueList = () => {
                   <td>{q.services.map((s) => <span style={{ marginRight: "0.5rem" }} key={s._id}>{s.serviceName}</span>)}</td>
                   <td>{q.methodUsed}</td>
                   <td className='serve_type'>
-                    {q.serviceType === "VIP" ? <div><RiVipCrownFill /></div> : <div></div>}
+                    {q.serviceType === "VIP" ? <div><RiVipCrownFill /></div> : <div>
+                      </div>}
                     <p>{q.qPosition}</p>
                   </td>
                   <td className='que-serve' onClick={() => serverHandler(q.barberId, q.services, q._id)}>

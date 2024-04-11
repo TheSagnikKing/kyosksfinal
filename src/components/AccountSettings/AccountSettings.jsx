@@ -178,9 +178,15 @@ const AccountSettings = () => {
 
 
           <div>
-            <h1>Mobile Status</h1>
+            <h1>Mobile Booking Availability</h1>
 
-            <div>
+            <div
+            style={{
+              display:"flex",
+              alignItems:"center",
+              justifyContent:"center"
+            }}
+            >
               <button
                 onClick={mobileBookOnlineHandler}
                 style={{

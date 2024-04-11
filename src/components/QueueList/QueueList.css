@@ -87,7 +87,7 @@
 .serve_type{
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
     width: 100%;
     height: 100%;
 }
@@ -96,6 +96,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    background-color: #fff;
     font-size: 1.8rem !important;
 }
 
