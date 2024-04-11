@@ -92,10 +92,11 @@
 
 .public__main__bottom {
     width: 100%;
-    height: calc(100vh - 55vh - 14.1rem);
+    /* height: calc(100vh - 50vh - 12.1rem); */
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 4rem
 }
 
 .public__main__bottom>div:nth-child(1) {
