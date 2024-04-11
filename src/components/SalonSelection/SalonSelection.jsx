@@ -112,7 +112,12 @@ const SalonSelection = () => {
             salonId
         }
 
-        adminConnectKiosk(admindata)
+        if(salonId !== ""){
+            adminConnectKiosk(admindata)
+        }else{
+            alert("Salon Id cannot be empty")
+        }
+        
     }
 
     return (
