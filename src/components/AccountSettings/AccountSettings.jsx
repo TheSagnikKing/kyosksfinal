@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './AccountSettings.css'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
-import { useChangeSalonOnlineStatusKioskMutation } from '../Dashboard/dashboardApiSlice'
+import { useChangeSalonOnlineStatusKioskMutation,useMobileBookingAvailabilityStatusMutation } from '../Dashboard/dashboardApiSlice'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import { Link } from 'react-router-dom'
@@ -79,6 +79,76 @@ const AccountSettings = () => {
   }
 
 
+  // For the mobile Part
+
+  const [mobilebtnCheck, setMobilebtnCheck] = useState(adminInfo?.mobileBookingAvailability)
+
+  console.log("AdminInfo ",adminInfo?.mobileBookingAvailability)
+
+  const mobileBookdata = {
+    salonId: adminInfo?.salonId,
+    mobileBookingAvailability: mobilebtnCheck
+  }
+
+  const [
+    mobileBookingAvailabilityStatus,
+    {
+      data:mobilebookdata,
+      isSuccess:mobilebookisSuccess,
+      isError:mobilebookdataisError,
+      error:mobilebookError,
+      isLoading:mobilebookisLoading
+    }
+  ] = useMobileBookingAvailabilityStatusMutation()
+
+
+  useEffect(() => {
+    if (mobilebookisSuccess) {
+      toast.success(mobilebookdata?.message, {
+        duration: 3000,
+        style: {
+          fontSize: "1.4rem",
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+      setMobilebtnCheck(mobilebookdata?.response?.mobileBookingAvailability)
+    }
+  }, [mobilebookisSuccess])
+
+  useEffect(() => {
+    if (mobilebookdataisError) {
+      toast.error(mobilebookError?.data?.message, {
+        duration: 3000,
+        style: {
+          fontSize: "1.4rem",
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+      setMobilebtnCheck(adminInfo?.mobileBookingAvailability)
+    }
+  }, [mobilebookdataisError])
+
+  useEffect(() => {
+    if (adminInfo) {
+      mobileBookingAvailabilityStatus(mobileBookdata)
+      console.log(mobileBookdata)
+    }
+  }, [mobilebtnCheck, adminInfo])
+
+
+  const mobileBookOnlineHandler = () => {
+    const confirm = window.confirm("Change Mobile Book Status ?")
+
+    if (confirm) {
+      setMobilebtnCheck((prev) => !prev)
+    }
+
+  }
+
   return (
     <main className='accountSettings_container'>
 
@@ -111,14 +181,19 @@ const AccountSettings = () => {
             <h1>Mobile Status</h1>
 
             <div>
-              <button>Mobile Online</button>
+              <button
+                onClick={mobileBookOnlineHandler}
+                style={{
+                  background: mobilebtnCheck === true ? "red" : "limegreen",
+                  color: "#fff"
+                }}
+              >{mobilebtnCheck === true ? "Mobile Offline" : "Mobile Online"}</button>
+            </div>
             </div>
           </div>
 
         </div>
-      </div>
-
-
+  
 
     </main>
   )

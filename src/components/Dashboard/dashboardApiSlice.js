@@ -29,9 +29,16 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
                 method: "POST",
                 body:barberdata
             })
-        })
+        }),
+        MobileBookingAvailabilityStatus: builder.mutation({
+            query: (mobilebookdata) => ({
+                url: `/kiosk/mobileBookingAvailabilityStatus`,
+                method: 'POST',
+                body:mobilebookdata
+            })
+        }),
         
     })
 })
 
-export const { useChangeSalonOnlineStatusKioskMutation, useChangeBarberClockedInStatusKioskMutation, useGetAttendenceByBarberIdKioskMutation,useChangeBarberOnlineStatusKioskMutation } = dashboardApiSlice
+export const { useChangeSalonOnlineStatusKioskMutation, useChangeBarberClockedInStatusKioskMutation, useGetAttendenceByBarberIdKioskMutation,useChangeBarberOnlineStatusKioskMutation,useMobileBookingAvailabilityStatusMutation } = dashboardApiSlice
