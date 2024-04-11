@@ -76,9 +76,9 @@ const CancelServeLogin = () => {
                     color: '#fff',
                 },
             });
-            navigate("/queuelist",{ ...location, state: {} });
+            navigate("/queuelist", { ...location, state: {} });
         }
-    }, [cancelqueueisSuccess,navigate])
+    }, [cancelqueueisSuccess, navigate])
 
 
     const cancelQueueHandler = () => {
@@ -173,7 +173,7 @@ const CancelServeLogin = () => {
                     <div>
                         <h1>Select Barber Email</h1>
 
-                        <div>
+                        <div className='barberemail_selection'>
                             <input
                                 type="text"
                                 value={barberemail}
@@ -182,13 +182,15 @@ const CancelServeLogin = () => {
                             <div onClick={dropdownHandler}>
                                 <DropdownIcon />
                             </div>
+
+                            {drop && <main className='barber__signin__main__form_dropdown'>
+                                {isLoading ? <h2>Loading...</h2> : isSuccess && data?.response.length > 0 ? data?.response.map((b) => (
+                                    <div key={b._id} onClick={() => selectEmailClick(b)}><h2>{b.email}</h2></div>
+                                )) : <h2>No barber available with email</h2>}
+                            </main>}
+
                         </div>
 
-                        {drop && <main className='barber__signin__main__form_dropdown'>
-                            {isLoading ? <h2>Loading...</h2> : isSuccess && data?.response.length > 0 ? data?.response.map((b) => (
-                                <div key={b._id} onClick={() => selectEmailClick(b)}><h2>{b.email}</h2></div>
-                            )) : <h2>No barber available with email</h2>}
-                        </main>}
                     </div>
 
                     <div>

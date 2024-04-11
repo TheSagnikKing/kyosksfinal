@@ -182,7 +182,7 @@ const Signin = () => {
                     <div>
                         <h1>Select Barber Email</h1>
 
-                        <div>
+                        <div className='barberemail_selection'>
                             <input
                                 type="text"
                                 value={barberemail}
@@ -191,13 +191,15 @@ const Signin = () => {
                             <div onClick={dropdownHandler}>
                                 <DropdownIcon />
                             </div>
-                        </div>
 
-                        {drop && <main className='barber__signin__main__form_dropdown'>
+
+                            {drop && <main className='barber__signin__main__form_dropdown'>
                             {isLoading ? <h2>Loading...</h2> : isSuccess && data?.response.length > 0 ? data?.response.map((b) => (
                                 <div key={b._id} onClick={() => selectEmailClick(b)}><h2>{b.email}</h2></div>
                             )) : <h2>No barber available with email</h2>}
                         </main>}
+
+                        </div>      
                     </div>
 
                     <div>

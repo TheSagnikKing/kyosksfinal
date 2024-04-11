@@ -83,7 +83,7 @@ const QueueList = () => {
               <td>Method Used</td>
               <td>Q Position</td>
               <td>Served</td>
-              <td>Cencel</td>
+              <td>Cancel</td>
             </th>
 
             {

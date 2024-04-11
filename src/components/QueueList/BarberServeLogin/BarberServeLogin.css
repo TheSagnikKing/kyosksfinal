@@ -163,6 +163,17 @@
     color: black;
 }
 
+.barberemail_selection{
+    position: relative !important;
+}
+
+.barber__signin__main__form_dropdown{
+    position: absolute;
+    top: 5.4rem;
+    left: 0px;
+    z-index: 2;
+    background-color: #fff;
+}
 
 @media((min-width:430px) and (max-width:940px)) {
     .barber__signin__main__container {
