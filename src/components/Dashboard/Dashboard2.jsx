@@ -359,6 +359,10 @@ const Dashboard2 = () => {
 
             setBarberbtnCheck((prev) => !prev)
 
+            if(barberclockonlinedata?.response?.isClockedIn === false){
+                setBarberOnlineCheck(barberclockonlinedata?.response?.isClockedIn)
+            }
+
             getAttendenceByBarberIdKiosk({
                 salonId: selectCurrentBarberdata?.foundUser?.salonId,
                 barberId: selectCurrentBarberdata?.foundUser?.barberId

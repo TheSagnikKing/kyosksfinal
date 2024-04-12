@@ -389,7 +389,7 @@ const JoinQueue = () => {
                                                     <div><img src="./queue-no-image.jpg" alt="barbername" /></div>
                                                     <div>
                                                         <p style={{ color: modelcolorfnc(b) }}>{b.name}</p>
-                                                        <p style={{ color: modelcolorfnc(b) }}>Cutting, Styling, Hair Color, Straightening</p>
+                                                        {/* <p style={{ color: modelcolorfnc(b) }}>Cutting, Styling, Hair Color, Straightening</p> */}
                                                     </div>
 
                                                 </div>
@@ -542,7 +542,7 @@ const JoinQueue = () => {
                                                     <div><img src="./queue-no-image.jpg" alt="barbername" /></div>
                                                     <div>
                                                         <p style={{ color: modelcolorfnc(b) }}>{b.name}</p>
-                                                        <p style={{ color: modelcolorfnc(b) }}>Cutting, Styling, Hair Color, Straightening</p>
+                                                        {/* <p style={{ color: modelcolorfnc(b) }}>Cutting, Styling, Hair Color, Straightening</p> */}
                                                     </div>
 
                                                 </div>
