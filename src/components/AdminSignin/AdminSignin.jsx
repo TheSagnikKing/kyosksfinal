@@ -112,6 +112,9 @@ const AdminSignin = () => {
         };
     }, []);
 
+
+    const [showPassword, setShowPassword] = useState(false)
+
     return (
         <main className='admin__signin__main__container'>
             <div className='admin__signin__main__left'>
@@ -139,11 +142,13 @@ const AdminSignin = () => {
                     <div>
                         <h1>Password</h1>
                         <input
-                            type="text"
+                            // type={showPassword ? "text" : "password"}
+                            type='text'
                             placeholder='Enter Your Password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
+                        {/* <div onClick={() => setShowPassword((prev) => !prev)}>ico</div> */}
                     </div>
 
 

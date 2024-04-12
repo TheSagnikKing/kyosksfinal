@@ -37,7 +37,7 @@ const Dashboard2 = () => {
     ] = useGetAttendenceByBarberIdKioskMutation()
 
 
-    const [barberbtnCheck, setBarberbtnCheck] = useState(selectCurrentBarberdata?.foundUser?.isOnline)
+    const [barberbtnCheck, setBarberbtnCheck] = useState(selectCurrentBarberdata?.foundUser?.isClockedIn)
 
 
     const navigate = useNavigate()
