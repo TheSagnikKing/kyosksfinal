@@ -453,7 +453,7 @@ const Dashboard2 = () => {
             barberToken: selectCurrentBarberTokendata
         }
 
-        
+
         if (confirm) {
             changeBarberOnlineStatusKiosk(barberOnlinedata)
         }
@@ -515,20 +515,36 @@ const Dashboard2 = () => {
 
                 <div className='dash_div_btn_box'>
                     <div className='dash_div_btn_group'>
-                        <button
-                            onClick={barberOnlineHandler}
-                            style={{
-                                background: barberOnlineCheck ? "red" : "limegreen",
-                                color: "#fff"
-                            }}
-                        >{barberOnlineCheck ? "Barber Offline" : "Barber Online"}</button>
-                        <button
-                            onClick={clockHandler}
-                            style={{
-                                background: barberbtnCheck ? "red" : "limegreen",
-                                color: "#fff"
-                            }}
-                        >{barberbtnCheck ? "Clock-Out" : "Clock-In"}</button>
+
+                        <div>
+                            <h2>Barber Online/Offline</h2>
+                            <div className='toggle_container'
+                                style={{
+                                    background: `${barberOnlineCheck ? 'limegreen' : 'red'}`,
+                                    transition: "300ms ease"
+                                }}
+                            >
+                                <button
+                                    className={barberOnlineCheck ? 'toggle_active' : 'toggle_inactive'}
+                                    onClick={barberOnlineHandler}
+                                ></button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h2>Clock In / Out</h2>
+                            <div className='toggle_container'
+                                style={{
+                                    background: `${barberbtnCheck ? 'limegreen' : 'red'}`,
+                                    transition: "300ms ease"
+                                }}
+                            >
+                                <button
+                                    className={barberbtnCheck ? 'toggle_active' : 'toggle_inactive'}
+                                    onClick={clockHandler}
+                                ></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -538,5 +554,4 @@ const Dashboard2 = () => {
 
 export default Dashboard2
 
-    
-    
+

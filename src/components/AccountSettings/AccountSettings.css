@@ -69,6 +69,35 @@
     left: 2rem;
 }
 
+.toggle_container{
+    width: 6rem;
+    height: 3rem;
+    border-radius: 2.5rem;
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.toggle_container>button{
+    height: 2rem;
+    width: 2rem;
+    border-radius: 2.5rem;
+    cursor: pointer;
+    border: none;
+}
+
+.toggle_active{
+    transform: translateX(calc(6rem - 2.5rem));
+    background: #fff;
+    transition: 300ms ease;
+}
+
+.toggle_inactive{
+    transform: translateX(0.5rem);
+    transition: 300ms ease;
+    background: rgb(255, 255, 255);
+}
+
 @media((min-width:0px) and (max-width:430px)){
     .accountSettings_container{
         grid-template-columns: 1fr;
