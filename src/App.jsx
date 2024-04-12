@@ -58,9 +58,9 @@ const App = () => {
               <Route path="/barberservelogn" element={<BarberServeLogin/>}/>
               <Route path="/cancelservelogn" element={<CancelServeLogin/>}/>
               <Route path="/barbersignin" element={<BarberSignin />} />
-              {/* <Route element={<BarberKiyoskDashboardProtect />}> */}
+              <Route element={<BarberKiyoskDashboardProtect />}>
                 <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />
-              {/* </Route> */}
+              </Route>
             </Route>
           </Route>
 
