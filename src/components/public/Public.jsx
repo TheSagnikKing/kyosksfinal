@@ -153,54 +153,6 @@ const Public = () => {
     navigate('/queuelist')
   }
 
-  var settings = {
-    dots: true,
-    speed: 500,
-    slidesToShow: 1,
-    // slidesToScroll: 1,
-    arrows: false,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 5000,
-
-    // responsive: [
-    //   {
-    //     breakpoint: 1024,
-    //     settings: {
-    //       slidesToShow: 2,
-    //       slidesToScroll: 1,
-    //       infinite: true,
-    //       dots: false,
-    //       centerMode: false,
-    //     }
-    //   },
-    //   {
-    //     breakpoint: 600,
-    //     settings: {
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1,
-    //       initialSlide: 2,
-    //       centerMode: false,
-    //     }
-    //   },
-    //   {
-    //     breakpoint: 480,
-    //     settings: {
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1,
-    //       centerMode: false,
-    //     }
-    //   }
-    // ]
-  };
-
-  const data2 = [
-    {
-      id: 1,
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv5XRVQ7xxHNWBa1Hj590AOOFQpP2FxYemRENy37Igew&s"
-    }
-  ]
-
   return (
     <main className='public__main__container'>
       <div className='public__main__top'>
@@ -245,6 +197,8 @@ const Public = () => {
                 showThumbs={false}
                 infiniteLoop={true}
                 autoPlay={true}
+                interval={6000}
+                showStatus={false}
               >
                 {gerAllAdvertisementsKioskdata?.advertisements.map((c) => (
                   <img key={c.id} src={c.url} alt={c.alt} style={{ height: "50vh", objectFit: "cover" }} />

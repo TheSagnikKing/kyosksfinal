@@ -142,13 +142,13 @@ const AdminSignin = () => {
                     <div>
                         <h1>Password</h1>
                         <input
-                            // type={showPassword ? "text" : "password"}
-                            type='text'
+                            type={showPassword ? "text" : "password"}
+                            // type='text'
                             placeholder='Enter Your Password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        {/* <div onClick={() => setShowPassword((prev) => !prev)}>ico</div> */}
+                        <div onClick={() => setShowPassword((prev) => !prev)}>ico</div>
                     </div>
 
 
