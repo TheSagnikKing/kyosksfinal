@@ -5,7 +5,6 @@
     display: grid;
     grid-template-columns: 45.9rem calc(100% - 45.9rem);
     overflow-y: hidden;
-    position: relative;
 }
 
 .joinqueue__main__left {
@@ -26,6 +25,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .joinqueue__main__right__form>h1 {

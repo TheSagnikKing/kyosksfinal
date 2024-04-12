@@ -117,7 +117,15 @@ const QueueList = () => {
 
   // Handle loading and error states
   if (isLoading) {
-    return <h1>Wait QueueList is Loading...</h1>
+    return <div style={{
+      height:"100vh",
+      width:"100%",
+      display:"flex",
+      alignItems:"center",
+      justifyContent:"center"
+    }}><h1 style={{
+      fontSize:"3rem"
+    }}>Wait QueueList is Loading...</h1></div>
   }
 
   if (isError) {

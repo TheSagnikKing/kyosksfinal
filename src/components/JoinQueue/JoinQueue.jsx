@@ -284,15 +284,16 @@ const JoinQueue = () => {
 
     return (
         <main className='joinqueue__main__container'>
-            <Link to="/kiyosk"
-                className='homeiconClass'
-            ><IoMdHome /></Link>
-
+            
             <div className='joinqueue__main__left'>
                 <img src="/joinqueue.png" alt="joinqueue" />
             </div>
 
             <div className='joinqueue__main__right'>
+
+            <Link to="/kiyosk"
+                className='homeiconClass'
+            ><IoMdHome /></Link>
 
                 <div className='joinqueue__main__right__form'>
                     <h1>Join Queue</h1>
