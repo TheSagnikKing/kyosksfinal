@@ -34,33 +34,21 @@ const QueueList = () => {
 
   const navigate = useNavigate()
 
-  const serverHandler = (barberId,services,_id) => {
+  const serverHandler = (barberId,services,_id,barberEmail) => {
     navigate("/barberservelogn",{state: {
       barberId,
       services,
-      _id
+      _id,
+      barberEmail
     }})
   }
  
 
-  // const cancelHandler = (barberId,_id) => {
-  //   const confirm = window.confirm("Are you Sure ?")
-
-  //   const cancelqueuedata = {
-  //     salonId:adminInfo?.salonId,
-  //     barberId,
-  //     _id,
-  //   } 
-    
-  //   if(confirm){
-  //     cancelqueuefunction(cancelqueuedata)
-  //   }
-  // }
-
-  const cancelHandler = (barberId,_id) => {
+  const cancelHandler = (barberId,_id,barberEmail) => {
     navigate("/cancelservelogn",{state: {
       barberId,
-      _id
+      _id,
+      barberEmail
     }})
   }
 
@@ -99,10 +87,10 @@ const QueueList = () => {
                       </div>}
                     <p>{q.qPosition}</p>
                   </td>
-                  <td className='que-serve' onClick={() => serverHandler(q.barberId, q.services, q._id)}>
+                  <td className='que-serve' onClick={() => serverHandler(q.barberId, q.services, q._id,q.barberEmail)}>
                     <PiQueueBold />
                   </td>
-                  <td className='que-cancel' onClick={() => cancelHandler(q.barberId, q._id)}>
+                  <td className='que-cancel' onClick={() => cancelHandler(q.barberId, q._id,q.barberEmail)}>
                     <GiCancel />
                   </td>
                 </tr>

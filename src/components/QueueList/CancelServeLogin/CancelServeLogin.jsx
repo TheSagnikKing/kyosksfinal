@@ -34,7 +34,7 @@ const CancelServeLogin = () => {
 
 
     const [password, setPassword] = useState("")
-    const [barberemail, setBarberEmail] = useState("")
+    const [barberemail, setBarberEmail] = useState(location?.state?.barberEmail)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
