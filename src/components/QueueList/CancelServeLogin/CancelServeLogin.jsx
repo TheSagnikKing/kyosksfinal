@@ -13,6 +13,7 @@ import { useBarberLoginKioskMutation, useGoogleBarberLoginKioskMutation, useLazy
 import { selectCurrentAdminInfo } from '../../AdminSignin/adminauthSlice'
 import { setCredentials, setToken } from '../../barber/Signin/barberauthSlice'
 import { useBarberServedQueueMutation, useCancelQKiyoskMutation } from '../QueueApiSlice'
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
 
 const CancelServeLogin = () => {
 
@@ -157,6 +158,8 @@ const CancelServeLogin = () => {
         };
     }, []);
 
+    const [showPassword, setShowPassword] = useState(false)
+
     return (
         <main className='barber__signin__main__container'>
             <div className='barber__signin__main__left'>
@@ -195,12 +198,16 @@ const CancelServeLogin = () => {
 
                     <div>
                         <h1>Password</h1>
-                        <input
-                            type="text"
-                            placeholder='Enter Your Password'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+
+                        <div>
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                placeholder='Enter Your Password'
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
+                        </div>
                     </div>
 
                     <div>

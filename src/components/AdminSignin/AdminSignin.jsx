@@ -8,8 +8,13 @@ import { setAdminCredentials, setAdminToken } from './adminauthSlice'
 import { useDispatch } from 'react-redux'
 import { GoogleLogin } from '@react-oauth/google'
 import { ColorRing } from 'react-loader-spinner'
+import {showEye} from '../../icons'
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
+
 
 const AdminSignin = () => {
+
+    console.log(showEye)
 
     const [adminlogin, {
         data,
@@ -42,7 +47,7 @@ const AdminSignin = () => {
             localStorage.setItem('adminkiyosktoken', data?.adminToken)
             localStorage.setItem('adminkiyoskloggin', 'true')
             dispatch(setAdminToken(data))
-            localStorage.setItem("salonSelect","false")
+            localStorage.setItem("salonSelect", "false")
             navigate("/selectsalon")
         } else if (isError) {
             toast.error(error?.data?.message, {
@@ -139,16 +144,18 @@ const AdminSignin = () => {
 
                     </div>
 
-                    <div>
+                    <div className='password_field'>
                         <h1>Password</h1>
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            // type='text'
-                            placeholder='Enter Your Password'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <div onClick={() => setShowPassword((prev) => !prev)}>ico</div>
+
+                        <div>
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                placeholder='Enter Your Password'
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash/>}</div>
+                        </div>
                     </div>
 
 
@@ -173,7 +180,7 @@ const AdminSignin = () => {
                                 logo_alignment='left'
                                 text='continue_with'
                             />
-                            </div>
+                        </div>
 
                         {/* </button> */}
                     </div>

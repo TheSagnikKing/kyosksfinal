@@ -151,6 +151,11 @@
     }
 
 
+    .password_field>div>div{
+        /* background-color: red !important; */
+        cursor: pointer;
+    }
+
 @media((min-width:430px) and (max-width:940px)){
     .admin__signin__main__container{
         height: 100vh;

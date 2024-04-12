@@ -10,6 +10,7 @@ import { selectCurrentAdminInfo } from '../../AdminSignin/adminauthSlice'
 import { GoogleLogin } from '@react-oauth/google'
 import { ColorRing } from 'react-loader-spinner'
 import { IoMdHome } from 'react-icons/io'
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
 
 const Signin = () => {
 
@@ -166,6 +167,8 @@ const Signin = () => {
         };
     }, []);
 
+    const [showPassword, setShowPassword] = useState(false)
+
     return (
         <main className='barber__signin__main__container'>
             <div className='barber__signin__main__left'>
@@ -204,12 +207,15 @@ const Signin = () => {
 
                     <div>
                         <h1>Password</h1>
+                        <div>
                         <input
-                            type="text"
+                            type={showPassword ? "text" : "password"}
                             placeholder='Enter Your Password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
+                        <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash/>}</div>
+                        </div>
                     </div>
 
                     <div>

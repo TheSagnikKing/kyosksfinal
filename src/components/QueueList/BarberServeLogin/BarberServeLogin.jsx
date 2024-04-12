@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { DropdownIcon } from '../../../icons'
 import './BarberServeLogin.css'
-import { Link, useNavigate,useLocation } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import toast from 'react-hot-toast'
@@ -13,6 +13,7 @@ import { useBarberLoginKioskMutation, useGoogleBarberLoginKioskMutation, useLazy
 import { selectCurrentAdminInfo } from '../../AdminSignin/adminauthSlice'
 import { setCredentials, setToken } from '../../barber/Signin/barberauthSlice'
 import { useBarberServedQueueMutation } from '../QueueApiSlice'
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
 
 const BarberServeLogin = () => {
 
@@ -41,64 +42,64 @@ const BarberServeLogin = () => {
     const [
         servequeuefunction,
         {
-          data:servequeuedata,
-          isSuccess:serverqueueisSuccess,
-          isError:servequeueisError,
-          error:servequeueError,
-          isLoading:servequeueisLoading
+            data: servequeuedata,
+            isSuccess: serverqueueisSuccess,
+            isError: servequeueisError,
+            error: servequeueError,
+            isLoading: servequeueisLoading
         }
-      ] = useBarberServedQueueMutation()
+    ] = useBarberServedQueueMutation()
 
     useEffect(() => {
-        if(servequeueisError){
-          toast.error(servequeueError?.data?.message, {
-            duration: 3000,
-            style: {
-              fontSize: "1.4rem",
-              borderRadius: '10px',
-              background: '#333',
-              color: '#fff',
-            },
-          });
+        if (servequeueisError) {
+            toast.error(servequeueError?.data?.message, {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
         }
-      },[servequeueisError])
-    
-    
-      useEffect(() => {
-        if(serverqueueisSuccess){
-          toast.success(servequeuedata.message, {
-            duration: 3000,
-            style: {
-              fontSize: "1.4rem",
-              borderRadius: '10px',
-              background: '#333',
-              color: '#fff',
-            },
-          });
+    }, [servequeueisError])
 
-          navigate("/queuelist",{ ...location, state: {} });
+
+    useEffect(() => {
+        if (serverqueueisSuccess) {
+            toast.success(servequeuedata.message, {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+
+            navigate("/queuelist", { ...location, state: {} });
         }
-      },[serverqueueisSuccess,navigate])
+    }, [serverqueueisSuccess, navigate])
 
     const serveQueueHandler = () => {
 
         const confirm = window.confirm("Are you Sure ?")
 
         const queueData = {
-            barberEmail:barberemail,
-            password:password,
+            barberEmail: barberemail,
+            password: password,
             barberId: location?.state?.barberId,
             salonId: adminInfo?.salonId,
             services: location?.state?.services,
             _id: location?.state?._id
         }
 
-        console.log("Console ",queueData)
+        console.log("Console ", queueData)
 
-        if(confirm){
+        if (confirm) {
             servequeuefunction(queueData)
         }
-        
+
     }
 
     const [drop, setDrop] = useState(false)
@@ -158,6 +159,8 @@ const BarberServeLogin = () => {
         };
     }, []);
 
+    const [showPassword, setShowPassword] = useState(false)
+
     return (
         <main className='barber__signin__main__container'>
             <div className='barber__signin__main__left'>
@@ -185,22 +188,25 @@ const BarberServeLogin = () => {
                             </div>
 
                             {drop && <main className='barber__signin__main__form_dropdown'>
-                            {isLoading ? <h2>Loading...</h2> : isSuccess && data?.response.length > 0 ? data?.response.map((b) => (
-                                <div key={b._id} onClick={() => selectEmailClick(b)}><h2>{b.email}</h2></div>
-                            )) : <h2>No barber available with email</h2>}
-                        </main>}
+                                {isLoading ? <h2>Loading...</h2> : isSuccess && data?.response.length > 0 ? data?.response.map((b) => (
+                                    <div key={b._id} onClick={() => selectEmailClick(b)}><h2>{b.email}</h2></div>
+                                )) : <h2>No barber available with email</h2>}
+                            </main>}
 
                         </div>
                     </div>
 
                     <div>
                         <h1>Password</h1>
-                        <input
-                            type="text"
-                            placeholder='Enter Your Password'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                        <div>
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                placeholder='Enter Your Password'
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
+                        </div>
                     </div>
 
                     <div>

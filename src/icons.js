@@ -1,6 +1,6 @@
 import { IoSettingsSharp } from "react-icons/io5";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
-import { FaCheck, FaPlus } from "react-icons/fa6";
+import { FaCheck, FaPlus, FaRegEyeSlash } from "react-icons/fa6";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { IoArrowBack } from "react-icons/io5"
 import { RxCross2 } from "react-icons/rx";
@@ -12,3 +12,4 @@ export const DeleteIcon = RiDeleteBinFill
 export const BackIcon = IoArrowBack
 export const CheckIcon = FaCheck
 export const CrossIcon = RxCross2
+export const showEye = FaRegEyeSlash

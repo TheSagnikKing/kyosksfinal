@@ -477,8 +477,8 @@ const Dashboard2 = () => {
                     <div>
                         <p>Email Id: {selectCurrentBarberdata?.foundUser?.email}</p>
                         <p>Contact Number: {selectCurrentBarberdata?.foundUser?.mobileNumber}</p>
-                        <p>Barber Salon Id: {selectCurrentBarberdata?.foundUser?.salonId}</p>
-                        <p>Barber EWT: {selectCurrentBarberdata?.foundUser?.barberEWT}</p>
+                        {/* <p>Barber Salon Id: {selectCurrentBarberdata?.foundUser?.salonId}</p>
+                        <p>Barber EWT: {selectCurrentBarberdata?.foundUser?.barberEWT}</p> */}
                         {barberOnlineCheck ? <p style={{ color: "#03A100" }}>You are currently Online</p> : <p style={{ color: "red" }}>You are currently Offline</p>}
                     </div>
                 </div>
