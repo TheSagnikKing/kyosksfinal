@@ -118,3 +118,12 @@
         display: none;
     }
 }
+
+@media((min-width:0px) and (max-width:990px)){
+    .accountSettings_container{
+        grid-template-columns: 1fr;
+    }
+    .accountSettings_container>div:nth-child(1){
+        display: none;
+    }
+}
