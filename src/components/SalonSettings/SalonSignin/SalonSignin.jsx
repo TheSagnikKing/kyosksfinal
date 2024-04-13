@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './SalonAdminSignin.css'
+import './SalonSignin.css'
 import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
@@ -10,9 +10,10 @@ import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
 import { useAdminLoginKioskMutation, useGoogleAdminLoginKioskMutation } from '../../AdminSignin/adminsigninApiSlice'
 import { setAdminCredentials } from '../../AdminSignin/adminauthSlice'
 import { IoMdHome } from 'react-icons/io'
+import { useSalonAccountLoginMutation } from '../salonSlice'
 
 
-const SalonAdminSignin = () => {
+const SalonSignin = () => {
 
     const [adminlogin, {
         data,
@@ -36,19 +37,15 @@ const SalonAdminSignin = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [role, setRole] = useState("Admin")
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
     useEffect(() => {
         if (isSuccess) {
-            // localStorage.setItem('adminkiyosktoken', data?.adminToken)
-            // localStorage.setItem('adminkiyoskloggin', 'true')
-            // dispatch(setAdminToken(data))
-            // localStorage.setItem("salonSelect", "false")
-            // navigate("/selectsalon")
-            localStorage.setItem("adminsalonsettings","true")
-            navigate("/accountsettings")
+            // localStorage.setItem("adminsalonsettings", "true")
+            // navigate("/accountsettings")
         } else if (isError) {
             toast.error(error?.data?.message, {
                 duration: 3000,
@@ -64,10 +61,8 @@ const SalonAdminSignin = () => {
 
     useEffect(() => {
         if (googleAdminLoginKioskisSuccess) {
-            // localStorage.setItem('adminkiyosktoken', googleAdminLoginKioskdata?.adminToken)
-            // localStorage.setItem('adminkiyoskloggin', 'true')
-            // dispatch(setAdminToken(googleAdminLoginKioskdata))
-            // navigate("/selectsalon")
+            localStorage.setItem("adminsalonsettings", "true")
+            navigate("/accountsettings")
         } else if (googleAdminLoginKioskisError) {
             toast.error(googleAdminLoginKioskerror?.data?.message, {
                 duration: 3000,
@@ -81,11 +76,42 @@ const SalonAdminSignin = () => {
         }
     }, [googleAdminLoginKioskisSuccess, googleAdminLoginKioskisError, navigate])
 
+    const [
+        salonAccountLogin,
+        {
+            data:salonlogindata,
+            isSuccess:salonloginisSuccess,
+            isError:salonloginisError,
+            error:salonloginerror,
+            isLoading:salonloginisLoading
+        }
+    ] = useSalonAccountLoginMutation()
+
+
+    useEffect(() => {
+        if (salonloginisSuccess) {
+            localStorage.setItem("adminsalonsettings", "true")
+            navigate("/salonsettings")
+        } else if (salonloginisError) {
+            toast.error(salonloginerror?.data?.message, {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        }
+    }, [salonloginisSuccess, salonloginisError, navigate])
+
     const loginHandler = async () => {
-        const admindata = { email, password }
+        const admindata = { email, password, role }
         console.log(admindata)
 
-        adminlogin(admindata)
+        salonAccountLogin(admindata)
+
+        // adminlogin(admindata)
 
         // const {data} = await axios.post('https://iqb-kiosk.onrender.com/kiosk/adminLoginKiosk',admindata)
         // console.log(data)
@@ -127,7 +153,7 @@ const SalonAdminSignin = () => {
             </div>
 
             <div className='admin__signin__main__right'>
-                <h1>Admin Salon Signin</h1>
+                <h1>Salon Signin</h1>
 
                 <Link to="/kiyosk"
                     className='salonicon'
@@ -163,9 +189,32 @@ const SalonAdminSignin = () => {
                         </div>
                     </div>
 
+                    <div className='rolediv'>
+                        <h1>Select Role</h1>
+
+                        <div>
+                            <div>
+                                <input 
+                                type="checkbox" 
+                                checked={role === "Admin" ? true : false}
+                                onChange={() => setRole("Admin")}
+                                />
+                                <p>Admin</p>
+                            </div>
+
+                            <div>
+                                <input 
+                                type="checkbox" 
+                                checked={role === "Barber" ? true : false}
+                                onChange={() => setRole("Barber")}
+                                />
+                                <p>Barber</p>
+                            </div>
+                        </div>
+                    </div>
 
                     <div>
-                        {isLoading ? <button><ColorRing
+                        {salonloginisLoading ? <button><ColorRing
                             visible={true}
                             height="4rem"
                             width="4rem"
@@ -174,7 +223,7 @@ const SalonAdminSignin = () => {
                             wrapperClass="color-ring-wrapper"
                             colors={['#87a96b', '#87a96b', '#87a96b', '#87a96b', '#87a96b']}
                         /></button> : <button onClick={loginHandler}>LOGIN</button>}
-                        {/* <button className='google-btn'> */}
+                        
                         <div>
                             <GoogleLogin
                                 onSuccess={responseMessage}
@@ -187,7 +236,6 @@ const SalonAdminSignin = () => {
                             />
                         </div>
 
-                        {/* </button> */}
                     </div>
 
                 </div>
@@ -197,4 +245,4 @@ const SalonAdminSignin = () => {
     )
 }
 
-export default SalonAdminSignin
+export default SalonSignin

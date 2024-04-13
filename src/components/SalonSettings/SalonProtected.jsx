@@ -9,17 +9,15 @@ const SalonProtected = () => {
 
     const adminsalonsettings = localStorage.getItem("adminsalonsettings")
 
-    console.log("adminsalonsettings",adminsalonsettings)
-
     useEffect(() => {
         if(adminsalonsettings === "false" || adminsalonsettings === null || adminsalonsettings === "undefined" || adminsalonsettings === undefined){
-            navigate("/salonadminsignin")
+            navigate("/salonsignin")
         }
     },[navigate,adminsalonsettings])
 
     return (
         <>
-        {adminsalonsettings === "true" ? <Outlet/> : "loading"}
+        {adminsalonsettings === "true" ? <Outlet/> : "Loading..."}
         </>
     )
 }

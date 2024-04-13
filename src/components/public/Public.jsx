@@ -183,14 +183,7 @@ const Public = () => {
 
         {dropdown && <div className='public__main__top__logoutdiv'>
           <Link to="/barbersignin">Barber Signin</Link>
-          {/* <Link to="/accountsettings">Salon Settings</Link> */}
-          <div>
-            <p>Salon Settings</p>
-            <div onClick={() => setSalonSettingsDrop((prev) => !prev)}><IoMdArrowDropdownCircle /></div>
-          </div>
-
-          {salonsettingsdrop && <Link to="/salonadminsignin">Admin Signin</Link>}
-          {salonsettingsdrop && <Link to="/salonbarbersignin">Barber Signin</Link>}
+          <Link to="/salonsignin">Salon Settings</Link>
           <p onClick={logoutHandler} style={{ cursor: "pointer" }}>Logout</p>
         </div>}
 

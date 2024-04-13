@@ -8,7 +8,7 @@ const AllRoutesProtect = () => {
 
     useEffect(() => {
         // Check if the current pathname is not '/accountsettings'
-        if (location.pathname !== '/accountsettings') {
+        if (location.pathname !== '/salonsettings') {
             localStorage.setItem('adminsalonsettings', 'false');
         }
     }, [location]);

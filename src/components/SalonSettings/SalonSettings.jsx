@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './AccountSettings.css'
+import './SalonSettings.css'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useChangeSalonOnlineStatusKioskMutation, useMobileBookingAvailabilityStatusMutation } from '../Dashboard/dashboardApiSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 import { IoMdHome } from 'react-icons/io'
 
-const AccountSettings = () => {
+const SalonSettings = () => {
 
   const adminInfo = useSelector(selectCurrentAdminInfo)
 
@@ -157,7 +157,7 @@ const AccountSettings = () => {
 
   const logoutSalonHandler = () => {
     localStorage.setItem("adminsalonsettings","false")
-    navigate("/salonadminsignin")
+    navigate("/salonsignin")
   }
 
   return (
@@ -238,7 +238,7 @@ const AccountSettings = () => {
   )
 }
 
-export default AccountSettings
+export default SalonSettings
 
 // import React from 'react'
 // import './AccountSettings.css'

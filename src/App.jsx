@@ -21,13 +21,11 @@ const AllRoutesProtect = React.lazy(() => import('./components/public/AllRoutesP
 
 const BarberServeLogin = React.lazy(() => import('./components/QueueList/BarberServeLogin/BarberServeLogin'))
 
-const AccountSettings = React.lazy(() => import('./components/AccountSettings/AccountSettings'))
+const SalonSettings = React.lazy(() => import('./components/SalonSettings/SalonSettings'))
 
-const SalonAdminSignin = React.lazy(() => import('./components/AccountSettings/SalonAdminSignin/SalonAdminSignin'))
-const SalonBarberSignin = React.lazy(() => import('./components/AccountSettings/SalonBarberSignin/SalonBarberSignin'))
+const SalonSignin = React.lazy(() => import('./components/SalonSettings/SalonSignin/SalonSignin'))
 
-
-const SalonProtected = React.lazy(() => import("./components/AccountSettings/SalonProtected"))
+const SalonProtected = React.lazy(() => import("./components/SalonSettings/SalonProtected"))
 
 const App = () => {
 
@@ -58,11 +56,10 @@ const App = () => {
 
             <Route element={<AllRoutesProtect />}>
               <Route path="/kiyosk" element={<Public />} />
-              <Route path="/salonadminsignin" element={<SalonAdminSignin />} />
-              <Route path="/salonbarbersignin" element={<SalonBarberSignin/>}/>
+              <Route path="/salonsignin" element={<SalonSignin />} />
 
               <Route element={<SalonProtected />}>
-                <Route path="/accountsettings" element={<AccountSettings />} />
+                <Route path="/salonsettings" element={<SalonSettings />} />
               </Route>
 
               <Route path="/joinqueue" element={<JoinQueue />} />
