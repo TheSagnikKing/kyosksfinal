@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import './AccountSettings.css'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useChangeSalonOnlineStatusKioskMutation, useMobileBookingAvailabilityStatusMutation } from '../Dashboard/dashboardApiSlice'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { IoMdHome } from 'react-icons/io'
 
 const AccountSettings = () => {
@@ -43,8 +43,14 @@ const AccountSettings = () => {
           color: '#fff',
         },
       });
+
       window.location.reload()
       setSalonbtnCheck(data?.response?.isOnline)
+
+      // setSalonbtnCheck(data?.response?.isOnline)
+      // localStorage.setItem("adminsalonsettingtoken", "false")
+      // navigate("/salonadminsignin")
+      // window.location.reload()
     }
   }, [isSuccess])
 
@@ -147,10 +153,12 @@ const AccountSettings = () => {
     }
 
   }
+  const navigate = useNavigate()
 
-  // const [toggleswitch, setToggleSwitch] = useState(false)
-
-  // console.log(toggleswitch)
+  const logoutSalonHandler = () => {
+    localStorage.setItem("adminsalonsettings","false")
+    navigate("/salonadminsignin")
+  }
 
   return (
     <main className='accountSettings_container'>
@@ -164,17 +172,19 @@ const AccountSettings = () => {
         <Link to="/kiyosk"
           className='accountsettingshomeicon'
         ><IoMdHome /></Link>
+        <button className='salonlogouthandler' onClick={logoutSalonHandler}>Logout</button>
+
         <div className='accountSettings_content'>
           <>
             <div>
               <h1>Salon Status</h1>
 
-              <div 
-              style={{
-                display:"flex",
-                justifyContent:"center",
-                alignItems:"center"
-              }}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
               >
                 <div className='toggle_container'
                   style={{

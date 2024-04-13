@@ -17,6 +17,7 @@ import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { IoMdArrowDropdownCircle } from 'react-icons/io'
 
 const Public = () => {
 
@@ -101,6 +102,7 @@ const Public = () => {
 
   const settingClicked = () => {
     setDropdown(!dropdown)
+    setSalonSettingsDrop(false)
     // navigate('/barbersignin')
   }
 
@@ -153,6 +155,8 @@ const Public = () => {
     navigate('/queuelist')
   }
 
+  const [salonsettingsdrop, setSalonSettingsDrop] = useState(false)
+
   return (
     <main className='public__main__container'>
       <div className='public__main__top'>
@@ -179,7 +183,14 @@ const Public = () => {
 
         {dropdown && <div className='public__main__top__logoutdiv'>
           <Link to="/barbersignin">Barber Signin</Link>
-          <Link to="/accountsettings">Salon Settings</Link>
+          {/* <Link to="/accountsettings">Salon Settings</Link> */}
+          <div>
+            <p>Salon Settings</p>
+            <div onClick={() => setSalonSettingsDrop((prev) => !prev)}><IoMdArrowDropdownCircle /></div>
+          </div>
+
+          {salonsettingsdrop && <Link to="/salonadminsignin">Admin Signin</Link>}
+          {salonsettingsdrop && <Link to="/salonbarbersignin">Barber Signin</Link>}
           <p onClick={logoutHandler} style={{ cursor: "pointer" }}>Logout</p>
         </div>}
 

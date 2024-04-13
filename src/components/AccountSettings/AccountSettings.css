@@ -98,6 +98,14 @@
     background: rgb(255, 255, 255);
 }
 
+.salonlogouthandler{
+    position: absolute;
+    right: 4rem;
+    top: 4rem;
+    padding: 1rem 1.8rem;
+    cursor: pointer;
+}
+
 @media((min-width:0px) and (max-width:430px)){
     .accountSettings_container{
         grid-template-columns: 1fr;

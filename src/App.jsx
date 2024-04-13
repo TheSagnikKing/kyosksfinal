@@ -23,6 +23,12 @@ const BarberServeLogin = React.lazy(() => import('./components/QueueList/BarberS
 
 const AccountSettings = React.lazy(() => import('./components/AccountSettings/AccountSettings'))
 
+const SalonAdminSignin = React.lazy(() => import('./components/AccountSettings/SalonAdminSignin/SalonAdminSignin'))
+const SalonBarberSignin = React.lazy(() => import('./components/AccountSettings/SalonBarberSignin/SalonBarberSignin'))
+
+
+const SalonProtected = React.lazy(() => import("./components/AccountSettings/SalonProtected"))
+
 const App = () => {
 
   return (<>
@@ -42,7 +48,7 @@ const App = () => {
         <Routes>
 
           <Route element={<ProtectedAuthRoute />}>
-          <Route path="/" element={<AdminSignin />} />
+            <Route path="/" element={<AdminSignin />} />
           </Route>
 
           <Route element={<ProtectedRoute />}>
@@ -52,11 +58,17 @@ const App = () => {
 
             <Route element={<AllRoutesProtect />}>
               <Route path="/kiyosk" element={<Public />} />
-              <Route path="/accountsettings" element={<AccountSettings/>}/>
+              <Route path="/salonadminsignin" element={<SalonAdminSignin />} />
+              <Route path="/salonbarbersignin" element={<SalonBarberSignin/>}/>
+
+              <Route element={<SalonProtected />}>
+                <Route path="/accountsettings" element={<AccountSettings />} />
+              </Route>
+
               <Route path="/joinqueue" element={<JoinQueue />} />
               <Route path="/queuelist" element={<QueueList />} />
-              <Route path="/barberservelogn" element={<BarberServeLogin/>}/>
-              <Route path="/cancelservelogn" element={<CancelServeLogin/>}/>
+              <Route path="/barberservelogn" element={<BarberServeLogin />} />
+              <Route path="/cancelservelogn" element={<CancelServeLogin />} />
               <Route path="/barbersignin" element={<BarberSignin />} />
               <Route element={<BarberKiyoskDashboardProtect />}>
                 <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />

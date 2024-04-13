@@ -6,16 +6,19 @@ const adminauthSlice = createSlice({
     reducers: {
         setAdminCredentials: (state, action) => {
             state.admintoken = action.payload.adminToken
-            state.adminInfo = action.payload.user
+            state.adminInfo = action.payload.user || action.payload.foundUser
         },
         setAdminToken: (state,action) => {
             state.admintoken = null
             state.adminInfo = {}
+        },
+        setAdminSalonToken: (state,action) => {
+            state.admintoken = null
         }
     }
 })
 
-export const { setAdminCredentials, setAdminToken } = adminauthSlice.actions
+export const { setAdminCredentials, setAdminToken, setAdminSalonToken} = adminauthSlice.actions
 
 export default adminauthSlice.reducer
 
