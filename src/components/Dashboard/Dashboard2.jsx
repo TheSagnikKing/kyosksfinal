@@ -193,6 +193,18 @@ const Dashboard2 = () => {
 
     }
 
+    const bgcolorFnc = (i) => {
+        return i === 0 ? "var(--bg-color-1)" : i === 1 ? "var(--bg-color-2)" :
+        i === 3 ? "var(--bg-color-3)" : i === 4 ? "var(--bg-color-4)" : i === 5 ? "var(--bg-color-5)" :
+        i === 6 ? "var(--bg-color-6)" : i === 7 ? "var(--bg-color-7)" : "var(--bg-color-8)"
+    }
+
+    const textcolorFnc = (i) => {
+        return i === 0 ? "var(--text-color-1)" : i === 1 ? "var(--text-color-2)" :
+        i === 3 ? "var(--text-color-3)" : i === 4 ? "var(--text-color-4)" : i === 5 ? "var(--text-color-5)" :
+        i === 6 ? "var(--text-color-6)" : i === 7 ? "var(--text-color-7)" : "var(--text-color-8)"
+    }
+
     return (
         <main className='dash_main_container'>
             <div>
@@ -209,12 +221,14 @@ const Dashboard2 = () => {
                         <div>
                             <img src="./no-profile-img.webp" alt="profile" />
                             <p>{selectCurrentBarberdata?.foundUser?.name}</p>
+
+                            {barberOnlineCheck ? <div className='online'/> : <div/>}
                         </div>
 
                         <div>
                             <p>Email Id: {selectCurrentBarberdata?.foundUser?.email}</p>
                             <p>Contact Number: {selectCurrentBarberdata?.foundUser?.mobileNumber}</p>
-                            {barberOnlineCheck ? <p style={{ color: "#03A100" }}>You are currently Online</p> : <p style={{ color: "red" }}>You are currently Offline</p>}
+                            {/* {barberOnlineCheck ? <p style={{ color: "#03A100" }}>You are currently Online</p> : <p style={{ color: "red" }}>You are currently Offline</p>} */}
                         </div>
 
                     </div>
@@ -269,13 +283,15 @@ const Dashboard2 = () => {
 
                     <div>
                         {
-                            getAttendenceByBarberIdKioskisSuccess && getAttendenceByBarberIdKioskdata.response.attendance.map((b) => (
+                            getAttendenceByBarberIdKioskisSuccess && getAttendenceByBarberIdKioskdata.response.attendance.map((b,i) => (
                                 <div className='kiyosk__dashboard__main__body__item' key={b._id}>
-                                    <div>
-                                        <h2>{b.day === "" ? "-" : b.day}</h2>
-                                        <h2>{b.date === "" ? "-" : b.date}</h2>
-                                        <h2>{b.signInTime === "" ? "-" : b.signInTime}</h2>
-                                        <h2>{b.signOutTime === "" ? "-" : b.signOutTime}</h2>
+                                    <div style={{
+                                        background: bgcolorFnc(i)
+                                    }}>
+                                        <h2 style={{color:textcolorFnc(i)}}>{b.day === "" ? "-" : b.day}</h2>
+                                        <h2 style={{color:textcolorFnc(i)}}>{b.date === "" ? "-" : b.date}</h2>
+                                        <h2 style={{color:textcolorFnc(i)}}>{b.signInTime === "" ? "-" : b.signInTime}</h2>
+                                        <h2 style={{color:textcolorFnc(i)}}>{b.signOutTime === "" ? "-" : b.signOutTime}</h2>
                                     </div>
                                 </div>
                             ))
