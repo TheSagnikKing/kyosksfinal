@@ -175,7 +175,6 @@ const SalonSettings = () => {
         <button className='salonlogouthandler' onClick={logoutSalonHandler}>Logout</button>
 
         <div className='accountSettings_content'>
-          <>
             <div>
               <h1>Salon Status</h1>
 
@@ -227,7 +226,6 @@ const SalonSettings = () => {
 
               </div>
             </div>
-          </>
 
         </div>
 

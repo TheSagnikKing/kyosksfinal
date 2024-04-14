@@ -167,7 +167,7 @@ const Public = () => {
               count={1}
               circle={true}
               borderRadius={"50%"}
-              height={"10.1rem"}
+              height={"100%"}
               width={"10.1rem"}
             /> : isSuccess && data?.response?.salonLogo.length > 0 ? (
               <img src={data.response.salonLogo[0].url} alt={data.response.salonName} />
@@ -193,7 +193,7 @@ const Public = () => {
         {
           // If advertisements are loading or admin salon ID is not present, show a skeleton.
           gerAllAdvertisementsKioskisLoading || !adminInfo?.salonId ? (
-            <Skeleton count={1} height="50vh" />
+            <Skeleton count={1} height="60vh" />
           ) : (
             // If advertisements are successfully fetched and there's at least one advertisement, display them in a carousel.
             gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements.length > 0 ? (
@@ -205,7 +205,7 @@ const Public = () => {
                 showStatus={false}
               >
                 {gerAllAdvertisementsKioskdata?.advertisements.map((c) => (
-                  <img key={c.id} src={c.url} alt={c.alt} style={{ height: "50vh", objectFit: "cover" }} />
+                  <img key={c.id} src={c.url} alt={c.alt} style={{ height: "60vh", objectFit: "cover" }} />
                 ))}
               </Carousel>
             ) : (
@@ -231,4 +231,7 @@ const Public = () => {
 }
 
 export default Public
+
+
+
 

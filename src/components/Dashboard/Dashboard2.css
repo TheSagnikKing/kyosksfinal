@@ -5,27 +5,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .dash_main_container>div{
     width: 75vw;
-    height: 90vh;
-    padding: 2rem;
+    height: 70vh;
+    /* padding: 2rem; */
     border-radius: 2.3rem;
     background-color: var(--secondary-color);
     box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .dash_div_header{
-    height: 10%;
+    /* height: 10%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    position: relative; */
 }
 
-.dash_div_header>div:nth-child(1){
+/* .dash_div_header>div:nth-child(1){
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,15 +47,15 @@
     height: 0.2rem;
     background-color: var(--primary-color);
     width: 38.8rem;
-}
+} */
 
 .dash_div_header>div:nth-child(2){
     position: absolute;
     font-size: 2rem;
     background-color: var(--secondary-color);
     box-shadow: rgba(99, 99, 99, 0.4) 0px 2px 8px 0px;
-    right: 0;
-    top: 50%;
+    right: 4rem;
+    top: 4rem;
     transform: translateY(-50%);
     width: 3rem;
     height: 3rem;
@@ -64,15 +69,62 @@
 
 .dash_div_profile{
     display: grid;
-    grid-template-columns: 18.8rem calc(100% - 18.8rem - 3rem);
+    grid-template-columns: 0.6fr 1fr;
     gap: 3rem;
-    height: auto;
-    margin-top: 2rem;
+    height: 40%;
+    /* background-color: blue; */
+    padding-inline: 2rem;
+    /* margin-top: 2rem; */
+    /* background-color: red; */
 }
 
 .dash_div_profile>div:nth-child(1){
-    width: 18.8rem;
-    height: 18.8rem; 
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 95%;
+    /* background-color: yellow; */
+}
+
+.dash_div_profile>div:nth-child(1)>div:nth-child(1){
+    /* width: 15rem;
+    height: 15rem;  */
+}
+
+.dash_div_profile>div:nth-child(1)>div:nth-child(1)>img{
+    width: 14rem;
+    height: 13rem; 
+    border-radius: 50%;
+}
+
+.dash_div_profile>div:nth-child(1)>div:nth-child(1)>p{
+    color: red;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.dash_div_profile>div:nth-child(1)>div:nth-child(2){
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.dash_div_profile>div:nth-child(1)>div:nth-child(2)>p{
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.dash_div_profile>div:nth-child(1)>div:nth-child(2)>p:nth-child(3){
+    font-size: 2.4rem;
+}
+
+
+/* .dash_div_profile>div:nth-child(1){
+    width: 15rem;
+    height: 15rem; 
 }
 
 .dash_div_profile>div:nth-child(1)>img{
@@ -80,12 +132,15 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-}
+} */
 
 .dash_div_profile>div:nth-child(2){
     display: flex;
     flex-direction: column;
     gap: 1.8rem;
+    /* background-color: orange; */
+    height: 95%;
+    /* padding-block: 6rem; */
 }
 
 .dash_div_profile>div:nth-child(2)>p{
@@ -101,14 +156,15 @@
 .kiyosk__dashboard__main__body{
     width: 100%;
     margin: auto;
-    margin-top: 1rem;
-    height: 40%;
+    height: 60%;
     border-top: 2px solid black;
-    border-bottom: 2px solid black;
     padding: 1rem;
     display: flex;
     align-items: center;
     overflow: auto;
+    border-bottom-left-radius: 2.3rem;
+    border-bottom-right-radius: 2.3rem;
+    /* background-color: red; */
 }
 
 .kiyosk__dashboard__main__body>div:nth-child(1){
@@ -176,11 +232,34 @@
 }
 
 .dash_div_btn_group{
-    width: 45%;
+    /* width: 45%;
     height: 4rem;
     margin: auto;
     display: flex;
     justify-content: space-between;
+    align-items: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5rem;
+    /* background-color: yellow; */
+    width: 100%;
+    height: 100%;
+}
+
+.dash_div_btn_group>div{
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.dash_div_btn_group>div>h2{
+    /* background-color: orange; */
+    width: 16rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 

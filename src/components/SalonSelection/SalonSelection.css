@@ -88,6 +88,14 @@
     background-color: #fff;
 }
 
+.applySalonClass:hover{
+    background-color: #000;
+}
+
+.applySalonClass:hover>p{
+    color: #fff;
+}
+
 .selectSalonContent>h1 {
     margin-bottom: 3rem;
 }
