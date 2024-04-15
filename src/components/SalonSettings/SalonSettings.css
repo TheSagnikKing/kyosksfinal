@@ -1,17 +1,6 @@
 /* .accountSettings_container{
     height: 100vh;
     width: 100%;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-} */
-
-
-
-.accountSettings_container{
-    height: 100vh;
-    width: 100%;
     display: grid;
     grid-template-columns: 80.9rem calc(100% - 80.9rem);
 }
@@ -51,7 +40,6 @@
     align-items: center;
     justify-content:space-between;
     height: 4rem;
-    /* background-color: gray; */
     width: 35rem;
 }
 
@@ -129,4 +117,180 @@
     .accountSettings_container>div:nth-child(1){
         display: none;
     }
+} */
+
+
+.accountSettings_container{
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 80.9rem calc(100% - 80.9rem);
+}
+
+.accountSettings_container>div:nth-child(1){
+    border-right: 1px solid black;
+    width: 100%;
+    height: 100vh;
+}
+
+.accountSettings_container>div:nth-child(1)>img{
+    width: 100%;
+    height: 100%;
+}
+
+.accountSettings_container>div:nth-child(2){
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.accountsettingshomeicon{
+    position: absolute;
+    font-size: 4rem;
+    top: 2rem;
+    left: 2rem;
+    cursor: pointer;
+    color: black;
+}
+
+.accountSettings_content{
+    height: 32.8rem;
+    width: 70.5rem;
+    background-color: #fff;
+    border-radius: 3.2rem;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.25);
+    display: grid;
+    grid-template-rows: 1.2fr 2fr 1.2fr;
+}
+
+.accountSettings_content>div:nth-child(1){
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.accountSettings_content>div:nth-child(1)>div:nth-child(1){
+    /* for the salon logo div */
+    position: absolute;
+    top: -10.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 13.5rem;
+    height: 13.5rem;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.25);
+}
+
+.salonsetting_salonlogo_skeleton{
+    background-color: #ddd;
+    z-index: 2;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+.accountSettings_content>div:nth-child(1)>div:nth-child(1)>img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #fff;
+    /* box-shadow: 0px 0px 10px rgba(0,0,0,0.25); */
+}
+
+.accountSettings_content>div:nth-child(2){
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.accountSettings_content>div:nth-child(2)>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.accountSettings_content>div:nth-child(2)>div>div{
+    background-color: #ECEBEB;
+    height: 2.5rem;
+    width: 15rem;
+    border-radius: 1.9rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+}
+
+.toggle_btn{
+    background-color: #fff;
+    height: 2.3rem;
+    width:5.8rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    border: none;
+    border: 1px solid black;
+}
+
+.toggle_active{
+    transform: translateX(9.2rem);
+    transition: 300ms ease;
+}
+
+.toggle_inactive{
+    transform: translateX(0rem);
+    transition: 300ms ease;
+}
+
+.toggle_btn_text{
+    position: absolute;
+    top: 0px;
+    width: 5.8rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    /* background-color: red; */
+    
+}
+
+.toggle_btn_text_active{
+    left: 1rem;
+    opacity: 1;
+}
+
+.toggle_btn_text_inactive{
+    right: 1.5rem;
+}
+
+.accountSettings_content>div:nth-child(3){
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.salonlogouthandler{
+    width: 14.4rem;
+    height: 4.4rem;
+    border-radius: 6.5rem;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.6rem;
 }
