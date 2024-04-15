@@ -316,8 +316,8 @@ const SalonSettings = () => {
 
       setTimeout(() => {
         window.location.reload()
-      },500)
-      
+      }, 500)
+
       setSalonbtnCheck(data?.response?.isOnline)
     }
   }, [isSuccess])
@@ -395,8 +395,8 @@ const SalonSettings = () => {
 
       setTimeout(() => {
         window.location.reload()
-      },500)
-      
+      }, 500)
+
       setMobilebtnCheck(mobilebookdata?.response?.mobileBookingAvailability)
     }
   }, [mobilebookisSuccess])
@@ -452,6 +452,8 @@ const SalonSettings = () => {
     }
   }, [adminInfo])
 
+  console.log("AdminInfoff", adminInfo)
+
   return (
     <main className='accountSettings_container'>
 
@@ -475,24 +477,28 @@ const SalonSettings = () => {
           <div>
             <div>
               <h1>Salon Status</h1>
-              <div>
-                <p className={`toggle_btn_text ${salonbtnCheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{salonbtnCheck ? "Online" : "Offline"}</p>
-                <button
-                  className={`toggle_btn ${salonbtnCheck ? 'toggle_active' : 'toggle_inactive'}`}
-                  onClick={salonOnlineHandler}
-                ></button>
-              </div>
+              {
+                Object.keys(adminInfo).length > 0 && <div>
+                  <p className={`toggle_btn_text ${salonbtnCheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{salonbtnCheck ? "Online" : "Offline"}</p>
+                  <button
+                    className={`toggle_btn ${salonbtnCheck ? 'toggle_active' : 'toggle_inactive'}`}
+                    onClick={salonOnlineHandler}
+                  ></button>
+                </div>
+              }
             </div>
 
             <div>
               <h1>Mobile Booking</h1>
-              <div>
-                <p className={`toggle_btn_text ${mobilebtnCheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{mobilebtnCheck ? "Available" : "Unavailable"}</p>
-                <button
-                  className={`toggle_btn ${mobilebtnCheck ? 'toggle_active' : 'toggle_inactive'}`}
-                  onClick={mobileBookOnlineHandler}
-                ></button>
-              </div>
+              {
+                Object.keys(adminInfo).length > 0 && <div>
+                  <p className={`toggle_btn_text ${mobilebtnCheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{mobilebtnCheck ? "Available" : "Unavailable"}</p>
+                  <button
+                    className={`toggle_btn ${mobilebtnCheck ? 'toggle_active' : 'toggle_inactive'}`}
+                    onClick={mobileBookOnlineHandler}
+                  ></button>
+                </div>
+              }
             </div>
 
           </div>

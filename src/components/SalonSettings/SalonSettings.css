@@ -294,3 +294,61 @@
     cursor: pointer;
     font-size: 1.6rem;
 }
+
+@media((min-width:0px) and (max-width:430px)){
+    .accountSettings_container{
+        height: 100vh;
+        width: 100vw;
+    }
+    .accountSettings_container>div:nth-child(1){
+        display: none;
+    }
+
+    .accountSettings_container>div:nth-child(2){
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .accountSettings_content{
+        width: 95vw;
+        height: 35vh;
+        margin: auto;
+    }
+}
+
+@media((min-width:430px) and (max-width:940px)){
+    .accountSettings_container{
+        height: 100vh;
+        width: 100vw;
+    }
+    .accountSettings_container>div:nth-child(1){
+        display: none;
+    }
+
+    .accountSettings_container>div:nth-child(2){
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .accountSettings_content{
+        width: 95vw;
+        height: 35vh;
+        margin: auto;
+    }
+}
+
+@media((min-width:940px) and (max-width:1300px)){
+    .accountSettings_container{
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        gap: 2vw;
+        grid-template-columns: 45vw calc(100vw - 45vw - 3vw);
+    }
+}
