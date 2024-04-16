@@ -563,3 +563,54 @@
     font-size: 1.6rem;
     background-color: #fff;
 }
+
+
+
+
+@media((min-width:0px) and (max-width:576px)){
+    .barber_kiyosk_container>div {
+        width: 95vw;
+        height: 80vh;
+        gap: 2rem;
+        grid-template-columns: 1fr;
+    }
+
+    .barber_kiyosk_container>div>div:nth-child(1){
+        height: 30vh;
+    }
+
+    .barber_kiyosk_container>div>div:nth-child(2){
+        height: 50vh;
+    }
+
+    .barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(2){
+        height: calc(50vh - 6rem);
+    }
+
+    .barber_kiyosk_container>div>div:nth-child(1){
+        grid-template-rows: 3fr 1fr 1fr;
+    }
+
+    .barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(1)>div>div{
+        width: 13rem;
+        height: 13rem;
+    }
+}
+
+@media((min-width:576px) and (max-width:940px)){
+    .barber_kiyosk_container>div{
+        width: 95vw;
+    }
+
+    .barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(3)>div {
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+}
+
+
+@media((min-width:940px) and (max-width:1300px)){
+    .barber_kiyosk_container>div{
+        width: 95vw;
+    }
+}

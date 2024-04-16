@@ -415,7 +415,13 @@ const Dashboard2 = () => {
                     color: '#fff',
                 },
             });
-            setBarberbtnCheck(selectCurrentBarberdata?.foundUser?.isClockedIn)
+
+            if(barberclockonlineerror?.data?.message === "Cant clock you out as you have customers in the queue"){
+
+            }else{
+                setBarberbtnCheck(selectCurrentBarberdata?.foundUser?.isClockedIn)
+            }
+            
         }
     }, [barberclockonlineisError])
 
@@ -539,8 +545,6 @@ const Dashboard2 = () => {
 
     }
 
-    const [togglecheck, setToggleCheck] = useState(false)
-
     return (
         <main className='barber_kiyosk_container'>
             <div>
@@ -549,39 +553,39 @@ const Dashboard2 = () => {
                         <div>
                             <div>
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIXzoYdO9tqmkjlVHmpgXnOsQb9DWkz_Mfi1Jc7zNzaw&s" alt="Barber Profile" />
-                                <div className='barberonline'></div>
+                                {barberOnlineCheck ? <div className='barberonline'></div> : <div/>}
                             </div>
-                            <h1>Sagnik Nandy</h1>
+                            <h1>{selectCurrentBarberdata?.foundUser?.name}</h1>
                         </div>
                     </div>
                     <div>
                         <div>
-                            <p>Email ID: <span>sagniknandy26@gmail.com</span></p>
-                            <p>Contact: <span>1234567890</span></p>
+                            <p>Email ID: <span>{selectCurrentBarberdata?.foundUser?.email}</span></p>
+                            <p>Contact: <span>{selectCurrentBarberdata?.foundUser?.mobileNumber}</span></p>
                         </div>
                     </div>
                     <div>
                         <div>
                             <div
                                 style={{
-                                    background: togglecheck ? "#75E6A4" : "#000"
+                                    background: barberOnlineCheck ? "#75E6A4" : "#000"
                                 }}
                             >
-                                <p className={`toggle_btn_text ${togglecheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{togglecheck ? "Online" : "Offline"}</p>
+                                <p className={`toggle_btn_text ${barberOnlineCheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{barberOnlineCheck ? "Online" : "Offline"}</p>
                                 <button
-                                    className={`toggle_btn ${togglecheck ? 'toggle_active' : 'toggle_inactive'}`}
-                                    onClick={() => setToggleCheck((prev) => !prev)}
+                                    className={`toggle_btn ${barberOnlineCheck ? 'toggle_active' : 'toggle_inactive'}`}
+                                    onClick={barberOnlineHandler}
                                 ></button>
                             </div>
                             <div
                                 style={{
-                                    background: togglecheck ? "#75E6A4" : "#000"
+                                    background: barberbtnCheck ? "#75E6A4" : "#000"
                                 }}
                             >
-                                <p className={`toggle_btn_text ${togglecheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{togglecheck ? "Clock In" : "Clock Out"}</p>
+                                <p className={`toggle_btn_text ${barberbtnCheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{barberbtnCheck ? "Clock In" : "Clock Out"}</p>
                                 <button
-                                    className={`toggle_btn ${togglecheck ? 'toggle_active' : 'toggle_inactive'}`}
-                                    onClick={() => setToggleCheck((prev) => !prev)}
+                                    className={`toggle_btn ${barberbtnCheck ? 'toggle_active' : 'toggle_inactive'}`}
+                                    onClick={clockHandler}
                                 ></button>
                             </div>
                         </div>
@@ -597,105 +601,20 @@ const Dashboard2 = () => {
                     </div>
 
                     <div>
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
-
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
-
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
-
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
-
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
-
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
-                        <div>
-                            <p>Monday</p>
-                            <p>2024-04-08</p>
-                            <p>10:20:36</p>
-                            <p>16:12:22</p>
-                        </div>
+                        {
+                            getAttendenceByBarberIdKioskisSuccess && getAttendenceByBarberIdKioskdata.response.attendance.map((b, i) => (
+                                <div key={b._id}>
+                                    <p>{b.day}</p>
+                                    <p>{b.date}</p>
+                                    <p>{b.signInTime === "" ? "-" : b.signInTime}</p>
+                                    <p>{b.signOutTime === "" ? "-" : b.signOutTime}</p>
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
 
-                <div className='close_dashboard'><IoMdClose /></div>
+                <div className='close_dashboard' onClick={logoutClicked}><IoMdClose /></div>
             </div>
         </main>
     )
