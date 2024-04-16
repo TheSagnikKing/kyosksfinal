@@ -412,7 +412,7 @@ const JoinQueue = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                        )) : (<h2>No barber Available</h2>)
+                                        )) : (<h2>No currently barbers available</h2>)
                                     }
 
                                 </div>
@@ -462,9 +462,9 @@ const JoinQueue = () => {
 
                                                 </div>
 
-                                                <div>
+                                                {/* <div>
                                                     <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>(5.0)</h1><p style={{ color: modelcolorfnc2(selectedServices, item) }}>20 reviews</p>
-                                                </div>
+                                                </div> */}
 
                                             </div>
                                         ))
@@ -513,9 +513,9 @@ const JoinQueue = () => {
 
                                                 </div>
 
-                                                <div>
+                                                {/* <div>
                                                     <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>(5.0)</h1><p style={{ color: modelcolorfnc2(selectedServices, item) }}>40 reviews</p>
-                                                </div>
+                                                </div> */}
 
                                             </div>
                                         ))
@@ -563,7 +563,7 @@ const JoinQueue = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                        )) : (<h2>No barber Available</h2>)
+                                        )) : (<h2>No currently barbers available</h2>)
                                     }
 
                                 </div>

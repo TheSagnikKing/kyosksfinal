@@ -177,7 +177,7 @@ const Public = () => {
           }
         </div>
 
-        <div />
+        <h1>{data?.response?.salonName}</h1>
 
         <button onClick={() => settingClicked()}><SettingsIcon /></button>
 
