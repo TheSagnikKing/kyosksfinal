@@ -8,8 +8,8 @@
 }
 
 .carousel .control-dots .dot{
-    width: 20px !important;
-    height: 20px !important;
+    width: 2rem !important;
+    height: 2rem !important;
 }
 
 .public__main__top {
