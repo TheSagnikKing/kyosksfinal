@@ -75,9 +75,13 @@ input:focus{
   align-items: center;
 }
 
+@media((min-width:0px) and (max-width:380px)){
+  :root{
+    font-size: 28%;
+  }
+}
 
-
-@media((min-width:0px) and (max-width:430px)){
+@media((min-width:380px) and (max-width:430px)){
   :root{
     font-size: 38%;
   }
@@ -95,5 +99,23 @@ input:focus{
   }
 }
 
+/* @media screen and (min-width: 0px) and (max-width: 379px) {
+  :root {
+    font-size: 28%;
+  }
+}
+
+@media screen and (min-width: 380px) and (max-width: 429px) {
+  :root {
+    font-size: 38%;
+  }
+} */
 
 
+
+
+
+
+/* @media only screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { */
+  /* high-resolution-specific styles */
+/* } */
