@@ -218,3 +218,9 @@
     font-size: 4rem;
     color: #000;
 }
+
+@media((min-width:0px) and (max-width:430px)){
+    .queuelist__container__main{
+        height: 75vh;
+    }
+}

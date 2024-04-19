@@ -19,6 +19,10 @@ input:focus{
   outline: none;
 }
 
+input{
+  font-size: 1.4rem;
+}
+
 
 :root{
   font-size: 62.5%;
@@ -40,21 +44,23 @@ input:focus{
   align-items: center;
 }
 
-@media((min-width:0px) and (max-width:380px)){
-  :root{
-    font-size: 28%;
-  }
-}
-
-@media((min-width:380px) and (max-width:430px)){
+@media((min-width:0px) and (max-width:430px)){
   :root{
     font-size: 38%;
+  }
+
+  input{
+    font-size: 2rem;
   }
 }
 
 @media((min-width:430px) and (max-width:940px)){
   :root{
     font-size: 45%;
+  }
+
+  input{
+    font-size: 1.8rem;
   }
 }
 

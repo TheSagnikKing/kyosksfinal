@@ -16,7 +16,7 @@
 
     .modal__content{
         width: 100rem;
-        height: 57rem;
+        height: 59rem;
         background-color:var(--secondary-color);
         padding: 2rem;
         border-radius: 2rem;
@@ -38,6 +38,7 @@
         box-shadow: 0px 0px 4px rgba(0,0,0,0.4);
         color: red;
         font-weight: 500;
+        font-size: 1.6rem;
     }
 
 
@@ -101,7 +102,7 @@
     }
 
     .modal__content{
-        width: 50.8rem;
+        width: 90vw;
         height: 57rem;
         background-color:var(--secondary-color);
         padding: 2rem;
