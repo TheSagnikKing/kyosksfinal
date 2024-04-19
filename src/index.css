@@ -17,7 +17,7 @@ input:focus{
 
 
 :root{
-  font-size: 10px;
+  font-size: 62.5%;
   --primary-color:#000;
   --secondary-color:#fff;
   --tertiary-color:#EEEDED;
@@ -38,25 +38,25 @@ input:focus{
 
 @media((min-width:0px) and (max-width:380px)){
   :root{
-    font-size: 10px;
+    font-size: 28%;
   }
 }
 
 @media((min-width:380px) and (max-width:430px)){
   :root{
-    font-size: 10px;
+    font-size: 38%;
   }
 }
 
 @media((min-width:430px) and (max-width:940px)){
   :root{
-    font-size: 14px;
+    font-size: 45%;
   }
 }
 
 @media((min-width:940px) and (max-width:1200px)){
   :root{
-    font-size: 14px;
+    font-size: 52.5%;
   }
 }
 
