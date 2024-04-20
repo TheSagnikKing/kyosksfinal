@@ -469,9 +469,31 @@ const SalonSettings = () => {
 
         <div className='accountSettings_content'>
           <div>
-            {
-              defaultsalonisLoading ? <div className='salonsetting_salonlogo_skeleton'></div> : defaultsalonsuccess ? <div><img src={defaultsalondata?.response?.salonLogo[0]?.url} alt="Salon Logo" /></div> : <div><img src="/no-image.webp" alt="" /></div>
-            }
+
+            {defaultsalonisLoading ? (
+              <div className='salonsetting_salonlogo_skeleton'></div>
+            ) : defaultsalonsuccess ? (
+              <div>
+                {defaultsalondata?.response?.salonLogo.length > 0 ? (
+                  <img
+                    src={defaultsalondata?.response?.salonLogo[0]?.url}
+                  />
+                ) : (
+                  <img
+                    src="./no-image.webp"
+                    alt="No Salon Logo"
+                  />
+                )}
+              </div>
+            ) : (
+              <div>
+                <img
+                  src="./no-image.webp"
+                  alt="No Salon Logo"
+                />
+              </div>
+            )}
+
             <h1>Salon Name</h1>
           </div>
           <div>
