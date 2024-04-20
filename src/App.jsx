@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BarberKiyoskDashboardProtect from './components/Protected/Barber/BarberKiyoskDashboardProtect';
 import { Grid } from 'react-loader-spinner';
 import CancelServeLogin from './components/QueueList/CancelServeLogin/CancelServeLogin';
+import Demo from './components/Demo/Demo';
 
 const Public = React.lazy(() => import("./components/public/Public"));
 const JoinQueue = React.lazy(() => import("./components/JoinQueue/JoinQueue"));
@@ -75,6 +76,8 @@ const App = () => {
 
 
           <Route path='/table' element={<Table />} />
+
+          <Route path="/demo" element={<Demo/>}/>
 
         </Routes>
       </Suspense>
