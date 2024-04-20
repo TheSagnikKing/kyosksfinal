@@ -2,18 +2,20 @@ import React, { useEffect, useState } from 'react'
 import './SalonSignin.css'
 import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { GoogleLogin } from '@react-oauth/google'
 import { ColorRing } from 'react-loader-spinner'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
 
 import { useAdminLoginKioskMutation, useGoogleAdminLoginKioskMutation } from '../../AdminSignin/adminsigninApiSlice'
-import { setAdminCredentials } from '../../AdminSignin/adminauthSlice'
+import { selectCurrentAdminInfo, setAdminCredentials } from '../../AdminSignin/adminauthSlice'
 import { IoMdHome } from 'react-icons/io'
 import { useSalonAccountLoginMutation } from '../salonSlice'
 
 
 const SalonSignin = () => {
+
+    const adminInfo = useSelector(selectCurrentAdminInfo)
 
     const [adminlogin, {
         data,
@@ -106,7 +108,7 @@ const SalonSignin = () => {
     }, [salonloginisSuccess, salonloginisError, navigate])
 
     const loginHandler = async () => {
-        const admindata = { email, password, role }
+        const admindata = { email, password, role,salonId:adminInfo?.salonId }
         console.log(admindata)
 
         salonAccountLogin(admindata)
