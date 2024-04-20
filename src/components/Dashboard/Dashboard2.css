@@ -568,11 +568,17 @@
 
 
 @media((min-width:0px) and (max-width:576px)){
+    .barber_kiyosk_container{
+        display: block;
+        padding-block: 3rem;
+    }
+
     .barber_kiyosk_container>div {
         width: 95vw;
         height: 80vh;
         gap: 2rem;
         grid-template-columns: 1fr;
+        margin: auto;
     }
 
     .barber_kiyosk_container>div>div:nth-child(1){
@@ -594,6 +600,16 @@
     .barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(1)>div>div{
         width: 13rem;
         height: 13rem;
+    }
+
+    .barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(1)>div{
+        padding-top: 1rem;
+    }
+
+    .close_dashboard{
+        top:-2rem;
+        right: -1rem;
+
     }
 }
 
