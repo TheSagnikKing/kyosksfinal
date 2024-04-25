@@ -611,6 +611,10 @@
         right: -1rem;
 
     }
+
+    .barberonline{
+        right: -0.5rem;
+    }
 }
 
 @media((min-width:576px) and (max-width:940px)){

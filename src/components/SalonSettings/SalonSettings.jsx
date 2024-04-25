@@ -452,7 +452,7 @@ const SalonSettings = () => {
     }
   }, [adminInfo])
 
-  console.log("AdminInfoff", adminInfo)
+  console.log("AdminInfoff", defaultsalondata)
 
   return (
     <main className='accountSettings_container'>
@@ -494,7 +494,7 @@ const SalonSettings = () => {
               </div>
             )}
 
-            <h1>Salon Name</h1>
+            <h1>{defaultsalondata?.response?.salonName}</h1>
           </div>
           <div>
             <div>
