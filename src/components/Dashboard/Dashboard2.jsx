@@ -522,9 +522,11 @@ const Dashboard2 = () => {
                     color: '#fff',
                 },
             });
+
+            // console.log("BARBER ONLINE ERROR",selectCurrentBarberdata?.foundUser?.isOnline)
             setBarberOnlineCheck(selectCurrentBarberdata?.foundUser?.isOnline)
         }
-    }, [barberonlineerror])
+    }, [barberonlineerror,setBarberOnlineCheck])
 
 
     const barberOnlineHandler = () => {
