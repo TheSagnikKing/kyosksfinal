@@ -436,9 +436,6 @@ const SalonSettings = () => {
     getDefaultSalonByAdminKiosk,
     {
       data: defaultsalondata,
-      // isSuccess,
-      // isError,
-      // error,
       isLoading: defaultsalonisLoading,
       isSuccess: defaultsalonsuccess,
       isError: defaultsalonisError,
