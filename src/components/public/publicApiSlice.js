@@ -3,10 +3,10 @@ import { apiSlice } from "../app/api/apiSlice"
 export const publicApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         GetDefaultSalonByAdminKiosk: builder.mutation({
-            query: (adminEmail) => ({
+            query: (salondata) => ({
                 url: `/kiosk/getDefaultSalonByAdminKiosk`,
                 method: 'POST',
-                body:{adminEmail:adminEmail}
+                body:salondata
             })
         }),
         AdminConnectKiosk: builder.mutation({

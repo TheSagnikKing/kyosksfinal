@@ -8,13 +8,13 @@ import { setAdminCredentials, setAdminToken } from './adminauthSlice'
 import { useDispatch } from 'react-redux'
 import { GoogleLogin } from '@react-oauth/google'
 import { ColorRing } from 'react-loader-spinner'
-import {showEye} from '../../icons'
+import { showEye } from '../../icons'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
 
 
 const AdminSignin = () => {
 
-    console.log(showEye)
+    const [role, setRole] = useState("Admin")
 
     const [adminlogin, {
         data,
@@ -82,17 +82,11 @@ const AdminSignin = () => {
     }, [googleAdminLoginKioskisSuccess, googleAdminLoginKioskisError, navigate])
 
     const loginHandler = async () => {
-        const admindata = { email, password }
+        const admindata = { email, password, role }
         console.log(admindata)
 
         adminlogin(admindata)
-
-        // const {data} = await axios.post('https://iqb-kiosk.onrender.com/kiosk/adminLoginKiosk',admindata)
-        // console.log(data)
-
     }
-
-
 
     const responseMessage = async (response) => {
         console.log(response.credential)
@@ -127,7 +121,7 @@ const AdminSignin = () => {
             </div>
 
             <div className='admin__signin__main__right'>
-                <h1>Admin Login</h1>
+                <h1>Login</h1>
 
                 <div className='admin__signin__main__form'>
                     <div>
@@ -154,10 +148,33 @@ const AdminSignin = () => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash/>}</div>
+                            <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                         </div>
                     </div>
 
+                    <div className='rolediv'>
+                        <h1>Select Role</h1>
+
+                        <div>
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    checked={role === "Admin" ? true : false}
+                                    onChange={() => setRole("Admin")}
+                                />
+                                <p>Admin</p>
+                            </div>
+
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    checked={role === "Barber" ? true : false}
+                                    onChange={() => setRole("Barber")}
+                                />
+                                <p>Barber</p>
+                            </div>
+                        </div>
+                    </div>
 
                     <div>
                         {isLoading ? <button><ColorRing
@@ -169,8 +186,7 @@ const AdminSignin = () => {
                             wrapperClass="color-ring-wrapper"
                             colors={['#87a96b', '#87a96b', '#87a96b', '#87a96b', '#87a96b']}
                         /></button> : <button onClick={loginHandler}>LOGIN</button>}
-                        {/* <button className='google-btn'> */}
-                        <div>
+                        {/* <div>
                             <GoogleLogin
                                 onSuccess={responseMessage}
                                 onError={errorMessage}
@@ -180,9 +196,8 @@ const AdminSignin = () => {
                                 logo_alignment='left'
                                 text='continue_with'
                             />
-                        </div>
+                        </div> */}
 
-                        {/* </button> */}
                     </div>
 
                 </div>

@@ -11,6 +11,9 @@ import { ColorRing } from 'react-loader-spinner'
 import { RiVipCrownFill } from 'react-icons/ri'
 import { IoMdHome } from 'react-icons/io'
 
+import { PhoneInput } from 'react-international-phone';
+import 'react-international-phone/style.css';
+
 const JoinQueue = () => {
 
     const adminInfo = useSelector(selectCurrentAdminInfo)
@@ -263,8 +266,8 @@ const JoinQueue = () => {
                 },
             });
         } else {
-            // console.log(joinqueuedata)
-            joinQueueKiosk(joinqueuedata)
+            console.log(joinqueuedata)
+            // joinQueueKiosk(joinqueuedata)
         }
     }
 
@@ -284,20 +287,20 @@ const JoinQueue = () => {
 
     return (
         <main className='joinqueue__main__container'>
-            
+
             <div className='joinqueue__main__left'>
                 <img src="/joinqueue.png" alt="joinqueue" />
             </div>
 
             <div className='joinqueue__main__right'>
 
-            <Link to="/kiyosk"
-                className='homeiconClass'
-            ><IoMdHome /></Link>
+                <Link to="/kiyosk"
+                    className='homeiconClass'
+                ><IoMdHome /></Link>
 
                 <div className='joinqueue__main__right__form'>
                     <h1>Join Queue</h1>
-                    
+
                     <div className='joinqueue__main__right__form_top'>
                         <div>
                             <p>Full Name</p>
@@ -311,16 +314,14 @@ const JoinQueue = () => {
 
                         <div>
                             <p>Contact No. (Optional)</p>
-                            <input
-                                type="text"
-                                pattern="[0-9]*"
-                                placeholder="+44 | Placeholder"
-                                value={mobileNumber === 0 ? "" : mobileNumber}
-                                onChange={(e) => {
-                                    const enteredValue = e.target.value.replace(/\D/, ''); // Remove non-numeric characters
-                                    setMobileNumber(enteredValue);
-                                }}
-                            />
+                            <div className='phone_input_container'>
+                                <PhoneInput
+                                    forceDialCode={true}
+                                    defaultCountry="gb"
+                                    value={mobileNumber}
+                                    onChange={(phone) => setMobileNumber(phone)}
+                                />
+                            </div>
                         </div>
                     </div>
 

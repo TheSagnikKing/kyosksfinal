@@ -445,7 +445,11 @@ const SalonSettings = () => {
 
   useEffect(() => {
     if (adminInfo?.email) {
-      getDefaultSalonByAdminKiosk(adminInfo?.email)
+      const salondata = {
+        adminEmail: adminInfo?.email,
+        role: adminInfo?.role
+      }
+      getDefaultSalonByAdminKiosk(salondata)
     }
   }, [adminInfo])
 
@@ -498,9 +502,9 @@ const SalonSettings = () => {
               <h1>Salon Status</h1>
               {
                 Object.keys(adminInfo).length > 0 && <div
-                style={{
-                  background: salonbtnCheck ? "#75E6A4" : "#ECEBEB"
-                }}
+                  style={{
+                    background: salonbtnCheck ? "#75E6A4" : "#ECEBEB"
+                  }}
                 >
                   <p className={`toggle_btn_text ${salonbtnCheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{salonbtnCheck ? "Online" : "Offline"}</p>
                   <button
@@ -515,9 +519,9 @@ const SalonSettings = () => {
               <h1>Mobile Booking</h1>
               {
                 Object.keys(adminInfo).length > 0 && <div
-                style={{
-                  background: mobilebtnCheck ? "#75E6A4" : "#ECEBEB"
-                }}
+                  style={{
+                    background: mobilebtnCheck ? "#75E6A4" : "#ECEBEB"
+                  }}
                 >
                   <p className={`toggle_btn_text ${mobilebtnCheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{mobilebtnCheck ? "Available" : "Unavailable"}</p>
                   <button

@@ -17,12 +17,6 @@ const Demo = () => {
                     <p>Classic Touch</p>
                 </div>
 
-                {/* <div>
-                    <div><FaHome/></div>
-                    <div><IoMdSettings/></div>
-                    <div><RiAccountCircleFill/></div>
-                </div> */}
-
                 <div className='btn_group'>
                     <button>Queue List</button>
                     <button>Join Queue</button>
@@ -50,10 +44,6 @@ const Demo = () => {
                     </div>
                 </Carousel>
 
-                {/* <div className='btn_group'>
-                    <button>Queue List</button>
-                    <button>Join Queue</button>
-                </div> */}
 
                 <div className='icon_group'>
                     <div><FaHome /></div>

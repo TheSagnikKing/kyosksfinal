@@ -3,7 +3,7 @@
     width: 100%;
     background-color: var(--secondary-color);
     display: grid;
-    grid-template-columns: 45.9rem calc(100% - 45.9rem);
+    grid-template-columns: 65.9rem calc(100% - 65.9rem);
     overflow-y: hidden;
 }
 
@@ -405,7 +405,35 @@
     /* color of the scrollbar handle when dragged */
 }
 
+.phone_input_container{
+    height: 4.4rem;
+    width: 100%;
+    border-radius: 3.2rem;
+    padding-inline: 1rem;
+    border: none;
+    background-color: var(--tertiary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.react-international-phone-input-container{
+    width: 100%;
+    height: 4.4rem;
+}
+
+.react-international-phone-country-selector-button{
+    background-color: transparent !important;
+    border: none !important;
+    border-right: 2px solid #c6c6c6 !important;
+    height: 4.4rem !important;
+}
+
+.react-international-phone-input-container .react-international-phone-input{
+    background-color: transparent !important;
+    border: none !important;
+    height: 4.4rem !important;
+}
 
 @media((min-width:430px) and (max-width:940px)) {
     .joinqueue__main__container {
@@ -436,6 +464,7 @@
         justify-content: center;
         align-items: center;
         order: 2;
+        display: none;
     }
 
     .joinqueue__main__left>img {
@@ -786,5 +815,11 @@
 
     .select_barber_item p{
         font-size: 1.8rem !important;
+    }
+}
+
+@media((min-width:940px) and (max-width:1400px)){
+    .joinqueue__main__container {
+        grid-template-columns: 45.9rem calc(100% - 45.9rem);
     }
 }
