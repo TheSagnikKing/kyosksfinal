@@ -2,9 +2,9 @@ import { apiSlice } from "../app/api/apiSlice"
 
 export const publicApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
-        GetDefaultSalonByAdminKiosk: builder.mutation({
+        GetDefaultSalonByKiosk: builder.mutation({
             query: (salondata) => ({
-                url: `/kiosk/getDefaultSalonByAdminKiosk`,
+                url: `/kiosk/getDefaultSalonKiosk`,
                 method: 'POST',
                 body:salondata
             })
@@ -34,4 +34,4 @@ export const publicApiSlice = apiSlice.injectEndpoints({
     })
 })
 
-export const { useGetDefaultSalonByAdminKioskMutation, useAdminConnectKioskMutation,useGetAllSalonsByAdminMutation,useGerAllAdvertisementsKioskMutation } = publicApiSlice
+export const { useGetDefaultSalonByKioskMutation, useAdminConnectKioskMutation,useGetAllSalonsByAdminMutation,useGerAllAdvertisementsKioskMutation } = publicApiSlice

@@ -274,7 +274,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 import { IoMdHome } from 'react-icons/io'
-import { useGetDefaultSalonByAdminKioskMutation } from '../public/publicApiSlice'
+import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
 import Skeleton from 'react-loading-skeleton'
 
 const SalonSettings = () => {
@@ -433,7 +433,7 @@ const SalonSettings = () => {
   }
 
   const [
-    getDefaultSalonByAdminKiosk,
+    getDefaultSalonByKiosk,
     {
       data: defaultsalondata,
       isLoading: defaultsalonisLoading,
@@ -441,15 +441,15 @@ const SalonSettings = () => {
       isError: defaultsalonisError,
       error: defaultsalonerror
     }
-  ] = useGetDefaultSalonByAdminKioskMutation()
+  ] = useGetDefaultSalonByKioskMutation()
 
   useEffect(() => {
     if (adminInfo?.email) {
       const salondata = {
-        adminEmail: adminInfo?.email,
+        email: adminInfo?.email,
         role: adminInfo?.role
       }
-      getDefaultSalonByAdminKiosk(salondata)
+      getDefaultSalonByKiosk(salondata)
     }
   }, [adminInfo])
 

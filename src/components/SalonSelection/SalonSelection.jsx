@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './SalonSelection.css'
-import { useAdminConnectKioskMutation, useGetAllSalonsByAdminMutation, useGetDefaultSalonByAdminKioskMutation } from '../public/publicApiSlice'
+import { useAdminConnectKioskMutation, useGetAllSalonsByAdminMutation, useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
 import { useSelector } from 'react-redux'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useNavigate } from 'react-router-dom'
@@ -19,7 +19,7 @@ const SalonSelection = () => {
     console.log(adminInfo)
 
     const [
-        getDefaultSalonByAdminKiosk,
+        getDefaultSalonByKiosk,
         {
             data,
             isSuccess,
@@ -27,7 +27,7 @@ const SalonSelection = () => {
             error,
             isLoading
         }
-    ] = useGetDefaultSalonByAdminKioskMutation()
+    ] = useGetDefaultSalonByKioskMutation()
 
     const [
         adminConnectKiosk,
@@ -55,10 +55,10 @@ const SalonSelection = () => {
     useEffect(() => {
         if (adminInfo?.email) {
             const salondata = {
-                adminEmail:adminInfo?.email,
+                email:adminInfo?.email,
                 role:adminInfo?.role
             }
-            getDefaultSalonByAdminKiosk(salondata)
+            getDefaultSalonByKiosk(salondata)
             getAllSalonsByAdmin(adminInfo?.email)
         }
     }, [adminInfo])

@@ -267,7 +267,7 @@ const JoinQueue = () => {
             });
         } else {
             console.log(joinqueuedata)
-            // joinQueueKiosk(joinqueuedata)
+            joinQueueKiosk(joinqueuedata)
         }
     }
 

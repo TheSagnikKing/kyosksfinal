@@ -7,7 +7,7 @@ import { GoogleLogin } from '@react-oauth/google'
 import { ColorRing } from 'react-loader-spinner'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
 
-import { useAdminLoginKioskMutation, useGoogleAdminLoginKioskMutation } from '../../AdminSignin/adminsigninApiSlice'
+import { useLoginKioskMutation, useGoogleAdminLoginKioskMutation } from '../../AdminSignin/adminsigninApiSlice'
 import { selectCurrentAdminInfo, setAdminCredentials } from '../../AdminSignin/adminauthSlice'
 import { IoMdHome } from 'react-icons/io'
 import { useSalonAccountLoginMutation } from '../salonSlice'
@@ -17,13 +17,13 @@ const SalonSignin = () => {
 
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
-    const [adminlogin, {
+    const [login, {
         data,
         isSuccess,
         isError,
         isLoading,
         error
-    }] = useAdminLoginKioskMutation()
+    }] = useLoginKioskMutation()
 
 
     const [
@@ -108,15 +108,10 @@ const SalonSignin = () => {
     }, [salonloginisSuccess, salonloginisError, navigate])
 
     const loginHandler = async () => {
-        const admindata = { email, password, role,salonId:adminInfo?.salonId }
-        console.log(admindata)
+        const data = { email, password, role,salonId:adminInfo?.salonId }
+        console.log(data)
 
-        salonAccountLogin(admindata)
-
-        // adminlogin(admindata)
-
-        // const {data} = await axios.post('https://iqb-kiosk.onrender.com/kiosk/adminLoginKiosk',admindata)
-        // console.log(data)
+        salonAccountLogin(data)
 
     }
 

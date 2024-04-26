@@ -4,14 +4,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BarberKiyoskDashboardProtect from './components/Protected/Barber/BarberKiyoskDashboardProtect';
 import { Grid } from 'react-loader-spinner';
 import CancelServeLogin from './components/QueueList/CancelServeLogin/CancelServeLogin';
-import Demo from './components/Demo/Demo';
 
 const Public = React.lazy(() => import("./components/public/Public"));
 const JoinQueue = React.lazy(() => import("./components/JoinQueue/JoinQueue"));
 const QueueList = React.lazy(() => import("./components/QueueList/QueueList"))
 const BarberSignin = React.lazy(() => import("./components/barber/Signin/Signin"));
 const AdminSignin = React.lazy(() => import("./components/AdminSignin/AdminSignin"))
-const Table = React.lazy(() => import("./components/barber/demo/Table"))
 const KiyoskDashboard = React.lazy(() => import("./components/Dashboard/Dashboard2"))
 const SalonSelection = React.lazy(() => import("./components/SalonSelection/SalonSelection"))
 
@@ -73,12 +71,6 @@ const App = () => {
               </Route>
             </Route>
           </Route>
-
-
-          <Route path='/table' element={<Table />} />
-
-          <Route path="/demo" element={<Demo/>}/>
-
         </Routes>
       </Suspense>
     </BrowserRouter>

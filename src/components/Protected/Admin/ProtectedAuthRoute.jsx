@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 const ProtectedAuthRoute = () => {
-    const loggedinAdmin = localStorage.getItem('adminkiyoskloggin')
+    const loggedinuser = localStorage.getItem('adminkiyoskloggin')
     const [outlettrue, setOutlettrue] = useState(false)
 
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(loggedinAdmin === 'true'){
+        if(loggedinuser === 'true'){
             navigate('/kiyosk')
-        }else if(loggedinAdmin === 'false' || loggedinAdmin === undefined || loggedinAdmin === 'undefined' || loggedinAdmin === null){
+        }else if(loggedinuser === 'false' || loggedinuser === undefined || loggedinuser === 'undefined' || loggedinuser === null){
             setOutlettrue(true)
         }
-    },[loggedinAdmin])
+    },[loggedinuser])
 
   return (
     <div>{ outlettrue && <Outlet />}</div>

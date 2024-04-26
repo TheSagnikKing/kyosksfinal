@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
-import { useAdminloggedinKioskMutation } from './adminprotectedAuthSlice'
+import { useLoggedinKioskMutation } from './adminprotectedAuthSlice'
 import { useDispatch } from 'react-redux'
 import { setAdminCredentials, setAdminToken } from '../../AdminSignin/adminauthSlice'
 
 const ProtectedRoute = () => {
-  const loggedinAdmin = localStorage.getItem('adminkiyoskloggin')
-  const adminkiyosktoken = localStorage.getItem('adminkiyosktoken')
+  const loggedinuser = localStorage.getItem('adminkiyoskloggin')
+  const kiyosktoken = localStorage.getItem('adminkiyosktoken')
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const [
-    adminloggedinKiosk,
+    loggedinKiosk,
     {
       isSuccess,
       data,
@@ -20,10 +20,10 @@ const ProtectedRoute = () => {
       error,
       isLoading
     }
-  ] = useAdminloggedinKioskMutation()
+  ] = useLoggedinKioskMutation()
 
   useEffect(() => {
-    if (loggedinAdmin === 'false' || loggedinAdmin === undefined || loggedinAdmin === 'undefined' || loggedinAdmin === null || !adminkiyosktoken || adminkiyosktoken === null || adminkiyosktoken === undefined || adminkiyosktoken === "undefined" || adminkiyosktoken === "") {
+    if (loggedinuser === 'false' || loggedinuser === undefined || loggedinuser === 'undefined' || loggedinuser === null || !kiyosktoken || kiyosktoken === null || kiyosktoken === undefined || kiyosktoken === "undefined" || kiyosktoken === "") {
       localStorage.setItem("adminkiyoskloggin", "false")
       navigate('/')
     } else if (isError) {
@@ -38,14 +38,14 @@ const ProtectedRoute = () => {
     } else if (isSuccess) {
        dispatch(setAdminCredentials(data))
     } else {
-      adminloggedinKiosk(adminkiyosktoken)
+      loggedinKiosk(kiyosktoken)
     }
-  }, [loggedinAdmin, adminkiyosktoken, navigate, isError,isSuccess,dispatch])
+  }, [loggedinuser, kiyosktoken, navigate, isError,isSuccess,dispatch])
 
   //ar adminkiyosktoken jodi valid thake akhane && lagate hbe
 
   return (
-    <div>{loggedinAdmin === 'true' && <Outlet />}</div>
+    <div>{loggedinuser === 'true' && <Outlet />}</div>
   )
 }
 

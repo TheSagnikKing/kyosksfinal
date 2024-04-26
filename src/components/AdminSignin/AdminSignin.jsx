@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './AdminSignin.css'
 import { useNavigate } from 'react-router-dom'
-import { useAdminLoginKioskMutation, useGoogleAdminLoginKioskMutation } from './adminsigninApiSlice'
+import { useLoginKioskMutation, useGoogleAdminLoginKioskMutation } from './adminsigninApiSlice'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import { setAdminCredentials, setAdminToken } from './adminauthSlice'
@@ -16,13 +16,13 @@ const AdminSignin = () => {
 
     const [role, setRole] = useState("Admin")
 
-    const [adminlogin, {
+    const [login, {
         data,
         isSuccess,
         isError,
         isLoading,
         error
-    }] = useAdminLoginKioskMutation()
+    }] = useLoginKioskMutation()
 
 
     const [
@@ -44,7 +44,7 @@ const AdminSignin = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            localStorage.setItem('adminkiyosktoken', data?.adminToken)
+            localStorage.setItem('adminkiyosktoken', data?.token)
             localStorage.setItem('adminkiyoskloggin', 'true')
             dispatch(setAdminToken(data))
             localStorage.setItem("salonSelect", "false")
@@ -82,10 +82,10 @@ const AdminSignin = () => {
     }, [googleAdminLoginKioskisSuccess, googleAdminLoginKioskisError, navigate])
 
     const loginHandler = async () => {
-        const admindata = { email, password, role }
-        console.log(admindata)
+        const data = { email, password, role }
+        console.log(data)
 
-        adminlogin(admindata)
+        login(data)
     }
 
     const responseMessage = async (response) => {

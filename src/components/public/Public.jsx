@@ -257,7 +257,7 @@ import { RiAccountCircleFill } from "react-icons/ri";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useSelector } from 'react-redux';
-import { useAdminConnectKioskMutation, useGerAllAdvertisementsKioskMutation, useGetAllSalonsByAdminMutation, useGetDefaultSalonByAdminKioskMutation } from './publicApiSlice'
+import { useAdminConnectKioskMutation, useGerAllAdvertisementsKioskMutation, useGetAllSalonsByAdminMutation, useGetDefaultSalonByKioskMutation } from './publicApiSlice'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import toast from 'react-hot-toast'
 
@@ -267,6 +267,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { IoIosArrowForward } from "react-icons/io";
 import { TbLogout, TbLogout2 } from 'react-icons/tb';
+import { IoMenuSharp } from 'react-icons/io5';
 
 const imagesarray = [
   {
@@ -294,7 +295,7 @@ const Public = () => {
   const [salonLogo, setSalonLogo] = useState("")
 
   const [
-    getDefaultSalonByAdminKiosk,
+    getDefaultSalonByKiosk,
     {
       data,
       isSuccess,
@@ -302,7 +303,7 @@ const Public = () => {
       error,
       isLoading
     }
-  ] = useGetDefaultSalonByAdminKioskMutation()
+  ] = useGetDefaultSalonByKioskMutation()
 
   const [
     adminConnectKiosk,
@@ -340,10 +341,10 @@ const Public = () => {
   useEffect(() => {
     if (adminInfo?.email) {
       const salondata = {
-        adminEmail: adminInfo?.email,
+        email: adminInfo?.email,
         role: adminInfo?.role
       }
-      getDefaultSalonByAdminKiosk(salondata)
+      getDefaultSalonByKiosk(salondata)
       getAllSalonsByAdmin(adminInfo?.email)
     }
   }, [adminInfo])
@@ -433,6 +434,8 @@ const Public = () => {
 
   const [icongroupdrop, setIcongroupdrop] = useState(false)
 
+  const [openmobilemenu, setOpenmobilemenu] = useState(false)
+
   return (
     <main className='public_conatainer'>
       <header>
@@ -460,6 +463,18 @@ const Public = () => {
         <div className='public_btn_group'>
           <button onClick={queuelistClicked}>Queue List</button>
           <button onClick={joinqueueClicked}>Join Queue</button>
+        </div>
+
+        <div className='mobile_public_btn_group'>
+            <div onClick={() => setOpenmobilemenu((prev) => !prev)}><IoMenuSharp />
+            {
+              openmobilemenu && <div className='mobile_public_btn_group_dropdown'>
+                <button onClick={queuelistClicked}>Queue List</button>
+                <button onClick={joinqueueClicked}>Join Queue</button>
+              </div>
+            }
+            </div>
+
         </div>
       </header>
 

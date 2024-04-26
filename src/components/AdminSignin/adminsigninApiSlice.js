@@ -2,11 +2,11 @@ import { apiSlice } from "../app/api/apiSlice"
 
 export const adminsigninApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
-        AdminLoginKiosk: builder.mutation({
-            query: (admindata) => ({
-                url: `/kiosk/adminLoginKiosk`,
+        LoginKiosk: builder.mutation({
+            query: (data) => ({
+                url: `/kiosk/loginKiosk`,
                 method: 'POST',
-                body: admindata
+                body: data
             })
         }),
         GoogleAdminLoginKiosk: builder.mutation({
@@ -20,4 +20,4 @@ export const adminsigninApiSlice = apiSlice.injectEndpoints({
     })
 })
 
-export const { useAdminLoginKioskMutation,useGoogleAdminLoginKioskMutation } = adminsigninApiSlice
+export const { useLoginKioskMutation,useGoogleAdminLoginKioskMutation } = adminsigninApiSlice
