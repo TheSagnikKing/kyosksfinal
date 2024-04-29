@@ -247,7 +247,7 @@
 
 // export default Public
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Public.css'
 
 import { FaHome } from "react-icons/fa";
@@ -436,6 +436,25 @@ const Public = () => {
 
   const [openmobilemenu, setOpenmobilemenu] = useState(false)
 
+
+  let icongroupdropRef = useRef()
+
+  useEffect(() => {
+    let icongroupdropHandler = (e) => {
+      if (!icongroupdropRef.current.contains(e.target)) {
+        setIcongroupdrop(false)
+        console.log(!icongroupdropRef.current.contains(e.target))
+      }
+    }
+
+    document.addEventListener('mousedown', icongroupdropHandler)
+
+    return () => {
+      document.removeEventListener('mousedown', icongroupdropHandler)
+    }
+  }, [])
+
+
   return (
     <main className='public_conatainer'>
       <header>
@@ -460,20 +479,22 @@ const Public = () => {
           }
         </div>
 
+        <div><img src="/IQB-Logo.png" alt="iqb" /></div>
+
         <div className='public_btn_group'>
           <button onClick={queuelistClicked}>Queue List</button>
           <button onClick={joinqueueClicked}>Join Queue</button>
         </div>
 
         <div className='mobile_public_btn_group'>
-            <div onClick={() => setOpenmobilemenu((prev) => !prev)}><IoMenuSharp />
+          <div onClick={() => setOpenmobilemenu((prev) => !prev)}><IoMenuSharp />
             {
               openmobilemenu && <div className='mobile_public_btn_group_dropdown'>
                 <button onClick={queuelistClicked}>Queue List</button>
                 <button onClick={joinqueueClicked}>Join Queue</button>
               </div>
             }
-            </div>
+          </div>
 
         </div>
       </header>
@@ -509,12 +530,15 @@ const Public = () => {
           )
         }
 
-        <div className={`public_icon_group ${icongroupdrop ? "public_icon_group_active" : "public_icon_group_inactive"}`}>      
-          <Link to="/barbersignin"><RiAccountCircleFill /></Link>
-          <Link to="/salonsignin"><IoMdSettings /></Link>
-          <div onClick={logoutHandler}><TbLogout2 /></div>
+        <div className={`public_icon_group ${icongroupdrop ? "public_icon_group_active" : "public_icon_group_inactive"}`} ref={icongroupdropRef}>
+          <Link to="/barbersignin" title="Barber Sign In"><RiAccountCircleFill /></Link>
+          <Link to="/salonsignin" title="Salon Sign In"><IoMdSettings /></Link>
+          <div onClick={logoutHandler} title="Logout"><TbLogout2 /></div>
 
-          <button className='public_icon_group_arrow' onClick={() => setIcongroupdrop((prev) => !prev)}><IoIosArrowForward /></button>
+          {
+            !icongroupdrop && <button className='public_icon_group_arrow' onClick={() => setIcongroupdrop((prev) => !prev)}><IoIosArrowForward /></button>
+          }
+
         </div>
       </section>
     </main>
