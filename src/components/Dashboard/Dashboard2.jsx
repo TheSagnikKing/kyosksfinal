@@ -560,12 +560,12 @@ const Dashboard2 = () => {
                             <h1>{selectCurrentBarberdata?.foundUser?.name}</h1>
                         </div>
                     </div>
-                    <div>
+                    {/* <div>
                         <div>
                             <p>Email ID: <span>{selectCurrentBarberdata?.foundUser?.email}</span></p>
                             <p>Contact: <span>{selectCurrentBarberdata?.foundUser?.mobileNumber}</span></p>
                         </div>
-                    </div>
+                    </div> */}
                     <div>
                         <div>
                             <div

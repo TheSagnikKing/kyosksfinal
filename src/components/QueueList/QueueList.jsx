@@ -151,6 +151,7 @@ import { PiQueueBold } from 'react-icons/pi'
 import { GiCancel } from 'react-icons/gi'
 import toast from 'react-hot-toast'
 import { RiVipCrownFill } from 'react-icons/ri'
+import { Grid } from 'react-loader-spinner'
 
 const QueueList = () => {
 
@@ -286,9 +287,16 @@ const QueueList = () => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center"
-    }}><h1 style={{
-      fontSize: "3rem"
-    }}>Wait QueueList is Loading...</h1></div>
+    }}><Grid
+        visible={true}
+        height="80"
+        width="80"
+        color="#4fa94d"
+        ariaLabel="grid-loading"
+        radius="12.5"
+        wrapperStyle={{}}
+        wrapperClass="grid-wrapper"
+      /></div>
   }
 
   if (isError) {

@@ -388,7 +388,13 @@ const JoinQueue = () => {
                                                 }}
                                             >
                                                 <div className='select_barber_item_top'>
-                                                    <div><img src="./queue-no-image.jpg" alt="barbername" /></div>
+                                                    <div>
+                                                        {b?.profile?.[0]?.url ? (
+                                                            <img src={b.profile[0].url} alt="barbername" />
+                                                        ) : (
+                                                            <img src="./queue-no-image.jpg" alt="barbername" />
+                                                        )}
+                                                    </div>
                                                     <div>
                                                         <p style={{ color: modelcolorfnc(b) }}>{b.name}</p>
                                                         {/* <p style={{ color: modelcolorfnc(b) }}>Cutting, Styling, Hair Color, Straightening</p> */}
@@ -541,7 +547,13 @@ const JoinQueue = () => {
                                                 }}
                                             >
                                                 <div className='select_barber_item_top'>
-                                                    <div><img src="./queue-no-image.jpg" alt="barbername" /></div>
+                                                    <div>
+                                                        {b?.profile?.[0]?.url ? (
+                                                            <img src={b.profile[0].url} alt="barbername" />
+                                                        ) : (
+                                                            <img src="./queue-no-image.jpg" alt="barbername" />
+                                                        )}
+                                                    </div>
                                                     <div>
                                                         <p style={{ color: modelcolorfnc(b) }}>{b.name}</p>
                                                         {/* <p style={{ color: modelcolorfnc(b) }}>Cutting, Styling, Hair Color, Straightening</p> */}
