@@ -461,7 +461,7 @@ const Dashboard2 = () => {
 
 
     const clockHandler = () => {
-        const confirm = window.confirm("Change Clock Status ?")
+        const confirm = window.confirm("Change Barber Clock Status ?")
 
         const barberdata = {
             salonId: adminInfo?.salonId,
@@ -530,7 +530,7 @@ const Dashboard2 = () => {
 
 
     const barberOnlineHandler = () => {
-        const confirm = window.confirm("Change Salon Status ?")
+        const confirm = window.confirm("Change Barber Online Status ?")
 
 
         const barberOnlinedata = {
