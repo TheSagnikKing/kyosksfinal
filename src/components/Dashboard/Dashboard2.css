@@ -369,6 +369,7 @@
 
 .barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(2){
     /* background-color: green; */
+    margin-top: -2rem;
 }
 
 .barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(2)>div{
@@ -417,11 +418,11 @@
     font-weight: bold;
 }
 
-.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(2){
+.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(3){
     /* background-color: yellow; */
 }
 
-.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(2)>div{
+.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(3)>div{
     /* background-color: rgb(255, 25, 0); */
     width: 70%;
     height: 2.5rem;
@@ -433,7 +434,7 @@
 }
 
 
-.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(2)>div>div{
+.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(3)>div>div{
     /* Each Toggle Button */
     width: 15rem;
     height: 2.5rem;

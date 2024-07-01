@@ -554,18 +554,18 @@ const Dashboard2 = () => {
                     <div>
                         <div>
                             <div>
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIXzoYdO9tqmkjlVHmpgXnOsQb9DWkz_Mfi1Jc7zNzaw&s" alt="Barber Profile" />
+                                <img src={selectCurrentBarberdata?.foundUser?.profile[0]?.url} alt="Barber Profile" />
                                 {barberOnlineCheck ? <div className='barberonline'></div> : <div/>}
                             </div>
                             <h1>{selectCurrentBarberdata?.foundUser?.name}</h1>
                         </div>
                     </div>
-                    {/* <div>
+                    <div>
                         <div>
-                            <p>Email ID: <span>{selectCurrentBarberdata?.foundUser?.email}</span></p>
-                            <p>Contact: <span>{selectCurrentBarberdata?.foundUser?.mobileNumber}</span></p>
+                            <p>{selectCurrentBarberdata?.foundUser?.email}</p>
+                            <p>{selectCurrentBarberdata?.foundUser?.mobileNumber}</p>
                         </div>
-                    </div> */}
+                    </div>
                     <div>
                         <div>
                             <div
