@@ -193,7 +193,7 @@ const JoinQueue = () => {
         customerEmail: customerEmail,
         joinedQType: "Single-Join",
         methodUsed: "Walk-In",
-        mobileNumber: Number(mobileNumber),
+        mobileNumber: mobileNumber,
         barberName: selecteBarberdata,
         barberId: selectedBarberId,
         services: selectedBarberServices
