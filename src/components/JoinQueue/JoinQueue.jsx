@@ -267,23 +267,19 @@ const JoinQueue = () => {
             });
         } else {
             console.log(joinqueuedata)
-            joinQueueKiosk(joinqueuedata)
+            // joinQueueKiosk(joinqueuedata)
         }
     }
 
     const modelcolorfnc = (b) => {
-        // const modelcolor = selectedBarber === b.name ? "var(--secondary-color)" : "var(--primary-color)"
         const modelcolor = selectedBarber === b.name ? "var(--primary-color)" : "var(--primary-color)"
         return modelcolor
     }
 
     const modelcolorfnc2 = (selectedServices, item) => {
-        // const modelcolor2 = selectedServices.find((select) => select._id === item._id) ? "var(--secondary-color)" : "var(--primary-color)"
         const modelcolor2 = selectedServices.find((select) => select._id === item._id) ? "var(--primary-color)" : "var(--primary-color)"
         return modelcolor2;
     }
-
-    //rating bole kono property nai getAvailable Barbere
 
     return (
         <main className='joinqueue__main__container'>
@@ -313,7 +309,8 @@ const JoinQueue = () => {
                         </div>
 
                         <div>
-                            <p>Contact No. (Optional)</p>
+                            {/* <p>Contact No. (Optional)</p> */}
+                            <p>Contact No.</p>
                             <div className='phone_input_container'>
                                 <PhoneInput
                                     forceDialCode={true}

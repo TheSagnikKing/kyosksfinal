@@ -254,7 +254,7 @@ const QueueList = () => {
                       <p style={{
                         color: "green",
                         fontSize: "2rem",
-                        cursor: "pointer"
+                        cursor: "pointer",
                       }}
                         onClick={() => serverHandler(q.barberId, q.services, q._id, q.barberEmail)}
                       ><PiQueueBold /></p>
