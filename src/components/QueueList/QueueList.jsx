@@ -306,12 +306,12 @@ const QueueList = () => {
         <Link to="/kiyosk"
           className='homeiconClassQueue'
         ><IoMdHome /></Link>
-        <div className='queuelist__container__main'
+        <div className='queuelist__container__main_error'
           style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
         >
           <h1
             style={{ color: "black", fontWeight: "bold", fontSize: "3rem" }}
-          >No current customers in the queueing list</h1>
+          >No queuelist available</h1>
         </div>
       </div>
     )
