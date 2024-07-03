@@ -336,8 +336,7 @@ const JoinQueue = () => {
                         </div>
 
                         <div>
-                            {/* <p>Contact No. (Optional)</p> */}
-                            <p>Contact No.</p>
+                            <p>Contact No. (Optional)</p>
                             <div className='phone_input_container'>
                                 <PhoneInput
                                     forceDialCode={true}
