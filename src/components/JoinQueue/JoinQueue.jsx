@@ -13,10 +13,37 @@ import { IoMdHome } from 'react-icons/io'
 
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
+import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
 
 const JoinQueue = () => {
 
     const adminInfo = useSelector(selectCurrentAdminInfo)
+
+    // const GetDefaultSalonByKiosk
+
+    const [
+        getDefaultSalonByAdmin,
+        {
+            data: getDefaultSalonByAdmindata,
+            isSuccess: getDefaultSalonByAdminisSuccess,
+            isError: getDefaultSalonByAdminisError,
+            error: getDefaultSalonByAdminerror,
+            isLoading: getDefaultSalonByAdminisLoading
+        }
+    ] = useGetDefaultSalonByKioskMutation()
+
+
+    useEffect(() => {
+        if (adminInfo?.email) {
+            const salondata = {
+                email: adminInfo?.email,
+                role: adminInfo?.role
+            }
+            getDefaultSalonByAdmin(salondata)
+        }
+    }, [adminInfo])
+
+    console.log("join queue default salon ", getDefaultSalonByAdmindata)
 
     const [
         getavailablebarber,
@@ -478,8 +505,8 @@ const JoinQueue = () => {
 
                                                     <div className='select_barber_services_item_content'>
                                                         <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceName}</h1>
-                                                        <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>${item.servicePrice}</h1>
-                                                        <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.barberServiceEWT}</h1>
+                                                        <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>{getDefaultSalonByAdmindata?.response?.currency}{item.servicePrice}</h1>
+                                                        <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.barberServiceEWT}{" "}mins</h1>
                                                         {item.vipService ? <div><RiVipCrownFill /></div> : <div />}
                                                         {
                                                             selectedServices.find((select) => select._id === item._id) ?
@@ -543,8 +570,8 @@ const JoinQueue = () => {
 
                                                     <div className='select_barber_services_item_content'>
                                                         <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceName}</h1>
-                                                        <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>${item.servicePrice}</h1>
-                                                        <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceEWT}</h1>
+                                                        <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>{getDefaultSalonByAdmindata?.response?.currency}{item.servicePrice}</h1>
+                                                        <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceEWT}{" "}mins</h1>
                                                         {item.vipService ? <div><RiVipCrownFill /></div> : <div />}
                                                         {
                                                             selectedServices.find((select) => select._id === item._id) ?
