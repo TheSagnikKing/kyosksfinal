@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './SalonSelection.css'
+import style from './SalonSelection.module.css'
 import { useAdminConnectKioskMutation, useGetAllSalonsByAdminMutation, useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
 import { useSelector } from 'react-redux'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { DropdownIcon } from '../../icons'
 import { toast } from 'react-hot-toast';
 import { IoMdArrowDropdownCircle } from 'react-icons/io'
+import { ColorRing } from 'react-loader-spinner'
 
 const SalonSelection = () => {
 
@@ -55,8 +56,8 @@ const SalonSelection = () => {
     useEffect(() => {
         if (adminInfo?.email) {
             const salondata = {
-                email:adminInfo?.email,
-                role:adminInfo?.role
+                email: adminInfo?.email,
+                role: adminInfo?.role
             }
             getDefaultSalonByKiosk(salondata)
             getAllSalonsByAdmin(adminInfo?.email)
@@ -135,49 +136,64 @@ const SalonSelection = () => {
     }
 
     return (
-        <main className='selectSalonContainer'>
-            <div>
-                <img src="./salon.jpg" alt="Salon IMage" />
+        <main className={style.select_salon_container}>
+            <div className={style.select_salon_container_left}>
+                <img src="./Forgot_Password.png" alt="salon_selection_img" />
             </div>
 
-            <div>
-                <div>
-                    <h1>Welcome Back {adminInfo?.name} !</h1>
-                    <div>
+            <div className={style.select_salon_container_right}>
+                <div className={style.salon_selection_container}>
+                    {
+                        adminInfo?.role === "Barber" ? <p style={{ textAlign: "center" }}>Welcome Back {adminInfo?.name} !</p> : <p>Welcome Back {adminInfo?.name} !</p>
+                    }
+
+                    <div className={style.selection_box_container}>
                         {
-                            adminInfo?.role === "Barber" ? <p style={{textAlign:"center"}}>Salon &nbsp;<span>{adminInfo?.salonName}</span></p> : adminInfo?.role === "Admin" ? <p>Selected Salon &nbsp;<span>{salonName !== "" && salonName}</span></p> : null
+                            adminInfo?.role === "Barber" ? <p style={{ textAlign: "center" }}>Selected Salon, &nbsp;<span>{adminInfo?.salonName}</span></p> : adminInfo?.role === "Admin" ? <p>Selected Salon, &nbsp;<span>{salonName !== "" && salonName}</span></p> : null
                         }
                         {
                             adminInfo?.role === "Barber" ? null : adminInfo?.role === "Admin" ? <div>
-                                <p>{salonName !== "" && salonName}</p>
-                                <div onClick={() => setSalonListDrop((prev) => (!prev))}><IoMdArrowDropdownCircle /></div>
+                                <div>
+                                    <p>{salonName !== "" && salonName}</p>
+                                    <div onClick={() => setSalonListDrop((prev) => (!prev))}><IoMdArrowDropdownCircle /></div>
 
-                                {salonlistdrop && <main
-                                    className={`salondropdown_box`}
-                                    style={{
-                                        height: getAllSalonsByAdmindata?.salons?.length > 0 && getAllSalonsByAdmindata?.salons?.length <= 4 ? "auto" : "20rem",
-                                    }}
-                                >
-                                    {getAllSalonsByAdmindata?.salons?.length > 0 &&
-                                        getAllSalonsByAdmindata?.salons.map((s, i) => (
-                                            <div key={s._id} onClick={() => salonHandler(s)}
-                                                style={{
-                                                    backgroundColor: salonName === s.salonName ? "var(--quarterny-color)" : "",
-                                                    borderBottom: i === getAllSalonsByAdmindata?.salons.length - 1 ? "none" : "1px solid #00000",
-                                                    borderTop: i === 0 && "none"
-                                                }}
-                                            ><p style={{
-                                                color: salonName === s.salonName ? "var(--secondary-color)" : "var(--primary-color)"
-                                            }}>{s.salonName}</p></div>
-                                        ))
-                                    }
-                                </main>}
+
+                                    {salonlistdrop && <main
+                                        className={style.salondropdown_box}
+                                        style={{
+                                            height: getAllSalonsByAdmindata?.salons?.length > 0 && getAllSalonsByAdmindata?.salons?.length <= 4 ? "auto" : "20rem",
+                                        }}
+                                    >
+                                        {getAllSalonsByAdmindata?.salons?.length > 0 &&
+                                            getAllSalonsByAdmindata?.salons.map((s, i) => (
+                                                <div key={s._id} onClick={() => salonHandler(s)}
+                                                    style={{
+                                                        backgroundColor: salonName === s.salonName ? "#0A84FF" : "",
+                                                        borderBottom: i === getAllSalonsByAdmindata?.salons.length - 1 ? "none" : "1px solid #00000",
+                                                        borderTop: i === 0 && "none"
+                                                    }}
+                                                ><p style={{
+                                                    // color: salonName === s.salonName ? "var(--secondary-color)" : "var(--primary-color)"
+                                                    color: salonName === s.salonName && "#fff"
+                                                }}>{s.salonName}</p></div>
+                                            ))
+                                        }
+                                    </main>}
+                                </div>
 
                             </div> : null
                         }
 
                         {
-                            adminInfo?.role === "Barber" ? <button onClick={continueHandler}>Continue</button> : adminInfo?.role === "Admin" ? Object.keys(adminInfo).length > 0 && <button onClick={applySalonHandler}>Apply</button> : null
+                            adminInfo?.role === "Barber" ? <button onClick={continueHandler} className={style.salon_selection_btn}>Continue</button> : adminInfo?.role === "Admin" ? Object.keys(adminInfo).length > 0 && adminConnectKioskisLoading ? <button className={style.salon_selection_btn}><ColorRing
+                                visible={true}
+                                height="4rem"
+                                width="4rem"
+                                ariaLabel="color-ring-loading"
+                                wrapperStyle={{}}
+                                wrapperClass="color-ring-wrapper"
+                                colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                            /></button> : <button onClick={applySalonHandler} className={style.salon_selection_btn}>Apply</button> : null
                         }
 
                     </div>

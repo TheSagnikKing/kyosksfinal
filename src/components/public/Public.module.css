@@ -1,0 +1,672 @@
+.kiyosk_dashboard_container {
+    height: 100vh;
+    width: 100%;
+}
+
+.kiyosk_header {
+    height: 7rem;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    background-color: #001F3F;
+    padding-inline: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &>div:nth-child(1) {
+        &>p {
+            color: #fff;
+        }
+    }
+}
+
+.kiyosk_body {
+    height: calc(100vh - 7rem);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 58vw 1fr;
+    gap: 2rem;
+}
+
+.kiyosk_body_left {
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+.kiyosk_body_left_top_container {
+    height: 55vh;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+
+    .carousel_item_container {
+        height: 55vh;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+
+        &>img {
+            width: 100%;
+            height: 100%;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -ms-border-radius: 3px;
+            -o-border-radius: 3px;
+        }
+    }
+}
+
+.kiyosk_body_left_bottom_container {
+    height: calc(100% - 55vh - 2rem);
+}
+
+.barber_onlinelist_container {
+    height: calc(100vh - 55vh - 2rem - 6rem - 4rem);
+    display: flex;
+    flex-direction: column;
+}
+
+
+.barber_onlinelist_row {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-inline: 1rem;
+}
+
+.barber_online_item {
+    background-color: #fff;
+    width: 33%;
+    height: 10rem;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    padding-right: 1rem;
+    padding-left: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    border-left: 5px solid limegreen;
+
+    &>div:nth-child(1) {
+        width: 6.5rem;
+        height: 6.5rem;
+        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        position: relative;
+
+        &>img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+        }
+
+        .barber_online_dot {
+            position: absolute;
+            background-color: limegreen;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            top: -1px;
+            right: 3px;
+            border: 1px solid #fff;
+        }
+    }
+
+    &>div:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        &>p:nth-child(1) {
+            font-size: 1vw;
+            font-weight: 600;
+            color: #000;
+        }
+
+        &>p {
+            font-size: 0.8vw;
+            color: gray;
+            font-weight: 500;
+        }
+
+    }
+}
+
+
+.kiyosk_body_right {
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    background-color: #fff;
+}
+
+
+
+.kiyosk_queuelist_header {
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-inline: 2rem;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+
+    &>p {
+        font-size: 0.9vw;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    &>p:nth-child(1),
+    &>p:nth-child(4) {
+        width: 15%;
+    }
+
+    &>p:nth-child(2),
+    &>p:nth-child(3) {
+        width: 35%;
+    }
+}
+
+.kiyosk_queuelist_body {
+    height: calc(100vh - 6rem - 6rem - 2rem - 2rem - 2rem);
+    overflow: auto;
+}
+
+.kiyosk_queuelist_item {
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-inline: 2rem;
+
+    &>p {
+        font-size: 0.8vw;
+        font-weight: 500;
+    }
+
+    &>p:nth-child(1),
+    &>p:nth-child(4) {
+        width: 15%;
+    }
+
+    &>p:nth-child(2),
+    &>p:nth-child(3) {
+        width: 35%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        padding-right: 1rem;
+    }
+}
+
+.kiyosk_header>div:nth-child(1) {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &>div:nth-child(1) {
+        width: 4.7rem;
+        height: 4.7rem;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+
+        &>img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+        }
+    }
+
+    &>p {
+        font-size: 0.9vw;
+        font-weight: 500;
+    }
+}
+
+.kiyosk_header>div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    &>div:nth-child(1) {
+        width: 25rem;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        &>button {
+            width: 12rem;
+            height: 100%;
+            background-color: #3A6D8C;
+            border: none;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+            font-size: 0.8vw;
+            font-weight: bold;
+            color: #fff;
+            box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+    }
+
+    &>div:nth-child(2) {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+        display: grid;
+        place-items: center;
+        font-size: 2.5rem;
+        color: blue;
+        cursor: pointer;
+        background-color: #fff;
+
+        position: relative;
+
+        .kiyosk_dropbox {
+            z-index: 100;
+            width: 18rem;
+            position: absolute;
+            right: 0rem;
+            top: 5rem;
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+            box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+
+            &>div {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                height: 4rem;
+
+                &>div {
+                    font-size: 2rem;
+                    height: 4rem;
+                    width: 4rem;
+                    display: grid;
+                    place-items: center;
+                    color: black;
+                }
+
+                &>p {
+                    font-size: 0.8vw;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
+
+.kiyosk_body_left_mobile_bottom_container {
+    display: none;
+}
+
+.mobile_queuelist,
+.mobile_joinequeue {
+    display: none !important;
+}
+
+@media screen and (min-width:0px) and (max-width:430px) {
+    .kiyosk_body {
+        height: auto;
+        grid-template-columns: 1fr;
+    }
+
+    .kiyosk_body_left_bottom_container {
+        display: none;
+    }
+
+    .kiyosk_body_left_mobile_bottom_container {
+        height: 10rem;
+        width: calc(100vw - 4rem);
+        overflow: auto;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        .kiyosk_body_left_barber_mobile_item {
+            background-color: #fff;
+            min-width: 30rem;
+            height: 10rem;
+            box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            -ms-border-radius: 6px;
+            -o-border-radius: 6px;
+            padding-right: 1rem;
+            padding-left: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            border-left: 5px solid limegreen;
+
+            &>div:nth-child(1) {
+                width: 6.5rem;
+                height: 6.5rem;
+                box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                -o-border-radius: 50%;
+                position: relative;
+
+                &>img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    -webkit-border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    -ms-border-radius: 50%;
+                    -o-border-radius: 50%;
+                }
+
+                .barber_online_dot {
+                    position: absolute;
+                    background-color: limegreen;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    -webkit-border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    -ms-border-radius: 50%;
+                    -o-border-radius: 50%;
+                    top: -1px;
+                    right: 3px;
+                    border: 1px solid #fff;
+                }
+            }
+
+            &>div:nth-child(2) {
+                display: flex;
+                flex-direction: column;
+                gap: 0.3rem;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                &>p:nth-child(1) {
+                    font-size: 2.8vw;
+                    font-weight: 600;
+                    color: #000;
+                }
+
+                &>p {
+                    font-size: 2.1vw;
+                    color: gray;
+                    font-weight: 500;
+                }
+
+            }
+        }
+    }
+
+    .kiyosk_queuelist_body {
+        height: 55vh;
+    }
+
+    .kiyosk_queuelist_item {
+        &>p {
+            font-size: 2.4vw;
+        }
+    }
+
+    .kiyosk_header {
+        height: 7rem;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+        background-color: #001F3F;
+        padding-inline: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &>div:nth-child(1) {
+            &>p {
+                font-size: 2.8vw;
+            }
+        }
+    }
+
+    .kiyosk_header>div:nth-child(2) {
+        &>div:nth-child(1) {
+            display: none;
+        }
+    }
+
+    .kiyosk_dropbox {
+
+        &>div {
+            &>p {
+                font-size: 2.4vw !important;
+            }
+        }
+    }
+
+    .mobile_queuelist,
+    .mobile_joinequeue {
+        display: flex !important;
+    }
+
+}
+
+@media screen and (min-width:431px) and (max-width:884px) {
+    .kiyosk_body {
+        height: auto;
+        grid-template-columns: 1fr;
+    }
+
+    .kiyosk_body_left_bottom_container {
+        display: none;
+    }
+
+    .kiyosk_body_left_mobile_bottom_container {
+        height: 10rem;
+        width: calc(100vw - 4rem);
+        overflow: auto;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        .kiyosk_body_left_barber_mobile_item {
+            background-color: #fff;
+            min-width: 30rem;
+            height: 10rem;
+            box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            -ms-border-radius: 6px;
+            -o-border-radius: 6px;
+            padding-right: 1rem;
+            padding-left: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            border-left: 5px solid limegreen;
+
+            &>div:nth-child(1) {
+                width: 6.5rem;
+                height: 6.5rem;
+                box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                -o-border-radius: 50%;
+                position: relative;
+
+                &>img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    -webkit-border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    -ms-border-radius: 50%;
+                    -o-border-radius: 50%;
+                }
+
+                .barber_online_dot {
+                    position: absolute;
+                    background-color: limegreen;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    -webkit-border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    -ms-border-radius: 50%;
+                    -o-border-radius: 50%;
+                    top: -1px;
+                    right: 3px;
+                    border: 1px solid #fff;
+                }
+            }
+
+            &>div:nth-child(2) {
+                display: flex;
+                flex-direction: column;
+                gap: 0.3rem;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                &>p:nth-child(1) {
+                    font-size: 1.8vw;
+                    font-weight: 600;
+                    color: #000;
+                }
+
+                &>p {
+                    font-size: 1.1vw;
+                    color: gray;
+                    font-weight: 500;
+                }
+
+            }
+        }
+    }
+
+    .kiyosk_queuelist_body {
+        height: 55vh;
+    }
+
+    .kiyosk_queuelist_item {
+        &>p {
+            font-size: 1.4vw;
+        }
+    }
+
+    .kiyosk_header {
+        height: 7rem;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+        background-color: #001F3F;
+        padding-inline: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &>div:nth-child(1) {
+            &>p {
+                font-size: 1.8vw;
+            }
+        }
+    }
+
+    .kiyosk_header>div:nth-child(2) {
+        &>div:nth-child(1) {
+            display: none;
+        }
+    }
+
+    .kiyosk_dropbox {
+        width: 25rem !important;
+
+        &>div {
+            &>p {
+                font-size: 1.4vw !important;
+            }
+        }
+    }
+
+    .mobile_queuelist,
+    .mobile_joinequeue {
+        display: flex !important;
+    }
+
+    .kiyosk_queuelist_header {
+        height: 8rem;
+        &>p {
+            font-size: 1.7vw;
+        }
+    }
+
+    .kiyosk_queuelist_item{
+        height: 8rem;
+
+        &>p{
+            font-size: 1.6vw;
+        }
+    }
+
+    .kiyosk_body_left_top_container {
+        height: 45vh;
+
+        .carousel_item_container{
+            height: 45vh;
+        }
+    }
+
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './AdminSignin.css'
+import style from './AdminSignin.module.css'
 import { useNavigate } from 'react-router-dom'
 import { useLoginKioskMutation, useGoogleAdminLoginKioskMutation } from './adminsigninApiSlice'
 import toast from 'react-hot-toast'
@@ -115,46 +115,38 @@ const AdminSignin = () => {
     const [showPassword, setShowPassword] = useState(false)
 
     return (
-        <main className='admin__signin__main__container'>
-            <div className='admin__signin__main__left'>
-                <img src="/signin.png" alt="joinqueue" />
+        <main className={style.admin__signin__main__container}>
+            <div className={style.admin__signin__main__left}>
+                <img src="/Signup.png" alt="signin" />
             </div>
 
-            <div className='admin__signin__main__right'>
-                <h1>Login</h1>
+            <div className={style.admin__signin__main__right}>
 
-                <div className='admin__signin__main__form'>
-                    <div>
-                        <h1>Email</h1>
+                <div className={style.admin_signin_form_container}>
+                    <div><img src="./IQB-Logo.png" alt="iqb_logo" /></div>
 
-                        <div>
-                            <input
-                                type="text"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder='Enter Your Email'
-                            />
-                        </div>
+                    <div className={style.email_container}>
+                        <input
+                            type="text"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder='Enter Your Email'
+                        />
 
                     </div>
 
-                    <div className='password_field'>
-                        <h1>Password</h1>
-
-                        <div>
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                placeholder='Enter Your Password'
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                            <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
-                        </div>
+                    <div className={style.password_container}>
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            id="input_password"
+                            placeholder='Enter Your Password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                     </div>
 
-                    <div className='rolediv'>
-                        <h1>Select Role</h1>
-
+                    <div className={style.rolediv}>
                         <div>
                             <div>
                                 <input
@@ -176,30 +168,17 @@ const AdminSignin = () => {
                         </div>
                     </div>
 
-                    <div>
-                        {isLoading ? <button><ColorRing
-                            visible={true}
-                            height="4rem"
-                            width="4rem"
-                            ariaLabel="color-ring-loading"
-                            wrapperStyle={{}}
-                            wrapperClass="color-ring-wrapper"
-                            colors={['#87a96b', '#87a96b', '#87a96b', '#87a96b', '#87a96b']}
-                        /></button> : <button onClick={loginHandler}>LOGIN</button>}
-                        {/* <div>
-                            <GoogleLogin
-                                onSuccess={responseMessage}
-                                onError={errorMessage}
-                                size='large'
-                                shape='circle'
-                                width={screenwidth <= 400 ? 200 : screenwidth >= 400 && screenwidth <= 940 ? 235 : 324}
-                                logo_alignment='left'
-                                text='continue_with'
-                            />
-                        </div> */}
-
-                    </div>
-
+                    {isLoading ? <button className={style.signin_btn}><ColorRing
+                        visible={true}
+                        height="4rem"
+                        width="4rem"
+                        ariaLabel="color-ring-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="color-ring-wrapper"
+                        colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                    /></button> : <button onClick={loginHandler}
+                        className={style.signin_btn}
+                    >Sign in</button>}
                 </div>
 
             </div>
