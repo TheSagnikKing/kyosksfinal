@@ -6,13 +6,13 @@ export const publicApiSlice = apiSlice.injectEndpoints({
             query: (salondata) => ({
                 url: `/kiosk/getDefaultSalonKiosk`,
                 method: 'POST',
-                body:salondata
+                body: salondata
             })
         }),
         AdminConnectKiosk: builder.mutation({
             query: (admidata) => ({
                 url: '/kiosk/adminConnectKiosk',
-                method:'POST',
+                method: 'POST',
                 body: admidata
             }),
             invalidatesTags: ['adminloggin']
@@ -21,17 +21,23 @@ export const publicApiSlice = apiSlice.injectEndpoints({
             query: (adminEmail) => ({
                 url: '/kiosk/getAllSalonsByAdmin',
                 method: 'POST',
-                body: {adminEmail}
+                body: { adminEmail }
             })
         }),
         GerAllAdvertisementsKiosk: builder.mutation({
             query: (salonId) => ({
                 url: '/kiosk/getAllAdvertisementsKiosk',
-                method:"POST",
-                body:{salonId}
+                method: "POST",
+                body: { salonId }
+            })
+        }),
+        GetAllBarbersBySalonId: builder.query({
+            query: (salonId) => ({
+                url: `/kiosk/getAllBarbersBySalonId?salonId=${salonId}`,
+                method: "GET",
             })
         })
     })
 })
 
-export const { useGetDefaultSalonByKioskMutation, useAdminConnectKioskMutation,useGetAllSalonsByAdminMutation,useGerAllAdvertisementsKioskMutation } = publicApiSlice
+export const { useGetDefaultSalonByKioskMutation, useAdminConnectKioskMutation, useGetAllSalonsByAdminMutation, useGerAllAdvertisementsKioskMutation, useLazyGetAllBarbersBySalonIdQuery } = publicApiSlice
