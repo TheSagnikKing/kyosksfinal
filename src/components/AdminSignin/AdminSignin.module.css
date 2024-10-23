@@ -4,7 +4,6 @@
     background-color: var(--secondary-color);
     display: grid;
     grid-template-columns: 65rem calc(100% - 65rem);
-    /* overflow: hidden; */
 }
 
 .admin__signin__main__left {

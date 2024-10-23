@@ -58,6 +58,10 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
         setShowDrop(false)
     }
 
+    const salonsettingClicked = () => {
+        navigate("/salonsignin")
+    }
+
     return (
         <header className={style.kiyosk_header}
             style={{
@@ -65,7 +69,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
             }}
         >
             <div>
-                <div>
+                <div onClick={() => navigate("/kiyosk")}>
                     {
                         isLoading ? <Skeleton
                             count={1}
@@ -79,7 +83,6 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                             <img src='/no-image.webp' alt="no image available" />
                         )
                     }
-                    {/* <img src="https://t3.ftcdn.net/jpg/05/51/96/54/360_F_551965459_AyBWTTMk4JUhWraDeouvWLFNxvQRaPN2.jpg" alt="logo" /> */}
                 </div>
                 {
                     adminInfo?.role === "Barber" ? <p style={{
@@ -88,9 +91,6 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                         color: themecolor ? "#fff" : "#000"
                     }}>{data?.response?.salonName}</p>
                 }
-                {/* <p style={{
-                    color: themecolor ? "#fff" : "#000"
-                }}>Unisex Hair Salon</p> */}
             </div>
 
             <div>
@@ -121,7 +121,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                                     <p>Barber Sign In</p>
                                 </div>
 
-                                <div>
+                                <div onClick={salonsettingClicked}>
                                     <div><SettingsIcon /></div>
                                     <p>Salon Sign In</p>
                                 </div>
@@ -175,4 +175,4 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
     )
 }
 
-export default CommonHeader
+export default React.memo(CommonHeader)

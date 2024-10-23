@@ -6,6 +6,8 @@
 // import toast from 'react-hot-toast'
 // import { Link, useNavigate } from 'react-router-dom'
 // import { IoMdHome } from 'react-icons/io'
+// import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
+// import Skeleton from 'react-loading-skeleton'
 
 // const SalonSettings = () => {
 
@@ -44,13 +46,11 @@
 //         },
 //       });
 
-//       window.location.reload()
-//       setSalonbtnCheck(data?.response?.isOnline)
+//       setTimeout(() => {
+//         window.location.reload()
+//       }, 500)
 
-//       // setSalonbtnCheck(data?.response?.isOnline)
-//       // localStorage.setItem("adminsalonsettingtoken", "false")
-//       // navigate("/salonadminsignin")
-//       // window.location.reload()
+//       setSalonbtnCheck(data?.response?.isOnline)
 //     }
 //   }, [isSuccess])
 
@@ -124,7 +124,11 @@
 //           color: '#fff',
 //         },
 //       });
-//       window.location.reload()
+
+//       setTimeout(() => {
+//         window.location.reload()
+//       }, 500)
+
 //       setMobilebtnCheck(mobilebookdata?.response?.mobileBookingAvailability)
 //     }
 //   }, [mobilebookisSuccess])
@@ -156,9 +160,32 @@
 //   const navigate = useNavigate()
 
 //   const logoutSalonHandler = () => {
-//     localStorage.setItem("adminsalonsettings","false")
+//     localStorage.setItem("adminsalonsettings", "false")
 //     navigate("/salonsignin")
 //   }
+
+//   const [
+//     getDefaultSalonByKiosk,
+//     {
+//       data: defaultsalondata,
+//       isLoading: defaultsalonisLoading,
+//       isSuccess: defaultsalonsuccess,
+//       isError: defaultsalonisError,
+//       error: defaultsalonerror
+//     }
+//   ] = useGetDefaultSalonByKioskMutation()
+
+//   useEffect(() => {
+//     if (adminInfo?.email) {
+//       const salondata = {
+//         email: adminInfo?.email,
+//         role: adminInfo?.role
+//       }
+//       getDefaultSalonByKiosk(salondata)
+//     }
+//   }, [adminInfo])
+
+//   console.log("AdminInfoff", defaultsalondata)
 
 //   return (
 //     <main className='accountSettings_container'>
@@ -172,61 +199,75 @@
 //         <Link to="/kiyosk"
 //           className='accountsettingshomeicon'
 //         ><IoMdHome /></Link>
-//         <button className='salonlogouthandler' onClick={logoutSalonHandler}>Logout</button>
 
 //         <div className='accountSettings_content'>
+//           <div>
+
+//             {defaultsalonisLoading ? (
+//               <div className='salonsetting_salonlogo_skeleton'></div>
+//             ) : defaultsalonsuccess ? (
+//               <div>
+//                 {defaultsalondata?.response?.salonLogo.length > 0 ? (
+//                   <img
+//                     src={defaultsalondata?.response?.salonLogo[0]?.url}
+//                   />
+//                 ) : (
+//                   <img
+//                     src="./no-image.webp"
+//                     alt="No Salon Logo"
+//                   />
+//                 )}
+//               </div>
+//             ) : (
+//               <div>
+//                 <img
+//                   src="./no-image.webp"
+//                   alt="No Salon Logo"
+//                 />
+//               </div>
+//             )}
+
+//             <h1>{defaultsalondata?.response?.salonName}</h1>
+//           </div>
+//           <div>
 //             <div>
 //               <h1>Salon Status</h1>
-
-//               <div
-//                 style={{
-//                   display: "flex",
-//                   justifyContent: "center",
-//                   alignItems: "center"
-//                 }}
-//               >
-//                 <div className='toggle_container'
+//               {
+//                 Object.keys(adminInfo).length > 0 && <div
 //                   style={{
-//                     background: `${salonbtnCheck ? 'limegreen' : 'red'}`,
-//                     transition: "300ms ease"
+//                     background: salonbtnCheck ? "#75E6A4" : "#ECEBEB"
 //                   }}
 //                 >
+//                   <p className={`toggle_btn_text ${salonbtnCheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{salonbtnCheck ? "Online" : "Offline"}</p>
 //                   <button
-//                     className={salonbtnCheck ? 'toggle_active' : 'toggle_inactive'}
+//                     className={`toggle_btn ${salonbtnCheck ? 'toggle_active' : 'toggle_inactive'}`}
 //                     onClick={salonOnlineHandler}
 //                   ></button>
 //                 </div>
-
-//               </div>
+//               }
 //             </div>
 
 //             <div>
-//               <h1>Mobile Booking Availability</h1>
-
-//               <div
-//                 style={{
-//                   display: "flex",
-//                   alignItems: "center",
-//                   justifyContent: "center"
-//                 }}
-//               >
-
-//                 <div className='toggle_container'
+//               <h1>Mobile Booking</h1>
+//               {
+//                 Object.keys(adminInfo).length > 0 && <div
 //                   style={{
-//                     background: `${mobilebtnCheck ? 'limegreen' : 'red'}`,
-//                     transition: "300ms ease"
+//                     background: mobilebtnCheck ? "#75E6A4" : "#ECEBEB"
 //                   }}
 //                 >
+//                   <p className={`toggle_btn_text ${mobilebtnCheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{mobilebtnCheck ? "Available" : "Unavailable"}</p>
 //                   <button
-//                     className={mobilebtnCheck ? 'toggle_active' : 'toggle_inactive'}
+//                     className={`toggle_btn ${mobilebtnCheck ? 'toggle_active' : 'toggle_inactive'}`}
 //                     onClick={mobileBookOnlineHandler}
 //                   ></button>
 //                 </div>
-
-
-//               </div>
+//               }
 //             </div>
 
+//           </div>
+//           <div>
+//             <button className='salonlogouthandler' onClick={logoutSalonHandler}>Logout</button>
+//           </div>
 //         </div>
 
 
@@ -238,36 +279,9 @@
 
 // export default SalonSettings
 
-// import React from 'react'
-// import './AccountSettings.css'
-// import { useState } from 'react'
-
-// const AccountSettings = () => {
-
-// const [toggleswitch, setToggleSwitch] = useState(false)
-
-// console.log(toggleswitch)
-
-//   return (
-// <div className='toggle_container'
-// style={{
-//   background: `${toggleswitch ? 'limegreen' : 'red'}`,
-//   transition: "300ms ease"
-// }}
-// >
-//   <button
-//   className={toggleswitch ? 'toggle_active' : 'toggle_inactive'}
-//   onClick={() => setToggleSwitch((prev) => !prev)}
-//   ></button>
-// </div>
-//   )
-// }
-
-// export default AccountSettings
-
 
 import React, { useEffect, useState } from 'react'
-import './SalonSettings.css'
+import style from './SalonSettings.module.css'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useChangeSalonOnlineStatusKioskMutation, useMobileBookingAvailabilityStatusMutation } from '../Dashboard/dashboardApiSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -276,6 +290,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { IoMdHome } from 'react-icons/io'
 import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
 import Skeleton from 'react-loading-skeleton'
+import CommonHeader from '../CommonHeader/CommonHeader'
 
 const SalonSettings = () => {
 
@@ -455,94 +470,65 @@ const SalonSettings = () => {
 
   console.log("AdminInfoff", defaultsalondata)
 
+  const [themecolor, setThemeColor] = useState(false)
+
+  const [togglecheck, setToggleCheck] = useState(false)
+
   return (
-    <main className='accountSettings_container'>
-
-      <div>
-        <img src="./salon.jpg" alt="image" />
-      </div>
-
-
-      <div>
-        <Link to="/kiyosk"
-          className='accountsettingshomeicon'
-        ><IoMdHome /></Link>
-
-        <div className='accountSettings_content'>
-          <div>
-
-            {defaultsalonisLoading ? (
-              <div className='salonsetting_salonlogo_skeleton'></div>
-            ) : defaultsalonsuccess ? (
-              <div>
-                {defaultsalondata?.response?.salonLogo.length > 0 ? (
-                  <img
-                    src={defaultsalondata?.response?.salonLogo[0]?.url}
-                  />
-                ) : (
-                  <img
-                    src="./no-image.webp"
-                    alt="No Salon Logo"
-                  />
-                )}
-              </div>
-            ) : (
-              <div>
-                <img
-                  src="./no-image.webp"
-                  alt="No Salon Logo"
-                />
-              </div>
-            )}
-
-            <h1>{defaultsalondata?.response?.salonName}</h1>
-          </div>
-          <div>
+    <>
+      <CommonHeader
+        themecolor={themecolor}
+        setThemeColor={setThemeColor}
+      />
+      <section className={style.salon_settings_container}>
+        <div className={style.salon_settings_left}>
+          <img src="./My_Bookings.png" alt="salon_settings_img" />
+        </div>
+        <div className={style.salon_settings_right}>
+          <div className={style.salon_main_container}>
+            <p>Welcome to salon settings</p>
             <div>
-              <h1>Salon Status</h1>
-              {
-                Object.keys(adminInfo).length > 0 && <div
-                  style={{
-                    background: salonbtnCheck ? "#75E6A4" : "#ECEBEB"
-                  }}
-                >
-                  <p className={`toggle_btn_text ${salonbtnCheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{salonbtnCheck ? "Online" : "Offline"}</p>
-                  <button
-                    className={`toggle_btn ${salonbtnCheck ? 'toggle_active' : 'toggle_inactive'}`}
-                    onClick={salonOnlineHandler}
-                  ></button>
-                </div>
-              }
+              <div>
+                <p>Salon Status</p>
+                <button
+                style={{
+                  background: "limegreen"
+                }}
+                >Online</button>
+              </div>
+
+              <div>
+                <p>Mobile Booking</p>
+                <button
+                style={{
+                  background: "#0a84ff"
+                }}
+                >Available</button>
+              </div>
             </div>
 
-            <div>
-              <h1>Mobile Booking</h1>
-              {
-                Object.keys(adminInfo).length > 0 && <div
-                  style={{
-                    background: mobilebtnCheck ? "#75E6A4" : "#ECEBEB"
-                  }}
-                >
-                  <p className={`toggle_btn_text ${mobilebtnCheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{mobilebtnCheck ? "Available" : "Unavailable"}</p>
-                  <button
-                    className={`toggle_btn ${mobilebtnCheck ? 'toggle_active' : 'toggle_inactive'}`}
-                    onClick={mobileBookOnlineHandler}
-                  ></button>
-                </div>
-              }
-            </div>
+            <button>Logout</button>
 
-          </div>
-          <div>
-            <button className='salonlogouthandler' onClick={logoutSalonHandler}>Logout</button>
           </div>
         </div>
-
-
-      </div>
-
-    </main>
+      </section>
+    </>
   )
 }
 
 export default SalonSettings
+
+
+{/* <div
+                  className={style.salon_toggle_btn_container}
+                  style={{
+                    outline: togglecheck ? "1px solid limegreen" : "1px solid red",
+                  }}
+                >
+                  <p className={`${style.salononline_toggle_btn_text} ${togglecheck ? style.salononline_toggle_btn_text_active : style.salononline_toggle_btn_text_inactive}`}>{togglecheck ? "Online" : "Offline"}</p>
+                  <button
+                    className={`${style.salononline_toggle_btn} ${togglecheck ? style.salononline_toggle_active : style.salononline_toggle_inactive}`}
+                    // onClick={salonStatusHandler}
+                    onClick={() => setToggleCheck((prev) => !prev)}
+                  ></button>
+                </div> */}

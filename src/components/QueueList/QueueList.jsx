@@ -3,12 +3,12 @@
 // import { useCancelQKiyoskMutation, useLazyGetQlistBySalonIdKioskQuery } from './QueueApiSlice'
 // import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 // import { useSelector } from 'react-redux'
-// import { Link,useNavigate } from 'react-router-dom'
+// import { Link, useNavigate } from 'react-router-dom'
 // import { IoMdHome } from 'react-icons/io'
 // import { PiQueueBold } from 'react-icons/pi'
 // import { GiCancel } from 'react-icons/gi'
-// import toast from 'react-hot-toast'
 // import { RiVipCrownFill } from 'react-icons/ri'
+// import { Grid } from 'react-loader-spinner'
 
 // const QueueList = () => {
 
@@ -26,122 +26,158 @@
 //   ] = useLazyGetQlistBySalonIdKioskQuery()
 
 //   useEffect(() => {
-//     if(adminInfo){
+//     if (adminInfo) {
 //       useLazyGetQlistBySalonIdKioskfunc(adminInfo?.salonId)
 //     }
 
-//   },[adminInfo])
+//   }, [adminInfo])
 
 //   const navigate = useNavigate()
 
-//   const serverHandler = (barberId,services,_id,barberEmail) => {
-//     navigate("/barberservelogn",{state: {
-//       barberId,
-//       services,
-//       _id,
-//       barberEmail
-//     }})
+//   const serverHandler = (barberId, services, _id, barberEmail) => {
+//     navigate("/barberservelogn", {
+//       state: {
+//         barberId,
+//         services,
+//         _id,
+//         barberEmail
+//       }
+//     })
 //   }
 
 
-//   const cancelHandler = (barberId,_id,barberEmail) => {
-//     navigate("/cancelservelogn",{state: {
-//       barberId,
-//       _id,
-//       barberEmail
-//     }})
+//   const cancelHandler = (barberId, _id, barberEmail) => {
+//     navigate("/cancelservelogn", {
+//       state: {
+//         barberId,
+//         _id,
+//         barberEmail
+//       }
+//     })
 //   }
 
-//   // Check if data is available and it is not loading or erroring
+
 //   if (isSuccess && !isLoading && !isError && data) {
 //     return (
 //       <div className='queuelist__container__main__wrapper'>
-// <Link to="/kiyosk"
-//   className='homeiconClassQueue'
-// ><IoMdHome /></Link>
-//         <div className='queuelist__container__main'>
-//           <h1>Queue List</h1>
-//           {/* <pre style={{fontSize:"1.7rem",fontWeight:"500"}}>{JSON.stringify(data, null, 2)}</pre> */}
-//           <div className='queuelist__container__main__container'>
-//             <th>
-//               <td>Name</td>
-//               <td>Time Joined Q</td>
-//               <td>Barber Name</td>
-//               <td>Services</td>
-//               <td>Method Used</td>
-//               <td>Q Position</td>
-//               <td>Served</td>
-//               <td>Cancel</td>
-//             </th>
 
-// {
-//   data.response.map((q) => (
-//     <tr key={q._id}>
-//       <td>{q.name}</td>
-//       <td>{q.timeJoinedQ}</td>
-//       <td>{q.barberName}</td>
-//       <td>{q.services.map((s) => <span style={{ marginRight: "0.5rem" }} key={s._id}>{s.serviceName}</span>)}</td>
-//       <td>{q.methodUsed}</td>
-//       <td className='serve_type'>
-// {q.serviceType === "VIP" ? <div><RiVipCrownFill /></div> : <div>
-//   </div>}
-// <p>{q.qPosition}</p>
-//       </td>
-//       <td className='que-serve' onClick={() => serverHandler(q.barberId, q.services, q._id,q.barberEmail)}>
-//         <PiQueueBold />
-//       </td>
-//       <td className='que-cancel' onClick={() => cancelHandler(q.barberId, q._id,q.barberEmail)}>
-//         <GiCancel />
-//       </td>
-//     </tr>
-//   ))
-// }
+//         <Link to="/kiyosk"
+//           className='homeiconClassQueue'
+//         ><IoMdHome /></Link>
 
+//         <main className='queuelist__container__main'>
+//           <div className='queuelist__container__main__table_body'>
+//             <h1>Queue List</h1>
+
+//             <div>
+//               <div>
+//                 <p>Name</p>
+//                 <p>Join Time</p>
+//                 <p>Barber Name</p>
+//                 <p>Position</p>
+//                 <p>Type</p>
+//                 <p>Services</p>
+//                 <p>Served</p>
+//                 <p style={{ borderRight: "none" }}>Cancel</p>
+//               </div>
+
+//               <div>
+
+//                 {
+//                   data.response.map((q, i) => (
+//                     <div key={q._id}
+//                       style={{
+//                         borderBottom: i === data.response.length - 1 && "none"
+//                       }}
+//                     >
+//                       <p>{q.name}</p>
+//                       <p>{q.timeJoinedQ}</p>
+//                       <p>{q.barberName}</p>
+//                       <p>{q.qPosition}</p>
+//                       <p>
+//                         {q.serviceType === "VIP" ? <div
+//                           style={{
+//                             fontSize: "2rem",
+//                             height: "100%",
+//                             width: "100%",
+//                             display: "flex",
+//                             justifyContent: "center",
+//                             alignItems: "center"
+//                           }}><RiVipCrownFill /></div> : <div> -
+//                         </div>}
+//                       </p>
+//                       <p>{q.services.map((s) => <span style={{ marginRight: "0.5rem" }} key={s._id}>{s.serviceName}</span>)}</p>
+//                       <p style={{
+//                         color: "green",
+//                         fontSize: "2rem",
+//                         cursor: "pointer",
+//                       }}
+//                         onClick={() => serverHandler(q.barberId, q.services, q._id, q.barberEmail)}
+//                       ><PiQueueBold /></p>
+//                       <p style={{
+//                         borderRight: "none",
+//                         color: "red",
+//                         fontSize: "2rem",
+//                         cursor: "pointer"
+//                       }}
+//                         className='que-cancel' onClick={() => cancelHandler(q.barberId, q._id, q.barberEmail)}
+//                       ><GiCancel /></p>
+//                     </div>
+//                   ))
+//                 }
+
+//               </div>
+
+//             </div>
 //           </div>
-//         </div>
+//         </main>
 //       </div>
 //     )
 //   }
 
-//   // Handle loading and error states
 //   if (isLoading) {
 //     return <div style={{
-//       height:"100vh",
-//       width:"100%",
-//       display:"flex",
-//       alignItems:"center",
-//       justifyContent:"center"
-//     }}><h1 style={{
-//       fontSize:"3rem"
-//     }}>Wait QueueList is Loading...</h1></div>
+//       height: "100vh",
+//       width: "100%",
+//       display: "flex",
+//       alignItems: "center",
+//       justifyContent: "center"
+//     }}><Grid
+//         visible={true}
+//         height="80"
+//         width="80"
+//         color="#4fa94d"
+//         ariaLabel="grid-loading"
+//         radius="12.5"
+//         wrapperStyle={{}}
+//         wrapperClass="grid-wrapper"
+//       /></div>
 //   }
 
 //   if (isError) {
-//     // return <div>Error: {error.data.message}</div>
 //     return (
 //       <div className='queuelist__container__main__wrapper'>
 //         <Link to="/kiyosk"
 //           className='homeiconClassQueue'
 //         ><IoMdHome /></Link>
-//         <div className='queuelist__container__main'
-//         style={{display:"flex",alignItems:"center",justifyContent:"center"}}
+//         <div className='queuelist__container__main_error'
+//           style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
 //         >
 //           <h1
 //             style={{ color: "black", fontWeight: "bold", fontSize: "3rem" }}
-//           >No current customers in the queueing list</h1>
+//           >No queuelist available</h1>
 //         </div>
 //       </div>
 //     )
 //   }
 
-//   // Default return if none of the above conditions match
 //   return null;
 // }
 
 // export default QueueList;
 
-import React, { useEffect } from 'react'
-import './QueueList.css'
+import React, { useEffect, useState } from 'react'
+import style from './QueueList.module.css'
 import { useCancelQKiyoskMutation, useLazyGetQlistBySalonIdKioskQuery } from './QueueApiSlice'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useSelector } from 'react-redux'
@@ -149,9 +185,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { IoMdHome } from 'react-icons/io'
 import { PiQueueBold } from 'react-icons/pi'
 import { GiCancel } from 'react-icons/gi'
-import toast from 'react-hot-toast'
 import { RiVipCrownFill } from 'react-icons/ri'
 import { Grid } from 'react-loader-spinner'
+import CommonHeader from '../CommonHeader/CommonHeader'
 
 const QueueList = () => {
 
@@ -199,126 +235,189 @@ const QueueList = () => {
     })
   }
 
-  // Check if data is available and it is not loading or erroring
-  if (isSuccess && !isLoading && !isError && data) {
-    return (
-      <div className='queuelist__container__main__wrapper'>
+  const [themecolor, setThemeColor] = useState(false)
 
-        <Link to="/kiyosk"
-          className='homeiconClassQueue'
-        ><IoMdHome /></Link>
+  const dummyqueuelist_data = [
+    {
+      id: 1,
+      name: "Adilson",
+      join: "18:43:07",
+      barberName: "Arghya",
+      position: 10,
+      type: "vip",
+      services: "hair"
+    },
+    {
+      id: 2,
+      name: "Adilson",
+      join: "18:43:07",
+      barberName: "Arghya",
+      position: 10,
+      type: "vip",
+      services: "hair"
+    },
+    {
+      id: 3,
+      name: "Adilson",
+      join: "18:43:07",
+      barberName: "Arghya",
+      position: 10,
+      type: "vip",
+      services: "hair"
+    },
+    {
+      id: 4,
+      name: "Adilson",
+      join: "18:43:07",
+      barberName: "Arghya",
+      position: 10,
+      type: "vip",
+      services: "hair"
+    },
 
-        <main className='queuelist__container__main'>
-          <div className='queuelist__container__main__table_body'>
-            <h1>Queue List</h1>
+    {
+      id: 5,
+      name: "Adilson",
+      join: "18:43:07",
+      barberName: "Arghya",
+      position: 10,
+      type: "vip",
+      services: "hair"
+    },
+    {
+      id: 6,
+      name: "Adilson",
+      join: "18:43:07",
+      barberName: "Arghya",
+      position: 10,
+      type: "vip",
+      services: "hair"
+    },
 
-            <div>
-              <div>
-                <p>Name</p>
-                <p>Join Time</p>
-                <p>Barber Name</p>
-                <p>Position</p>
-                <p>Type</p>
-                <p>Services</p>
-                <p>Served</p>
-                <p style={{ borderRight: "none" }}>Cancel</p>
-              </div>
+    {
+      id: 7,
+      name: "Adilson",
+      join: "18:43:07",
+      barberName: "Arghya",
+      position: 10,
+      type: "vip",
+      services: "hair"
+    },
+    {
+      id: 8,
+      name: "Adilson",
+      join: "18:43:07",
+      barberName: "Arghya",
+      position: 10,
+      type: "vip",
+      services: "hair"
+    },
 
-              <div>
-                {/* Table Body */}
+    {
+      id: 9,
+      name: "Adilson",
+      join: "18:43:07",
+      barberName: "Arghya",
+      position: 10,
+      type: "vip",
+      services: "hair"
+    },
+    {
+      id: 10,
+      name: "Adilson",
+      join: "18:43:07",
+      barberName: "Arghya",
+      position: 10,
+      type: "vip",
+      services: "hair"
+    },
 
-                {
-                  data.response.map((q, i) => (
-                    <div key={q._id}
+
+    {
+      id: 11,
+      name: "Adilson",
+      join: "18:43:07",
+      barberName: "Arghya",
+      position: 10,
+      type: "vip",
+      services: "hair"
+    },
+
+    {
+      id: 12,
+      name: "Adilson",
+      join: "18:43:07",
+      barberName: "Arghya",
+      position: 10,
+      type: "vip",
+      services: "hair"
+    },
+    {
+      id: 13,
+      name: "Adilson",
+      join: "18:43:07",
+      barberName: "Arghya",
+      position: 10,
+      type: "vip",
+      services: "hair"
+    },
+  ]
+
+  return (
+    <>
+      <CommonHeader
+        themecolor={themecolor}
+        setThemeColor={setThemeColor}
+      />
+      <section className={style.queuelist_container}>
+        <p>Queue List</p>
+        <main className={style.queuelist_table}>
+          <header className={style.queuelist_table_header}>
+            <p>Name</p>
+            <p>Join Time</p>
+            <p>Barber Name</p>
+            <p>Position</p>
+            <p>Type</p>
+            <p>Services</p>
+            <p>Served</p>
+            <p>Cancel</p>
+          </header>
+
+          <div className={style.queuelist_table_body}>
+            {
+              dummyqueuelist_data.map((item) => {
+                return (
+                  <div className={style.queuelist_table_item} key={item.id}>
+                    <p>{item.name}</p>
+                    <p>{item.join}</p>
+                    <p>{item.barberName}</p>
+                    <p>{item.barberName}</p>
+                    <p>{item.type}</p>
+                    <p>{item.services}</p>
+                    <div><button
                       style={{
-                        borderBottom: i === data.response.length - 1 && "none"
+                        border: "1px solid orangered",
+                        backgroundColor: "rgba(255, 174, 0, 0.264)",
+                        color: "orangered"
                       }}
-                    >
-                      <p>{q.name}</p>
-                      <p>{q.timeJoinedQ}</p>
-                      <p>{q.barberName}</p>
-                      <p>{q.qPosition}</p>
-                      <p>
-                        {q.serviceType === "VIP" ? <div
-                          style={{
-                            fontSize: "2rem",
-                            height: "100%",
-                            width: "100%",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center"
-                          }}><RiVipCrownFill /></div> : <div> -
-                        </div>}
-                      </p>
-                      <p>{q.services.map((s) => <span style={{ marginRight: "0.5rem" }} key={s._id}>{s.serviceName}</span>)}</p>
-                      <p style={{
-                        color: "green",
-                        fontSize: "2rem",
-                        cursor: "pointer",
-                      }}
-                        onClick={() => serverHandler(q.barberId, q.services, q._id, q.barberEmail)}
-                      ><PiQueueBold /></p>
-                      <p style={{
-                        borderRight: "none",
+                    >serve</button></div>
+                    <div><button
+                      style={{
                         color: "red",
-                        fontSize: "2rem",
-                        cursor: "pointer"
+                        backgroundColor: "rgba(255, 0, 0, 0.12)",
+                        border: "1px solid red"
                       }}
-                        className='que-cancel' onClick={() => cancelHandler(q.barberId, q._id, q.barberEmail)}
-                      ><GiCancel /></p>
-                    </div>
-                  ))
-                }
+                    >cancel</button></div>
+                  </div>
+                )
+              })
+            }
 
-              </div>
-
-            </div>
           </div>
         </main>
-      </div>
-    )
-  }
-
-  // Handle loading and error states
-  if (isLoading) {
-    return <div style={{
-      height: "100vh",
-      width: "100%",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
-    }}><Grid
-        visible={true}
-        height="80"
-        width="80"
-        color="#4fa94d"
-        ariaLabel="grid-loading"
-        radius="12.5"
-        wrapperStyle={{}}
-        wrapperClass="grid-wrapper"
-      /></div>
-  }
-
-  if (isError) {
-    // return <div>Error: {error.data.message}</div>
-    return (
-      <div className='queuelist__container__main__wrapper'>
-        <Link to="/kiyosk"
-          className='homeiconClassQueue'
-        ><IoMdHome /></Link>
-        <div className='queuelist__container__main_error'
-          style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
-        >
-          <h1
-            style={{ color: "black", fontWeight: "bold", fontSize: "3rem" }}
-          >No queuelist available</h1>
-        </div>
-      </div>
-    )
-  }
-
-  // Default return if none of the above conditions match
-  return null;
+      </section >
+    </>
+  )
 }
 
 export default QueueList;
