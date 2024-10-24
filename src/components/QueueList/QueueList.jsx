@@ -186,8 +186,9 @@ import { IoMdHome } from 'react-icons/io'
 import { PiQueueBold } from 'react-icons/pi'
 import { GiCancel } from 'react-icons/gi'
 import { RiVipCrownFill } from 'react-icons/ri'
-import { Grid } from 'react-loader-spinner'
+import { ColorRing, Grid } from 'react-loader-spinner'
 import CommonHeader from '../CommonHeader/CommonHeader'
+import Skeleton from 'react-loading-skeleton'
 
 const QueueList = () => {
 
@@ -205,7 +206,7 @@ const QueueList = () => {
   ] = useLazyGetQlistBySalonIdKioskQuery()
 
   useEffect(() => {
-    if (adminInfo) {
+    if (adminInfo && adminInfo?.salonId) {
       useLazyGetQlistBySalonIdKioskfunc(adminInfo?.salonId)
     }
 
@@ -379,42 +380,77 @@ const QueueList = () => {
             <p>Position</p>
             <p>Type</p>
             <p>Services</p>
-            <p>Served</p>
+            <p>Serve</p>
             <p>Cancel</p>
           </header>
 
-          <div className={style.queuelist_table_body}>
-            {
-              dummyqueuelist_data.map((item) => {
+          {isLoading ? (
+            <div className={style.queuelist_loading}>
+              <div className={style.skeleton} style={{ height: "6.5rem" }}></div>
+              <div className={style.skeleton} style={{ height: "6.5rem" }}></div>
+              <div className={style.skeleton} style={{ height: "6.5rem" }}></div>
+              <div className={style.skeleton} style={{ height: "6.5rem" }}></div>
+              <div className={style.skeleton} style={{ height: "6.5rem" }}></div>
+              <div className={style.skeleton} style={{ height: "6.5rem" }}></div>
+            </div>
+          )
+            : isSuccess && data?.response?.length > 0 ? (
+              data?.response?.map((item, index) => {
                 return (
-                  <div className={style.queuelist_table_item} key={item.id}>
-                    <p>{item.name}</p>
-                    <p>{item.join}</p>
-                    <p>{item.barberName}</p>
-                    <p>{item.barberName}</p>
-                    <p>{item.type}</p>
-                    <p>{item.services}</p>
+                  <div
+                    className={style.queuelist_table_item}
+                    key={item?._id}
+                    style={{
+                      borderBottom: data?.response?.length - 1 === index && "none"
+                    }}
+                  >
+                    <p>{item?.name}</p>
+                    <p>{item?.timeJoinedQ}</p>
+                    <p>{item?.barberName}</p>
+                    <p>{item?.qPosition}</p>
+                    <p>
+                      {item?.serviceType === "VIP" ? <div
+                        style={{
+                          fontSize: "2rem",
+                          height: "100%",
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}><RiVipCrownFill /></div> : <div> -
+                      </div>}
+                    </p>
+                    <p>{item?.services?.[0]?.serviceName}</p>
                     <div><button
                       style={{
-                        border: "1px solid orangered",
-                        backgroundColor: "rgba(255, 174, 0, 0.264)",
-                        color: "orangered"
+                        // border: "1px solid orangered",
+                        // backgroundColor: "rgba(255, 174, 0, 0.264)",
+                        // color: "orangered"
+                        background: "#0a84ff"
                       }}
+                      onClick={() => serverHandler(item?.barberId, item?.services, item?._id, item?.barberEmail)}
                     >serve</button></div>
                     <div><button
                       style={{
-                        color: "red",
-                        backgroundColor: "rgba(255, 0, 0, 0.12)",
-                        border: "1px solid red"
+                        // color: "red",
+                        // backgroundColor: "rgba(255, 0, 0, 0.12)",
+                        // border: "1px solid red"
+                        background: "red"
                       }}
+                      onClick={() => cancelHandler(item?.barberId, item?._id, item?.barberEmail)}
                     >cancel</button></div>
                   </div>
                 )
               })
-            }
+            )
+              :
+              <div className={style.queuelist_error}>
+                <p>No queuelist available</p>
+              </div>
+          }
 
-          </div>
-        </main>
+
+        </main >
       </section >
     </>
   )

@@ -89,16 +89,16 @@
 //     }
 //   ] = useGerAllAdvertisementsKioskMutation()
 
-  // useEffect(() => {
-  //   if (adminInfo?.email) {
-  //     const salondata = {
-  //       email: adminInfo?.email,
-  //       role: adminInfo?.role
-  //     }
-  //     getDefaultSalonByKiosk(salondata)
-  //     getAllSalonsByAdmin(adminInfo?.email)
-  //   }
-  // }, [adminInfo])
+// useEffect(() => {
+//   if (adminInfo?.email) {
+//     const salondata = {
+//       email: adminInfo?.email,
+//       role: adminInfo?.role
+//     }
+//     getDefaultSalonByKiosk(salondata)
+//     getAllSalonsByAdmin(adminInfo?.email)
+//   }
+// }, [adminInfo])
 
 //   useEffect(() => {
 //     if (adminInfo && isSuccess) {
@@ -211,23 +211,23 @@
 //       <header>
 //         <div>
 //           <div>
-            // {
-            //   isLoading ? <Skeleton
-            //     count={1}
-            //     circle={true}
-            //     borderRadius={"50%"}
-            //     height={"6.5rem"}
-            //     width={"6.5rem"}
-            //   /> : isSuccess && data?.response?.salonLogo.length > 0 ? (
-            //     <img src={data.response.salonLogo[0].url} alt={data.response.salonName} />
-            //   ) : (
-            //     <img src='/no-image.webp' alt="no image available" />
-            //   )
-            // }
+// {
+//   isLoading ? <Skeleton
+//     count={1}
+//     circle={true}
+//     borderRadius={"50%"}
+//     height={"6.5rem"}
+//     width={"6.5rem"}
+//   /> : isSuccess && data?.response?.salonLogo.length > 0 ? (
+//     <img src={data.response.salonLogo[0].url} alt={data.response.salonName} />
+//   ) : (
+//     <img src='/no-image.webp' alt="no image available" />
+//   )
+// }
 //           </div>
-          // {
-          //   adminInfo?.role === "Barber" ? <p>{adminInfo?.salonName}</p> : <p>{data?.response?.salonName}</p>
-          // }
+// {
+//   adminInfo?.role === "Barber" ? <p>{adminInfo?.salonName}</p> : <p>{data?.response?.salonName}</p>
+// }
 //         </div>
 
 //         <div><img src="/IQB-Logo.png" alt="iqb" /></div>
@@ -448,7 +448,7 @@ const Public = () => {
 
   const [salonsettingsdrop, setSalonSettingsDrop] = useState(false)
 
-  
+
 
   const [openmobilemenu, setOpenmobilemenu] = useState(false)
 
@@ -703,7 +703,7 @@ const Public = () => {
                             }}
                           >
                             <div>
-                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfD3D3cGFZ81KYSeF7HIz3dR_Eaprsch7rkQ&s" alt="img" />
+                              <img src={item?.profile?.[0]?.url} alt="img" />
                               <div className={style.barber_online_dot}
                                 style={{
                                   backgroundColor: item.isOnline ? "limegreen" : "red"
@@ -723,7 +723,7 @@ const Public = () => {
                             }}
                           >
                             <div>
-                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfD3D3cGFZ81KYSeF7HIz3dR_Eaprsch7rkQ&s" alt="img" />
+                              <img src={item?.profile?.[0]?.url} alt="img" />
                               <div className={style.barber_online_dot}
                                 style={{
                                   backgroundColor: item.isOnline ? "limegreen" : "red"
@@ -743,7 +743,7 @@ const Public = () => {
                             }}
                           >
                             <div>
-                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfD3D3cGFZ81KYSeF7HIz3dR_Eaprsch7rkQ&s" alt="img" />
+                              <img src={item?.profile?.[0]?.url} alt="img" />
                               <div className={style.barber_online_dot}
                                 style={{
                                   backgroundColor: item.isOnline ? "limegreen" : "red"
@@ -765,7 +765,7 @@ const Public = () => {
                             }}
                           >
                             <div>
-                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfD3D3cGFZ81KYSeF7HIz3dR_Eaprsch7rkQ&s" alt="img" />
+                              <img src={item?.profile?.[0]?.url} alt="img" />
                               <div className={style.barber_online_dot}
                                 style={{
                                   backgroundColor: item.isOnline ? "limegreen" : "red"
@@ -785,7 +785,7 @@ const Public = () => {
                             }}
                           >
                             <div>
-                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfD3D3cGFZ81KYSeF7HIz3dR_Eaprsch7rkQ&s" alt="img" />
+                              <img src={item?.profile?.[0]?.url} alt="img" />
                               <div className={style.barber_online_dot}
                                 style={{
                                   backgroundColor: item.isOnline ? "limegreen" : "red"
@@ -805,7 +805,7 @@ const Public = () => {
                             }}
                           >
                             <div>
-                              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfD3D3cGFZ81KYSeF7HIz3dR_Eaprsch7rkQ&s" alt="img" />
+                              <img src={item?.profile?.[0]?.url} alt="img" />
                               <div className={style.barber_online_dot}
                                 style={{
                                   backgroundColor: item.isOnline ? "limegreen" : "red"

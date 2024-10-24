@@ -381,7 +381,8 @@ const SalonSettings = () => {
 
   const mobileBookdata = {
     salonId: adminInfo?.salonId,
-    mobileBookingAvailability: !mobilebtnCheck
+    // mobileBookingAvailability: !mobilebtnCheck
+    mobileBookingAvailability: !adminInfo?.mobileBookingAvailability
   }
 
   const [
@@ -490,20 +491,29 @@ const SalonSettings = () => {
             <div>
               <div>
                 <p>Salon Status</p>
-                <button
-                style={{
-                  background: "limegreen"
-                }}
-                >Online</button>
+                {
+                  Object.keys(adminInfo).length > 0 &&
+                  <button
+                    style={{
+                      background: adminInfo?.isSalonOnline ? "red" : "limegreen"
+                    }}
+                    onClick={salonOnlineHandler}
+                  >{adminInfo?.isSalonOnline ? "Offline" : "Online"}</button>
+                }
               </div>
 
               <div>
                 <p>Mobile Booking</p>
-                <button
-                style={{
-                  background: "#0a84ff"
-                }}
-                >Available</button>
+                {
+                  Object.keys(adminInfo).length > 0 &&
+                  <button
+                    style={{
+                      background: adminInfo?.mobileBookingAvailability ? "#A0A0A0" : "#0a84ff"
+                    }}
+                    onClick={mobileBookOnlineHandler}
+                  >{adminInfo?.mobileBookingAvailability ? "Unavailable" : "Available"}</button>
+                }
+
               </div>
             </div>
 
@@ -517,18 +527,3 @@ const SalonSettings = () => {
 }
 
 export default SalonSettings
-
-
-{/* <div
-                  className={style.salon_toggle_btn_container}
-                  style={{
-                    outline: togglecheck ? "1px solid limegreen" : "1px solid red",
-                  }}
-                >
-                  <p className={`${style.salononline_toggle_btn_text} ${togglecheck ? style.salononline_toggle_btn_text_active : style.salononline_toggle_btn_text_inactive}`}>{togglecheck ? "Online" : "Offline"}</p>
-                  <button
-                    className={`${style.salononline_toggle_btn} ${togglecheck ? style.salononline_toggle_active : style.salononline_toggle_inactive}`}
-                    // onClick={salonStatusHandler}
-                    onClick={() => setToggleCheck((prev) => !prev)}
-                  ></button>
-                </div> */}

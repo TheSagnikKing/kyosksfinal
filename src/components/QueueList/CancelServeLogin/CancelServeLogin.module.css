@@ -1,4 +1,4 @@
-.barber__signin__main__container {
+/* .barber__signin__main__container {
     height: 100vh;
     width: 100vw;
     background-color: var(--secondary-color);
@@ -22,7 +22,6 @@
 
 .barber__signin__main__right {
     height: 100vh !important;
-    /* background-color: blue; */
     position: relative;
 }
 
@@ -174,6 +173,7 @@
     z-index: 2;
     background-color: #fff;
 }
+
 
 @media((min-width:430px) and (max-width:940px)) {
     .barber__signin__main__container {
@@ -494,4 +494,199 @@
         height: auto;
         border-radius: 20px;
     }
+} */
+
+
+.barber_cancel_login_container {
+    height: calc(100vh - 7rem);
+    display: grid;
+    grid-template-columns: 65rem calc(100% - 65rem);
+}
+
+
+.barber_cancel_login_left {
+    box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>img {
+        width: 90%;
+        height: auto;
+    }
+}
+
+.barber_cancel_login_right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.barber_cancel_main {
+    height: auto;
+    width: 70%;
+    margin: auto;
+
+    &>p:nth-child(1) {
+        text-align: center;
+        font-size: 1.8vw;
+        font-weight: 500;
+        margin-inline: auto;
+        margin-bottom: 4rem;
+    }
+}
+
+.email_container {
+    background-color: rgba(0, 0, 255, 0.206);
+    height: 4rem;
+    margin-bottom: 2rem;
+
+    &>input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+        font-size: 1vw;
+    }
+
+    &>input[type="text"]:focus {
+        border-bottom: 1px solid #0A84FF;
+    }
+}
+
+.password_container {
+    background-color: rgba(0, 0, 255, 0.206);
+    height: 4rem;
+    margin-bottom: 2rem;
+    position: relative;
+
+    &>input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+        font-size: 1vw;
+    }
+
+    &>input[id="input_password"]:focus {
+        border-bottom: 1px solid #0A84FF;
+    }
+
+    &>div {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        right: 5px;
+        font-size: 2.4rem;
+        cursor: pointer;
+    }
+
+}
+
+.signin_btn {
+    height: 5rem;
+    width: 25rem;
+    display: block;
+    margin: auto;
+    margin-top: 4rem;
+    background-color: red;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    font-size: 1vw;
+    cursor: pointer;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+
+
+    &:hover {
+        background-color: rgba(255, 0, 0, 0.45);
+    }
+}
+
+
+@media screen and (min-width:0px) and (max-width:430px) {
+    .barber_cancel_login_container {
+        height: calc(100vh - 7rem);
+        grid-template-columns: 1fr;
+    }
+
+    .barber_cancel_login_left {
+        display: none;
+    }
+
+    .barber_cancel_main {
+        width: 90%;
+
+        &>p:nth-child(1) {
+            font-size: 5vw;
+        }
+    }
+
+    .email_container,
+    .password_container {
+        height: 6rem;
+
+        &>input {
+            font-size: 3vw;
+        }
+    }
+
+    .signin_btn {
+        font-size: 3vw;
+    }
+}
+
+
+@media screen and (min-width:431px) and (max-width:884px) {
+    .barber_cancel_login_container {
+            height: calc(100vh - 7rem);
+            grid-template-columns: 1fr;
+    }
+
+    .barber_cancel_login_left {
+        display: none;
+    }
+
+    .barber_cancel_main {
+        width: 80%;
+
+        &>p:nth-child(1) {
+            font-size: 3vw;
+        }
+    }
+
+    .email_container,
+    .password_container {
+        height: 6rem;
+
+        &>input {
+            font-size: 1.8vw;
+        }
+    }
+
+    .signin_btn {
+        font-size: 1.8vw;
+    }
+}
+
+@media screen and (min-width: 885px) and (max-width: 1250px) {
+
+    .barber_cancel_login_container {
+        height: 100vh;
+        width: 100vw;
+        background-color: var(--secondary-color);
+        display: grid;
+        grid-template-columns: 50rem calc(100% - 50rem);
+        overflow: hidden;
+    }
+
 }

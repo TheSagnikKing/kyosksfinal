@@ -8,6 +8,7 @@ import { DropdownIcon } from '../../icons'
 import { toast } from 'react-hot-toast';
 import { IoMdArrowDropdownCircle } from 'react-icons/io'
 import { ColorRing } from 'react-loader-spinner'
+import { ClickAwayListener } from '@mui/material'
 
 const SalonSelection = () => {
 
@@ -153,34 +154,34 @@ const SalonSelection = () => {
                         }
                         {
                             adminInfo?.role === "Barber" ? null : adminInfo?.role === "Admin" ? <div>
-                                <div>
-                                    <p>{salonName !== "" && salonName}</p>
-                                    <div onClick={() => setSalonListDrop((prev) => (!prev))}><IoMdArrowDropdownCircle /></div>
+                                <ClickAwayListener onClickAway={() => setSalonListDrop(false)}>
+                                    <div>
+                                        <p>{salonName !== "" && salonName}</p>
+                                        <div onClick={() => setSalonListDrop((prev) => (!prev))}><IoMdArrowDropdownCircle /></div>
 
 
-                                    {salonlistdrop && <main
-                                        className={style.salondropdown_box}
-                                        style={{
-                                            height: getAllSalonsByAdmindata?.salons?.length > 0 && getAllSalonsByAdmindata?.salons?.length <= 4 ? "auto" : "20rem",
-                                        }}
-                                    >
-                                        {getAllSalonsByAdmindata?.salons?.length > 0 &&
-                                            getAllSalonsByAdmindata?.salons.map((s, i) => (
-                                                <div key={s._id} onClick={() => salonHandler(s)}
-                                                    style={{
-                                                        backgroundColor: salonName === s.salonName ? "#0A84FF" : "",
-                                                        borderBottom: i === getAllSalonsByAdmindata?.salons.length - 1 ? "none" : "1px solid #00000",
-                                                        borderTop: i === 0 && "none"
-                                                    }}
-                                                ><p style={{
-                                                    // color: salonName === s.salonName ? "var(--secondary-color)" : "var(--primary-color)"
-                                                    color: salonName === s.salonName && "#fff"
-                                                }}>{s.salonName}</p></div>
-                                            ))
-                                        }
-                                    </main>}
-                                </div>
-
+                                        {salonlistdrop && <main
+                                            className={style.salondropdown_box}
+                                            style={{
+                                                height: getAllSalonsByAdmindata?.salons?.length > 0 && getAllSalonsByAdmindata?.salons?.length <= 4 ? "auto" : "20rem",
+                                            }}
+                                        >
+                                            {getAllSalonsByAdmindata?.salons?.length > 0 &&
+                                                getAllSalonsByAdmindata?.salons.map((s, i) => (
+                                                    <div key={s._id} onClick={() => salonHandler(s)}
+                                                        style={{
+                                                            backgroundColor: salonName === s.salonName ? "#0A84FF" : "",
+                                                            borderBottom: i === getAllSalonsByAdmindata?.salons.length - 1 ? "none" : "1px solid #00000",
+                                                            borderTop: i === 0 && "none"
+                                                        }}
+                                                    ><p style={{
+                                                        color: salonName === s.salonName && "#fff"
+                                                    }}>{s.salonName}</p></div>
+                                                ))
+                                            }
+                                        </main>}
+                                    </div>
+                                </ClickAwayListener>
                             </div> : null
                         }
 

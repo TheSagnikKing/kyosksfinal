@@ -62,6 +62,10 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
         navigate("/salonsignin")
     }
 
+    const barbersigninClicked = () => {
+        navigate("/barbersignin")
+    }
+
     return (
         <header className={style.kiyosk_header}
             style={{
@@ -116,7 +120,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
 
                         {showdrop && (
                             <div className={style.kiyosk_dropbox}>
-                                <div>
+                                <div onClick={barbersigninClicked}>
                                     <div><AccountIcon /></div>
                                     <p>Barber Sign In</p>
                                 </div>

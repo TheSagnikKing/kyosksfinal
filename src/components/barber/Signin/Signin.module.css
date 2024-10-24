@@ -1,4 +1,4 @@
-.barber__signin__main__container {
+/* .barber__signin__main__container {
     height: 100vh;
     width: 100vw;
     background-color: var(--secondary-color);
@@ -22,7 +22,6 @@
 
 .barber__signin__main__right {
     height: 100vh !important;
-    /* background-color: blue; */
     position: relative;
 }
 
@@ -494,5 +493,342 @@
         margin-top: 30px;
         height: auto;
         border-radius: 20px;
+    }
+} */
+
+.barber_signin_container {
+    height: calc(100vh - 7rem);
+    display: grid;
+    grid-template-columns: 65rem calc(100% - 65rem);
+}
+
+.barber_signin_container_left {
+    box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &>img {
+        width: 70%;
+        height: auto;
+    }
+}
+
+.barber_signin_container_right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.barber_signin_content_main {
+    height: auto;
+    width: 70%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &>p:nth-child(1) {
+        font-size: 1.8vw;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+}
+
+.barber_email_selection_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+    position: relative;
+
+    &>input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+        font-size: 1vw;
+    }
+
+    &>input[type="text"]:focus {
+        border-bottom: 1px solid #0A84FF;
+    }
+
+    &>div:nth-child(2) {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        font-size: 1.4vw;
+        cursor: pointer;
+    }
+
+    .barber_email_selection_dropdown {
+        position: absolute;
+        top: 5rem;
+        left: 0px;
+        right: 0px;
+        height: 25rem;
+        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        -ms-border-radius: 6px;
+        -o-border-radius: 6px;
+        padding: 1rem;
+        background-color: #fff;
+        z-index: 100;
+        overflow: auto;
+
+        .barber_dropdown_item {
+            height: 4rem;
+            align-content: center;
+            padding-inline: 1rem;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -ms-border-radius: 3px;
+            -o-border-radius: 3px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: 0.3s all ease;
+            -webkit-transition: 0.3s all ease;
+            -moz-transition: 0.3s all ease;
+            -ms-transition: 0.3s all ease;
+            -o-transition: 0.3s all ease;
+
+            &:hover {
+                background-color: #0A84FF;
+
+                &>p {
+                    color: #fff;
+                }
+            }
+
+            &>p {
+                font-size: 0.9vw;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+.barber_email_selection_dropdown_loading {
+    height: 100%;
+    width: 100%;
+}
+
+.password_container {
+    margin-top: 1rem;
+    background-color: rgba(0, 0, 255, 0.206);
+    height: 4rem;
+    margin-bottom: 2rem;
+    position: relative;
+
+    &>input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+        font-size: 1vw;
+    }
+
+    &>input[id="input_password"]:focus {
+        border-bottom: 1px solid #0A84FF;
+    }
+
+    &>div {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        right: 5px;
+        font-size: 2.4rem;
+        cursor: pointer;
+    }
+
+}
+
+.signin_btn {
+    height: 5rem;
+    width: 25rem;
+    display: block;
+    margin: auto;
+    margin-top: 4rem;
+    background-color: #0A84FF;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    font-size: 1vw;
+    cursor: pointer;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+
+
+    &:hover {
+        background-color: #0a84ffc4;
+    }
+}
+
+/* Skeleton container */
+.skeleton {
+    width: 100%;
+    background-color: #e0e0e0;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+/* Shimmer effect */
+.skeleton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: shimmer 1.5s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+.barber_email_selection_dropdown_error {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+
+    &>p {
+        font-size: 0.9vw;
+        font-weight: 500;
+    }
+}
+
+@media screen and (min-width:0px) and (max-width:430px) {
+    .barber_signin_container {
+        grid-template-columns: 1fr;
+    }
+
+    .barber_signin_container_left {
+        display: none;
+    }
+
+    .barber_signin_content_main {
+        width: 80%;
+
+        &>p:nth-child(1) {
+            font-size: 4vw;
+        }
+    }
+
+    .barber_email_selection_container {
+        &>input {
+            font-size: 2.8vw;
+        }
+
+        .barber_email_selection_dropdown {
+            .barber_dropdown_item {
+                &>p {
+                    font-size: 2.8vw;
+                }
+            }
+        }
+
+        &>div:nth-child(2) {
+            font-size: 2.8vw;
+        }
+    }
+
+    .password_container {
+        &>input {
+            font-size: 2.8vw;
+        }
+
+        &>div {
+            font-size: 2.8vw;
+        }
+
+    }
+
+    .signin_btn {
+        font-size: 2.8vw;
+    }
+}
+
+@media screen and (min-width:431px) and (max-width:834px) {
+    .barber_signin_container {
+        grid-template-columns: 1fr;
+    }
+
+    .barber_signin_container_left {
+        display: none;
+    }
+
+    .barber_signin_content_main {
+        width: 70%;
+
+        &>p:nth-child(1) {
+            font-size: 2.8vw;
+        }
+    }
+
+    .barber_email_selection_container {
+        &>input {
+            font-size: 1.8vw;
+        }
+
+        .barber_email_selection_dropdown {
+            .barber_dropdown_item {
+                &>p {
+                    font-size: 1.8vw;
+                }
+            }
+        }
+
+        &>div:nth-child(2) {
+            font-size: 1.8vw;
+        }
+    }
+
+    .password_container {
+        &>input {
+            font-size: 1.8vw;
+        }
+
+        &>div {
+            font-size: 1.8vw;
+        }
+
+    }
+
+    .signin_btn {
+        font-size: 1.8vw;
+    }
+}
+
+@media screen and (min-width:835px) and (max-width:1250px) {
+    .barber_signin_container {
+        grid-template-columns: 50rem calc(100% - 50rem);
     }
 }
