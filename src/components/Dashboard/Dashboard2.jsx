@@ -294,6 +294,10 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import { IoMdClose } from 'react-icons/io'
+import CommonHeader from '../CommonHeader/CommonHeader'
+// import Skeleton from 'react-loading-skeleton'
+
+import Skeleton from '@mui/material/Skeleton';
 
 const Dashboard2 = () => {
 
@@ -488,112 +492,125 @@ const Dashboard2 = () => {
 
     }
 
+    const [themecolor, setThemeColor] = useState(false)
+
     return (
-        <main className={style.barber_kiyosk_container}>
-            <div>
+        <>
+            <CommonHeader
+                themecolor={themecolor}
+                setThemeColor={setThemeColor}
+            />
+            <main className={style.barber_kiyosk_container}>
                 <div>
-                    {/* <div>
+                    <div>
                         <div>
                             <div>
                                 <img src={selectCurrentBarberdata?.foundUser?.profile[0]?.url} alt="Barber Profile" />
-                                {barberOnlineCheck ? <div className={style.barberonline}></div> : <div/>}
+                                <div className={style.barber_online}
+                                    style={{
+                                        background: barberOnlineCheck ? "limegreen" : "red"
+                                    }}
+                                ></div>
                             </div>
-                            <h1>{selectCurrentBarberdata?.foundUser?.name}</h1>
+
                         </div>
-                    </div> */}
-                    {/* <div>
                         <div>
-                            <p>{selectCurrentBarberdata?.foundUser?.email}</p>
-                            <p>{selectCurrentBarberdata?.foundUser?.mobileNumber}</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <div
-                                style={{
-                                    background: barberOnlineCheck ? "#75E6A4" : "#000"
-                                }}
-                            >
-                                <p className={`${style.toggle_btn_text} ${barberOnlineCheck ? style.toggle_btn_text_active : style.toggle_btn_text_inactive}`}>{barberOnlineCheck ? "Online" : "Offline"}</p>
+                            <div>
+                                <p>{selectCurrentBarberdata?.foundUser?.name}</p>
+                                <p>{selectCurrentBarberdata?.foundUser?.email}</p>
+                                <p>{selectCurrentBarberdata?.foundUser?.mobileNumber}</p>
+                            </div>
+
+                            <div>
                                 <button
-                                    className={`${style.toggle_btn} ${barberOnlineCheck ? style.toggle_active : style.toggle_inactive}`}
+                                    style={{
+                                        background: barberOnlineCheck ? "red" : "limegreen"
+                                    }}
                                     onClick={barberOnlineHandler}
-                                ></button>
-                            </div>
-                            <div
-                                style={{
-                                    background: barberbtnCheck ? "#75E6A4" : "#000"
-                                }}
-                            >
-                                <p className={`${style.toggle_btn_text} ${barberbtnCheck ? style.toggle_btn_text_active : style.toggle_btn_text_inactive}`}>{barberbtnCheck ? "Clock In" : "Clock Out"}</p>
+                                >{barberOnlineCheck ? "Offline" : "Online"}</button>
+
                                 <button
-                                    className={`${style.toggle_btn} ${barberbtnCheck ? style.toggle_active : style.toggle_inactive}`}
+                                    style={{
+                                        background: barberbtnCheck ? "red" : "limegreen"
+                                    }}
                                     onClick={clockHandler}
-                                ></button>
+                                >{barberbtnCheck ? "Clock-Out" : "Clock-In"}</button>
                             </div>
                         </div>
-                    </div> */}
-
-
-                    <div>
-                        <img src="https://static.vecteezy.com/system/resources/thumbnails/048/915/967/small_2x/beautiful-flowering-japanese-cherry-sakura-background-with-flowers-on-a-spring-day-photo.jpg" alt="" />
                     </div>
+
                     <div>
                         <div>
-                            <p style={{
-                                fontSize: "1.4vw",
-                                fontWeight: "500",
-                                textAlign: "center"
-                            }}>Adilson Jacinto</p>
-                            <p
-                                style={{
-                                    fontSize: "1vw",
-                                    fontWeight: "500",
-                                    marginTop: "2rem"
-                                }}
-                            >adilsonjacinto@gmail.com</p>
+                            <p>Day</p>
+                            <p>Date</p>
+                            <p>Time In</p>
+                            <p>Time Out</p>
                         </div>
-                    </div>
-                </div>
 
-                <div>
-                    <div>
-                        <p>Day</p>
-                        <p>Date</p>
-                        <p>Time In</p>
-                        <p>Time Out</p>
-                    </div>
-
-                    <div>
-                        {/* {
-                            getAttendenceByBarberIdKioskisSuccess && getAttendenceByBarberIdKioskdata.response.attendance.map((b, i) => (
-                                <div key={b._id}>
-                                    <p>{b.day}</p>
-                                    <p>{b.date}</p>
-                                    <p>{b.signInTime === "" ? "-" : b.signInTime}</p>
-                                    <p>{b.signOutTime === "" ? "-" : b.signOutTime}</p>
-                                </div>
-                            ))
-                        } */}
                         {
-                            [1, 2, 3, 4, 5, 6, 7, 8, 9].map((c) => {
-                                return (
-                                    <div key={c}>
-                                        <p>Sunday</p>
-                                        <p>24-06-24</p>
-                                        <p>19:08:21</p>
-                                        <p>14:02:21</p>
-                                    </div>
-                                )
-                            })
+                            getAttendenceByBarberIdKioskisLoading ? (
+                                <div className={style.attendence_loading_container}>
+                                    <Skeleton
+                                        variant="rectangular"
+                                        width={"100%"}
+                                        height={"6.5rem"}
+                                        sx={{ borderBottom: "1px solid rgba(0,0,0,0.2)" }}
+                                    />
+                                    <Skeleton
+                                        variant="rectangular"
+                                        width={"100%"}
+                                        height={"6.5rem"}
+                                        sx={{ borderBottom: "1px solid rgba(0,0,0,0.2)" }}
+                                    />
+                                    <Skeleton
+                                        variant="rectangular"
+                                        width={"100%"}
+                                        height={"6.5rem"}
+                                        sx={{ borderBottom: "1px solid rgba(0,0,0,0.2)" }}
+                                    />
+                                    <Skeleton
+                                        variant="rectangular"
+                                        width={"100%"}
+                                        height={"6.5rem"}
+                                        sx={{ borderBottom: "1px solid rgba(0,0,0,0.2)" }}
+                                    />
+                                    <Skeleton
+                                        variant="rectangular"
+                                        width={"100%"}
+                                        height={"6.5rem"}
+                                        sx={{ borderBottom: "1px solid rgba(0,0,0,0.2)" }}
+                                    />
+                                    <Skeleton
+                                        variant="rectangular"
+                                        width={"100%"}
+                                        height={"6.5rem"}
+                                        sx={{ borderBottom: "1px solid rgba(0,0,0,0.2)" }}
+                                    />
+                                </div>
+                            ) : getAttendenceByBarberIdKioskisSuccess && getAttendenceByBarberIdKioskdata?.response?.attendance?.length > 0 ? (
+                                <div>
+                                    {getAttendenceByBarberIdKioskdata?.response?.attendance.map((b, i) => (
+                                        <div key={i}>
+                                            <p>{b.day}</p>
+                                            <p>{b.date}</p>
+                                            <p>{b.signInTime === "" ? "-" : b.signInTime}</p>
+                                            <p>{b.signOutTime === "" ? "-" : b.signOutTime}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className={style.attendence_loading_container_error}>
+                                    <p>No attendance available</p>
+                                </div>
+                            )
                         }
 
                     </div>
-                </div>
 
-                <div className={style.close_dashboard} onClick={logoutClicked}><IoMdClose /></div>
-            </div>
-        </main>
+                    {/* <div className={style.close_dashboard} onClick={logoutClicked}><IoMdClose /></div> */}
+                </div>
+            </main>
+        </>
     )
 }
 
