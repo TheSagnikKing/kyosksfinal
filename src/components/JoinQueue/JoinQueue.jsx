@@ -703,6 +703,7 @@ import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
 import CommonHeader from '../CommonHeader/CommonHeader'
+import { PhoneNumberUtil } from 'google-libphonenumber';
 
 const JoinQueue = () => {
 
@@ -732,7 +733,7 @@ const JoinQueue = () => {
         }
     }, [adminInfo])
 
-    console.log("join queue default salon ", getDefaultSalonByAdmindata)
+    // console.log("join queue default salon ", getDefaultSalonByAdmindata)
 
     const [
         getavailablebarber,
@@ -829,6 +830,7 @@ const JoinQueue = () => {
     }
 
     const [selectedServices, setSelectedServices] = useState([])
+    
 
     const selectedServicesHandler = (item) => {
         setSelectedServices([...selectedServices, item])
@@ -874,7 +876,7 @@ const JoinQueue = () => {
         setModal3(true)
     }
 
-    console.log(selectedBarberId)
+    // console.log(selectedBarberId)
 
     const searchSelectedBarber = (barber) => {
         setSelectedBarber(barber.name)
@@ -900,8 +902,10 @@ const JoinQueue = () => {
         setIsOpen(false)
     }
 
-    console.log("current services", selectedBarberServices)
-    console.log("selected services", selectedServices)
+    // console.log("current services", selectedBarberServices)
+    // console.log("selected services", selectedServices)
+
+    const [mobileCountryCode, setMobileCountryCode] = useState("")
 
     const joinqueuedata = {
         salonId: adminInfo?.salonId,
@@ -909,7 +913,8 @@ const JoinQueue = () => {
         customerEmail: customerEmail,
         joinedQType: "Single-Join",
         methodUsed: "Walk-In",
-        mobileNumber: mobileNumber,
+        mobileNumber: Number(mobileNumber),
+        mobileCountryCode: Number(mobileCountryCode),
         barberName: selecteBarberdata,
         barberId: selectedBarberId,
         services: selectedBarberServices
@@ -950,6 +955,8 @@ const JoinQueue = () => {
         }
     }, [joinQueueKioskisSuccess, joinQueueKioskisError, navigate])
 
+    const [invalidNumber, setInvalidNumber] = useState(false)
+
     const joinqueueHandler = () => {
         if (!customerName) {
             toast.error("Please Enter Customer Name", {
@@ -981,8 +988,18 @@ const JoinQueue = () => {
                     color: '#fff',
                 },
             });
+        } else if (invalidNumber) {
+            toast.error("Invalid Mobile Number", {
+                duration: 3000,
+                style: {
+                    fontSize: "1.4rem",
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
         } else {
-            console.log(joinqueuedata)
+            console.log("Join Kiosk Data ", joinqueuedata)
             joinQueueKiosk(joinqueuedata)
         }
     }
@@ -1000,6 +1017,38 @@ const JoinQueue = () => {
     const [themecolor, setThemeColor] = useState(false)
 
     const [phoneinputborder, setPhoneinputBorder] = useState(false)
+
+    const phoneUtil = PhoneNumberUtil.getInstance();
+
+    const isPhoneValid = (phone) => {
+        try {
+            return phoneUtil.isValidNumber(phoneUtil.parseAndKeepRawInput(phone));
+        } catch (error) {
+            return false;
+        }
+    };
+
+
+
+    const handlePhoneChange = (phone, meta) => {
+
+        const { country, inputValue } = meta;
+
+        const isValid = isPhoneValid(phone);
+
+        if (isValid) {
+            console.log(phone)
+            setMobileNumber(phone)
+            setMobileCountryCode(country?.dialCode)
+            setInvalidNumber(false)
+        } else {
+            setInvalidNumber(true)
+        }
+
+    };
+
+    // console.log(mobileNumber)
+    // console.log(mobileCountryCode)
 
     return (
         <>
@@ -1023,6 +1072,8 @@ const JoinQueue = () => {
                                 <input
                                     type="text"
                                     placeholder='Enter Your Full Name'
+                                    value={customerName}
+                                    onChange={(e) => setCustomerName(e.target.value)}
                                 />
 
                             </div>
@@ -1038,47 +1089,19 @@ const JoinQueue = () => {
                                     forceDialCode={true}
                                     defaultCountry="gb"
                                     value={mobileNumber}
-                                    onChange={(phone) => setMobileNumber(phone)}
+                                    onChange={(phone, meta) => handlePhoneChange(phone, meta)}
                                 />
                             </div>
-                            {/* <div>
-                                <p>Full Name</p>
-                                <input
-                                    type="text"
-                                    placeholder="Enter Your Full Name"
-                                    value={customerName}
-                                    onChange={(e) => setCustomerName(e.target.value)}
-                                />
-                            </div> */}
-
-                            {/* <div>
-                                <p>Contact No. (Optional)</p>
-                                <div className={style.phone_input_container}>
-                                    <PhoneInput
-                                        forceDialCode={true}
-                                        defaultCountry="gb"
-                                        value={mobileNumber}
-                                        onChange={(phone) => setMobileNumber(phone)}
-                                    />
-                                </div>
-                            </div> */}
                         </div>
 
                         <div className={style.joinqueue__main__right__form_middle}>
-                            {/* <div>
-                                <p>Email Id (Optional)</p>
-                                <input
-                                    type="text"
-                                    placeholder="Enter Your Email ID"
-                                    value={customerEmail}
-                                    onChange={(e) => setCustomerEmail(e.target.value)}
-                                />
-                            </div> */}
 
                             <div className={style.common_input_container}>
                                 <input
                                     type="text"
                                     placeholder='Enter Your Email ID (Optional)'
+                                    value={customerEmail}
+                                    onChange={(e) => setCustomerEmail(e.target.value)}
                                 />
 
                             </div>
@@ -1103,42 +1126,17 @@ const JoinQueue = () => {
                                 <div onClick={SelectServicesDropdownHandler} style={{ cursor: "pointer" }}><DropdownIcon /></div>
                             </div>
 
-                            {/* <div>
-                                <p>Select Barber:</p>
-                                <div>
-                                    <input
-                                        type="text"
-                                        placeholder="Any Barber"
-                                        value={selecteBarberdata === false ? "" : selecteBarberdata}
-                                    />
-                                    <div onClick={SelectBarberDropdownHandler} style={{ cursor: "pointer" }}><DropdownIcon /></div>
-                                </div>
-
-                            </div> */}
-
-                            {/* <div>
-                                <p>Select Services:</p>
-                                <div>
-                                    <input
-                                        type="text"
-                                        placeholder="Click to Choose"
-                                        value={selectedBarberServices.map((s) => s.serviceName + " ")}
-                                    />
-                                    <div onClick={SelectServicesDropdownHandler} style={{ cursor: "pointer" }}><DropdownIcon /></div>
-                                </div>
-
-                            </div> */}
                         </div>
 
-                        {joinQueueKioskloading ? <div className={style.joinqueuebtn}><ColorRing
+                        {joinQueueKioskloading ? <button className={style.joinqueuebtn}><ColorRing
                             visible={true}
                             height="4rem"
                             width="4rem"
                             ariaLabel="color-ring-loading"
                             wrapperStyle={{}}
                             wrapperClass="color-ring-wrapper"
-                            colors={['#87a96b', '#87a96b', '#87a96b', '#87a96b', '#87a96b']}
-                        /></div> : <div className={style.joinqueuebtn} onClick={joinqueueHandler}>Join</div>}
+                            colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                        /></button> : <button className={style.joinqueuebtn} onClick={joinqueueHandler}>Join</button>}
 
                         {
                             isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen} setModal1={setModal1} setModal2={setModal2} setModal3={setModal3} setModal4={setModal4} setSelectedServices={setSelectedServices} setSelectedBarber={setSelectedBarber}>
@@ -1161,40 +1159,52 @@ const JoinQueue = () => {
                                                     wrapperClass="color-ring-wrapper"
                                                     colors={["#000"]}
                                                 /></div> : getavailablebarberisSuccess && getavailablebarberdata?.response?.length > 0 ? getavailablebarberdata?.response?.map((b) => (
-                                                    <div className={style.select_barber_item} key={b._id} onClick={() => searchSelectedBarber(b)}
+                                                    <div className={style.select_barber_item}
                                                         style={{
-                                                            background: selectedBarber === b.name ? "var(--queue-modal-bg)" : "var(--secondary-color)"
+                                                            background: selectedBarber === b.name ? "#0a84ff37" : "var(--secondary-color)",
+                                                            border: selectedBarber === b.name && "1px solid #0a84ff",
                                                         }}
+                                                        key={b._id}
+                                                        onClick={() => searchSelectedBarber(b)}
                                                     >
                                                         <div className={style.select_barber_item_top}>
-                                                            <div>
-                                                                {b?.profile?.[0]?.url ? (
-                                                                    <img src={b.profile[0].url} alt="barbername" />
-                                                                ) : (
-                                                                    <img src="./queue-no-image.jpg" alt="barbername" />
-                                                                )}
+                                                            <div className={style.select_barber_item_top_left}>
+                                                                <div>
+                                                                    <div>
+                                                                        {b?.profile?.[0]?.url ? (
+                                                                            <img src={b.profile[0].url} alt="barbername" />
+                                                                        ) : (
+                                                                            <img src="./queue-no-image.jpg" alt="barbername" />
+                                                                        )}
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>
+                                                                        <p>{b?.name}</p>
+                                                                        <p>{b?.barberServices?.[0]?.serviceName.length > 15 ? b?.barberServices?.[0]?.serviceName + "..." : b?.barberServices?.[0]?.serviceName} &nbsp; +{b?.barberServices?.length} more</p>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <div>
-                                                                <p style={{ color: modelcolorfnc(b) }}>{b.name}</p>
 
+                                                            <div className={style.select_barber_item_top_right}>
+                                                                <div>
+                                                                    <p>Queueing</p>
+                                                                    <p>{b?.queueCount}</p>
+                                                                </div>
                                                             </div>
-
                                                         </div>
-                                                        <div className={style.select_barber_item_top_border} style={{ background: modelcolorfnc(b) }} />
-
                                                         <div className={style.select_barber_item_bottom}>
                                                             <div>
-                                                                <p style={{ color: modelcolorfnc(b) }}>Next Available Positon</p>
-
-                                                                <p style={{ color: modelcolorfnc(b) }}>{b.queueCount + 1}</p>
+                                                                <div>
+                                                                    <p>Next available position</p>
+                                                                    <p>{b?.queueCount + 1}</p>
+                                                                </div>
                                                             </div>
-                                                            <div className={style.select_barber_item_bottom_border}
-                                                                style={{ background: modelcolorfnc(b) }}
-                                                            />
                                                             <div>
-                                                                <p style={{ color: modelcolorfnc(b) }}>Estimated Time</p>
-
-                                                                <p style={{ color: modelcolorfnc(b) }}>{b.barberEWT} mins</p>
+                                                                <div>
+                                                                    <p>Estimated Time</p>
+                                                                    <p>{b?.barberEWT} mins</p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1209,7 +1219,7 @@ const JoinQueue = () => {
 
                                     </div>
 
-                                    {selectedBarber !== false && <div className={style.select_barber_services_btn}><button onClick={selectbarberHandler}>Select Services</button></div>}
+                                    {selectedBarber && <div className={style.select_barber_services_btn}><button onClick={selectbarberHandler}>Select Services</button></div>}
                                 </>}
 
                                 {modal2 && <>
@@ -1219,47 +1229,52 @@ const JoinQueue = () => {
                                     </div>
                                     <div className={style.select_barber_services_container}>
                                         {
-                                            getServicesByBarberloading ? <div style={{
-                                                display: "flex",
-                                                justifyContent: "center",
-                                                alignItems: "center",
-                                                height: "100%",
-                                                width: "100%"
-                                            }}><ColorRing
-                                                    visible={true}
-                                                    height="80"
-                                                    width="80"
-                                                    ariaLabel="color-ring-loading"
-                                                    wrapperStyle={{}}
-                                                    wrapperClass="color-ring-wrapper"
-                                                    colors={["#000"]}
-                                                /></div> : getServicesByBarberisSuccess && getServicesByBarberdata?.response.map((item) => (
+                                            getServicesByBarberloading ?
+                                                <div style={{
+                                                    display: "flex",
+                                                    justifyContent: "center",
+                                                    alignItems: "center",
+                                                    height: "100%",
+                                                    width: "100%"
+                                                }}><ColorRing
+                                                        visible={true}
+                                                        height="80"
+                                                        width="80"
+                                                        ariaLabel="color-ring-loading"
+                                                        wrapperStyle={{}}
+                                                        wrapperClass="color-ring-wrapper"
+                                                        colors={["#000"]}
+                                                    /></div> :
+                                                getServicesByBarberisSuccess && getServicesByBarberdata?.response?.length > 0 ? getServicesByBarberdata?.response?.map((item) => (
                                                     <div className={style.select_barber_services_item} key={item._id}
-                                                        style={{ background: selectedServices.find((select) => select._id === item._id) ? "var(--queue-modal-bg)" : "" }}
+                                                        style={{
+                                                            background: selectedServices.find((select) => select._id === item._id) ? "#0a84ff37" : "var(--secondary-color)",
+                                                            border: selectedServices.find((select) => select._id === item._id) && "1px solid #0a84ff",
+                                                        }}
                                                     >
                                                         <div className={style.select_barber_services_item_header}>
-                                                            <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>Service</h1>
-                                                            <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>PRICE</h1>
-                                                            <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>EWT</h1>
+                                                            <p style={{ color: modelcolorfnc2(selectedServices, item) }}>Service</p>
+                                                            <p style={{ color: modelcolorfnc2(selectedServices, item) }}>PRICE</p>
+                                                            <p style={{ color: modelcolorfnc2(selectedServices, item) }}>EWT</p>
                                                             <div></div>
                                                         </div>
 
                                                         <div className={style.select_barber_services_item_content}>
-                                                            <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceName}</h1>
-                                                            <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>{getDefaultSalonByAdmindata?.response?.currency}{item.servicePrice}</h1>
-                                                            <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.barberServiceEWT}{" "}mins</h1>
+                                                            <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceName}</p>
+                                                            <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{getDefaultSalonByAdmindata?.response?.currency}{item.servicePrice}</p>
+                                                            <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.barberServiceEWT}{" "}mins</p>
                                                             {item.vipService ? <div><RiVipCrownFill /></div> : <div />}
                                                             {
                                                                 selectedServices.find((select) => select._id === item._id) ?
                                                                     <div onClick={() => deleteSelectServicesHandler(item._id)}
                                                                         style={{
-                                                                            boxShadow: "0px 0px 4px red",
+                                                                            border: "1px solid rgba(0,0,0,0.2)",
                                                                             color: "red"
                                                                         }}
                                                                     ><DeleteIcon /></div> :
                                                                     <div onClick={() => selectedServicesHandler(item)}
                                                                         style={{
-                                                                            boxShadow: "0px 0px 4px #1e2e97",
+                                                                            border: "1px solid rgba(0,0,0,0.2)",
                                                                             color: "#1e2f97"
                                                                         }}
                                                                     ><AddIcon /></div>
@@ -1269,7 +1284,10 @@ const JoinQueue = () => {
                                                         </div>
 
                                                     </div>
-                                                ))
+                                                )) :
+                                                    <div className={style.select_barber_services_item_error}>
+                                                        <h2>No services available</h2>
+                                                    </div>
                                         }
 
                                     </div>
@@ -1294,33 +1312,37 @@ const JoinQueue = () => {
                                                     wrapperStyle={{}}
                                                     wrapperClass="color-ring-wrapper"
                                                     colors={["#000"]}
-                                                /></div> : getAllSalonServicesisSuccess && getAllSalonServicesdata?.response.map((item) => (
+                                                /></div> :
+                                                getAllSalonServicesisSuccess && getAllSalonServicesdata?.response?.length > 0 ? getAllSalonServicesdata?.response?.map((item) => (
                                                     <div className={style.select_barber_services_item} key={item._id}
-                                                        style={{ background: selectedServices.find((select) => select._id === item._id) ? "var(--queue-modal-bg)" : "#fff" }}
+                                                        style={{
+                                                            background: selectedServices.find((select) => select._id === item._id) ? "#0a84ff37" : "var(--secondary-color)",
+                                                            border: selectedServices.find((select) => select._id === item._id) && "1px solid #0a84ff",
+                                                        }}
                                                     >
                                                         <div className={style.select_barber_services_item_header}>
-                                                            <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>Service</h1>
-                                                            <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>PRICE</h1>
-                                                            <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>EWT</h1>
+                                                            <p style={{ color: modelcolorfnc2(selectedServices, item) }}>Service</p>
+                                                            <p style={{ color: modelcolorfnc2(selectedServices, item) }}>PRICE</p>
+                                                            <p style={{ color: modelcolorfnc2(selectedServices, item) }}>EWT</p>
                                                             <div></div>
                                                         </div>
 
                                                         <div className={style.select_barber_services_item_content}>
-                                                            <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceName}</h1>
-                                                            <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>{getDefaultSalonByAdmindata?.response?.currency}{item.servicePrice}</h1>
-                                                            <h1 style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceEWT}{" "}mins</h1>
+                                                            <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceName}</p>
+                                                            <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{getDefaultSalonByAdmindata?.response?.currency}{item.servicePrice}</p>
+                                                            <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceEWT}{" "}mins</p>
                                                             {item.vipService ? <div><RiVipCrownFill /></div> : <div />}
                                                             {
                                                                 selectedServices.find((select) => select._id === item._id) ?
                                                                     <div onClick={() => deleteSelectServicesHandler(item._id)}
                                                                         style={{
-                                                                            boxShadow: "0px 0px 4px red",
+                                                                            border: "1px solid rgba(0,0,0,0.2)",
                                                                             color: "red"
                                                                         }}
                                                                     ><DeleteIcon /></div> :
                                                                     <div onClick={() => selectedServicesHandler(item)}
                                                                         style={{
-                                                                            boxShadow: "0px 0px 4px #1e2e97",
+                                                                            border: "1px solid rgba(0,0,0,0.2)",
                                                                             color: "#1e2f97"
                                                                         }}
                                                                     ><AddIcon /></div>
@@ -1330,7 +1352,11 @@ const JoinQueue = () => {
                                                         </div>
 
                                                     </div>
-                                                ))
+                                                )) :
+                                                    <div className={style.select_barber_services_item_error}>
+                                                        <h2>No services available</h2>
+                                                    </div>
+
                                         }
 
                                     </div>
@@ -1358,37 +1384,53 @@ const JoinQueue = () => {
                                                     wrapperStyle={{}}
                                                     wrapperClass="color-ring-wrapper"
                                                     colors={["#000"]}
-                                                /></div> : getBarberByServicesKioskisSuccess ? getBarberByServicesKioskdata?.response.map((b) => (
-                                                    <div className={style.select_barber_item} key={b._id}
-                                                        onClick={() => searchSelectedBarber(b)}
+                                                /></div> : getBarberByServicesKioskisSuccess && getBarberByServicesKioskdata?.response?.length > 0 ? getBarberByServicesKioskdata?.response?.map((b) => (
+                                                    <div className={style.select_barber_item}
                                                         style={{
-                                                            background: selectedBarber === b.name ? "var(--queue-modal-bg)" : "var(--secondary-color)"
+                                                            background: selectedBarber === b.name ? "#0a84ff37" : "var(--secondary-color)",
+                                                            border: selectedBarber === b.name && "1px solid #0a84ff",
                                                         }}
+                                                        key={b._id}
+                                                        onClick={() => searchSelectedBarber(b)}
                                                     >
                                                         <div className={style.select_barber_item_top}>
-                                                            <div>
-                                                                {b?.profile?.[0]?.url ? (
-                                                                    <img src={b.profile[0].url} alt="barbername" />
-                                                                ) : (
-                                                                    <img src="./queue-no-image.jpg" alt="barbername" />
-                                                                )}
-                                                            </div>
-                                                            <div>
-                                                                <p style={{ color: modelcolorfnc(b) }}>{b.name}</p>
+                                                            <div className={style.select_barber_item_top_left}>
+                                                                <div>
+                                                                    <div>
+                                                                        {b?.profile?.[0]?.url ? (
+                                                                            <img src={b.profile[0].url} alt="barbername" />
+                                                                        ) : (
+                                                                            <img src="./queue-no-image.jpg" alt="barbername" />
+                                                                        )}
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div>
+                                                                        <p>{b?.name}</p>
+                                                                        <p>{b?.barberServices?.[0]?.serviceName.length > 15 ? b?.barberServices?.[0]?.serviceName + "..." : b?.barberServices?.[0]?.serviceName} &nbsp; +{b?.barberServices?.length} more</p>
+                                                                    </div>
+                                                                </div>
                                                             </div>
 
+                                                            <div className={style.select_barber_item_top_right}>
+                                                                <div>
+                                                                    <p>Queueing</p>
+                                                                    <p>{b?.queueCount}</p>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div className={style.select_barber_item_top_border} style={{ background: modelcolorfnc(b) }} />
-
                                                         <div className={style.select_barber_item_bottom}>
                                                             <div>
-                                                                <p style={{ color: modelcolorfnc(b) }}>Next Available Position</p>
-                                                                <p style={{ color: modelcolorfnc(b) }}>{b.queueCount + 1}</p>
+                                                                <div>
+                                                                    <p>Next available position</p>
+                                                                    <p>{b?.queueCount + 1}</p>
+                                                                </div>
                                                             </div>
-                                                            <div className={style.select_barber_item_bottom_border} style={{ background: modelcolorfnc(b) }} />
                                                             <div>
-                                                                <p style={{ color: modelcolorfnc(b) }}>Estimated Time</p>
-                                                                <p style={{ color: modelcolorfnc(b) }}>{b.barberEWT} mins</p>
+                                                                <div>
+                                                                    <p>Estimated Time</p>
+                                                                    <p>{b?.barberEWT} mins</p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

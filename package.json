@@ -17,6 +17,7 @@
     "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.2.1",
     "axios": "^1.6.7",
+    "google-libphonenumber": "^3.2.38",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

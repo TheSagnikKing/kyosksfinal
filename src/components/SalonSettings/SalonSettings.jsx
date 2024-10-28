@@ -1,13 +1,12 @@
 // import React, { useEffect, useState } from 'react'
-// import './SalonSettings.css'
+// import style from './SalonSettings.module.css'
 // import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 // import { useChangeSalonOnlineStatusKioskMutation, useMobileBookingAvailabilityStatusMutation } from '../Dashboard/dashboardApiSlice'
 // import { useDispatch, useSelector } from 'react-redux'
 // import toast from 'react-hot-toast'
 // import { Link, useNavigate } from 'react-router-dom'
-// import { IoMdHome } from 'react-icons/io'
 // import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
-// import Skeleton from 'react-loading-skeleton'
+// import CommonHeader from '../CommonHeader/CommonHeader'
 
 // const SalonSettings = () => {
 
@@ -98,7 +97,8 @@
 
 //   const mobileBookdata = {
 //     salonId: adminInfo?.salonId,
-//     mobileBookingAvailability: !mobilebtnCheck
+//     // mobileBookingAvailability: !mobilebtnCheck
+//     mobileBookingAvailability: !adminInfo?.mobileBookingAvailability
 //   }
 
 //   const [
@@ -187,97 +187,61 @@
 
 //   console.log("AdminInfoff", defaultsalondata)
 
+//   const [themecolor, setThemeColor] = useState(false)
+
+//   const [togglecheck, setToggleCheck] = useState(false)
+
 //   return (
-//     <main className='accountSettings_container'>
-
-//       <div>
-//         <img src="./salon.jpg" alt="image" />
-//       </div>
-
-
-//       <div>
-//         <Link to="/kiyosk"
-//           className='accountsettingshomeicon'
-//         ><IoMdHome /></Link>
-
-//         <div className='accountSettings_content'>
-//           <div>
-
-//             {defaultsalonisLoading ? (
-//               <div className='salonsetting_salonlogo_skeleton'></div>
-//             ) : defaultsalonsuccess ? (
-//               <div>
-//                 {defaultsalondata?.response?.salonLogo.length > 0 ? (
-//                   <img
-//                     src={defaultsalondata?.response?.salonLogo[0]?.url}
-//                   />
-//                 ) : (
-//                   <img
-//                     src="./no-image.webp"
-//                     alt="No Salon Logo"
-//                   />
-//                 )}
-//               </div>
-//             ) : (
-//               <div>
-//                 <img
-//                   src="./no-image.webp"
-//                   alt="No Salon Logo"
-//                 />
-//               </div>
-//             )}
-
-//             <h1>{defaultsalondata?.response?.salonName}</h1>
-//           </div>
-//           <div>
+//     <>
+//       <CommonHeader
+//         themecolor={themecolor}
+//         setThemeColor={setThemeColor}
+//       />
+//       <section className={style.salon_settings_container}>
+//         <div className={style.salon_settings_left}>
+//           <img src="./My_Bookings.png" alt="salon_settings_img" />
+//         </div>
+//         <div className={style.salon_settings_right}>
+//           <div className={style.salon_main_container}>
+//             <p>Welcome to salon settings</p>
 //             <div>
-//               <h1>Salon Status</h1>
-//               {
-//                 Object.keys(adminInfo).length > 0 && <div
-//                   style={{
-//                     background: salonbtnCheck ? "#75E6A4" : "#ECEBEB"
-//                   }}
-//                 >
-//                   <p className={`toggle_btn_text ${salonbtnCheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{salonbtnCheck ? "Online" : "Offline"}</p>
+//               <div>
+//                 <p>Salon Status</p>
+//                 {
+//                   Object.keys(adminInfo).length > 0 &&
 //                   <button
-//                     className={`toggle_btn ${salonbtnCheck ? 'toggle_active' : 'toggle_inactive'}`}
+//                     style={{
+//                       background: adminInfo?.isSalonOnline ? "red" : "limegreen"
+//                     }}
 //                     onClick={salonOnlineHandler}
-//                   ></button>
-//                 </div>
-//               }
-//             </div>
+//                   >{adminInfo?.isSalonOnline ? "Offline" : "Online"}</button>
+//                 }
+//               </div>
 
-//             <div>
-//               <h1>Mobile Booking</h1>
-//               {
-//                 Object.keys(adminInfo).length > 0 && <div
-//                   style={{
-//                     background: mobilebtnCheck ? "#75E6A4" : "#ECEBEB"
-//                   }}
-//                 >
-//                   <p className={`toggle_btn_text ${mobilebtnCheck ? 'toggle_btn_text_active' : 'toggle_btn_text_inactive'}`}>{mobilebtnCheck ? "Available" : "Unavailable"}</p>
+//               <div>
+//                 <p>Mobile Booking</p>
+//                 {
+//                   Object.keys(adminInfo).length > 0 &&
 //                   <button
-//                     className={`toggle_btn ${mobilebtnCheck ? 'toggle_active' : 'toggle_inactive'}`}
+//                     style={{
+//                       background: adminInfo?.mobileBookingAvailability ? "#A0A0A0" : "#0a84ff"
+//                     }}
 //                     onClick={mobileBookOnlineHandler}
-//                   ></button>
-//                 </div>
-//               }
+//                   >{adminInfo?.mobileBookingAvailability ? "Unavailable" : "Available"}</button>
+//                 }
+
+//               </div>
 //             </div>
 
-//           </div>
-//           <div>
-//             <button className='salonlogouthandler' onClick={logoutSalonHandler}>Logout</button>
 //           </div>
 //         </div>
-
-
-//       </div>
-
-//     </main>
+//       </section>
+//     </>
 //   )
 // }
 
 // export default SalonSettings
+
 
 
 import React, { useEffect, useState } from 'react'
@@ -287,9 +251,7 @@ import { useChangeSalonOnlineStatusKioskMutation, useMobileBookingAvailabilitySt
 import { useDispatch, useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
-import { IoMdHome } from 'react-icons/io'
 import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
-import Skeleton from 'react-loading-skeleton'
 import CommonHeader from '../CommonHeader/CommonHeader'
 
 const SalonSettings = () => {
@@ -490,7 +452,10 @@ const SalonSettings = () => {
             <p>Welcome to salon settings</p>
             <div>
               <div>
-                <p>Salon Status</p>
+                <div>
+                  <p>Salon Status</p>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus dolore officiis debitis nisi beatae! Facere nihil maiores quod voluptas odio?</p>
+                </div>
                 {
                   Object.keys(adminInfo).length > 0 &&
                   <button
@@ -503,7 +468,10 @@ const SalonSettings = () => {
               </div>
 
               <div>
-                <p>Mobile Booking</p>
+                <div>
+                  <p>Mobile Booking</p>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus dolore officiis debitis nisi beatae! Facere nihil maiores quod voluptas odio?</p>
+                </div>
                 {
                   Object.keys(adminInfo).length > 0 &&
                   <button
@@ -517,8 +485,6 @@ const SalonSettings = () => {
               </div>
             </div>
 
-            <button>Logout</button>
-
           </div>
         </div>
       </section>
@@ -527,3 +493,4 @@ const SalonSettings = () => {
 }
 
 export default SalonSettings
+

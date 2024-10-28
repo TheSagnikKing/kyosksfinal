@@ -720,7 +720,7 @@
     place-items: center;
 
     &>p {
-        font-size: 0.9vw;
+        font-size: 1.6rem;
         font-weight: 500;
     }
 }
