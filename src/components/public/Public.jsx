@@ -612,6 +612,25 @@ const Public = () => {
 
   // console.log("isMobile ", isMobile)
 
+  const [barberlist_pages, setBarberlist_pages] = useState(0)
+
+  useEffect(() => {
+    setBarberlist_pages(Math.ceil(allbarbersdata?.getAllBarbers?.length / 6))
+  }, [allbarbersdata])
+
+  console.log(barberlist_pages)
+
+  const chunkArray = (array, chunkSize) => {
+    const chunks = [];
+
+    for (let i = 0; i < array.length; i += chunkSize) {
+      chunks.push(array.slice(i, i + chunkSize));
+    }
+    return chunks;
+  };
+
+  const barberChunks = chunkArray(allbarbersdata?.getAllBarbers || [], 6);
+
   return (
     <section className={style.kiyosk_dashboard_container}>
 
@@ -640,7 +659,7 @@ const Public = () => {
                     showThumbs={false}
                     infiniteLoop={true}
                     autoPlay={true}
-                    interval={6000}
+                    interval={4000}
                     showStatus={false}
                     showArrows={false}
                     stopOnHover={true}
@@ -684,145 +703,41 @@ const Public = () => {
                 showThumbs={false}
                 infiniteLoop={true}
                 autoPlay={true}
-                interval={2000}
+                interval={4000}
                 showStatus={false}
                 showArrows={false}
                 stopOnHover={true}
                 showIndicators={true}
               >
+
                 {
-                  allbarbersdata?.getAllBarbers?.map((item) => {
-                    return (
-                      <div key={item._id}
-                        className={style.barber_onlinelist_container}
-                      >
-                        <div className={style.barber_onlinelist_row}>
-                          <div className={style.barber_online_item}
-                            style={{
-                              borderLeft: item.isOnline ? "5px solid limegreen" : "5px solid red"
-                            }}
-                          >
-                            <div>
-                              <img src={item?.profile?.[0]?.url} alt="img" />
-                              <div className={style.barber_online_dot}
-                                style={{
-                                  backgroundColor: item.isOnline ? "limegreen" : "red"
-                                }}
-                              ></div>
-                            </div>
-                            <div>
-                              <p>{item.name}</p>
-                              <p>Queue Count : {item.queueCount}</p>
-                              <p>EWT : {item.barberEWT} mins</p>
-                            </div>
+                  Array.from({ length: barberlist_pages }).map((_, containerIndex) => (
+                    <div key={containerIndex}
+                      className={style.barber_onlinelist_container}>
+                      {barberChunks[containerIndex]?.map((item, itemIndex) => (
+                        <div className={style.barber_online_item}
+                          style={{
+                            borderLeft: item.isOnline ? "5px solid limegreen" : "5px solid red"
+                          }}
+                          key={item._id}
+                        >
+                          <div>
+                            <img src={item?.profile?.[0]?.url} alt="img" />
+                            <div className={style.barber_online_dot}
+                              style={{
+                                backgroundColor: item.isOnline ? "limegreen" : "red"
+                              }}
+                            ></div>
                           </div>
-
-                          <div className={style.barber_online_item}
-                            style={{
-                              borderLeft: item.isOnline ? "5px solid limegreen" : "5px solid red"
-                            }}
-                          >
-                            <div>
-                              <img src={item?.profile?.[0]?.url} alt="img" />
-                              <div className={style.barber_online_dot}
-                                style={{
-                                  backgroundColor: item.isOnline ? "limegreen" : "red"
-                                }}
-                              ></div>
-                            </div>
-                            <div>
-                              <p>{item.name}</p>
-                              <p>Queue Count : {item.queueCount}</p>
-                              <p>EWT : {item.barberEWT} mins</p>
-                            </div>
-                          </div>
-
-                          <div className={style.barber_online_item}
-                            style={{
-                              borderLeft: item.isOnline ? "5px solid limegreen" : "5px solid red"
-                            }}
-                          >
-                            <div>
-                              <img src={item?.profile?.[0]?.url} alt="img" />
-                              <div className={style.barber_online_dot}
-                                style={{
-                                  backgroundColor: item.isOnline ? "limegreen" : "red"
-                                }}
-                              ></div>
-                            </div>
-                            <div>
-                              <p>{item.name}</p>
-                              <p>Queue Count : {item.queueCount}</p>
-                              <p>EWT : {item.barberEWT} mins</p>
-                            </div>
+                          <div>
+                            <p>{item.name}</p>
+                            <p>Queue Count : {item.queueCount}</p>
+                            <p>EWT : {item.barberEWT} mins</p>
                           </div>
                         </div>
-
-                        <div className={style.barber_onlinelist_row}>
-                          <div className={style.barber_online_item}
-                            style={{
-                              borderLeft: item.isOnline ? "5px solid limegreen" : "5px solid red"
-                            }}
-                          >
-                            <div>
-                              <img src={item?.profile?.[0]?.url} alt="img" />
-                              <div className={style.barber_online_dot}
-                                style={{
-                                  backgroundColor: item.isOnline ? "limegreen" : "red"
-                                }}
-                              ></div>
-                            </div>
-                            <div>
-                              <p>{item.name}</p>
-                              <p>Queue Count : {item.queueCount}</p>
-                              <p>EWT : {item.barberEWT} mins</p>
-                            </div>
-                          </div>
-
-                          <div className={style.barber_online_item}
-                            style={{
-                              borderLeft: item.isOnline ? "5px solid limegreen" : "5px solid red"
-                            }}
-                          >
-                            <div>
-                              <img src={item?.profile?.[0]?.url} alt="img" />
-                              <div className={style.barber_online_dot}
-                                style={{
-                                  backgroundColor: item.isOnline ? "limegreen" : "red"
-                                }}
-                              ></div>
-                            </div>
-                            <div>
-                              <p>{item.name}</p>
-                              <p>Queue Count : {item.queueCount}</p>
-                              <p>EWT : {item.barberEWT} mins</p>
-                            </div>
-                          </div>
-
-                          <div className={style.barber_online_item}
-                            style={{
-                              borderLeft: item.isOnline ? "5px solid limegreen" : "5px solid red"
-                            }}
-                          >
-                            <div>
-                              <img src={item?.profile?.[0]?.url} alt="img" />
-                              <div className={style.barber_online_dot}
-                                style={{
-                                  backgroundColor: item.isOnline ? "limegreen" : "red"
-                                }}
-                              ></div>
-                            </div>
-                            <div>
-                              <p>{item?.name?.length > 12 ? item?.name.slice(0, 12) + "..." : item?.name}</p>
-                              <p>Queue Count : {item.queueCount}</p>
-                              <p>EWT : {item.barberEWT} mins</p>
-                            </div>
-                          </div>
-                        </div>
-
-                      </div>
-                    )
-                  })
+                      ))}
+                    </div>
+                  ))
                 }
 
               </Carousel>) : null
