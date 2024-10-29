@@ -699,7 +699,7 @@ const Public = () => {
                   <div style={{ width: "33%" }}><Skeleton count={1} height={"10rem"} width={"100%"} style={{ borderRadius: "6px", boxShadow: "0px 1px 6px rgba(0,0,0,0.1)" }} /></div>
                   <div style={{ width: "33%" }}><Skeleton count={1} height={"10rem"} width={"100%"} style={{ borderRadius: "6px", boxShadow: "0px 1px 6px rgba(0,0,0,0.1)" }} /></div>
                 </div>
-              </div>) : !allbarbersdata_isLoading && allbarbersdata_isSuccess ? (<Carousel
+              </div>) : !allbarbersdata_isLoading && allbarbersdata_isSuccess && barberlist_pages > 0 ? (<Carousel
                 showThumbs={false}
                 infiniteLoop={true}
                 autoPlay={true}
