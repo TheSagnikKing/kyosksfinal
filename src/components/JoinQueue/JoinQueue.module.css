@@ -993,7 +993,8 @@
 
 .select_barber_container {
     /* margin-top: 2rem; */
-    height: 78%;
+    /* height: 78%; */
+    height: 44rem;
     width: 100%;
     overflow-y: scroll;
 
@@ -1220,7 +1221,7 @@
 
 .select_barber_services_container {
     margin-top: 2rem;
-    height: 78%;
+    height: 44rem;
     width: 100%;
     overflow-y: scroll;
 
