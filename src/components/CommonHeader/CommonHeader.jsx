@@ -33,7 +33,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
         }
     }, [adminInfo])
 
-    console.log("HEader current salon ", data)
+    // console.log("HEader current salon ", data)
 
     const navigate = useNavigate()
 

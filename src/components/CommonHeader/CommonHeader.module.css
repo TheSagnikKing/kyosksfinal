@@ -5,7 +5,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2); */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     position: relative;
 
     &>div:nth-child(1) {
@@ -172,6 +173,7 @@
 
         &>div:nth-child(1) {
             gap: 2rem;
+
             &>p {
                 font-size: 3.8vw;
             }
@@ -189,6 +191,7 @@
 
         &>div {
             height: 5rem !important;
+
             &>p {
                 font-size: 3.2vw !important;
             }
@@ -200,7 +203,7 @@
         display: flex !important;
     }
 
-    .kiyosk_dashboard_btn{
+    .kiyosk_dashboard_btn {
         font-size: 3vw;
     }
 }
@@ -244,7 +247,7 @@
         display: flex !important;
     }
 
-    .kiyosk_dashboard_btn{
+    .kiyosk_dashboard_btn {
         font-size: 1.6vw;
     }
 }
