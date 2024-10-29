@@ -813,7 +813,7 @@ const Public = () => {
                               ></div>
                             </div>
                             <div>
-                              <p>{item.name}</p>
+                              <p>{item?.name?.length > 12 ? item?.name.slice(0, 12) + "..." : item?.name}</p>
                               <p>Queue Count : {item.queueCount}</p>
                               <p>EWT : {item.barberEWT} mins</p>
                             </div>
@@ -841,62 +841,35 @@ const Public = () => {
                   <Skeleton count={1} height={"10rem"} width={"30rem"} style={{ borderRadius: "6px" }} />
                   <Skeleton count={1} height={"10rem"} width={"30rem"} style={{ borderRadius: "6px" }} />
                 </>
-              ) : !allbarbersdata_isLoading && allbarbersdata_isSuccess ? (<>
-                <div className={style.kiyosk_body_left_barber_mobile_item}>
-                  <div>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfD3D3cGFZ81KYSeF7HIz3dR_Eaprsch7rkQ&s" alt="img" />
-                    <div className={style.barber_online_dot}></div>
-                  </div>
-                  <div>
-                    <p>Adilson Jacinto</p>
-                    <p>Queue Pos : 10</p>
-                    <p>EWT : 15 mins</p>
-                  </div>
-                </div>
-                <div className={style.kiyosk_body_left_barber_mobile_item}>
-                  <div>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfD3D3cGFZ81KYSeF7HIz3dR_Eaprsch7rkQ&s" alt="img" />
-                    <div className={style.barber_online_dot}></div>
-                  </div>
-                  <div>
-                    <p>Adilson Jacinto</p>
-                    <p>Queue Pos : 10</p>
-                    <p>EWT : 15 mins</p>
-                  </div>
-                </div>
-                <div className={style.kiyosk_body_left_barber_mobile_item}>
-                  <div>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfD3D3cGFZ81KYSeF7HIz3dR_Eaprsch7rkQ&s" alt="img" />
-                    <div className={style.barber_online_dot}></div>
-                  </div>
-                  <div>
-                    <p>Adilson Jacinto</p>
-                    <p>Queue Pos : 10</p>
-                    <p>EWT : 15 mins</p>
-                  </div>
-                </div>
-                <div className={style.kiyosk_body_left_barber_mobile_item}>
-                  <div>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfD3D3cGFZ81KYSeF7HIz3dR_Eaprsch7rkQ&s" alt="img" />
-                    <div className={style.barber_online_dot}></div>
-                  </div>
-                  <div>
-                    <p>Adilson Jacinto</p>
-                    <p>Queue Pos : 10</p>
-                    <p>EWT : 15 mins</p>
-                  </div>
-                </div>
-                <div className={style.kiyosk_body_left_barber_mobile_item}>
-                  <div>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfD3D3cGFZ81KYSeF7HIz3dR_Eaprsch7rkQ&s" alt="img" />
-                    <div className={style.barber_online_dot}></div>
-                  </div>
-                  <div>
-                    <p>Adilson Jacinto</p>
-                    <p>Queue Pos : 10</p>
-                    <p>EWT : 15 mins</p>
-                  </div>
-                </div>
+              ) : allbarbersdata_isSuccess && allbarbersdata?.getAllBarbers?.length > 0 ? (<>
+
+                {
+                  allbarbersdata?.getAllBarbers?.map((item) => {
+                    return (
+                      <div className={style.kiyosk_body_left_barber_mobile_item}
+                        key={item?._id}
+                        style={{
+                          borderLeft: item?.isOnline ? "5px solid limegreen" : "5px solid red"
+                        }}
+                      >
+                        <div>
+                          <img src={item?.profile?.[0]?.url} alt="img" />
+                          <div className={style.barber_online_dot}
+                            style={{
+                              background: item?.isOnline ? "limegreen" : "red"
+                            }}
+                          ></div>
+                        </div>
+                        <div>
+                          <p>{item?.name?.length > 12 ? item?.name.slice(0, 12) + "..." : item?.name}</p>
+                          <p>Queue Count : {item?.queueCount}</p>
+                          <p>EWT : {item?.barberEWT} mins</p>
+                        </div>
+                      </div>
+                    )
+                  })
+                }
+
               </>) : null
             }
 

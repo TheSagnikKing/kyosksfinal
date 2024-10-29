@@ -738,41 +738,58 @@
         width: 80%;
 
         &>p:nth-child(1) {
-            font-size: 4vw;
+            font-size: 4.5vw;
+            margin-bottom: 4rem;
         }
     }
 
     .barber_email_selection_container {
+        height: 7rem;
+
         &>input {
-            font-size: 2.8vw;
+            height: 100%;
+            font-size: 4vw;
         }
 
         .barber_email_selection_dropdown {
+            top: 8rem;
+            
             .barber_dropdown_item {
+                height: 5rem;
                 &>p {
-                    font-size: 2.8vw;
+                    font-size: 3.8vw;
                 }
             }
         }
 
         &>div:nth-child(2) {
-            font-size: 2.8vw;
+            font-size: 5vw;
         }
     }
 
     .password_container {
+        height: 7rem;
+
         &>input {
-            font-size: 2.8vw;
+            height: 100%;
+            font-size: 4vw;
         }
 
         &>div {
-            font-size: 2.8vw;
+            font-size: 5vw;
         }
 
     }
 
     .signin_btn {
-        font-size: 2.8vw;
+        margin-top: 6rem;
+        font-size: 4vw;
+        height: 6rem;
+    }
+    .barber_email_selection_dropdown_error {
+        &>p{
+            font-size: 3vw;
+        }
     }
 }
 

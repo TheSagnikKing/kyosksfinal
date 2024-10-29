@@ -47,6 +47,7 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .react-international-phone-input-container .react-international-phone-input,
@@ -80,7 +81,7 @@ input {
 
   .react-international-phone-input-container .react-international-phone-input {
     height: auto !important;
-    font-size: 3vw !important;
+    font-size: 4vw !important;
   }
 }
 
@@ -137,5 +138,3 @@ input {
 /* @media only screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { */
 /* high-resolution-specific styles */
 /* } */
-
-

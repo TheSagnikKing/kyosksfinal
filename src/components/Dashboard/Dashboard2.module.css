@@ -529,6 +529,7 @@
 
     .barber_kiyosk_container>div {
         grid-template-columns: 1fr;
+        width: 95vw;
         margin-top: 2rem;
         height: calc(100vh - 12rem);
         grid-template-rows: 1fr 1fr;
@@ -565,11 +566,11 @@
             &>div:nth-child(1) {
 
                 &>p:nth-child(1) {
-                    font-size: 4vw;
+                    font-size: 5vw;
                 }
 
                 &>p {
-                    font-size: 2.8vw;
+                    font-size: 3vw;
                 }
             }
 
@@ -595,11 +596,11 @@
         border-bottom-right-radius: 6px;
 
         &>div:nth-child(1)>p {
-            font-size: 2.7vw;
+            font-size: 3.2vw;
         }
 
         &>div:nth-child(2)>div>p {
-            font-size: 2.6vw;
+            font-size: 3vw;
         }
     }
 }

@@ -171,8 +171,9 @@
         justify-content: space-between;
 
         &>div:nth-child(1) {
+            gap: 2rem;
             &>p {
-                font-size: 2.8vw;
+                font-size: 3.8vw;
             }
         }
     }
@@ -184,11 +185,12 @@
     }
 
     .kiyosk_dropbox {
-        width: 22rem !important;
+        width: 28rem !important;
 
         &>div {
+            height: 5rem !important;
             &>p {
-                font-size: 2.4vw !important;
+                font-size: 3.2vw !important;
             }
         }
     }
@@ -196,6 +198,10 @@
     .mobile_queuelist,
     .mobile_joinequeue {
         display: flex !important;
+    }
+
+    .kiyosk_dashboard_btn{
+        font-size: 3vw;
     }
 }
 
@@ -236,5 +242,9 @@
     .mobile_queuelist,
     .mobile_joinequeue {
         display: flex !important;
+    }
+
+    .kiyosk_dashboard_btn{
+        font-size: 1.6vw;
     }
 }

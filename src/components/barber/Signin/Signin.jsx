@@ -460,9 +460,9 @@ const Signin = () => {
 
                                     {
                                         isLoading ? (<div className={style.barber_email_selection_dropdown_loading}>
-                                            <div className={style.skeleton} style={{ height: "4rem" }}></div>
-                                            <div className={style.skeleton} style={{ height: "4rem" }}></div>
-                                            <div className={style.skeleton} style={{ height: "4rem" }}></div>
+                                            <div className={style.skeleton} style={{ height: "5rem" }}></div>
+                                            <div className={style.skeleton} style={{ height: "5rem" }}></div>
+                                            <div className={style.skeleton} style={{ height: "5rem" }}></div>
                                         </div>) :
                                             isSuccess && data?.response.length > 0 ? (
                                                 data?.response?.map((b) => {

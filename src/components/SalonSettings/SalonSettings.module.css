@@ -314,7 +314,7 @@
 
     .salon_main_container {
         width: 80%;
-        height: 45vh;
+        height: 50vh;
         background-color: #fff;
         border-radius: 6px;
         -webkit-border-radius: 6px;
@@ -328,7 +328,7 @@
         justify-content: space-between;
     
         &>p:nth-child(1) {
-            font-size: 4vw;
+            font-size: 5vw;
             font-weight: 500;
             text-align: center;
         }
@@ -348,12 +348,12 @@
     
                 &>div {
                     &>p:nth-child(1){
-                        font-size: 3.5vw;
+                        font-size: 4vw;
                         font-weight: 500;
                     }
                     &>p:nth-child(2) {
                         margin-top: 1rem;
-                        font-size: 2.4vw;
+                        font-size: 2.8vw;
                         font-weight: 400;
                     }
     

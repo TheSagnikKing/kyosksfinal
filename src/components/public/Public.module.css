@@ -327,7 +327,7 @@
 
         .kiyosk_body_left_barber_mobile_item {
             background-color: #fff;
-            min-width: 30rem;
+            min-width: 35rem;
             height: 10rem;
             box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
             border-radius: 6px;
@@ -373,8 +373,8 @@
                     -moz-border-radius: 50%;
                     -ms-border-radius: 50%;
                     -o-border-radius: 50%;
-                    top: -1px;
-                    right: 3px;
+                    top: 0px;
+                    right: 0px;
                     border: 1px solid #fff;
                 }
             }
@@ -387,15 +387,16 @@
                 align-items: flex-start;
 
                 &>p:nth-child(1) {
-                    font-size: 2.8vw;
+                    font-size: 3.2vw;
                     font-weight: 600;
                     color: #000;
                 }
 
                 &>p {
-                    font-size: 2.1vw;
+                    font-size: 2.2vw;
                     color: gray;
                     font-weight: 500;
+                    margin-top: 0.3rem;
                 }
 
             }
@@ -421,14 +422,14 @@
     .kiyosk_queuelist_header{
         height: 10rem;
         &>p{
-            font-size: 2.6vw;
+            font-size: 3.2vw;
         }
     }
 
     .kiyosk_queuelist_item {
         height: 8rem;
         &>p {
-            font-size: 2.4vw;
+            font-size: 3.2vw;
         }
     }
 

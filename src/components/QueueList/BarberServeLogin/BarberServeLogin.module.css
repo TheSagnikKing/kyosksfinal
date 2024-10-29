@@ -631,15 +631,23 @@
 
     .email_container,
     .password_container {
-        height: 6rem;
+        height: 7rem;
 
         &>input {
-            font-size: 3vw;
+            font-size: 4vw;
+        }
+    }
+
+    .password_container {
+        &>div{
+            font-size: 5vw;
         }
     }
 
     .signin_btn {
-        font-size: 3vw;
+        font-size: 4vw;
+        height: 6rem;
+        margin-top: 6rem;
     }
 }
 

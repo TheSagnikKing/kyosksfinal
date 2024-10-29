@@ -336,14 +336,14 @@
 
     .salon_selection_container {
         &>p {
-            font-size: 3.2vw;
+            font-size: 4vw;
         }
     }
 
 
     .selection_box_container {
         &>p:nth-child(1) {
-            font-size: 2.8vw;
+            font-size: 3.8vw;
             font-weight: 500;
             margin-bottom: 3rem;
         }
@@ -353,17 +353,22 @@
             &>div:nth-child(1) {
 
                 &>p:nth-child(1) {
-                    font-size: 2.8vw;
+                    font-size: 3.8vw;
                 }
 
+
+                &>div:nth-child(2){
+                    font-size: 5vw;
+                }
 
                 .salondropdown_box {
 
 
                     &>div {
+                        height: 5rem;
 
                         &>p {
-                            font-size: 2.6vw;
+                            font-size: 3.8vw;
                         }
                     }
                 }
@@ -373,7 +378,8 @@
     }
 
     .salon_selection_btn {
-        font-size: 2.8vw;
+        font-size: 4vw;
+        height: 6rem;
     }
 
 }

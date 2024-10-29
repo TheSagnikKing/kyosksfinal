@@ -377,7 +377,7 @@ const QueueList = () => {
             <p>#</p>
             <p>Name</p>
             <p>Join Time</p>
-            <p>Barber Name</p>
+            <p>Barber</p>
             <p>Position</p>
             <p>Type</p>
             <p>Services</p>
@@ -422,21 +422,15 @@ const QueueList = () => {
                         }}><RiVipCrownFill /></div> : <div> -
                       </div>}
                     </p>
-                    <p>{item?.services?.[0]?.serviceName}</p>
+                    <p>{item?.services?.[0]?.serviceName} +{item?.services?.length} more</p>
                     <div><button
                       style={{
-                        // border: "1px solid orangered",
-                        // backgroundColor: "rgba(255, 174, 0, 0.264)",
-                        // color: "orangered"
                         background: "#0a84ff"
                       }}
                       onClick={() => serverHandler(item?.barberId, item?.services, item?._id, item?.barberEmail)}
                     >serve</button></div>
                     <div><button
                       style={{
-                        // color: "red",
-                        // backgroundColor: "rgba(255, 0, 0, 0.12)",
-                        // border: "1px solid red"
                         background: "red"
                       }}
                       onClick={() => cancelHandler(item?.barberId, item?._id, item?.barberEmail)}

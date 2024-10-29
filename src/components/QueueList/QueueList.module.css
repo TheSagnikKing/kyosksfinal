@@ -173,7 +173,7 @@
 }
 
 .queuelist_table_header {
-    min-width: 122rem;
+    min-width: 147rem;
     height: 6.5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     display: flex;
@@ -200,10 +200,14 @@
     &>p:nth-last-child(2) {
         flex: 0.8;
     }
+
+    &>p:nth-last-child(3) {
+        min-width: 25rem;
+    }
 }
 
 .queuelist_table_item {
-    min-width: 122rem;
+    min-width: 147rem;
     height: 6.5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     display: flex;
@@ -223,6 +227,10 @@
         font-weight: 500;
     }
 
+    &>p:nth-last-child(3) {
+        min-width: 25rem;
+    }
+
     &>div {
         min-width: 14rem;
         flex: 0.8;
@@ -233,8 +241,8 @@
 }
 
 .queuelist_table_item>div>button {
-    height: 3.5rem;
-    width: 8rem;
+    height: 4rem;
+    width: 9rem;
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -299,26 +307,32 @@
 
 
 @media screen and (min-width:0px) and (max-width: 430px) {
+
+    .queuelist_table {
+        width: 95%;
+        height: 95%;
+    }
+
     .queuelist_container {
         &>p:nth-child(1) {
-            font-size: 3vw;
+            font-size: 4vw;
         }
     }
 
     .queuelist_table_header {
         &>p {
-            font-size: 2.4vw;
+            font-size: 3vw;
         }
     }
 
     .queuelist_table_item {
         &>p {
-            font-size: 2.4vw;
+            font-size: 3vw;
         }
     }
 
     .queuelist_table_item>div>button {
-        font-size: 2.4vw;
+        font-size: 3vw;
     }
 
     .queuelist_error {
@@ -328,7 +342,7 @@
         place-items: center;
 
         &>p {
-            font-size: 3.2vw;
+            font-size: 4vw;
             font-weight: 500;
         }
     }
