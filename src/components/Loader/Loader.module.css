@@ -1,0 +1,105 @@
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.loading_text {
+    color: #000;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-left: 1rem;
+}
+
+.dot {
+    margin-left: 0.3rem;
+    animation: blink 1.5s infinite;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.loading_bar_background {
+    --height: 3rem;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    width: 20rem;
+    height: var(--height);
+    background-color: #212121
+        /*change this*/
+    ;
+    box-shadow: #0c0c0c -2px 2px 4px 0px inset;
+    border-radius: calc(var(--height) / 2);
+}
+
+.loading_bar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    --height: 2rem;
+    width: 0%;
+    height: var(--height);
+    overflow: hidden;
+    background: rgb(222, 74, 15);
+    background: linear-gradient(0deg, #0a84ff 0%, #0abeff 100%);
+    border-radius: calc(var(--height) / 1);
+    animation: loading 4s ease-out infinite;
+    -webkit-border-radius: calc(var(--height) / 1);
+    -moz-border-radius: calc(var(--height) / 1);
+    -ms-border-radius: calc(var(--height) / 1);
+    -o-border-radius: calc(var(--height) / 1);
+}
+
+.white_bars_container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+}
+
+.white_bar {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(-45deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0) 70%);
+    width: 1rem;
+    height: 4.5rem;
+    opacity: 0.3;
+    rotate: 45deg;
+}
+
+@keyframes loading {
+    0% {
+        width: 0;
+    }
+
+    80% {
+        width: 100%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}

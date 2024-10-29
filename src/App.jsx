@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Grid } from 'react-loader-spinner';
+import Loader from './components/Loader/Loader';
 
 
 const Public = React.lazy(() => import("./components/public/Public"));
@@ -35,17 +36,13 @@ const App = () => {
   return (<>
     <Toaster />
     <BrowserRouter>
-      <Suspense fallback={<div className='page_loader'><div><Grid
-        visible={true}
-        height="80"
-        width="80"
-        color="#4fa94d"
-        ariaLabel="grid-loading"
-        radius="12.5"
-        wrapperStyle={{}}
-        wrapperClass="grid-wrapper"
-      /></div>
-      </div>}>
+      <Suspense fallback={
+        <div className='page_loader'>
+          <div>
+            <Loader />
+          </div>
+        </div>
+      }>
         <Routes>
 
           <Route element={<ProtectedAuthRoute />}>
