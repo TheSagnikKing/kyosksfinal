@@ -1,9 +1,9 @@
 import React, { Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import BarberKiyoskDashboardProtect from './components/Protected/Barber/BarberKiyoskDashboardProtect';
+
 import { Grid } from 'react-loader-spinner';
-import CancelServeLogin from './components/QueueList/CancelServeLogin/CancelServeLogin';
+
 
 const Public = React.lazy(() => import("./components/public/Public"));
 const JoinQueue = React.lazy(() => import("./components/JoinQueue/JoinQueue"));
@@ -19,12 +19,16 @@ const SalonProtectRoute = React.lazy(() => import('./components/SalonSelection/S
 const AllRoutesProtect = React.lazy(() => import('./components/public/AllRoutesProtect'))
 
 const BarberServeLogin = React.lazy(() => import('./components/QueueList/BarberServeLogin/BarberServeLogin'))
+const CancelServeLogin = React.lazy(() => import("./components/QueueList/CancelServeLogin/CancelServeLogin"))
 
 const SalonSettings = React.lazy(() => import('./components/SalonSettings/SalonSettings'))
 
 const SalonSignin = React.lazy(() => import('./components/SalonSettings/SalonSignin/SalonSignin'))
 
 const SalonProtected = React.lazy(() => import("./components/SalonSettings/SalonProtected"))
+
+// import BarberKiyoskDashboardProtect from './components/Protected/Barber/BarberKiyoskDashboardProtect';
+const BarberKiyoskDashboardProtect = React.lazy(() => import("./components/Protected/Barber/BarberKiyoskDashboardProtect"))
 
 const App = () => {
 

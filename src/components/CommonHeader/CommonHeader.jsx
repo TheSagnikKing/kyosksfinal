@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import style from './CommonHeader.module.css'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { ClickAwayListener } from '@mui/material';
 import { AccountIcon, JoinIcon, LogoutIcon, QueueIcon, SettingsIcon } from '../../icons';
 import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice';
@@ -66,6 +66,8 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
         navigate("/barbersignin")
     }
 
+    const location = useLocation()
+
     return (
         <header className={style.kiyosk_header}
             style={{
@@ -97,84 +99,92 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                 }
             </div>
 
-            <div>
+            {
+                location.pathname === "/kiyoskdashboard" ?
+                    <button 
+                    className={style.kiyosk_dashboard_btn}
+                    onClick={() => navigate("/barbersignin")}
+                    >Logout</button>
+                    : <div>
 
-                <div>
-                    <button
-                        onClick={queuelistClicked}
-                        style={{
-                            background: themecolor ? "#3A6D8C" : "#0A84FF"
-                        }}
-                    >Queue List</button>
-                    <button
-                        onClick={joinqueueClicked}
-                        style={{
-                            background: themecolor ? "#3A6D8C" : "#0A84FF"
-                        }}
-                    >Join Queue</button>
-                </div>
+                        <div>
+                            <button
+                                onClick={queuelistClicked}
+                                style={{
+                                    background: themecolor ? "#3A6D8C" : "#0A84FF"
+                                }}
+                            >Queue List</button>
+                            <button
+                                onClick={joinqueueClicked}
+                                style={{
+                                    background: themecolor ? "#3A6D8C" : "#0A84FF"
+                                }}
+                            >Join Queue</button>
+                        </div>
 
-                <ClickAwayListener onClickAway={handleClickAway}>
-                    <div>
-                        <SettingsIcon onClick={() => setShowDrop((prev) => !prev)} />
+                        <ClickAwayListener onClickAway={handleClickAway}>
+                            <div>
+                                <SettingsIcon onClick={() => setShowDrop((prev) => !prev)} />
 
-                        {showdrop && (
-                            <div className={style.kiyosk_dropbox}>
-                                <div onClick={barbersigninClicked}>
-                                    <div><AccountIcon /></div>
-                                    <p>Barber Sign In</p>
-                                </div>
+                                {showdrop && (
+                                    <div className={style.kiyosk_dropbox}>
+                                        <div onClick={barbersigninClicked}>
+                                            <div><AccountIcon /></div>
+                                            <p>Barber Sign In</p>
+                                        </div>
 
-                                <div onClick={salonsettingClicked}>
-                                    <div><SettingsIcon /></div>
-                                    <p>Salon Sign In</p>
-                                </div>
+                                        <div onClick={salonsettingClicked}>
+                                            <div><SettingsIcon /></div>
+                                            <p>Salon Sign In</p>
+                                        </div>
 
-                                <div>
-                                    <div><LogoutIcon /></div>
-                                    <p onClick={logoutHandler}>Logout</p>
-                                </div>
+                                        <div>
+                                            <div><LogoutIcon /></div>
+                                            <p onClick={logoutHandler}>Logout</p>
+                                        </div>
 
-                                <div
-                                    onClick={queuelistClicked}
-                                    className={style.mobile_queuelist}
-                                >
-                                    <div><QueueIcon /></div>
-                                    <p>Queue List</p>
-                                </div>
+                                        <div
+                                            onClick={queuelistClicked}
+                                            className={style.mobile_queuelist}
+                                        >
+                                            <div><QueueIcon /></div>
+                                            <p>Queue List</p>
+                                        </div>
 
-                                <div
-                                    onClick={joinqueueClicked}
-                                    className={style.mobile_joinequeue}
-                                >
-                                    <div><JoinIcon /></div>
-                                    <p>Join Queue</p>
-                                </div>
+                                        <div
+                                            onClick={joinqueueClicked}
+                                            className={style.mobile_joinequeue}
+                                        >
+                                            <div><JoinIcon /></div>
+                                            <p>Join Queue</p>
+                                        </div>
 
-                                <div
-                                    onClick={() => setThemeColor(true)}
-                                    style={{
-                                        background: themecolor ? "#efefef" : "#fff"
-                                    }}
-                                >
-                                    <div>1.</div>
-                                    <p>Theme One</p>
-                                </div>
+                                        <div
+                                            onClick={() => setThemeColor(true)}
+                                            style={{
+                                                background: themecolor ? "#efefef" : "#fff"
+                                            }}
+                                        >
+                                            <div>1.</div>
+                                            <p>Theme One</p>
+                                        </div>
 
-                                <div
-                                    onClick={() => setThemeColor(false)}
-                                    style={{
-                                        background: !themecolor ? "#efefef" : "#fff"
-                                    }}
-                                >
-                                    <div>2.</div>
-                                    <p>Theme Two</p>
-                                </div>
+                                        <div
+                                            onClick={() => setThemeColor(false)}
+                                            style={{
+                                                background: !themecolor ? "#efefef" : "#fff"
+                                            }}
+                                        >
+                                            <div>2.</div>
+                                            <p>Theme Two</p>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
-                        )}
+                        </ClickAwayListener>
                     </div>
-                </ClickAwayListener>
-            </div>
+            }
+
         </header>
     )
 }
