@@ -138,10 +138,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                                             <p>Salon Sign In</p>
                                         </div>
 
-                                        <div>
-                                            <div><LogoutIcon /></div>
-                                            <p onClick={logoutHandler}>Logout</p>
-                                        </div>
+                                        
 
                                         <div
                                             onClick={queuelistClicked}
@@ -159,7 +156,12 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                                             <p>Join Queue</p>
                                         </div>
 
-                                        <div
+                                        <div>
+                                            <div><LogoutIcon /></div>
+                                            <p onClick={logoutHandler}>Logout</p>
+                                        </div>
+
+                                        {/* <div
                                             onClick={() => setThemeColor(true)}
                                             style={{
                                                 background: themecolor ? "#efefef" : "#fff"
@@ -177,7 +179,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                                         >
                                             <div>2.</div>
                                             <p>Theme Two</p>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 )}
                             </div>

@@ -62,7 +62,7 @@
     }
 
     .modal__content {
-        width: 90vw;
+        width: 95vw;
         background-color: var(--secondary-color);
         padding: 2rem;
         border-radius: 6px;

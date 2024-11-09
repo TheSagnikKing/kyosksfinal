@@ -630,11 +630,11 @@
             &>div:nth-child(2) {
                 &>div {
                     &>p:nth-child(1) {
-                        font-size: 3vw;
+                        font-size: 4vw;
                     }
 
                     &>p:nth-child(2) {
-                        font-size: 2.6vw;
+                        font-size: 3vw;
                     }
                 }
             }
@@ -643,11 +643,11 @@
         &>div:nth-child(2) {
             &>div {
                 &>p:nth-child(1) {
-                    font-size: 2.6vw;
+                    font-size: 3vw;
                 }
 
                 &>p:nth-child(2) {
-                    font-size: 3vw;
+                    font-size: 5vw;
                 }
             }
         }
@@ -659,11 +659,11 @@
 
             &>div {
                 &>p:nth-child(1) {
-                    font-size: 2.6vw;
+                    font-size: 3vw;
                 }
 
                 &>p:nth-child(2) {
-                    font-size: 3vw;
+                    font-size: 3.5vw;
                 }
             }
         }
@@ -671,11 +671,11 @@
         &>div:nth-child(2) {
             &>div {
                 &>p:nth-child(1) {
-                    font-size: 2.6vw;
+                    font-size: 3vw;
                 }
 
                 &>p:nth-child(2) {
-                    font-size: 3vw;
+                    font-size: 3.5vw;
                 }
             }
         }
