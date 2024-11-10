@@ -374,7 +374,7 @@ const QueueList = () => {
         <p>Queue List</p>
         <main className={style.queuelist_table}>
           <header className={style.queuelist_table_header}>
-            <p>#</p>
+            {/* <p>#</p> */}
             <p>Name</p>
             <p>Join Time</p>
             <p>Barber</p>
@@ -405,7 +405,7 @@ const QueueList = () => {
                       borderBottom: data?.response?.length - 1 === index && "none"
                     }}
                   >
-                    <p>{item?.barberId}</p>
+                    {/* <p>{item?.barberId}</p> */}
                     <p>{item?.name}</p>
                     <p>{item?.timeJoinedQ}</p>
                     <p>{item?.barberName}</p>

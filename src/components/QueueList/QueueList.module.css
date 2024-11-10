@@ -180,10 +180,10 @@
     align-items: center;
     justify-content: space-between;
 
-    &>p:nth-child(1) {
+    /* &>p:nth-child(1) {
         flex: 0.3;
         min-width: 10rem;
-    }
+    } */
 
     &>p {
         min-width: 14rem;
@@ -214,10 +214,10 @@
     align-items: center;
     justify-content: space-between;
 
-    &>p:nth-child(1) {
+    /* &>p:nth-child(1) {
         flex: 0.3;
         min-width: 10rem;
-    }
+    } */
 
     &>p {
         min-width: 14rem;
