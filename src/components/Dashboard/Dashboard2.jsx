@@ -524,17 +524,17 @@ const Dashboard2 = () => {
                             <div>
                                 <button
                                     style={{
-                                        background: barberOnlineCheck ? "red" : "limegreen"
+                                        background: barberOnlineCheck ? "limegreen" : "red" 
                                     }}
                                     onClick={barberOnlineHandler}
-                                >{barberOnlineCheck ? "Offline" : "Online"}</button>
+                                >{barberOnlineCheck ? "Online" : "Offline"  }</button>
 
                                 <button
                                     style={{
-                                        background: barberbtnCheck ? "red" : "limegreen"
+                                        background: barberbtnCheck ?"limegreen" : "red"
                                     }}
                                     onClick={clockHandler}
-                                >{barberbtnCheck ? "Clock-Out" : "Clock-In"}</button>
+                                >{barberbtnCheck ? "Clock-In" : "Clock-Out"  }</button>
                             </div>
                         </div>
                     </div>

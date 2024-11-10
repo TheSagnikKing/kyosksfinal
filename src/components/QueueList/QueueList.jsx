@@ -422,7 +422,7 @@ const QueueList = () => {
                         }}><RiVipCrownFill /></div> : <div> -
                       </div>}
                     </p>
-                    <p>{item?.services?.[0]?.serviceName} +{item?.services?.length} more</p>
+                    <p>{item?.services?.[0]?.serviceName} {item?.services?.length - 1 === 0 ? null : <span>+ {item?.services?.length - 1} more</span>}</p>
                     <div><button
                       style={{
                         background: "#0a84ff"

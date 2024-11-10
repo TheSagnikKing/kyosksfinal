@@ -460,10 +460,10 @@ const SalonSettings = () => {
                   Object.keys(adminInfo).length > 0 &&
                   <button
                     style={{
-                      background: adminInfo?.isSalonOnline ? "red" : "limegreen"
+                      background: adminInfo?.isSalonOnline ? "limegreen" : "red"
                     }}
                     onClick={salonOnlineHandler}
-                  >{adminInfo?.isSalonOnline ? "Offline" : "Online"}</button>
+                  >{adminInfo?.isSalonOnline ? "Online" : "Offline"}</button>
                 }
               </div>
 
@@ -476,10 +476,10 @@ const SalonSettings = () => {
                   Object.keys(adminInfo).length > 0 &&
                   <button
                     style={{
-                      background: adminInfo?.mobileBookingAvailability ? "#A0A0A0" : "#0a84ff"
+                      background: adminInfo?.mobileBookingAvailability ? "#0a84ff" : "#A0A0A0"
                     }}
                     onClick={mobileBookOnlineHandler}
-                  >{adminInfo?.mobileBookingAvailability ? "Unavailable" : "Available"}</button>
+                  >{adminInfo?.mobileBookingAvailability ? "Available" : "Unavailable"}</button>
                 }
 
               </div>

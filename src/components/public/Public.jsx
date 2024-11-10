@@ -654,7 +654,7 @@ const Public = () => {
                 (<div className={style.carousel_item_container}>
                   <Skeleton count={1} height={"100%"} width={"100%"} style={{ borderRadius: "6px" }} />
                 </div>) :
-                gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements.length > 0 ?
+                gerAllAdvertisementsKioskisSuccess && gerAllAdvertisementsKioskdata?.advertisements?.length > 0 ?
                   (<Carousel
                     showThumbs={false}
                     infiniteLoop={true}

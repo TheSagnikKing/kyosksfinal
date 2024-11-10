@@ -1,9 +1,12 @@
 import React, { Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
 import { Grid } from 'react-loader-spinner';
 import Loader from './components/Loader/Loader';
+import { ErrorBoundary } from "react-error-boundary";
+import { ExclamationIcon } from './icons';
+import "./App.css"
 
 
 const Public = React.lazy(() => import("./components/public/Public"));
@@ -31,6 +34,28 @@ const SalonProtected = React.lazy(() => import("./components/SalonSettings/Salon
 // import BarberKiyoskDashboardProtect from './components/Protected/Barber/BarberKiyoskDashboardProtect';
 const BarberKiyoskDashboardProtect = React.lazy(() => import("./components/Protected/Barber/BarberKiyoskDashboardProtect"))
 
+
+const ErrorFallback = ({ error }) => {
+
+  const navigate = useNavigate()
+
+  const errorLogoutHandler = () => {
+    localStorage.setItem('adminkiyoskloggin', 'false')
+    localStorage.setItem('adminkiyosktoken', '')
+    localStorage.setItem("salonSelect", "false")
+    navigate('/')
+  }
+  return (
+    <main className="error_boundary_container">
+      <div>
+        <div><ExclamationIcon /></div>
+        <p>Oops ! Something went wrong</p>
+        <button onClick={errorLogoutHandler}>Logout</button>
+      </div>
+    </main>
+  );
+};
+
 const App = () => {
 
   return (<>
@@ -55,7 +80,7 @@ const App = () => {
             </Route>
 
             <Route element={<AllRoutesProtect />}>
-              <Route path="/kiyosk" element={<Public />} />
+              <Route path="/kiyosk" element={<ErrorBoundary FallbackComponent={ErrorFallback}><Public /></ErrorBoundary>} />
               <Route path="/salonsignin" element={<SalonSignin />} />
 
               <Route element={<SalonProtected />}>

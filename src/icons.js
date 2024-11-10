@@ -9,6 +9,7 @@ import { RiAccountCircleFill } from 'react-icons/ri'
 import { HiQueueList } from 'react-icons/hi2'
 import { MdJoinInner } from 'react-icons/md'
 import { TbLogout2 } from 'react-icons/tb'
+import { BsExclamationCircle } from "react-icons/bs";
 
 export const SettingsIcon = IoSettingsSharp;
 export const DropdownIcon = IoMdArrowDropdownCircle
@@ -23,3 +24,4 @@ export const AccountIcon = RiAccountCircleFill
 export const QueueIcon = HiQueueList
 export const JoinIcon = MdJoinInner
 export const LogoutIcon = TbLogout2
+export const ExclamationIcon = BsExclamationCircle
