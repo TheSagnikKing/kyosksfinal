@@ -336,7 +336,7 @@ const JoinQueue = () => {
         }
     };
 
-
+    const [countryflag, setCountryFlag] = useState("gb")
 
     const handlePhoneChange = (phone, meta) => {
 
@@ -348,6 +348,7 @@ const JoinQueue = () => {
             console.log(phone)
             setMobileNumber(phone)
             setMobileCountryCode(country?.dialCode)
+            setCountryFlag(country?.iso2)
             setInvalidNumber(false)
         } else {
             setInvalidNumber(true)
@@ -395,7 +396,7 @@ const JoinQueue = () => {
                             >
                                 <PhoneInput
                                     forceDialCode={true}
-                                    defaultCountry="gb"
+                                    defaultCountry={countryflag}
                                     value={mobileNumber}
                                     onChange={(phone, meta) => handlePhoneChange(phone, meta)}
                                 />
