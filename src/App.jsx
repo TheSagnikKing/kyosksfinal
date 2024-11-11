@@ -56,6 +56,17 @@ const ErrorFallback = ({ error }) => {
   );
 };
 
+const ErrorFallbackAuth = () => {
+  return (
+    <main className="error_boundary_container_auth">
+      <div>
+        <div><ExclamationIcon /></div>
+        <p>Oops ! Something went wrong</p>
+      </div>
+    </main>
+  )
+}
+
 const App = () => {
 
   return (<>
@@ -70,17 +81,17 @@ const App = () => {
       }>
         <Routes>
 
-          <Route element={<ProtectedAuthRoute />}>
+          <Route element={<ErrorBoundary FallbackComponent={ErrorFallbackAuth}><ProtectedAuthRoute /></ErrorBoundary>}>
             <Route path="/" element={<AdminSignin />} />
           </Route>
 
-          <Route element={<ProtectedRoute />}>
+          <Route element={<ErrorBoundary FallbackComponent={ErrorFallback}><ProtectedRoute /></ErrorBoundary>}>
             <Route element={<SalonProtectRoute />}>
               <Route path="/selectsalon" element={<SalonSelection />} />
             </Route>
 
             <Route element={<AllRoutesProtect />}>
-              <Route path="/kiyosk" element={<ErrorBoundary FallbackComponent={ErrorFallback}><Public /></ErrorBoundary>} />
+              <Route path="/kiyosk" element={<Public />} />
               <Route path="/salonsignin" element={<SalonSignin />} />
 
               <Route element={<SalonProtected />}>

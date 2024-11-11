@@ -316,6 +316,7 @@ import { useLazyGetQlistBySalonIdKioskQuery } from '../QueueList/QueueApiSlice';
 import CommonHeader from '../CommonHeader/CommonHeader';
 
 const Public = () => {
+  
   const adminInfo = useSelector(selectCurrentAdminInfo)
 
   const [salonId, setSalonId] = useState(adminInfo?.salonId)
