@@ -172,7 +172,7 @@
 
 
 .select_salon_container {
-    height: 100vh;
+    height: 100svh;
     width: 100vw;
     background-color: var(--secondary-color);
     display: grid;
@@ -193,7 +193,7 @@
 }
 
 .select_salon_container_right {
-    height: 100vh;
+    height: 100svh;
     align-content: center;
 }
 
