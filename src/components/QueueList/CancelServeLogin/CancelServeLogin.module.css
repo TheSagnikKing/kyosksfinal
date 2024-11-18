@@ -1,621 +1,130 @@
-/* .barber__signin__main__container {
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--secondary-color);
-    display: grid;
-    grid-template-columns: 65.9rem calc(100% - 65.9rem);
-    overflow: hidden;
-}
-
-.barber__signin__main__left {
-    background-color: var(--secondary-color);
-    border-right: 2px solid var(--primary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.barber__signin__main__left>img {
-    width: 100%;
-    height: 100%;
-}
-
-.barber__signin__main__right {
-    height: 100vh !important;
-    position: relative;
-}
-
-.barber__signin__main__right>h1 {
-    text-align: center;
-    margin-top: 14.7rem;
-    font-size: 4rem;
-    font-weight: bold;
-}
-
-.barber__signin__main__form {
-    width: 85%;
-    height: 30rem;
-    margin: auto;
-    margin-top: 5rem;
-}
-
-.barber__signin__main__form>div>h1 {
-    font-weight: 500;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.barber__signin__main__form>div>div {
-    height: 4.4rem;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
-    border-radius: 2rem;
-    margin-bottom: 3rem;
-}
-
-.barber__signin__main__form>div>div>input {
-    height: 4.4rem;
-    width: 90%;
-    background-color: var(--secondary-color);
-    border: none;
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
-    padding-inline: 1rem;
-}
-
-.barber__signin__main__form>div>div>div {
-    height: 4.4rem;
-    width: 10%;
-    font-size: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-    cursor: pointer;
-}
-
-.barber__signin__main__form>div:nth-child(2)>input {
-    height: 4.4rem;
-    width: 100%;
-    border-radius: 2rem;
-    border: none;
-    padding-inline: 1rem;
-    background-color: var(--tertiary-color);
-    color: var(--tertiary-color-2);
-    margin-bottom: 4rem;
-}
-
-.barber__signin__main__form>div:nth-child(3) {
-    height: 4.4rem;
-    width: 32.4rem;
-    margin: auto;
-    margin-top: 2rem;
-}
-
-.barber__signin__main__form>div:nth-child(3)>button {
-    height: 4.4rem;
-    width: 32.4rem;
-    border-radius: 2rem;
-    border: 1px solid var(--primary-color);
-    cursor: pointer;
-    background-color: var(--secondary-color);
-    font-size: 2rem;
-    font-weight: 500;
-}
-
-.barber__signin__main__form>div:nth-child(3)>button:hover {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-
-.barber__signin__main__form_dropdown {
-    height: calc(20rem - 1.2rem);
-    ;
-    width: 100%;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
-    border-radius: 1rem;
-    margin-bottom: 2rem;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    overflow-y: scroll;
-}
-
-.barber__signin__main__form_dropdown>div {
-    height: 3.8rem;
-    display: flex;
-    align-items: center;
-    padding-inline: 1rem;
-    border-radius: 0.2rem;
-}
-
-.barber__signin__main__form_dropdown>div>h2 {
-    font-size: 2rem;
-    font-weight: 500;
-}
-
-.barber__signin__main__form_dropdown>div:hover {
-    color: orangered;
-}
-
-.barber__signin__main__form>div:nth-child(3)>div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-    height: auto;
-    border-radius: 20px;
-}
-
-.barbersigniniconClassQueue{
-    position: absolute;
-    left: 2rem;
-    top: 2rem;
-    font-size: 4rem;
-    color: black;
-}
-
-.barberemail_selection{
-    position: relative !important;
-}
-
-.barber__signin__main__form_dropdown{
-    position: absolute;
-    top: 5.4rem;
-    left: 0px;
-    z-index: 2;
-    background-color: #fff;
-}
-
-
-@media((min-width:430px) and (max-width:940px)) {
-    .barber__signin__main__container {
-        height: 100vh;
-        width: 100vw;
-        background-color: var(--secondary-color);
-        display: grid;
-        grid-template-columns: 1fr;
-        overflow: hidden;
-    }
-
-    .barber__signin__main__left {
-        height: 40vh;
-        background-color: var(--secondary-color);
-        border-right: 2px solid var(--primary-color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        order: 2;
-        display: none;
-    }
-
-    .barber__signin__main__left>img {
-        width: 60%;
-        height: 100%;
-    }
-
-    .barber__signin__main__right {
-        height: 60vh;
-    }
-
-    .barber__signin__main__right>h1 {
-        text-align: center;
-        margin-top: 14.7rem;
-        font-size: 4rem;
-        font-weight: bold;
-    }
-
-    .barber__signin__main__form {
-        width: 85%;
-        height: 30rem;
-        margin: auto;
-        margin-top: 3rem;
-    }
-
-    .barber__signin__main__form>div>h1 {
-        font-weight: 500;
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
-
-    .barber__signin__main__form>div>div {
-        height: 4.4rem;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
-        border-radius: 2rem;
-        margin-bottom: 3rem;
-    }
-
-    .barber__signin__main__form>div>div>input {
-        height: 4.4rem;
-        width: 90%;
-        background-color: var(--secondary-color);
-        border: none;
-        border-top-left-radius: 2rem;
-        border-bottom-left-radius: 2rem;
-        padding-inline: 1rem;
-    }
-
-    .barber__signin__main__form>div>div>div {
-        height: 4.4rem;
-        width: 10%;
-        font-size: 3rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: var(--secondary-color);
-        color: var(--primary-color);
-        border-top-right-radius: 2rem;
-        border-bottom-right-radius: 2rem;
-        cursor: pointer;
-    }
-
-    .barber__signin__main__form>div:nth-child(2)>input {
-        height: 4.4rem;
-        width: 100%;
-        border-radius: 2rem;
-        border: none;
-        padding-inline: 1rem;
-        background-color: var(--tertiary-color);
-        color: var(--tertiary-color-2);
-        margin-bottom: 4rem;
-    }
-
-    .barber__signin__main__form>div:nth-child(3) {
-        height: 4.4rem;
-        width: 32.4rem;
-        margin: auto;
-        margin-top: 2rem;
-    }
-
-    .barber__signin__main__form>div:nth-child(3)>button {
-        height: 4.4rem;
-        width: 32.4rem;
-        border-radius: 2rem;
-        border: 1px solid var(--primary-color);
-        cursor: pointer;
-        background-color: var(--secondary-color);
-        font-size: 2rem;
-        font-weight: 500;
-    }
-
-    .barber__signin__main__form>div:nth-child(3)>button:hover {
-        background-color: var(--primary-color);
-        color: var(--secondary-color);
-    }
-
-    .barber__signin__main__form_dropdown {
-        height: calc(20rem - 1.2rem);
-        ;
-        width: 100%;
-        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
-        border-radius: 1rem;
-        margin-bottom: 2rem;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        overflow-y: scroll;
-    }
-
-    .barber__signin__main__form_dropdown>div {
-        height: 3.8rem;
-        display: flex;
-        align-items: center;
-        padding-inline: 1rem;
-        border-radius: 0.2rem;
-    }
-
-    .barber__signin__main__form_dropdown>div>h2 {
-        font-size: 2rem;
-        font-weight: 500;
-    }
-
-    .barber__signin__main__form_dropdown>div:hover {
-        color: orangered;
-    }
-
-    .barber__signin__main__form>div:nth-child(3)>div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 30px;
-        height: auto;
-        border-radius: 20px;
-    }
-
-}
-
-@media((min-width:0px) and (max-width:430px)) {
-    .barber__signin__main__container {
-        height: 100vh;
-        width: 100vw;
-        background-color: var(--secondary-color);
-        display: grid;
-        grid-template-columns: 1fr;
-        overflow: hidden;
-    }
-
-    .barber__signin__main__left {
-        height: 40vh;
-        background-color: var(--secondary-color);
-        border-right: 2px solid var(--primary-color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        order: 2;
-        display: none;
-    }
-
-    .barber__signin__main__left>img {
-        width: 90%;
-        height: 100%;
-    }
-
-    .barber__signin__main__right {
-        height: 60vh;
-    }
-
-    .barber__signin__main__right>h1 {
-        text-align: center;
-        margin-top: 14.7rem;
-        font-size: 4rem;
-        font-weight: bold;
-    }
-
-    .barber__signin__main__form {
-        width: 85%;
-        height: auto;
-        margin: auto;
-        margin-top: 5rem;
-    }
-
-    .barber__signin__main__form>div>h1 {
-        font-weight: 500;
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
-
-    .barber__signin__main__form>div>div {
-        height: 6rem;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
-        border-radius: 2rem;
-        margin-bottom: 3rem;
-    }
-
-    .barber__signin__main__form>div>div>input {
-        height: 6rem;
-        width: 90%;
-        background-color: var(--secondary-color);
-        border: none;
-        border-top-left-radius: 2rem;
-        border-bottom-left-radius: 2rem;
-        padding-inline: 1rem;
-    }
-
-    .barber__signin__main__form>div>div>div {
-        height: 6rem;
-        width: 10%;
-        font-size: 3rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: var(--secondary-color);
-        color: var(--primary-color);
-        border-top-right-radius: 2rem;
-        border-bottom-right-radius: 2rem;
-        cursor: pointer;
-    }
-
-    .barber__signin__main__form>div:nth-child(2)>input {
-        height: 6rem;
-        width: 100%;
-        border-radius: 2rem;
-        border: none;
-        padding-inline: 1rem;
-        background-color: var(--tertiary-color);
-        color: var(--tertiary-color-2);
-        margin-bottom: 4rem;
-    }
-
-    .barber__signin__main__form>div:nth-child(3) {
-        height: 6rem;
-        width: 32.4rem;
-        margin: auto;
-        margin-top: 2rem;
-    }
-
-    .barber__signin__main__form>div:nth-child(3)>button {
-        height: 6rem;
-        width: 32.4rem;
-        border-radius: 2rem;
-        border: 1px solid var(--primary-color);
-        cursor: pointer;
-        background-color: var(--secondary-color);
-        font-size: 2rem;
-        font-weight: 500;
-    }
-
-    .barber__signin__main__form>div:nth-child(3)>button:hover {
-        background-color: var(--primary-color);
-        color: var(--secondary-color);
-    }
-
-    .barber__signin__main__form_dropdown {
-        height: calc(20rem - 1.2rem);
-        ;
-        width: 100%;
-        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
-        border-radius: 1rem;
-        margin-bottom: 2rem;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        overflow-y: scroll;
-    }
-
-    .barber__signin__main__form_dropdown>div {
-        height: 3.8rem;
-        display: flex;
-        align-items: center;
-        padding-inline: 1rem;
-        border-radius: 0.2rem;
-    }
-
-    .barber__signin__main__form_dropdown>div>h2 {
-        font-size: 2rem;
-        font-weight: 500;
-    }
-
-    .barber__signin__main__form_dropdown>div:hover {
-        color: orangered;
-    }
-
-    .barber__signin__main__form>div:nth-child(3)>div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 30px;
-        height: auto;
-        border-radius: 20px;
-    }
-} */
-
-
 .barber_cancel_login_container {
-    height: calc(100vh - 7rem);
+    width: 100%;
+    height: var(--primary-height);
     display: grid;
-    grid-template-columns: 65rem calc(100% - 65rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 
 .barber_cancel_login_left {
-    box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+    height: var(--primary-height);
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-right: 0.1rem solid rgba(0, 0, 0, 0.2);
 
     &>img {
-        width: 90%;
-        height: auto;
+        width: 50%;
+        height: 50%;
     }
 }
 
 .barber_cancel_login_right {
+    height: var(--primary-height);
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .barber_cancel_main {
+    width: 45%;
     height: auto;
-    width: 70%;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 
     &>p:nth-child(1) {
         text-align: center;
-        font-size: 1.8vw;
-        font-weight: 500;
-        margin-inline: auto;
-        margin-bottom: 4rem;
+        font-size: var(--primary-text);
+        font-weight: 600;
     }
 }
 
 .email_container {
-    background-color: rgba(0, 0, 255, 0.206);
     height: 4rem;
-    margin-bottom: 2rem;
 
     &>input {
         width: 100%;
         height: 100%;
         border: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-        font-size: 1vw;
+        border-bottom: 0.1px solid rgba(0, 0, 0, 0.6);
+        font-size: var(--content-text);
+        outline: none;
     }
 
     &>input[type="text"]:focus {
-        border-bottom: 1px solid #0A84FF;
+        border-bottom: 0.1rem solid #0A84FF;
     }
 }
 
 .password_container {
     background-color: rgba(0, 0, 255, 0.206);
     height: 4rem;
-    margin-bottom: 2rem;
     position: relative;
 
     &>input {
         width: 100%;
         height: 100%;
         border: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-        font-size: 1vw;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.6);
+        font-size: var(--content-text);
+        outline: none;
     }
 
     &>input[id="input_password"]:focus {
-        border-bottom: 1px solid #0A84FF;
+        border-bottom: 0.1rem solid #0A84FF;
     }
 
     &>div {
+        height: 4rem;
+        width: 4rem;
         position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        -webkit-transform: translateY(-50%);
-        -moz-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        -o-transform: translateY(-50%);
-        right: 5px;
-        font-size: 2.4rem;
+        top: 0rem;
+        right: 0rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: var(--content-text);
         cursor: pointer;
     }
 
 }
 
 .signin_btn {
-    height: 5rem;
-    width: 25rem;
-    display: block;
-    margin: auto;
-    margin-top: 4rem;
-    background-color: red;
-    color: #fff;
-    font-weight: 500;
-    border: none;
-    border-radius: 6px;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    -ms-border-radius: 6px;
-    -o-border-radius: 6px;
-    font-size: 1vw;
+    height: 4rem;
+    width: 100%;
+    margin-top: 1rem;
+    border: 0.1rem solid var(--tertiary-color);
+    color: var(--tertiary-color);
+    background-color: var(--quaternery-color);
+    outline: none;
     cursor: pointer;
-    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--tertiary-radius);
+    -webkit-border-radius: var(--tertiary-radius);
+    -moz-border-radius: var(--tertiary-radius);
+    -ms-border-radius: var(--tertiary-radius);
+    -o-border-radius: var(--tertiary-radius);
+    transition: var(--btn-transition);
+    -webkit-transition: var(--btn-transition);
+    -moz-transition: var(--btn-transition);
+    -ms-transition: var(--btn-transition);
+    -o-transition: var(--btn-transition);
+    font-size: var(--content-text);
 
-
-    &:hover {
-        background-color: rgba(255, 0, 0, 0.45);
+    &:hover{
+        background-color: var(--tertiary-color);
+        color: #fff;
     }
 }
 
-
 @media screen and (min-width:0px) and (max-width:430px) {
-    .barber_cancel_login_container {
-        height: calc(100vh - 7rem);
+    .barber_cancel_login_container{
         grid-template-columns: 1fr;
     }
 
@@ -623,78 +132,42 @@
         display: none;
     }
 
-    .barber_cancel_main {
-        width: 90%;
-
-        &>p:nth-child(1) {
-            font-size: 5vw;
-        }
-    }
-
-    .email_container,
-    .password_container {
-        height: 7rem;
-
-        &>input {
-            font-size: 4vw;
-        }
-    }
-
-    .password_container{
-        &>div{
-            font-size: 5vw;
-        }
-    }
-
-    .signin_btn {
-        font-size: 4vw;
-        height: 6rem;
-        margin-top: 6rem;
+    .barber_cancel_main{
+        width: 85vw;
     }
 }
 
-
-@media screen and (min-width:431px) and (max-width:884px) {
-    .barber_cancel_login_container {
-            height: calc(100vh - 7rem);
-            grid-template-columns: 1fr;
+@media screen and (min-width:431px) and (max-width:768px) {
+    .barber_cancel_login_container{
+        grid-template-columns: 1fr;
     }
 
     .barber_cancel_login_left {
         display: none;
     }
 
-    .barber_cancel_main {
-        width: 80%;
-
-        &>p:nth-child(1) {
-            font-size: 3vw;
-        }
-    }
-
-    .email_container,
-    .password_container {
-        height: 6rem;
-
-        &>input {
-            font-size: 1.8vw;
-        }
-    }
-
-    .signin_btn {
-        font-size: 1.8vw;
+    .barber_cancel_main{
+        width: 65vw;
     }
 }
 
-@media screen and (min-width: 885px) and (max-width: 1250px) {
-
-    .barber_cancel_login_container {
-        height: 100vh;
-        width: 100vw;
-        background-color: var(--secondary-color);
-        display: grid;
-        grid-template-columns: 50rem calc(100% - 50rem);
-        overflow: hidden;
+@media screen and (min-width:769px) and (max-width:1000px) {
+    .barber_cancel_login_container{
+        grid-template-columns: 1fr;
     }
 
+    .barber_cancel_login_left {
+        display: none;
+    }
+
+    .barber_cancel_main{
+        width: 45vw;
+    }
 }
+
+@media screen and (min-width:1001px) and (max-width:1250px) {
+    .barber_cancel_main{
+        width: 65%;
+    }
+}
+

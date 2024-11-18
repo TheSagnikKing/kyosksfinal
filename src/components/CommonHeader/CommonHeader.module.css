@@ -1,13 +1,11 @@
 .kiyosk_header {
     height: 7rem;
-    background-color: #001F3F;
     padding-inline: 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2); */
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    position: relative;
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
+    background-color: #fff;
 
     &>div:nth-child(1) {
         &>p {
@@ -30,7 +28,7 @@
         -moz-border-radius: 50%;
         -ms-border-radius: 50%;
         -o-border-radius: 50%;
-        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+        box-shadow: var(--cmmn-box-shadow-y);
         cursor: pointer;
 
         &>img {
@@ -45,8 +43,8 @@
     }
 
     &>p {
-        font-size: 0.9vw;
-        font-weight: 500;
+        font-size: var(--content-text);
+        font-weight: 600;
     }
 }
 
@@ -63,36 +61,45 @@
         gap: 1rem;
 
         &>button {
-            width: 12rem;
-            height: 100%;
-            background-color: #3A6D8C;
+            padding: var(--primary-padding);
+            border-radius: var(--secondary-radius);
+            -webkit-border-radius: var(--secondary-radius);
+            -moz-border-radius: var(--secondary-radius);
+            -ms-border-radius: var(--secondary-radius);
+            -o-border-radius: var(--secondary-radius);
             border: none;
-            border-radius: 4px;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            -ms-border-radius: 4px;
-            -o-border-radius: 4px;
-            font-size: 0.8vw;
-            font-weight: bold;
-            color: #fff;
-            box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
             cursor: pointer;
+            font-size: var(--content-text);
+
+            background-color: var(--secondary-color);
+            border: 0.1rem solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: var(--btn-transition);
+            -webkit-transition: var(--btn-transition);
+            -moz-transition: var(--btn-transition);
+            -ms-transition: var(--btn-transition);
+            -o-transition: var(--btn-transition);
+
+            &:hover {
+                background-color: var(--primary-color);
+                color: #fff;
+            }
         }
     }
 
     &>div:nth-child(2) {
-        width: 4rem;
-        height: 4rem;
+        padding: 0.6em 0.6em;
         border-radius: 50%;
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
         -ms-border-radius: 50%;
         -o-border-radius: 50%;
-        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
         display: grid;
         place-items: center;
-        font-size: 2.5rem;
-        color: blue;
+        font-size: var(--content-text);
+        box-shadow: var(--cmmn-box-shadow-y);
+        color: var(--primary-color);
         cursor: pointer;
         background-color: #fff;
 
@@ -106,21 +113,26 @@
             top: 5rem;
             background-color: #fff;
             padding: 1rem;
-            border-radius: 4px;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            -ms-border-radius: 4px;
-            -o-border-radius: 4px;
-            box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+            border-radius: var(--tertiary-radius);
+            -webkit-border-radius: var(--tertiary-radius);
+            -moz-border-radius: var(--tertiary-radius);
+            -ms-border-radius: var(--tertiary-radius);
+            -o-border-radius: var(--tertiary-radius);
+            box-shadow: var(--cmmn-box-shadow-y);
 
             &>div {
                 display: flex;
                 align-items: center;
                 gap: 1rem;
                 height: 4rem;
+                transition: var(--btn-transition);
+                -webkit-transition: var(--btn-transition);
+                -moz-transition: var(--btn-transition);
+                -ms-transition: var(--btn-transition);
+                -o-transition: var(--btn-transition);
 
                 &>div {
-                    font-size: 2rem;
+                    font-size: var(--btn-icon);
                     height: 4rem;
                     width: 4rem;
                     display: grid;
@@ -129,29 +141,56 @@
                 }
 
                 &>p {
-                    font-size: 0.8vw;
+                    font-size: var(--btn-text);
                     font-weight: 500;
+                }
+
+                &:hover {
+                    background-color: var(--primary-color);
+                    border-radius: var(--tertiary-radius);
+                    -webkit-border-radius: var(--tertiary-radius);
+                    -moz-border-radius: var(--tertiary-radius);
+                    -ms-border-radius: var(--tertiary-radius);
+                    -o-border-radius: var(--tertiary-radius);
+
+                    &>div {
+                        color: #fff;
+                    }
+
+                    &>p {
+                        color: #fff;
+                    }
                 }
             }
         }
     }
 }
 
-.kiyosk_dashboard_btn {
-    width: 10rem;
-    height: 4.5rem;
-    background-color: #0a84ff;
+.back_btn {
+    padding: var(--primary-padding);
+    border-radius: var(--secondary-radius);
+    -webkit-border-radius: var(--secondary-radius);
+    -moz-border-radius: var(--secondary-radius);
+    -ms-border-radius: var(--secondary-radius);
+    -o-border-radius: var(--secondary-radius);
     border: none;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    font-size: 0.9vw;
-    font-weight: bold;
-    color: #fff;
-    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
     cursor: pointer;
+    font-size: var(--content-text);
+
+    background-color: var(--quaternery-color);
+    border: 0.1rem solid var(--tertiary-color);
+    color: var(--tertiary-color);
+    font-weight: 500;
+    transition: var(--btn-transition);
+    -webkit-transition: var(--btn-transition);
+    -moz-transition: var(--btn-transition);
+    -ms-transition: var(--btn-transition);
+    -o-transition: var(--btn-transition);
+
+    &:hover {
+        background-color: var(--tertiary-color);
+        color: #fff;
+    }
 }
 
 .mobile_queuelist,
@@ -161,22 +200,13 @@
 
 
 
-@media screen and (min-width:0px) and (max-width:430px) {
+@media screen and (min-width:0px) and (max-width:1000px) {
     .kiyosk_header {
         height: 7rem;
-        background-color: #001F3F;
         padding-inline: 2rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        &>div:nth-child(1) {
-            gap: 2rem;
-
-            &>p {
-                font-size: 3.8vw;
-            }
-        }
     }
 
     .kiyosk_header>div:nth-child(2) {
@@ -186,67 +216,11 @@
     }
 
     .kiyosk_dropbox {
-        width: 28rem !important;
-
-        &>div {
-            height: 5rem !important;
-
-            &>p {
-                font-size: 3.2vw !important;
-            }
-        }
+        width: 20rem !important
     }
 
     .mobile_queuelist,
     .mobile_joinequeue {
         display: flex !important;
-    }
-
-    .kiyosk_dashboard_btn {
-        font-size: 3vw;
-    }
-}
-
-@media screen and (min-width:431px) and (max-width:884px) {
-
-    .kiyosk_header {
-        height: 7rem;
-        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
-        background-color: #001F3F;
-        padding-inline: 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        &>div:nth-child(1) {
-            &>p {
-                font-size: 1.8vw;
-            }
-        }
-    }
-
-    .kiyosk_header>div:nth-child(2) {
-        &>div:nth-child(1) {
-            display: none;
-        }
-    }
-
-    .kiyosk_dropbox {
-        width: 25rem !important;
-
-        &>div {
-            &>p {
-                font-size: 1.4vw !important;
-            }
-        }
-    }
-
-    .mobile_queuelist,
-    .mobile_joinequeue {
-        display: flex !important;
-    }
-
-    .kiyosk_dashboard_btn {
-        font-size: 1.6vw;
     }
 }

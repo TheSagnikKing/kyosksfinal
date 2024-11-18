@@ -188,7 +188,7 @@ import { GiCancel } from 'react-icons/gi'
 import { RiVipCrownFill } from 'react-icons/ri'
 import { ColorRing, Grid } from 'react-loader-spinner'
 import CommonHeader from '../CommonHeader/CommonHeader'
-import Skeleton from 'react-loading-skeleton'
+import Skeleton from '@mui/material/Skeleton';
 
 const QueueList = () => {
 
@@ -365,90 +365,66 @@ const QueueList = () => {
   ]
 
   return (
-    <>
-      <CommonHeader
-        themecolor={themecolor}
-        setThemeColor={setThemeColor}
-      />
-      <section className={style.queuelist_container}>
-        <p>Queue List</p>
-        <main className={style.queuelist_table}>
-          <header className={style.queuelist_table_header}>
-            {/* <p>#</p> */}
-            <p>Name</p>
-            <p>Join Time</p>
-            <p>Barber</p>
-            <p>Position</p>
-            <p>Type</p>
-            <p>Services</p>
-            <p>Serve</p>
-            <p>Cancel</p>
-          </header>
+    <section className={style.queuelist_container}>
+      <p>Queue List</p>
+      <main className={style.queuelist_table}>
+        <header className={style.queuelist_table_header}>
+          {/* <p>#</p> */}
+          <p>Name</p>
+          <p>Join Time</p>
+          <p>Barber</p>
+          <p>Position</p>
+          <p>Type</p>
+          <p>Services</p>
+          <p>Serve</p>
+          <p>Cancel</p>
+        </header>
 
-          {isLoading ? (
-            <div className={style.queuelist_loading}>
-              <div className={style.skeleton} style={{ height: "6.5rem" }}></div>
-              <div className={style.skeleton} style={{ height: "6.5rem" }}></div>
-              <div className={style.skeleton} style={{ height: "6.5rem" }}></div>
-              <div className={style.skeleton} style={{ height: "6.5rem" }}></div>
-              <div className={style.skeleton} style={{ height: "6.5rem" }}></div>
-              <div className={style.skeleton} style={{ height: "6.5rem" }}></div>
-            </div>
-          )
-            : isSuccess && data?.response?.length > 0 ? (
-              data?.response?.map((item, index) => {
-                return (
-                  <div
-                    className={style.queuelist_table_item}
-                    key={item?._id}
-                    style={{
-                      borderBottom: data?.response?.length - 1 === index && "none"
-                    }}
-                  >
-                    {/* <p>{item?.barberId}</p> */}
-                    <p>{item?.name}</p>
-                    <p>{item?.timeJoinedQ}</p>
-                    <p>{item?.barberName}</p>
-                    <p>{item?.qPosition}</p>
-                    <p>
-                      {item?.serviceType === "VIP" ? <div
-                        style={{
-                          fontSize: "2rem",
-                          height: "100%",
-                          width: "100%",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}><RiVipCrownFill /></div> : <div> -
-                      </div>}
-                    </p>
-                    <p>{item?.services?.[0]?.serviceName} {item?.services?.length - 1 === 0 ? null : <span>+ {item?.services?.length - 1} more</span>}</p>
-                    <div><button
-                      style={{
-                        background: "#0a84ff"
-                      }}
-                      onClick={() => serverHandler(item?.barberId, item?.services, item?._id, item?.barberEmail)}
-                    >serve</button></div>
-                    <div><button
-                      style={{
-                        background: "red"
-                      }}
-                      onClick={() => cancelHandler(item?.barberId, item?._id, item?.barberEmail)}
-                    >cancel</button></div>
+        {isLoading ? (
+          <div className={style.queuelist_loading}>
+            <Skeleton variant="rectangular" className={style.skeleton} />
+            <Skeleton variant="rectangular" className={style.skeleton} />
+            <Skeleton variant="rectangular" className={style.skeleton} />
+            <Skeleton variant="rectangular" className={style.skeleton} />
+            <Skeleton variant="rectangular" className={style.skeleton} />
+            <Skeleton variant="rectangular" className={style.skeleton} />
+          </div>
+        )
+          : isSuccess && data?.response?.length > 0 ? (
+            data?.response?.map((item, index) => {
+              return (
+                <div
+                  className={style.queuelist_table_item}
+                  key={item?._id}
+                  style={{
+                    borderBottom: data?.response?.length - 1 === index && "none"
+                  }}
+                >
+                  <p>{item?.name.length > 18 ? item?.name.slice(0, 18) + "..." : item?.name}</p>
+                  <p>{item?.timeJoinedQ}</p>
+                  <p>{item?.barberName.length > 18 ? item?.barberName.slice(0, 18) + "..." : item?.barberName}</p>
+                  <p>{item?.qPosition}</p>
+                  <div>
+                    {
+                      item?.serviceType === "VIP" ? <RiVipCrownFill /> : "-"
+                    }
                   </div>
-                )
-              })
-            )
-              :
-              <div className={style.queuelist_error}>
-                <p>No queuelist available</p>
-              </div>
-          }
+                  <p>{item?.services?.[0]?.serviceName} {item?.services?.length - 1 === 0 ? null : <span>+ {item?.services?.length - 1} more</span>}</p>
+                  <div><button onClick={() => serverHandler(item?.barberId, item?.services, item?._id, item?.barberEmail)}>serve</button></div>
+                  <div><button onClick={() => cancelHandler(item?.barberId, item?._id, item?.barberEmail)}>cancel</button></div>
+                </div>
+              )
+            })
+          )
+            :
+            <div className={style.queuelist_error}>
+              <p>No queuelist available</p>
+            </div>
+        }
 
 
-        </main >
-      </section >
-    </>
+      </main >
+    </section >
   )
 }
 

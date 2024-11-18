@@ -1,243 +1,50 @@
-/* .salon_settings_container {
-    height: calc(100vh - 7rem);
-    display: grid;
-    grid-template-columns: 65rem calc(100% - 65rem);
-}
-
-
-.salon_settings_left {
-    box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &>img {
-        width: 90%;
-        height: auto;
-    }
-}
-
-.salon_settings_right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.salon_main_container {
-    width: 60%;
-    height: 26rem;
-    background-color: #fff;
-    border-radius: 6px;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    -ms-border-radius: 6px;
-    -o-border-radius: 6px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    &>p:nth-child(1) {
-        font-size: 1.6vw;
-        font-weight: 500;
-        text-align: center;
-    }
-
-    &>div:nth-child(2) {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-
-        &>div {
-            height: 6rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            &>p {
-                font-size: 1.1vw;
-                font-weight: 500;
-            }
-
-            &>button {
-                width: 13rem;
-                height: 4rem;
-                border: none;
-                outline: none;
-                border-radius: 6px;
-                -webkit-border-radius: 6px;
-                -moz-border-radius: 6px;
-                -ms-border-radius: 6px;
-                -o-border-radius: 6px;
-                cursor: pointer;
-                font-size: 0.9vw;
-                color: #fff;
-                box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
-            }
-        }
-    }
-
-    &>button {
-        height: 5rem;
-        width: 25rem;
-        border: none;
-        outline: none;
-        border-radius: 6px;
-        background-color: #0a84ff;
-        -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
-        -ms-border-radius: 6px;
-        -o-border-radius: 6px;
-        font-size: 1vw;
-        font-weight: 500;
-        display: block;
-        margin-inline: auto;
-        color: #fff;
-        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-
-        &:hover {
-            background-color: #0a84ffc4;
-        }
-    }
-}
-
-@media screen and (min-width:0px) and (max-width:430px) {
-
-    .salon_settings_container {
-        grid-template-columns: 1fr;
-    }
-
-    .salon_settings_left {
-        display: none;
-    }
-
-    .salon_main_container {
-        width: 90%;
-
-
-        &>p:nth-child(1) {
-            font-size: 4vw;
-        }
-
-        &>div:nth-child(2) {
-
-            &>div {
-
-                &>p {
-                    font-size: 3vw;
-                }
-
-                &>button {
-                    font-size: 3vw;
-                }
-            }
-        }
-
-        &>button {
-            font-size: 3vw;
-        }
-    }
-}
-
-@media screen and (min-width:431px) and (max-width:834px) {
-
-    .salon_settings_container {
-        grid-template-columns: 1fr;
-    }
-
-    .salon_settings_left {
-        display: none;
-    }
-
-    .salon_main_container {
-        width: 70%;
-
-
-        &>p:nth-child(1) {
-            font-size: 2.8vw;
-        }
-
-        &>div:nth-child(2) {
-
-            &>div {
-
-                &>p {
-                    font-size: 1.9vw;
-                }
-
-                &>button {
-                    font-size: 1.6vw;
-                }
-            }
-        }
-
-        &>button {
-            font-size: 1.9vw;
-        }
-    }
-}
-
-@media screen and (min-width:835px) and (max-width:1250px) {
-    .salon_settings_container {
-        grid-template-columns: 50rem calc(100% - 50rem);
-    }
-} */
-
-
 .salon_settings_container {
-    height: calc(100vh - 7rem);
+    width: 100%;
+    height: var(--primary-height);
     display: grid;
-    grid-template-columns: 65rem calc(100% - 65rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 
 .salon_settings_left {
-    box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+    height: var(--primary-height);
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-right: 0.1rem solid rgba(0, 0, 0, 0.2);
 
     &>img {
-        width: 90%;
-        height: auto;
+        width: 60%;
+        height: 40%;
     }
 }
 
 .salon_settings_right {
+    height: var(--primary-height);
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .salon_main_container {
-    width: 60%;
-    height: 50vh;
-    background-color: #fff;
-    border-radius: 6px;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    -ms-border-radius: 6px;
-    -o-border-radius: 6px;
-    padding: 2rem;
-
+    width: 45%;
+    height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 2.5rem;
 
     &>p:nth-child(1) {
-        font-size: 1.6vw;
-        font-weight: 500;
         text-align: center;
+        font-size: var(--primary-text);
+        font-weight: 600;
     }
 
     &>div:nth-child(2) {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
 
         &>div {
             display: flex;
@@ -245,61 +52,65 @@
             gap: 2rem;
             justify-content: space-between;
             padding-block: 2rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
 
             &>div {
-                &>p:nth-child(1){
-                    font-size: 1.2vw;
-                    font-weight: 500;
+                &>p:nth-child(1) {
+                    font-size: var(--primary-text);
+                    font-weight: 600;
                 }
+
                 &>p:nth-child(2) {
                     margin-top: 1rem;
-                    font-size: 0.8vw;
-                    font-weight: 400;
+                    font-size: var(--btn-text);
                 }
 
             }
 
             &>button {
-                width: 13rem;
                 height: 4rem;
-                border: none;
+                width: 100%;
+                margin-top: 1rem;
                 outline: none;
-                border-radius: 6px;
-                -webkit-border-radius: 6px;
-                -moz-border-radius: 6px;
-                -ms-border-radius: 6px;
-                -o-border-radius: 6px;
                 cursor: pointer;
-                font-size: 0.9vw;
-                color: #fff;
-                box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: var(--tertiary-radius);
+                -webkit-border-radius: var(--tertiary-radius);
+                -moz-border-radius: var(--tertiary-radius);
+                -ms-border-radius: var(--tertiary-radius);
+                -o-border-radius: var(--tertiary-radius);
+                transition: var(--btn-transition);
+                -webkit-transition: var(--btn-transition);
+                -moz-transition: var(--btn-transition);
+                -ms-transition: var(--btn-transition);
+                -o-transition: var(--btn-transition);
+                font-size: var(--content-text);
             }
         }
     }
+}
 
-    &>button {
-        height: 5rem;
-        width: 25rem;
-        border: none;
-        outline: none;
-        border-radius: 6px;
-        background-color: #0a84ff;
-        -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
-        -ms-border-radius: 6px;
-        -o-border-radius: 6px;
-        font-size: 1vw;
-        font-weight: 500;
-        display: block;
-        margin-inline: auto;
+.online_btn{
+    background-color: rgba(50, 205, 50, 0.088);
+    border: 0.1rem solid limegreen !important;
+    color: limegreen;
+
+    &:hover {
+        background-color: limegreen;
         color: #fff;
-        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
+    }
+}
 
-        &:hover {
-            background-color: #0a84ffc4;
-        }
+.offline_btn{
+    background-color: #ff000025;
+    border: 0.1rem solid red !important;
+    color: red;
+
+    &:hover {
+        background-color: red;
+        color: #fff;
     }
 }
 
@@ -313,95 +124,8 @@
     }
 
     .salon_main_container {
-        width: 80%;
-        height: 50vh;
-        background-color: #fff;
-        border-radius: 6px;
-        -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
-        -ms-border-radius: 6px;
-        -o-border-radius: 6px;
-        padding: 2rem;
-    
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    
-        &>p:nth-child(1) {
-            font-size: 5vw;
-            font-weight: 500;
-            text-align: center;
-        }
-    
-        &>div:nth-child(2) {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-    
-            &>div {
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
-                justify-content: space-between;
-                padding-block: 2rem;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    
-                &>div {
-                    &>p:nth-child(1){
-                        font-size: 4vw;
-                        font-weight: 500;
-                    }
-                    &>p:nth-child(2) {
-                        margin-top: 1rem;
-                        font-size: 2.8vw;
-                        font-weight: 400;
-                    }
-    
-                }
-    
-                &>button {
-                    width: 13rem;
-                    height: 4rem;
-                    border: none;
-                    outline: none;
-                    border-radius: 6px;
-                    -webkit-border-radius: 6px;
-                    -moz-border-radius: 6px;
-                    -ms-border-radius: 6px;
-                    -o-border-radius: 6px;
-                    cursor: pointer;
-                    font-size: 3vw;
-                    color: #fff;
-                    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
-                }
-            }
-        }
-    
-        &>button {
-            height: 5rem;
-            width: 25rem;
-            border: none;
-            outline: none;
-            border-radius: 6px;
-            background-color: #0a84ff;
-            -webkit-border-radius: 6px;
-            -moz-border-radius: 6px;
-            -ms-border-radius: 6px;
-            -o-border-radius: 6px;
-            font-size: 1vw;
-            font-weight: 500;
-            display: block;
-            margin-inline: auto;
-            color: #fff;
-            box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-    
-            &:hover {
-                background-color: #0a84ffc4;
-            }
-        }
+        width: 85vw;
     }
-
 }
 
 @media screen and (min-width:431px) and (max-width:768px) {
@@ -414,98 +138,11 @@
     }
 
     .salon_main_container {
-        width: 80%;
-        height: 50vh;
-        background-color: #fff;
-        border-radius: 6px;
-        -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
-        -ms-border-radius: 6px;
-        -o-border-radius: 6px;
-        padding: 2rem;
-    
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    
-        &>p:nth-child(1) {
-            font-size: 3vw;
-            font-weight: 500;
-            text-align: center;
-        }
-    
-        &>div:nth-child(2) {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-    
-            &>div {
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
-                justify-content: space-between;
-                padding-block: 2rem;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    
-                &>div {
-                    &>p:nth-child(1){
-                        font-size: 2.6vw;
-                        font-weight: 500;
-                    }
-                    &>p:nth-child(2) {
-                        margin-top: 1rem;
-                        font-size: 2vw;
-                        font-weight: 400;
-                    }
-    
-                }
-    
-                &>button {
-                    width: 13rem;
-                    height: 4rem;
-                    border: none;
-                    outline: none;
-                    border-radius: 6px;
-                    -webkit-border-radius: 6px;
-                    -moz-border-radius: 6px;
-                    -ms-border-radius: 6px;
-                    -o-border-radius: 6px;
-                    cursor: pointer;
-                    font-size: 2vw;
-                    color: #fff;
-                    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
-                }
-            }
-        }
-    
-        &>button {
-            height: 5rem;
-            width: 25rem;
-            border: none;
-            outline: none;
-            border-radius: 6px;
-            background-color: #0a84ff;
-            -webkit-border-radius: 6px;
-            -moz-border-radius: 6px;
-            -ms-border-radius: 6px;
-            -o-border-radius: 6px;
-            font-size: 1vw;
-            font-weight: 500;
-            display: block;
-            margin-inline: auto;
-            color: #fff;
-            box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-    
-            &:hover {
-                background-color: #0a84ffc4;
-            }
-        }
+        width: 65vw;
     }
-
 }
 
-@media screen and (min-width:769px) and (max-width:834px) {
+@media screen and (min-width:769px) and (max-width:1000px) {
     .salon_settings_container {
         grid-template-columns: 1fr;
     }
@@ -515,99 +152,13 @@
     }
 
     .salon_main_container {
-        width: 80%;
-        height: 50vh;
-        background-color: #fff;
-        border-radius: 6px;
-        -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
-        -ms-border-radius: 6px;
-        -o-border-radius: 6px;
-        padding: 2rem;
-    
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    
-        &>p:nth-child(1) {
-            font-size: 2.6vw;
-            font-weight: 500;
-            text-align: center;
-        }
-    
-        &>div:nth-child(2) {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-    
-            &>div {
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
-                justify-content: space-between;
-                padding-block: 2rem;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    
-                &>div {
-                    &>p:nth-child(1){
-                        font-size: 2.2vw;
-                        font-weight: 500;
-                    }
-                    &>p:nth-child(2) {
-                        margin-top: 1rem;
-                        font-size: 1.8vw;
-                        font-weight: 400;
-                    }
-    
-                }
-    
-                &>button {
-                    width: 13rem;
-                    height: 4rem;
-                    border: none;
-                    outline: none;
-                    border-radius: 6px;
-                    -webkit-border-radius: 6px;
-                    -moz-border-radius: 6px;
-                    -ms-border-radius: 6px;
-                    -o-border-radius: 6px;
-                    cursor: pointer;
-                    font-size: 1.8vw;
-                    color: #fff;
-                    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
-                }
-            }
-        }
-    
-        &>button {
-            height: 5rem;
-            width: 25rem;
-            border: none;
-            outline: none;
-            border-radius: 6px;
-            background-color: #0a84ff;
-            -webkit-border-radius: 6px;
-            -moz-border-radius: 6px;
-            -ms-border-radius: 6px;
-            -o-border-radius: 6px;
-            font-size: 1vw;
-            font-weight: 500;
-            display: block;
-            margin-inline: auto;
-            color: #fff;
-            box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-    
-            &:hover {
-                background-color: #0a84ffc4;
-            }
-        }
-    }
-
-}
-
-@media screen and (min-width:835px) and (max-width:1250px) {
-    .salon_settings_container {
-        grid-template-columns: 50rem calc(100% - 50rem);
+        width: 45vw;
     }
 }
+
+@media screen and (min-width:1001px) and (max-width:1250px) {
+    .salon_main_container {
+        width: 65%;
+    }
+}
+

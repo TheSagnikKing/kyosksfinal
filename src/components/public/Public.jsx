@@ -635,12 +635,6 @@ const Public = () => {
   return (
     <section className={style.kiyosk_dashboard_container}>
 
-      <CommonHeader
-        themecolor={themecolor}
-        setThemeColor={setThemeColor}
-      />
-
-
       <main className={style.kiyosk_body}
         style={{
           background: themecolor ? "#9ebbc9" : "#dbe9ff"

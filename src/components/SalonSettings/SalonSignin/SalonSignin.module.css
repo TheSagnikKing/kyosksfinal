@@ -1,668 +1,133 @@
-/* .admin__signin__main__container{
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--secondary-color);
-    display: grid;
-    grid-template-columns: 65.9rem calc(100% - 65.9rem);
-    overflow: hidden;
-}
-
-.admin__signin__main__left{
-    background-color: var(--secondary-color);
-    border-right: 2px solid var(--primary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.admin__signin__main__left>img{
-    width: 100%;
-    height: auto;
-}
-
-.admin__signin__main__right{
-    height: 100vh;
-    position: relative;
-}
-
-.admin__signin__main__right>h1{
-    text-align: center;
-    margin-top: 14.7rem;
-    font-size: 4rem;
-    font-weight: bold;
-}
-
-.admin__signin__main__form{
-    width: 85%;
-    height: 30rem;
-    margin: auto;
-    margin-top: 5rem;
-}
-
-.admin__signin__main__form>div>h1{
-    font-weight: 500;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.admin__signin__main__form>div>div{
-    height: 4.4rem;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0px 0px 4px rgba(0,0,0,0.4);
-    border-radius: 2rem;
-    margin-bottom: 2rem;
-}
-
-.admin__signin__main__form>div>div>input{
-    height: 4.4rem;
-    width: 90%;
-    background-color: var(--secondary-color);
-    border: none;
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
-    padding-inline: 1rem;
-}
-
-.admin__signin__main__form>div>div>div{
-    height: 4.4rem;
-    width: 10%;
-    font-size: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--secondary-color);
-    color: var(--tertiary-color-2);
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-}
-
-.admin__signin__main__form>div:nth-child(2)>input{
-    height: 4.4rem;
-    width: 100%;
-    border-radius: 2rem;
-    border: none;
-    padding-inline: 1rem;
-    background-color: var(--tertiary-color);
-    color: var(--tertiary-color-2);
-    margin-bottom: 4rem;
-}
-
-.admin__signin__main__form>div:nth-child(4){
-    height: 4.4rem;
-    width: 32.4rem;
-    margin: auto;
-    margin-top: 2rem;
-}
-
-.admin__signin__main__form>div:nth-child(4)>button{
-    height: 4.4rem;
-    width: 32.4rem;
-    border-radius: 2rem;
-    border: 1px solid var(--primary-color);
-    cursor: pointer;
-    background-color: var(--secondary-color);
-    font-size: 2rem;
-    font-weight: 500;
-}
-
-.admin__signin__main__form>div:nth-child(4)>button:hover{
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-
-.admin__signin__main__form_dropdown{
-    height: calc(20rem - 1.2rem); ;
-    width: 100%;
-    box-shadow: 0px 0px 4px rgba(0,0,0,0.3);
-    border-radius: 1rem;
-    margin-bottom: 2rem;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    overflow-y: scroll;
-}
-
-.admin__signin__main__form_dropdown>div{
-    height: 3.8rem;
-    display: flex;
-    align-items: center;
-    padding-inline: 1rem;
-    border-radius: 0.2rem;
-}
-.admin__signin__main__form_dropdown>div>h2{
-    font-size: 2rem;
-    font-weight: 500;
-}
-
-.admin__signin__main__form_dropdown>div:hover{
-    color: orangered;
-}
-
-.admin__signin__main__form>div:nth-child(4)>div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-    height: auto;
-    border-radius: 20px;
-}
-
-
-.password_field>div>div{
-    cursor: pointer;
-}
-
-.salonicon{
-    font-size: 4rem;
-    color:#000;
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-}
-
-.rolediv{
-    height: auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.rolediv>div:nth-child(2){
-    border-radius: 0px;
-    box-shadow: none;
-    margin-bottom: none;
-    justify-content: flex-start;
-    gap: 4rem;
-}
-
-.rolediv>div:nth-child(2)>div{
-    border-radius: 0px;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    width: auto;
-}
-
-.rolediv>div:nth-child(2)>div>input{
-    height: 2.5rem;
-    width: 2.5rem;
-    accent-color: limegreen;
-    cursor: pointer;
-}
-
-.rolediv>div:nth-child(2)>div>p{
-    font-size: 1.8rem !important;
-    font-weight: 500;
-}
-
-
-@media((min-width:430px) and (max-width:940px)){
-.admin__signin__main__container{
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--secondary-color);
-    display: grid;
-    grid-template-columns: 1fr;
-    overflow: hidden;
-}
-
-.admin__signin__main__left{
-    height: 40vh;
-    background-color: var(--secondary-color);
-    border-right: 2px solid var(--primary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    order: 2;
-    display: none;
-}
-
-.admin__signin__main__left>img{
-    width: 60%;
-    height: 100%;
-}
-
-.admin__signin__main__right{
-    height: 100vh;
-}
-
-.admin__signin__main__right>h1{
-    text-align: center;
-    margin-top: 14.7rem;
-    font-size: 4rem;
-    font-weight: bold;
-}
-
-.admin__signin__main__form{
-    width: 85%;
-    height: 30rem;
-    margin: auto;
-    margin-top: 10rem;
-}
-
-.admin__signin__main__form>div>h1{
-    font-weight: 500;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.admin__signin__main__form>div>div{
-    height: 4.4rem;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0px 0px 4px rgba(0,0,0,0.4);
-    border-radius: 2rem;
-    margin-bottom: 3rem;
-}
-
-.admin__signin__main__form>div>div>input{
-    height: 4.4rem;
-    width: 90%;
-    background-color: var(--secondary-color);
-    border: none;
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
-    padding-inline: 1rem;
-}
-
-.admin__signin__main__form>div>div>div{
-    height: 4.4rem;
-    width: 10%;
-    font-size: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--secondary-color);
-    color: var(--tertiary-color-2);
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-}
-
-.admin__signin__main__form>div:nth-child(2)>input{
-    height: 4.4rem;
-    width: 100%;
-    border-radius: 2rem;
-    border: none;
-    padding-inline: 1rem;
-    background-color: var(--tertiary-color);
-    color: var(--tertiary-color-2);
-    margin-bottom: 4rem;
-}
-
-.admin__signin__main__form>div:nth-child(4){
-    height: 4.4rem;
-    width: 32.4rem;
-    margin: auto;
-    margin-top: 2rem;
-}
-
-.admin__signin__main__form>div:nth-child(4)>button{
-    height: 4.4rem;
-    width: 32.4rem;
-    border-radius: 2rem;
-    border: 1px solid var(--primary-color);
-    cursor: pointer;
-    background-color: var(--secondary-color);
-    font-size: 2rem;
-    font-weight: 500;
-}
-
-.admin__signin__main__form>div:nth-child(3)>button:hover{
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-
-.admin__signin__main__form_dropdown{
-    height: calc(20rem - 1.2rem); ;
-    width: 100%;
-    box-shadow: 0px 0px 4px rgba(0,0,0,0.3);
-    border-radius: 1rem;
-    margin-bottom: 2rem;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    overflow-y: scroll;
-}
-
-.admin__signin__main__form_dropdown>div{
-    height: 3.8rem;
-    display: flex;
-    align-items: center;
-    padding-inline: 1rem;
-    border-radius: 0.2rem;
-}
-.admin__signin__main__form_dropdown>div>h2{
-    font-size: 2rem;
-    font-weight: 500;
-}
-
-.admin__signin__main__form_dropdown>div:hover{
-    color: orangered;
-}
-
-.admin__signin__main__form>div:nth-child(4)>div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-    height: auto;
-    border-radius: 20px;
-}
-}
-
-
-@media((min-width:0px) and (max-width:430px)){
-.admin__signin__main__container{
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--secondary-color);
-    display: grid;
-    grid-template-columns: 1fr;
-    overflow: hidden;
-}
-
-.admin__signin__main__left{
-    height: 40vh;
-    background-color: var(--secondary-color);
-    border-right: 2px solid var(--primary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    order: 2;
-    display: none;
-}
-
-.admin__signin__main__left>img{
-    width: 90%;
-    height: 100%;
-}
-
-.admin__signin__main__right{
-    height: 60vh;
-}
-
-.admin__signin__main__right>h1{
-    text-align: center;
-    margin-top: 14.7rem;
-    font-size: 4rem;
-    font-weight: bold;
-}
-
-.admin__signin__main__form{
-    width: 85%;
-    height: 300px;
-    margin: auto;
-    margin-top: 5rem;
-}
-
-.admin__signin__main__form>div>h1{
-    font-weight: 500;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.admin__signin__main__form>div>div{
-    height: 6rem;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0px 0px 4px rgba(0,0,0,0.4);
-    border-radius: 2rem;
-    margin-bottom: 3rem;
-}
-
-.admin__signin__main__form>div>div>input{
-    height: 6rem;
-    width: 90%;
-    background-color: var(--secondary-color);
-    border: none;
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
-    padding-inline: 1rem;
-}
-
-.admin__signin__main__form>div>div>div{
-    height: 6rem;
-    width: 10%;
-    font-size: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--secondary-color);
-    color: var(--tertiary-color-2);
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-}
-
-.admin__signin__main__form>div:nth-child(2)>input{
-    height: 6rem;
-    width: 100%;
-    border-radius: 2rem;
-    border: none;
-    padding-inline: 1rem;
-    background-color: var(--tertiary-color);
-    color: var(--tertiary-color-2);
-    margin-bottom: 4rem;
-}
-
-.admin__signin__main__form>div:nth-child(4){
-    height: 6rem;
-    width: 32.4rem;
-    margin: auto;
-    margin-top: 2rem;
-}
-
-.admin__signin__main__form>div:nth-child(4)>button{
-    height: 6rem;
-    width: 32.4rem;
-    border-radius: 2rem;
-    border: 1px solid var(--primary-color);
-    cursor: pointer;
-    background-color: var(--secondary-color);
-    font-size: 2rem;
-    font-weight: 500;
-}
-
-.admin__signin__main__form>div:nth-child(4)>button:hover{
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-
-.admin__signin__main__form_dropdown{
-    height: calc(20rem - 1.2rem); ;
-    width: 100%;
-    box-shadow: 0px 0px 4px rgba(0,0,0,0.3);
-    border-radius: 1rem;
-    margin-bottom: 2rem;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    overflow-y: scroll;
-}
-
-.admin__signin__main__form_dropdown>div{
-    height: 3.8rem;
-    display: flex;
-    align-items: center;
-    padding-inline: 1rem;
-    border-radius: 0.2rem;
-}
-.admin__signin__main__form_dropdown>div>h2{
-    font-size: 2rem;
-    font-weight: 500;
-}
-
-.admin__signin__main__form_dropdown>div:hover{
-    color: #ff4500;
-}
-
-.admin__signin__main__form>div:nth-child(4)>div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-    height: auto;
-    border-radius: 20px;
-}
-}
- */
-
-
-/* .salon_signin_container {
-    height: calc(100vh - 7rem);
-    display: grid;
-    grid-template-columns: 65rem calc(100% - 65rem);
-}
-
-.salon_signin_left_div {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 1px 0px 6px rgba(0,0,0,0.2);
-
-    &>img {
-        width: 100%;
-        height: auto;
-    }
-} */
-
-
-
 .admin__salon_signin__main__container {
-    height: calc(100vh - 7rem);
-    width: 100vw;
-    background-color: var(--secondary-color);
+    width: 100%;
+    height: var(--primary-height);
     display: grid;
-    grid-template-columns: 65rem calc(100% - 65rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .admin__salon_signin__main__left {
-    background-color: var(--secondary-color);
-    box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+    height: var(--primary-height);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 0.1rem solid rgba(0, 0, 0, 0.2);
+
+    &>img {
+        width: 50%;
+        height: 50%;
+    }
+}
+
+.admin__salon_signin__main__right {
+    height: var(--primary-height);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
 }
 
-.admin__salon_signin__main__left>img {
-    width: 100%;
-    height: auto;
-}
-
-.admin__salon_signin__main__right {
-    align-content: center;
-}
-
 .admin_salon_signin_form_container {
+    width: 45%;
     height: auto;
-    width: 70%;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 
     &>p:nth-child(1) {
         text-align: center;
-        font-size: 1.8vw;
-        font-weight: 500;
-        margin-inline: auto;
-        margin-bottom: 4rem;
+        font-size: var(--primary-text);
+        font-weight: 600;
     }
 }
 
 .email_container {
-    background-color: rgba(0, 0, 255, 0.206);
     height: 4rem;
-    margin-bottom: 2rem;
 
     &>input {
         width: 100%;
         height: 100%;
         border: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-        font-size: 1vw;
+        border-bottom: 0.1px solid rgba(0, 0, 0, 0.6);
+        font-size: var(--content-text);
+        outline: none;
     }
 
     &>input[type="text"]:focus {
-        border-bottom: 1px solid #0A84FF;
+        border-bottom: 0.1rem solid #0A84FF;
     }
 }
 
 .password_container {
     background-color: rgba(0, 0, 255, 0.206);
     height: 4rem;
-    margin-bottom: 2rem;
     position: relative;
 
     &>input {
         width: 100%;
         height: 100%;
         border: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-        font-size: 1vw;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.6);
+        font-size: var(--content-text);
+        outline: none;
     }
 
     &>input[id="input_password"]:focus {
-        border-bottom: 1px solid #0A84FF;
+        border-bottom: 0.1rem solid #0A84FF;
     }
 
     &>div {
+        height: 4rem;
+        width: 4rem;
         position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        -webkit-transform: translateY(-50%);
-        -moz-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        -o-transform: translateY(-50%);
-        right: 5px;
-        font-size: 2.4rem;
+        top: 0rem;
+        right: 0rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: var(--content-text);
         cursor: pointer;
     }
 
 }
 
+
 .signin_btn {
-    height: 5rem;
-    width: 25rem;
-    display: block;
-    margin: auto;
-    margin-top: 4rem;
-    background-color: #0A84FF;
-    color: #fff;
-    font-weight: 500;
-    border: none;
-    border-radius: 6px;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    -ms-border-radius: 6px;
-    -o-border-radius: 6px;
-    font-size: 1vw;
+    height: 4rem;
+    width: 100%;
+    margin-top: 1rem;
+    border: 0.1rem solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    outline: none;
     cursor: pointer;
-    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--tertiary-radius);
+    -webkit-border-radius: var(--tertiary-radius);
+    -moz-border-radius: var(--tertiary-radius);
+    -ms-border-radius: var(--tertiary-radius);
+    -o-border-radius: var(--tertiary-radius);
+    transition: var(--btn-transition);
+    -webkit-transition: var(--btn-transition);
+    -moz-transition: var(--btn-transition);
+    -ms-transition: var(--btn-transition);
+    -o-transition: var(--btn-transition);
+    font-size: var(--content-text);
 
-
-    &:hover {
-        background-color: #0a84ffc4;
+    &:hover{
+        background-color: var(--primary-color);
+        color: #fff;
     }
 }
 
 .rolediv {
-    margin-top: 4rem;
-
     &>div:nth-child(1) {
         display: flex;
         align-items: center;
         gap: 2rem;
-        margin-bottom: 2rem;
 
         &>div {
             display: flex;
@@ -670,24 +135,22 @@
             gap: 1rem;
 
             &>input {
-                width: 2.2rem;
-                height: 2.2rem;
-                accent-color: #0A84FF;
+                width: var(--primary-text);
+                height: var(--primary-text);
+                accent-color: var(--primary-color);
                 cursor: pointer;
             }
 
             &>p {
-                font-size: 0.8vw;
-                margin-top: 0.5rem;
+                font-size: var(--content-text);
                 font-weight: 500;
             }
         }
     }
 }
 
-@media screen and (min-width:0px) and (max-width:430px) {
+@media screen and (min-width:0px) and (max-width:430px){
     .admin__salon_signin__main__container {
-        height: calc(100vh - 7rem);
         grid-template-columns: 1fr;
     }
 
@@ -695,64 +158,13 @@
         display: none;
     }
 
-    .admin_salon_signin_form_container {
-        width: 90%;
-
-        &>p:nth-child(1) {
-            font-size: 5vw;
-        }
-    }
-
-    .email_container,
-    .password_container {
-        height: 7rem;
-
-        &>input {
-            height: 100%;
-            font-size: 4vw;
-        }
-    }
-
-    .rolediv {
-
-        &>div:nth-child(1) {
-            gap: 3rem;
-
-            &>div {
-
-                &>input {
-                    width: 2.2rem;
-                    height: 2.2rem;
-                    accent-color: #0A84FF;
-                    cursor: pointer;
-                }
-
-                &>p {
-                    font-size: 3.8vw;
-                    margin-top: 0.5rem;
-                    font-weight: 500;
-                }
-            }
-        }
-    }
-
-    .password_container {
-        &>div {
-            font-size: 5vw;
-        }
-    }
-
-    .signin_btn {
-        margin-top: 6rem;
-        font-size: 4vw;
-        height: 6rem;
+    .admin_salon_signin_form_container{
+        width: 85vw;
     }
 }
 
-
-@media screen and (min-width:431px) and (max-width:884px) {
+@media screen and (min-width:431px) and (max-width:768px){
     .admin__salon_signin__main__container {
-        height: calc(100vh - 7rem);
         grid-template-columns: 1fr;
     }
 
@@ -760,60 +172,28 @@
         display: none;
     }
 
-    .admin_salon_signin_form_container {
-        width: 80%;
-
-        &>p:nth-child(1) {
-            font-size: 3vw;
-        }
-    }
-
-    .email_container,
-    .password_container {
-        height: 6rem;
-
-        &>input {
-            font-size: 1.8vw;
-        }
-    }
-
-    .rolediv {
-
-        &>div:nth-child(1) {
-
-            &>div {
-
-                &>input {
-                    width: 2.2rem;
-                    height: 2.2rem;
-                    accent-color: #0A84FF;
-                    cursor: pointer;
-                }
-
-                &>p {
-                    font-size: 1.6vw;
-                    margin-top: 0.5rem;
-                    font-weight: 500;
-                }
-            }
-        }
-    }
-
-
-    .signin_btn {
-        font-size: 1.8vw;
+    .admin_salon_signin_form_container{
+        width: 65vw;
     }
 }
 
-@media screen and (min-width: 885px) and (max-width: 1250px) {
-
+@media screen and (min-width:769px) and (max-width:1000px){
     .admin__salon_signin__main__container {
-        height: 100vh;
-        width: 100vw;
-        background-color: var(--secondary-color);
-        display: grid;
-        grid-template-columns: 50rem calc(100% - 50rem);
-        overflow: hidden;
+        grid-template-columns: 1fr;
     }
 
+    .admin__salon_signin__main__left {
+        display: none;
+    }
+
+    .admin_salon_signin_form_container{
+        width: 45vw;
+    }
 }
+
+@media screen and (min-width:1001px) and (max-width:1250px){
+    .admin_salon_signin_form_container{
+        width: 65%;
+    }
+}
+

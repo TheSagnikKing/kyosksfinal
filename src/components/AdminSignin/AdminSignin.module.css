@@ -1,39 +1,44 @@
 .admin__signin__main__container {
     height: 100svh;
-    width: 100vw;
-    background-color: var(--secondary-color);
+    width: 100%;
     display: grid;
-    grid-template-columns: 65rem calc(100% - 65rem);
+    grid-template-columns: 1fr 1fr;
 }
 
 .admin__signin__main__left {
-    background-color: var(--secondary-color);
-    box-shadow: 1px 0px 6px rgba(59, 27, 27, 0.2);
+    height: 100svh;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-right: 0.1rem solid rgba(0, 0, 0, 0.2);
+
+    &>img {
+        width: 50%;
+        height: 50%;
+    }
 }
 
-.admin__signin__main__left>img {
-    width: 70%;
-    height: auto;
-}
 
 .admin__signin__main__right {
     height: 100svh;
-    align-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .admin_signin_form_container {
+    width: 45%;
     height: auto;
-    width: 70%;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 
     &>div:nth-child(1) {
         height: 12rem;
         width: 12rem;
         margin-inline: auto;
-        margin-bottom: 2rem;
 
         &>img {
             width: 100%;
@@ -44,87 +49,89 @@
 
 .email_container {
     height: 4rem;
-    margin-bottom: 2rem;
 
     &>input {
         width: 100%;
         height: 100%;
         border: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-        font-size: 1vw;
+        border-bottom: 0.1px solid rgba(0, 0, 0, 0.6);
+        font-size: var(--content-text);
+        outline: none;
     }
 
     &>input[type="text"]:focus {
-        border-bottom: 1px solid #0A84FF;
+        border-bottom: 0.1rem solid #0A84FF;
     }
 }
 
 .password_container {
     background-color: rgba(0, 0, 255, 0.206);
     height: 4rem;
-    margin-bottom: 2rem;
     position: relative;
 
     &>input {
         width: 100%;
         height: 100%;
         border: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-        font-size: 1vw;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.6);
+        font-size: var(--content-text);
+        outline: none;
     }
 
     &>input[id="input_password"]:focus {
-        border-bottom: 1px solid #0A84FF;
+        border-bottom: 0.1rem solid #0A84FF;
     }
 
     &>div {
+        height: 4rem;
+        width: 4rem;
         position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        -webkit-transform: translateY(-50%);
-        -moz-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        -o-transform: translateY(-50%);
-        right: 5px;
-        font-size: 2.4rem;
+        top: 0rem;
+        right: 0rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: var(--content-text);
         cursor: pointer;
     }
 
 }
 
 .signin_btn {
-    height: 5rem;
-    width: 25rem;
-    display: block;
-    margin: auto;
-    margin-top: 4rem;
-    background-color: #0A84FF;
-    color: #fff;
-    font-weight: 500;
-    border: none;
-    border-radius: 6px;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    -ms-border-radius: 6px;
-    -o-border-radius: 6px;
-    font-size: 1vw;
+    height: 4rem;
+    width: 100%;
+    margin-top: 1rem;
+    border: 0.1rem solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    outline: none;
     cursor: pointer;
-    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--tertiary-radius);
+    -webkit-border-radius: var(--tertiary-radius);
+    -moz-border-radius: var(--tertiary-radius);
+    -ms-border-radius: var(--tertiary-radius);
+    -o-border-radius: var(--tertiary-radius);
+    transition: var(--btn-transition);
+    -webkit-transition: var(--btn-transition);
+    -moz-transition: var(--btn-transition);
+    -ms-transition: var(--btn-transition);
+    -o-transition: var(--btn-transition);
+    font-size: var(--content-text);
 
-
-    &:hover {
-        background-color: #0a84ffc4;
+    &:hover{
+        background-color: var(--primary-color);
+        color: #fff;
     }
 }
 
 .rolediv {
-    margin-top: 4rem;
-
     &>div:nth-child(1) {
         display: flex;
         align-items: center;
         gap: 2rem;
-        margin-bottom: 2rem;
 
         &>div {
             display: flex;
@@ -132,24 +139,22 @@
             gap: 1rem;
 
             &>input {
-                width: 2.2rem;
-                height: 2.2rem;
-                accent-color: #0A84FF;
+                width: var(--primary-text);
+                height: var(--primary-text);
+                accent-color: var(--primary-color);
                 cursor: pointer;
             }
 
             &>p {
-                font-size: 0.8vw;
-                margin-top: 0.5rem;
+                font-size: var(--content-text);
                 font-weight: 500;
             }
         }
     }
 }
 
-@media screen and (min-width:0px) and (max-width:430px) {
+@media screen and (min-width:0px) and (max-width:430px){
     .admin__signin__main__container {
-        /* height: 100vh; */
         grid-template-columns: 1fr;
     }
 
@@ -158,73 +163,12 @@
     }
 
     .admin_signin_form_container {
-        width: 90%;
-    }
-
-    .email_container,
-    .password_container {
-        height: 7rem;
-
-        &>input {
-            font-size: 4vw;
-        }
-    }
-
-    .rolediv {
-
-        &>div:nth-child(1) {
-            gap: 3rem;
-
-            &>div {
-
-                &>input {
-                    width: 3.2rem;
-                    height: 3.2rem;
-                    accent-color: #0A84FF;
-                    cursor: pointer;
-                }
-
-                &>p {
-                    font-size: 3.8vw;
-                    margin-top: 0.5rem;
-                    font-weight: 500;
-                }
-            }
-        }
-    }
-
-    .admin_signin_form_container {
-
-        &>div:nth-child(1) {
-            height: 15rem;
-            width: 15rem;
-            margin-inline: auto;
-            margin-bottom: 4rem;
-
-            &>img {
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
-
-    .password_container {
-        &>div {
-            font-size: 5vw;
-        }
-    }
-
-    .signin_btn {
-        margin-top: 6rem;
-        font-size: 4vw;
-        height: 6rem;
+        width: 85vw;
     }
 }
 
-
-@media screen and (min-width:431px) and (max-width:884px) {
+@media screen and (min-width:431px) and (max-width:768px){
     .admin__signin__main__container {
-        /* height: 100vh; */
         grid-template-columns: 1fr;
     }
 
@@ -233,54 +177,26 @@
     }
 
     .admin_signin_form_container {
-        width: 80%;
-    }
-
-    .email_container,
-    .password_container {
-        height: 6rem;
-
-        &>input {
-            font-size: 1.8vw;
-        }
-    }
-
-    .rolediv {
-
-        &>div:nth-child(1) {
-
-            &>div {
-
-                &>input {
-                    width: 2.2rem;
-                    height: 2.2rem;
-                    accent-color: #0A84FF;
-                    cursor: pointer;
-                }
-
-                &>p {
-                    font-size: 1.6vw;
-                    margin-top: 0.5rem;
-                    font-weight: 500;
-                }
-            }
-        }
-    }
-
-
-    .signin_btn {
-        font-size: 1.8vw;
+        width: 65vw;
     }
 }
 
-@media screen and (min-width: 885px) and (max-width: 1250px) {
-
+@media screen and (min-width:769px) and (max-width:1000px){
     .admin__signin__main__container {
-        width: 100vw;
-        background-color: var(--secondary-color);
-        display: grid;
-        grid-template-columns: 50rem calc(100% - 50rem);
-        overflow: hidden;
+        grid-template-columns: 1fr;
     }
 
+    .admin__signin__main__left {
+        display: none;
+    }
+
+    .admin_signin_form_container {
+        width: 45vw;
+    }
+}
+
+@media screen and (min-width:1001px) and (max-width:1250px){
+    .admin_signin_form_container {
+        width: 65%;
+    }
 }

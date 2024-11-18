@@ -20,25 +20,97 @@ p {
   color: #000;
 }
 
-input:focus {
-  outline: none;
-}
-
-input {
-  font-size: 1.4rem;
-}
-
 
 :root {
   font-size: 62.5%;
-  --primary-color: #000;
+  /* --primary-color: #000;
   --secondary-color: #fff;
   --tertiary-color: #EEEDED;
   --tertiary-color-2: #A4A4A4;
   --tertiary-color-3: #3b3b3bca;
   --quarterny-color: #87a96b;
   --queue-modal-bg: #87a96b;
-  --dashboard_bf-color: #F2F0F0;
+  --dashboard_bf-color: #F2F0F0; */
+
+  /* light theme color */
+  --primary-color: #0866ff;
+  --secondary-color: #0867ff25;
+  --primary-bg-color:  #dbe9ff;
+
+  --tertiary-color: red;
+  --quaternery-color:  rgba(255, 0, 0, 0.144);
+
+  /* font sizes */
+  --primary-text: clamp(1.6rem, 1.2rem + 0.4vw, 3.2rem);
+  --btn-text: clamp(1.4rem, 1rem + 0.2vw, 3rem);
+  --btn-icon: clamp(1.4rem, 1rem + 0.2vw, 3rem);
+  --content-text: clamp(1.4rem, 1.2rem + 0.2vw, 3rem);
+  --content-error-text: clamp(1.4rem, 1.2rem + 0.2vw, 3rem);
+
+  --secondary-text: clamp(1.6rem, 1.2rem + 0.4vw, 3.2rem);
+  --secondary-icon: clamp(1.4rem, 1rem + 0.2vw, 3rem);
+  --tertiary-text: clamp(1.4rem, 1rem + 0.2vw, 3rem);
+  --quaternary-content-text: clamp(1.4rem, 1.2rem + 0.2vw, 3rem);
+
+  /* padding */
+  --primary-padding: 0.6em 1em;
+  --secondary-padding: 0.5em 1em;
+
+  /* heights */
+  --primary-height: calc(100svh - 7rem);
+  --secondary-height: calc(100svh - 7rem - 4rem)
+
+  /* border-Radius */
+  --primary-radius: 0.6rem;
+  --secondary-radius: 2rem;
+  --tertiary-radius: 0.3rem;
+
+  /* transiton */
+  --btn-transition: 0.3s all ease;
+
+  /* modal button height & width */
+  --mdl-sbt-btn-height: 4rem;
+  --mdl-sbt-btn-width: 10rem;
+
+  /* box-shadow */
+
+  --cmmn-box-shadow-y: 0rem 0.1rem 0.6rem rgba(0, 0, 0, 0.2);
+  --cmmn-box-shadow-x: 0.1rem 0rem 0.6rem rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+*:hover::-webkit-scrollbar {
+  width: 0.6rem;
+  height: 0.7rem;
+}
+
+*:hover::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background: #0867ff48;
+  border-radius: var(--primary-radius, 0.6rem);
+  -webkit-border-radius: var(--primary-radius, 0.6rem);
+  -moz-border-radius: var(--primary-radius, 0.6rem);
+  -ms-border-radius: var(--primary-radius, 0.6rem);
+  -o-border-radius: var(--primary-radius, 0.6rem);
+}
+
+*:hover::-webkit-scrollbar-thumb:hover {
+  background: rgb(0, 98, 255);
+}
+
+*:hover::-webkit-scrollbar-corner {
+  background-color: transparent;
 }
 
 .page_loader {
@@ -63,78 +135,53 @@ input {
 .react-international-phone-input-container {
   height: 4rem !important;
   font-size: 3vw !important;
-  /* border-bottom: 1px solid red;  */
 }
 
-@media((min-width:0px) and (max-width:430px)) {
+
+@media screen and (min-width:1921px) and (max-width:2250px) {
   :root {
-    font-size: 38%;
-  }
-
-  input {
-    font-size: 2rem;
-  }
-
-  .react-international-phone-country-selector-button {
-    height: auto !important;
-  }
-
-  .react-international-phone-input-container .react-international-phone-input {
-    height: auto !important;
-    font-size: 4vw !important;
+    font-size: 72.5%;
   }
 }
 
-@media screen and (min-width:431px) and (max-width:834px) {
-  .react-international-phone-country-selector-button {
-    height: auto !important;
-  }
-
-  .react-international-phone-input-container .react-international-phone-input {
-    height: auto !important;
-    font-size: 1.6vw !important;
-  }
-}
-
-@media((min-width:430px) and (max-width:940px)) {
+@media screen and (min-width:2261px) and (max-width:2580px) {
   :root {
-    font-size: 45%;
-  }
-
-  input {
-    font-size: 1.8rem;
+    font-size: 82.5%;
   }
 }
 
-@media((min-width:940px) and (max-width:1200px)) {
+@media screen and (min-width:2581px) and (max-width:3000px) {
   :root {
-    font-size: 52.5%;
+    font-size: 92.5%;
   }
 }
 
-@media((min-width:1200px) and (max-width:1490px)) {
+@media screen and (min-width:3001px) and (max-width: 3400px) {
   :root {
-    font-size: 52.5%;
+    font-size: 102.5%;
   }
 }
 
-/* @media screen and (min-width: 0px) and (max-width: 379px) {
+@media screen and (min-width:3401px) and (max-width: 3768px) {
   :root {
-    font-size: 28%;
+    font-size: 112.5%;
   }
 }
 
-@media screen and (min-width: 380px) and (max-width: 429px) {
+@media screen and (min-width:3769px) and (max-width: 4000px) {
   :root {
-    font-size: 38%;
+    font-size: 122.5%;
   }
-} */
+}
 
+@media screen and (min-width:4001px) and (max-width:4560px){
+  :root {
+    font-size: 132.5%;
+  }
+}
 
-
-
-
-
-/* @media only screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { */
-/* high-resolution-specific styles */
-/* } */
+@media screen and (min-width:4561px){
+  :root {
+    font-size: 142.5%;
+  }
+}

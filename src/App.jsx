@@ -7,6 +7,8 @@ import Loader from './components/Loader/Loader';
 import { ErrorBoundary } from "react-error-boundary";
 import { ExclamationIcon } from './icons';
 import "./App.css"
+import ErrorPage from './components/ErrorPage/ErrorPage';
+import Layout from './components/Layout/Layout';
 
 
 const Public = React.lazy(() => import("./components/public/Public"));
@@ -91,6 +93,7 @@ const App = () => {
             </Route>
 
             <Route element={<AllRoutesProtect />}>
+            <Route element={<Layout />}>
               <Route path="/kiyosk" element={<Public />} />
               <Route path="/salonsignin" element={<SalonSignin />} />
 
@@ -107,7 +110,10 @@ const App = () => {
                 <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />
               </Route>
             </Route>
+            </Route>
           </Route>
+
+          <Route path="*" element={<ErrorPage/>}/>
         </Routes>
       </Suspense>
     </BrowserRouter>

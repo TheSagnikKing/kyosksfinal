@@ -155,9 +155,9 @@ const SalonSelection = () => {
                         {
                             adminInfo?.role === "Barber" ? null : adminInfo?.role === "Admin" ? <div>
                                 <ClickAwayListener onClickAway={() => setSalonListDrop(false)}>
-                                    <div>
+                                    <div onClick={() => setSalonListDrop((prev) => (!prev))}>
                                         <p>{salonName !== "" && salonName}</p>
-                                        <div onClick={() => setSalonListDrop((prev) => (!prev))}><IoMdArrowDropdownCircle /></div>
+                                        <div><IoMdArrowDropdownCircle /></div>
 
 
                                         {salonlistdrop && <main
@@ -170,7 +170,7 @@ const SalonSelection = () => {
                                                 getAllSalonsByAdmindata?.salons.map((s, i) => (
                                                     <div key={s._id} onClick={() => salonHandler(s)}
                                                         style={{
-                                                            backgroundColor: salonName === s.salonName ? "#0A84FF" : "",
+                                                            backgroundColor: salonName === s.salonName ? "var(--primary-color)" : "",
                                                             borderBottom: i === getAllSalonsByAdmindata?.salons.length - 1 ? "none" : "1px solid #00000",
                                                             borderTop: i === 0 && "none"
                                                         }}

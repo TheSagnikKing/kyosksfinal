@@ -69,11 +69,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
     const location = useLocation()
 
     return (
-        <header className={style.kiyosk_header}
-            style={{
-                background: themecolor ? "#001F3F" : "#fff"
-            }}
-        >
+        <header className={style.kiyosk_header}>
             <div>
                 <div onClick={() => navigate("/kiyosk")}>
                     {
@@ -102,24 +98,14 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
             {
                 location.pathname === "/kiyoskdashboard" ?
                     <button 
-                    className={style.kiyosk_dashboard_btn}
+                    className={style.back_btn}
                     onClick={() => navigate("/barbersignin")}
-                    >Logout</button>
+                    >Back</button>
                     : <div>
 
                         <div>
-                            <button
-                                onClick={queuelistClicked}
-                                style={{
-                                    background: themecolor ? "#3A6D8C" : "#0A84FF"
-                                }}
-                            >Queue List</button>
-                            <button
-                                onClick={joinqueueClicked}
-                                style={{
-                                    background: themecolor ? "#3A6D8C" : "#0A84FF"
-                                }}
-                            >Join Queue</button>
+                            <button onClick={queuelistClicked}>QueueList</button>
+                            <button onClick={joinqueueClicked}>JoinQueue</button>
                         </div>
 
                         <ClickAwayListener onClickAway={handleClickAway}>

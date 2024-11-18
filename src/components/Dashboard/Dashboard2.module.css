@@ -1,340 +1,34 @@
-/* .barber_kiyosk_container{
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.barber_kiyosk_container>div{
-    width: 85vw;
-    height: 80vh;
-    display: grid;
-    grid-template-columns: 1.5fr 2fr;
-    gap: 2rem;
-    position: relative;
-}
-
-.barber_kiyosk_container>div>div:nth-child(1){
-    width: 100%;
-    height: 100%;
-    background-color: #DDF9E8;
-    box-shadow: 0px 0px 14.1px rgba(0,0,0,0.25);
-    border-radius: 1.5rem;
-    display: grid;
-    grid-template-rows: 2fr 0.5fr 1.5fr;
-}
-
-.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(1){
-    height: 100%;
-    width: 100%;
-}
-
-.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(1)>div{
-    width: 70%;
-    height: 100%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-}
-
-.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(2){
-    margin-top: -2rem;
-}
-
-.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(2)>div{
-    width: 70%;
-    height: 100%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(2)>div>p{
-    font-size: 1.6rem;
-    font-weight: 500;
-    text-align: center;
-}
-
-.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(1)>div>div{
-    width: 16.3rem;
-    height: 16.3rem;
-    background-color: rgba(128, 128, 128, 0.559);
-    border-radius: 50%;
-    position: relative;
-}
-
-.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(1)>div>div>img{
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-}
-
-.barberonline{
-    width: 2rem;
-    height: 2rem;
-    background-color: #0F9D58;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    position: absolute;
-    top: 2rem;
-    right: 0.5rem;
-}
-
-.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(1)>div>h1{
-    font-size: 3.6rem;
-    font-weight: bold;
-}
-
-
-
-.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(3)>div{
-    width: 70%;
-    height: 2.5rem;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-
-.barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(3)>div>div{
-    width: 15rem;
-    height: 2.5rem;
-    border-radius: 1.9rem;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-
-.toggle_btn{
-    background-color: #fff;
-    height: 2.3rem;
-    width:5.8rem;
-    border-radius: 2rem;
-    cursor: pointer;
-    border: none;
-    border: 1px solid black;
-}
-
-.toggle_active{
-    transform: translateX(9rem);
-    transition: 300ms ease;
-}
-
-.toggle_inactive{
-    transform: translateX(0.2rem);
-    transition: 300ms ease;
-}
-
-.toggle_btn_text{
-    position: absolute;
-    top: 0px;
-    width: 7rem;
-    height: 2.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.3rem;
-    font-weight: bold;
-}
-
-.toggle_btn_text_active{
-    left: 1rem;
-    opacity: 1;
-    color: #000;
-    transition: 500ms ease;
-}
-
-.toggle_btn_text_inactive{
-    right: 1rem;
-    opacity: 1;
-    color: #fff;
-    transition: 500ms ease;
-}
-
-
-.barber_kiyosk_container>div>div:nth-child(2){
-    width: 100%;
-    height: 80vh;
-    background-color: #fff;
-    box-shadow: 0px 0px 14.1px rgba(0,0,0,0.25);
-    border-radius: 1.5rem;
-}
-
-.barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(1){
-    background-color: #fff;
-    display: grid;
-    align-items: center;
-    justify-items: center;
-    grid-template-columns: repeat(4,1fr);
-    height: 6rem;
-    border-top-left-radius: 1.5rem;
-    border-top-right-radius: 1.5rem;
-    border-bottom: 1px solid #656565;
-}
-
-.barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(1)>p{
-    font-weight: bold;
-    font-size: 1.6rem;
-}
-
-.barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(2){
-    height: calc(80vh - 6rem);
-    width: 100%;
-    border-bottom-left-radius: 1.5rem;
-    border-bottom-right-radius: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    overflow: auto;
-}
-
-.barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(2)>div{
-    width: 100%;
-    min-height: 5rem;
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    justify-items: center;
-    align-items: center;
-    background-color: #D8F8E4;
-}
-
-.barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(2)>div>p{
-    font-weight: 500;
-    font-size: 1.6rem;
-    color: #656565;
-}
-
-.close_dashboard{
-    position: absolute;
-    top: -6rem;
-    right: 0px;
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    color: red;
-    border-radius: 50%;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.6rem;
-    background-color: #fff;
-}
-
-
-
-
-@media((min-width:0px) and (max-width:576px)){
-    .barber_kiyosk_container{
-        display: block;
-        padding-block: 3rem;
-    }
-
-    .barber_kiyosk_container>div {
-        width: 95vw;
-        height: 80vh;
-        gap: 2rem;
-        grid-template-columns: 1fr;
-        margin: auto;
-    }
-
-    .barber_kiyosk_container>div>div:nth-child(1){
-        height: 30vh;
-    }
-
-    .barber_kiyosk_container>div>div:nth-child(2){
-        height: 50vh;
-    }
-
-    .barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(2){
-        height: calc(50vh - 6rem);
-    }
-
-    .barber_kiyosk_container>div>div:nth-child(1){
-        grid-template-rows: 3fr 1fr 1fr;
-    }
-
-    .barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(1)>div>div{
-        width: 13rem;
-        height: 13rem;
-    }
-
-    .barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(1)>div{
-        padding-top: 1rem;
-    }
-
-    .close_dashboard{
-        top:-2rem;
-        right: -1rem;
-
-    }
-
-    .barberonline{
-        right: -0.5rem;
-    }
-}
-
-@media((min-width:576px) and (max-width:940px)){
-    .barber_kiyosk_container>div{
-        width: 95vw;
-    }
-
-    .barber_kiyosk_container>div>div:nth-child(1)>div:nth-child(3)>div {
-        flex-wrap: wrap;
-        gap: 2rem;
-    }
-}
-
-
-@media((min-width:940px) and (max-width:1300px)){
-    .barber_kiyosk_container>div{
-        width: 95vw;
-    }
-} */
-
-
-
 .barber_kiyosk_container {
-    height: calc(100vh - 7rem);
-    width: 100vw;
+    height: var(--primary-height);
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background-color: #dbe9ff;
+    background-color: var(--primary-bg-color);
+    padding: 2rem;
 }
 
 .barber_kiyosk_container>div {
-    width: 85vw;
-    height: calc(80vh - 7rem);
-    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
+    width: 100%;
+    height: calc(calc(var(--primary-height)) - 4rem);
+    box-shadow: var(--cmmn-box-shadow-y);
     display: grid;
     grid-template-columns: 1.2fr 2fr;
     position: relative;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    -ms-border-radius: 6px;
-    -o-border-radius: 6px;
+    border-radius: var(--primary-radius, 0.6rem);
+    -webkit-border-radius: var(--primary-radius, 0.6rem);
+    -moz-border-radius: var(--primary-radius, 0.6rem);
+    -ms-border-radius: var(--primary-radius, 0.6rem);
+    -o-border-radius: var(--primary-radius, 0.6rem);
 }
 
 .barber_kiyosk_container>div>div:nth-child(1) {
     width: 100%;
-    height: calc(80vh - 7rem);
+    height: calc(calc(var(--primary-height)) - 4rem);
     background-color: #fff;
-
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    border-top-left-radius: var(--primary-radius, 0.6rem);
+    border-bottom-left-radius: var(--primary-radius, 0.6rem);
+    border-right: 0.1rem solid rgba(0, 0, 0, 0.2);
 
 
     &>div:nth-child(1) {
@@ -354,7 +48,7 @@
             -moz-border-radius: 50%;
             -ms-border-radius: 50%;
             -o-border-radius: 50%;
-            box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--cmmn-box-shadow-y);
 
             &>img {
                 width: 100%;
@@ -377,7 +71,7 @@
                 -moz-border-radius: 50%;
                 -ms-border-radius: 50%;
                 -o-border-radius: 50%;
-                border: 2px solid #fff;
+                border: 0.2rem solid #fff;
             }
         }
     }
@@ -390,89 +84,122 @@
         &>div:nth-child(1) {
 
             &>p:nth-child(1) {
-                font-size: 1.4vw;
-                font-weight: 500;
+                font-size: var(--primary-text);
+                font-weight: 600;
                 text-align: center;
                 margin-bottom: 2rem;
             }
 
             &>p {
                 margin-top: 1rem;
-                font-size: 0.8vw;
+                font-size: var(--content-text);
                 font-weight: 500;
                 text-align: center;
             }
         }
 
         &>div:nth-child(2) {
-            margin-top: 10%;
             width: 100%;
-            height: 5rem;
             display: flex;
             justify-content: space-evenly;
+            margin-top: 1rem;
 
             &>button {
-                height: 100%;
-                width: 15rem;
-                border-radius: 40px;
-                -webkit-border-radius: 40px;
-                -moz-border-radius: 40px;
-                -ms-border-radius: 40px;
-                -o-border-radius: 40px;
-                border: none;
-                box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
+                height: 4rem;
+                width: 12rem;
+                margin-top: 1rem;
+                outline: none;
                 cursor: pointer;
-                font-size: 0.9vw;
-                font-weight: 500;
-                color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: var(--btn-transition);
+                -webkit-transition: var(--btn-transition);
+                -moz-transition: var(--btn-transition);
+                -ms-transition: var(--btn-transition);
+                -o-transition: var(--btn-transition);
+                font-size: var(--content-text);
+                border-radius: var(--secondary-radius);
+                -webkit-border-radius: var(--secondary-radius);
+                -moz-border-radius: var(--secondary-radius);
+                -ms-border-radius: var(--secondary-radius);
+                -o-border-radius: var(--secondary-radius);
             }
         }
     }
 }
 
-.barber_kiyosk_container>div>div:nth-child(2) {
-    width: 100%;
-    height: calc(80vh - 7rem);
-    background-color: #fff;
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
+.online_btn {
+    background-color: rgba(50, 205, 50, 0.088);
+    border: 0.1rem solid limegreen !important;
+    color: limegreen;
+
+    &:hover {
+        background-color: limegreen;
+        color: #fff;
+    }
 }
 
+.offline_btn {
+    background-color: #ff000025;
+    border: 0.1rem solid red !important;
+    color: red;
+
+    &:hover {
+        background-color: red;
+        color: #fff;
+    }
+}
+
+
+
+
 .barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(1) {
+    position: sticky;
+    left: 0rem;
+    top: 0rem;
+    right: 0rem;
+    min-width: 50rem;
     background-color: #fff;
     display: grid;
     align-items: center;
     justify-items: center;
     grid-template-columns: repeat(4, 1fr);
     height: 6.5rem;
-    border-top-left-radius: 1.5rem;
-    border-top-right-radius: 1.5rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
+    border-top-right-radius: var(--primary-radius, 0.6rem);
 }
 
 .barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(1)>p {
     font-weight: 600;
-    font-size: 1vw;
+    font-size: var(--content-text);
 }
+
+.timetable {
+    width: 100%;
+    height: calc(calc(var(--primary-height)) - 4rem);
+    background-color: #fff;
+    border-top-right-radius: var(--primary-radius, 0.6rem);
+    border-bottom-right-radius: var(--primary-radius, 0.6rem);
+    overflow: auto;
+}
+
 
 .barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(2) {
     height: calc(100% - 6.5rem);
     width: 100%;
-    border-bottom-left-radius: 1.5rem;
-    border-bottom-right-radius: 1.5rem;
     display: flex;
     flex-direction: column;
-    overflow: auto;
 }
 
 .barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(2)>div {
-    width: 100%;
+    min-width: 50rem;
     min-height: 6.5rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
     align-items: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
 }
 
 .attendence_loading_container {
@@ -489,246 +216,121 @@
     align-items: center;
 
     &>p {
-        font-size: 1vw;
+        font-size: var(--content-error-text);
         font-weight: 500;
     }
 }
 
 .barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(2)>div>p {
     font-weight: 500;
-    font-size: 1.1vw;
+    font-size: var(--content-text);
 }
 
-.close_dashboard {
-    position: absolute;
-    top: -6rem;
-    right: 0px;
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    color: red;
-    border-radius: 50%;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.6rem;
-    background-color: #fff;
+.skeleton {
+    min-height: 6.5rem !important;
+    margin-bottom: 1rem;
 }
 
-
-
-
-@media screen and (min-width: 0px) and (max-width: 430px) {
-
-    .barber_kiyosk_container {
-        align-items: flex-start;
-        padding-block: 0rem;
-    }
-
+@media screen and (min-width:0px) and (max-width:430px) {
     .barber_kiyosk_container>div {
-        grid-template-columns: 1fr;
-        width: 95vw;
-        margin-top: 2rem;
-        height: calc(100vh - 12rem);
-        grid-template-rows: 1fr 1fr;
-        border-radius: 6px;
-        -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
-        -ms-border-radius: 6px;
-        -o-border-radius: 6px;
+        display: block;
     }
 
     .barber_kiyosk_container>div>div:nth-child(1) {
-        height: 50vh;
-        border-radius: 0px;
-        -webkit-border-radius: 0px;
-        -moz-border-radius: 0px;
-        -ms-border-radius: 0px;
-        -o-border-radius: 0px;
+        height: 50%;
+        border-radius: 0rem;
+        -webkit-border-radius: 0rem;
+        -moz-border-radius: 0rem;
+        -ms-border-radius: 0rem;
+        -o-border-radius: 0rem;
         border-right: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
-
-        display: grid;
-        grid-template-rows: 1.5fr 1fr;
 
         &>div:nth-child(1) {
-            height: 100%;
+            &>div:nth-child(1) {
+                height: 15rem;
+                width: 15rem;
+
+                .barber_online {
+                    top: 1.2rem;
+                    right: 1.2rem;
+                    width: 2rem;
+                    height: 2rem;
+                }
+            }
         }
 
         &>div:nth-child(2) {
-            height: 100%;
-
-            &>div:nth-child(1) {
-
-                &>p:nth-child(1) {
-                    font-size: 5vw;
-                }
-
-                &>p {
-                    font-size: 3vw;
-                }
-            }
-
             &>div:nth-child(2) {
-                margin-top: 5%;
-
-                &>button {
-                    font-size: 3vw;
-                }
+                justify-content: center;
+                gap: 2rem;
             }
         }
+
     }
 
     .barber_kiyosk_container>div>div:nth-child(2) {
-        height: calc(100vh - 12rem - 50vh);
-        border-radius: 0px;
-        -webkit-border-radius: 0px;
-        -moz-border-radius: 0px;
-        -ms-border-radius: 0px;
-        -o-border-radius: 0px;
-
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
-
-        &>div:nth-child(1)>p {
-            font-size: 3.2vw;
-        }
-
-        &>div:nth-child(2)>div>p {
-            font-size: 3vw;
-        }
+        height: calc(100% - 50%);
+        border-radius: 0rem;
+        -webkit-border-radius: 0rem;
+        -moz-border-radius: 0rem;
+        -ms-border-radius: 0rem;
+        -o-border-radius: 0rem;
     }
+
 }
 
-@media screen and (min-width: 431px) and (max-width: 576px) {
-
-    .barber_kiyosk_container {
-        align-items: flex-start;
-        padding-block: 0rem;
-    }
-
+@media screen and (min-width:431px) and (max-width:768px) {
     .barber_kiyosk_container>div {
-        grid-template-columns: 1fr;
-        margin-top: 2rem;
-        height: calc(100vh - 12rem);
-        grid-template-rows: 1fr 1fr;
-        border-radius: 6px;
-        -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
-        -ms-border-radius: 6px;
-        -o-border-radius: 6px;
+        display: block;
     }
 
     .barber_kiyosk_container>div>div:nth-child(1) {
-        height: 50vh;
-        border-radius: 0px;
-        -webkit-border-radius: 0px;
-        -moz-border-radius: 0px;
-        -ms-border-radius: 0px;
-        -o-border-radius: 0px;
+        height: 50%;
+        border-radius: 0rem;
+        -webkit-border-radius: 0rem;
+        -moz-border-radius: 0rem;
+        -ms-border-radius: 0rem;
+        -o-border-radius: 0rem;
         border-right: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
-
-        display: grid;
-        grid-template-rows: 1.5fr 1fr;
 
         &>div:nth-child(1) {
-            height: 100%;
+            &>div:nth-child(1) {
+                height: 15rem;
+                width: 15rem;
+
+                .barber_online {
+                    top: 1.2rem;
+                    right: 1.2rem;
+                    width: 2rem;
+                    height: 2rem;
+                }
+            }
         }
 
         &>div:nth-child(2) {
-            height: 100%;
-
-            &>div:nth-child(1) {
-
-                &>p:nth-child(1) {
-                    font-size: 3vw;
-                }
-
-                &>p {
-                    font-size: 1.8vw;
-                }
-            }
-
             &>div:nth-child(2) {
-                margin-top: 5%;
-
-                &>button {
-                    font-size: 2vw;
-                }
+                justify-content: center;
+                gap: 2rem;
             }
         }
+
     }
 
     .barber_kiyosk_container>div>div:nth-child(2) {
-        height: calc(100vh - 12rem - 50vh);
-        border-radius: 0px;
-        -webkit-border-radius: 0px;
-        -moz-border-radius: 0px;
-        -ms-border-radius: 0px;
-        -o-border-radius: 0px;
-
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
-
-        &>div:nth-child(1)>p {
-            font-size: 2vw;
-        }
-
-        &>div:nth-child(2)>div>p {
-            font-size: 1.9vw;
-        }
+        height: calc(100% - 50%);
+        border-radius: 0rem;
+        -webkit-border-radius: 0rem;
+        -moz-border-radius: 0rem;
+        -ms-border-radius: 0rem;
+        -o-border-radius: 0rem;
     }
+
 }
 
 
-@media screen and (min-width: 577px) and (max-width: 834px) {
-    
+@media screen and (min-width:769px) and (max-width:1000px) {
+
     .barber_kiyosk_container>div{
-        grid-template-columns: 1fr 1.1fr;
-        width: 95vw;
-    }
-
-    .barber_kiyosk_container>div>div:nth-child(1) {
-        &>div:nth-child(2) {
-
-            &>div:nth-child(1) {
-
-                &>p:nth-child(1) {
-                    font-size: 1.6vw;
-                }
-
-                &>p {
-                    font-size: 1.4vw;
-                }
-            }
-
-            &>div:nth-child(2) {
-                margin-top: 5%;
-
-                &>button {
-                    font-size: 1.4vw;
-                }
-            }
-        }
-    }
-
-    .barber_kiyosk_container>div>div:nth-child(2) {
-
-        &>div:nth-child(1)>p {
-            font-size: 1.4vw;
-        }
-
-        &>div:nth-child(2)>div>p {
-            font-size: 1.3vw;
-        }
+        grid-template-columns: 1.5fr 2fr;
     }
 }
