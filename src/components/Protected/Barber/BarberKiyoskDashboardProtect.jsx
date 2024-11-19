@@ -19,8 +19,6 @@ const BarberKiyoskDashboardProtect = () => {
         }
     },[selectCurrentBarberTokendata])
 
-    console.log("selectCurrentBarberTokendata ", selectCurrentBarberTokendata)
-
   return (
     <div>{showdashboard && <Outlet/>}</div>
   )

@@ -4,7 +4,6 @@ import { useAdminConnectKioskMutation, useGetAllSalonsByAdminMutation, useGetDef
 import { useSelector } from 'react-redux'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useNavigate } from 'react-router-dom'
-import { DropdownIcon } from '../../icons'
 import { toast } from 'react-hot-toast';
 import { IoMdArrowDropdownCircle } from 'react-icons/io'
 import { ColorRing } from 'react-loader-spinner'
@@ -17,8 +16,6 @@ const SalonSelection = () => {
     const [salonId, setSalonId] = useState("")
     const [salonName, setSalonName] = useState("")
     const adminInfo = useSelector(selectCurrentAdminInfo)
-
-    console.log(adminInfo)
 
     const [
         getDefaultSalonByKiosk,
@@ -75,7 +72,7 @@ const SalonSelection = () => {
     useEffect(() => {
         if (adminConnectKioskisSuccess) {
             localStorage.setItem("salonSelect", "true")
-            navigate('/kiyosk')
+            navigate('/kiosk')
             window.location.reload()
         }
     }, [adminConnectKioskisSuccess, navigate])
@@ -90,8 +87,8 @@ const SalonSelection = () => {
             toast.error("Salon is not Present", {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -102,9 +99,6 @@ const SalonSelection = () => {
 
     const [salonlistdrop, setSalonListDrop] = useState(false)
 
-    const salonlistHandler = () => {
-        setSalonListDrop((prev) => !prev)
-    }
 
     const salonHandler = (currentsalon) => {
         setSalonId(currentsalon.salonId)
@@ -126,9 +120,6 @@ const SalonSelection = () => {
         }
 
     }
-
-
-    console.log(getAllSalonsByAdmindata?.salons?.length)
 
     const continueHandler = () => {
         localStorage.setItem("salonSelect", "true")

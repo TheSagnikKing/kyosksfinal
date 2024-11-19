@@ -6,7 +6,7 @@ const SalonProtectRoute = () => {
     const salonSelect = localStorage.getItem("salonSelect")
 
     return (
-        <div>{salonSelect === "false" ? <Outlet /> : salonSelect === "true" && <Navigate to="/kiyosk" />}</div>
+        <div>{salonSelect === "false" ? <Outlet /> : salonSelect === "true" && <Navigate to="/kiosk" />}</div>
     )
 }
 

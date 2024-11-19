@@ -60,7 +60,7 @@
     }
 
     &>input[type="text"]:focus {
-        border-bottom: 0.1rem solid #0A84FF;
+        border-bottom: 0.1rem solid var(--primary-color);
     }
 }
 
@@ -79,7 +79,7 @@
     }
 
     &>input[id="input_password"]:focus {
-        border-bottom: 0.1rem solid #0A84FF;
+        border-bottom: 0.1rem solid var(--primary-color);
     }
 
     &>div {

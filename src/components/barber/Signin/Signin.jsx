@@ -2,24 +2,18 @@ import React, { useEffect, useState } from 'react'
 import style from './Signin.module.css'
 import { DropdownIcon } from '../../../icons'
 import { useBarberLoginKioskMutation, useGoogleBarberLoginKioskMutation, useLazyGetAllBarbersKioskQuery } from './signinApiSlice'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCredentials, setToken } from './barberauthSlice'
 import toast from 'react-hot-toast'
 import { selectCurrentAdminInfo } from '../../AdminSignin/adminauthSlice'
-import { GoogleLogin } from '@react-oauth/google'
 import { ColorRing } from 'react-loader-spinner'
-import { IoMdHome } from 'react-icons/io'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
-
-import CommonHeader from '../../CommonHeader/CommonHeader.jsx';
 import { ClickAwayListener, Skeleton } from '@mui/material';
 
 const Signin = () => {
 
     const adminInfo = useSelector(selectCurrentAdminInfo)
-
-    // console.log("dvsdv", adminInfo)
 
     const [
         getAllBarbersKiosk,
@@ -63,14 +57,13 @@ const Signin = () => {
     useEffect(() => {
         if (barberloginisSuccess) {
             dispatch(setCredentials(barberlogindata))
-            // localStorage.setItem('barberkiyoskloggin', 'true')
             navigate('/kiyoskdashboard')
         } else if (barberloginisError) {
             toast.error(barbererror?.data?.message, {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -87,8 +80,8 @@ const Signin = () => {
             toast.error(googleBarberLoginKioskerror?.data?.message, {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -146,33 +139,8 @@ const Signin = () => {
         dispatch(setToken())
     }, [dispatch])
 
-    //Google barber Action
-    const responseBarberMessage = async (response) => {
-        // console.log("barber", response.credential)
-        googleBarberLoginKiosk(response.credential)
-    };
-
-    const errorBarberMessage = (error) => {
-        console.log(error);
-    };
-
-    const [screenwidth, setScreenWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setScreenWidth(window.innerWidth);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
 
     const [showPassword, setShowPassword] = useState(false)
-
-    const [themecolor, setThemeColor] = useState(false)
 
     return (
         <main className={style.barber_signin_container}>
@@ -253,7 +221,6 @@ const Signin = () => {
                             onClick={barberSigninHandler}
                         >Sign in</button>)
                     }
-
 
                 </main>
             </div>

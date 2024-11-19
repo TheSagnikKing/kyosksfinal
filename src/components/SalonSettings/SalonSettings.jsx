@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react'
 import style from './SalonSettings.module.css'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useChangeSalonOnlineStatusKioskMutation, useMobileBookingAvailabilityStatusMutation } from '../Dashboard/dashboardApiSlice'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
-import CommonHeader from '../CommonHeader/CommonHeader'
 
 const SalonSettings = () => {
 
@@ -38,11 +37,11 @@ const SalonSettings = () => {
       toast.success(data?.message, {
         duration: 3000,
         style: {
-          fontSize: "1.4rem",
-          borderRadius: '10px',
+          fontSize: "var(--tertiary-text)",
+          borderRadius: '0.3rem',
           background: '#333',
           color: '#fff',
-        },
+      },
       });
 
       setTimeout(() => {
@@ -58,11 +57,11 @@ const SalonSettings = () => {
       toast.error(error?.data?.message, {
         duration: 3000,
         style: {
-          fontSize: "1.4rem",
-          borderRadius: '10px',
+          fontSize: "var(--tertiary-text)",
+          borderRadius: '0.3rem',
           background: '#333',
           color: '#fff',
-        },
+      },
       });
       setSalonbtnCheck(adminInfo?.isSalonOnline)
     }
@@ -118,11 +117,11 @@ const SalonSettings = () => {
       toast.success(mobilebookdata?.message, {
         duration: 3000,
         style: {
-          fontSize: "1.4rem",
-          borderRadius: '10px',
+          fontSize: "var(--tertiary-text)",
+          borderRadius: '0.3rem',
           background: '#333',
           color: '#fff',
-        },
+      },
       });
 
       setTimeout(() => {
@@ -138,11 +137,11 @@ const SalonSettings = () => {
       toast.error(mobilebookError?.data?.message, {
         duration: 3000,
         style: {
-          fontSize: "1.4rem",
-          borderRadius: '10px',
+          fontSize: "var(--tertiary-text)",
+          borderRadius: '0.3rem',
           background: '#333',
           color: '#fff',
-        },
+      },
       });
       setMobilebtnCheck(adminInfo?.mobileBookingAvailability)
     }
@@ -185,12 +184,7 @@ const SalonSettings = () => {
     }
   }, [adminInfo])
 
-  console.log("AdminInfoff", defaultsalondata)
-
-  const [themecolor, setThemeColor] = useState(false)
-
-  const [togglecheck, setToggleCheck] = useState(false)
-
+  
   return (
       <section className={style.salon_settings_container}>
         <div className={style.salon_settings_left}>

@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { DropdownIcon } from '../../../icons'
 import style from "./CancelServeLogin.module.css"
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-
 import toast from 'react-hot-toast'
-
-import { GoogleLogin } from '@react-oauth/google'
 import { ColorRing } from 'react-loader-spinner'
-import { IoMdHome } from 'react-icons/io'
-import { useBarberLoginKioskMutation, useGoogleBarberLoginKioskMutation, useLazyGetAllBarbersKioskQuery } from '../../barber/Signin/signinApiSlice'
+import { useLazyGetAllBarbersKioskQuery } from '../../barber/Signin/signinApiSlice'
 import { selectCurrentAdminInfo } from '../../AdminSignin/adminauthSlice'
-import { setCredentials, setToken } from '../../barber/Signin/barberauthSlice'
-import { useBarberServedQueueMutation, useCancelQKiyoskMutation } from '../QueueApiSlice'
+import { setToken } from '../../barber/Signin/barberauthSlice'
+import { useCancelQKiyoskMutation } from '../QueueApiSlice'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
-import CommonHeader from '../../CommonHeader/CommonHeader'
 
 const CancelServeLogin = () => {
 
@@ -57,8 +51,8 @@ const CancelServeLogin = () => {
             toast.error(cancelError?.data?.message, {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -72,8 +66,8 @@ const CancelServeLogin = () => {
             toast.success(cancelqueuedata.message, {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -104,15 +98,6 @@ const CancelServeLogin = () => {
 
     const [drop, setDrop] = useState(false)
 
-    const dropdownHandler = () => {
-        setDrop((prev) => !prev)
-        const salonId = adminInfo?.salonId
-
-        getAllBarbersKiosk({
-            salonId,
-            email: barberemail
-        })
-    }
 
     const [emailTimeout, setEmailTimeout] = useState(null);
 
@@ -130,38 +115,13 @@ const CancelServeLogin = () => {
         }, 500));
     };
 
-    const setBarberEmailHandler = (e) => {
-        const searchTerm = e.target.value;
-        setDrop(true)
-        debounceSearch(searchTerm);
-    }
-
-    const selectEmailClick = (b) => {
-        setBarberEmail(b.email)
-        setDrop(false)
-    }
-
     useEffect(() => {
         dispatch(setToken())
     }, [dispatch])
 
-    const [screenwidth, setScreenWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setScreenWidth(window.innerWidth);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
 
     const [showPassword, setShowPassword] = useState(false)
 
-    const [themecolor, setThemeColor] = useState(false)
 
     return (
             <section className={style.barber_cancel_login_container}>

@@ -3,14 +3,10 @@ import style from './AdminSignin.module.css'
 import { useNavigate } from 'react-router-dom'
 import { useLoginKioskMutation, useGoogleAdminLoginKioskMutation } from './adminsigninApiSlice'
 import toast from 'react-hot-toast'
-import axios from 'axios'
-import { setAdminCredentials, setAdminToken } from './adminauthSlice'
+import { setAdminToken } from './adminauthSlice'
 import { useDispatch } from 'react-redux'
-import { GoogleLogin } from '@react-oauth/google'
 import { ColorRing } from 'react-loader-spinner'
-import { showEye } from '../../icons'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
-
 
 const AdminSignin = () => {
 
@@ -53,8 +49,8 @@ const AdminSignin = () => {
             toast.error(error?.data?.message, {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -72,8 +68,8 @@ const AdminSignin = () => {
             toast.error(googleAdminLoginKioskerror?.data?.message, {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -83,34 +79,8 @@ const AdminSignin = () => {
 
     const loginHandler = async () => {
         const data = { email, password, role }
-        // console.log(data)
-
         login(data)
     }
-
-    const responseMessage = async (response) => {
-        // console.log(response.credential)
-        googleAdminLoginKiosk(response.credential)
-    };
-
-    const errorMessage = (error) => {
-        console.log(error);
-    };
-
-    const [screenwidth, setScreenWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setScreenWidth(window.innerWidth);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
 
     const [showPassword, setShowPassword] = useState(false)
 

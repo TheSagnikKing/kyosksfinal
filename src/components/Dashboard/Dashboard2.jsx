@@ -3,10 +3,9 @@ import style from './Dashboard2.module.css'
 import { selectCurrentBarberInfo, selectCurrentBarberToken } from '../barber/Signin/barberauthSlice'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useChangeBarberClockedInStatusKioskMutation, useChangeBarberOnlineStatusKioskMutation, useChangeSalonOnlineStatusKioskMutation, useGetAttendenceByBarberIdKioskMutation } from './dashboardApiSlice'
-import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
-
+import { Skeleton } from '@mui/material'
 
 const Dashboard2 = () => {
 
@@ -39,16 +38,13 @@ const Dashboard2 = () => {
 
     const [barberbtnCheck, setBarberbtnCheck] = useState(selectCurrentBarberdata?.foundUser?.isClockedIn)
 
-
-    const navigate = useNavigate()
-
     useEffect(() => {
         if (getAttendenceByBarberIdKioskisError) {
             toast.error(getAttendenceByBarberIdKioskerror?.data?.message, {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -63,8 +59,8 @@ const Dashboard2 = () => {
             toast.error(barberclockonlineerror?.data?.message, {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -85,8 +81,8 @@ const Dashboard2 = () => {
             toast.success(barberclockonlinedata?.message, {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -149,8 +145,8 @@ const Dashboard2 = () => {
             toast.success(barberonlinedata?.message, {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -165,8 +161,8 @@ const Dashboard2 = () => {
             toast.error(barberonlineerror?.data?.message, {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },

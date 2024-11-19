@@ -33,7 +33,6 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
         }
     }, [adminInfo])
 
-    // console.log("HEader current salon ", data)
 
     const navigate = useNavigate()
 
@@ -71,7 +70,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
     return (
         <header className={style.kiyosk_header}>
             <div>
-                <div onClick={() => navigate("/kiyosk")}>
+                <div onClick={() => navigate("/kiosk")}>
                     {
                         isLoading ? <Skeleton
                             count={1}

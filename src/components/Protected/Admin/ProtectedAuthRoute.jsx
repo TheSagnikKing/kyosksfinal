@@ -9,7 +9,7 @@ const ProtectedAuthRoute = () => {
 
     useEffect(() => {
         if(loggedinuser === 'true'){
-            navigate('/kiyosk')
+            navigate('/kiosk')
         }else if(loggedinuser === 'false' || loggedinuser === undefined || loggedinuser === 'undefined' || loggedinuser === null){
             setOutlettrue(true)
         }

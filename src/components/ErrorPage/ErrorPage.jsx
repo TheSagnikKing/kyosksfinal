@@ -1,10 +1,13 @@
 import React from 'react'
-import "./ErrorPage.module.css"
+import style from "./ErrorPage.module.css"
 
 const ErrorPage = () => {
   return (
-    <div>
-        <p>404 Page not Found</p>
+    <div className={style.error_container}>
+      <div>
+        <p>404</p>
+        <p>Page not found</p>
+      </div>
     </div>
   )
 }

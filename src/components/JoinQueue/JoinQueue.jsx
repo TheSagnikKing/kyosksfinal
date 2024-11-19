@@ -3,8 +3,8 @@ import style from './JoinQueue.module.css'
 import { AddIcon, BackIcon, DeleteIcon, DropdownIcon } from '../../icons'
 import Modal from '../modal/Modal'
 import { useGetBarberByServicesKioskMutation, useGetServicesByBarberKioskMutation, useJoinQueueKioskMutation, useLazyGetAllSalonServicesKioskQuery, useLazyGetAvailableBarbersForQKioskQuery } from './joinqueueApiSlice'
-import { Link, useNavigate } from 'react-router-dom'
-import { Toaster, toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-hot-toast';
 import { useSelector } from 'react-redux'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { ColorRing } from 'react-loader-spinner'
@@ -17,8 +17,6 @@ import { PhoneNumberUtil } from 'google-libphonenumber';
 const JoinQueue = () => {
 
     const adminInfo = useSelector(selectCurrentAdminInfo)
-
-    // const GetDefaultSalonByKiosk
 
     const [
         getDefaultSalonByAdmin,
@@ -42,7 +40,6 @@ const JoinQueue = () => {
         }
     }, [adminInfo])
 
-    // console.log("join queue default salon ", getDefaultSalonByAdmindata)
 
     const [
         getavailablebarber,
@@ -185,7 +182,6 @@ const JoinQueue = () => {
         setModal3(true)
     }
 
-    // console.log(selectedBarberId)
 
     const searchSelectedBarber = (barber) => {
         setSelectedBarber(barber.name)
@@ -233,8 +229,8 @@ const JoinQueue = () => {
             toast.success("Join Queue Successfully", {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -252,8 +248,8 @@ const JoinQueue = () => {
             toast.error(joinQueueKioskerror?.data?.message, {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -268,8 +264,8 @@ const JoinQueue = () => {
             toast.error("Please Enter Customer Name", {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -278,8 +274,8 @@ const JoinQueue = () => {
             toast.error("Please Choose Services", {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -288,8 +284,8 @@ const JoinQueue = () => {
             toast.error("Barber Name not Present", {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -298,8 +294,8 @@ const JoinQueue = () => {
             toast.error("Invalid Mobile Number", {
                 duration: 3000,
                 style: {
-                    fontSize: "1.4rem",
-                    borderRadius: '10px',
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
                     background: '#333',
                     color: '#fff',
                 },
@@ -354,8 +350,6 @@ const JoinQueue = () => {
 
     };
 
-    // console.log(mobileNumber)
-    // console.log(mobileCountryCode)
 
     return (
         <main className={style.joinqueue_container}>
