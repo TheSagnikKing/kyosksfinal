@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import style from './Dashboard2.module.css'
-import { CrossIcon } from '../../icons'
 import { selectCurrentBarberInfo, selectCurrentBarberToken } from '../barber/Signin/barberauthSlice'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useChangeBarberClockedInStatusKioskMutation, useChangeBarberOnlineStatusKioskMutation, useChangeSalonOnlineStatusKioskMutation, useGetAttendenceByBarberIdKioskMutation } from './dashboardApiSlice'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
-import { IoMdClose } from 'react-icons/io'
-import CommonHeader from '../CommonHeader/CommonHeader'
-// import Skeleton from 'react-loading-skeleton'
 
-import Skeleton from '@mui/material/Skeleton';
 
 const Dashboard2 = () => {
 
@@ -135,11 +130,6 @@ const Dashboard2 = () => {
     }
 
 
-    const logoutClicked = () => {
-        navigate("/barbersignin")
-    }
-
-
     const [barberOnlineCheck, setBarberOnlineCheck] = useState(selectCurrentBarberdata?.foundUser?.isOnline)
 
     const [
@@ -182,7 +172,6 @@ const Dashboard2 = () => {
                 },
             });
 
-            // console.log("BARBER ONLINE ERROR",selectCurrentBarberdata?.foundUser?.isOnline)
             setBarberOnlineCheck(selectCurrentBarberdata?.foundUser?.isOnline)
         }
     }, [barberonlineerror, setBarberOnlineCheck])
@@ -205,8 +194,6 @@ const Dashboard2 = () => {
         }
 
     }
-
-    const [themecolor, setThemeColor] = useState(false)
 
     return (
             <main className={style.barber_kiyosk_container}>

@@ -128,7 +128,6 @@
 }
 
 .password_container {
-    background-color: rgba(0, 0, 255, 0.206);
     height: 4rem;
     position: relative;
 
@@ -142,7 +141,7 @@
     }
 
     &>input[id="input_password"]:focus {
-        border-bottom: 0.1rem solid #0A84FF;
+        border-bottom: 0.1rem solid var(--primary-color);
     }
 
     &>div {

@@ -19,7 +19,7 @@ const Signin = () => {
 
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
-    console.log("dvsdv", adminInfo)
+    // console.log("dvsdv", adminInfo)
 
     const [
         getAllBarbersKiosk,
@@ -148,7 +148,7 @@ const Signin = () => {
 
     //Google barber Action
     const responseBarberMessage = async (response) => {
-        console.log("barber", response.credential)
+        // console.log("barber", response.credential)
         googleBarberLoginKiosk(response.credential)
     };
 

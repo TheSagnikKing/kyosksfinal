@@ -9,11 +9,9 @@ import { useSelector } from 'react-redux'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { ColorRing } from 'react-loader-spinner'
 import { RiVipCrownFill } from 'react-icons/ri'
-
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
-import CommonHeader from '../CommonHeader/CommonHeader'
 import { PhoneNumberUtil } from 'google-libphonenumber';
 
 const JoinQueue = () => {
@@ -318,8 +316,8 @@ const JoinQueue = () => {
     }
 
     const modelcolorfnc2 = (selectedServices, item) => {
-        const modelcolor2 = selectedServices.find((select) => select._id === item._id) ? "var(--primary-color)" : "var(--primary-color)"
-        return modelcolor2;
+        // const modelcolor2 = selectedServices.find((select) => select._id === item._id) ? "var(--primary-color)" : "var(--primary-color)"
+        // return modelcolor2;
     }
 
     const [themecolor, setThemeColor] = useState(false)
@@ -367,7 +365,7 @@ const JoinQueue = () => {
             <div className={style.joinqueue_container_right}>
 
                 <div className={style.joinqueue__main__right__form}>
-                    <h1>Join Queue</h1>
+                    <p>Join Queue</p>
 
                     <div className={style.joinqueue__main__right__form_top}>
 
@@ -444,7 +442,7 @@ const JoinQueue = () => {
                     {
                         isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen} setModal1={setModal1} setModal2={setModal2} setModal3={setModal3} setModal4={setModal4} setSelectedServices={setSelectedServices} setSelectedBarber={setSelectedBarber}>
                             {modal1 && <>
-                                <h1>Select Barber</h1>
+                                <p className={style.modal_header}>Select Barber</p>
                                 <div className={style.select_barber_container}>
                                     {
                                         getavailablebarberloading ? <div style={{
@@ -455,8 +453,8 @@ const JoinQueue = () => {
                                             width: "100%"
                                         }}><ColorRing
                                                 visible={true}
-                                                height="80"
-                                                width="80"
+                                                height="60"
+                                                width="60"
                                                 ariaLabel="color-ring-loading"
                                                 wrapperStyle={{}}
                                                 wrapperClass="color-ring-wrapper"
@@ -464,8 +462,7 @@ const JoinQueue = () => {
                                             /></div> : getavailablebarberisSuccess && getavailablebarberdata?.response?.length > 0 ? getavailablebarberdata?.response?.map((b) => (
                                                 <div className={style.select_barber_item}
                                                     style={{
-                                                        background: selectedBarber === b.name ? "#0a84ff37" : "var(--secondary-color)",
-                                                        border: selectedBarber === b.name && "1px solid #0a84ff",
+                                                        border: selectedBarber === b.name && "0.1rem solid var(--primary-color)",
                                                     }}
                                                     key={b._id}
                                                     onClick={() => searchSelectedBarber(b)}
@@ -484,7 +481,7 @@ const JoinQueue = () => {
                                                             <div>
                                                                 <div>
                                                                     <p>{b?.name}</p>
-                                                                    <p>{b?.barberServices?.[0]?.serviceName.length > 15 ? b?.barberServices?.[0]?.serviceName + "..." : b?.barberServices?.[0]?.serviceName} &nbsp; +{b?.barberServices?.length} more</p>
+                                                                    <p>{b?.barberServices?.[0]?.serviceName} {b?.barberServices?.length - 1 === 0 ? null : <span>+ {b?.barberServices?.length - 1} more</span>}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -511,13 +508,7 @@ const JoinQueue = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            )) : (<div style={{
-                                                display: "flex",
-                                                justifyContent: "center",
-                                                alignItems: "center",
-                                                height: "100%",
-                                                width: "100%"
-                                            }}><h2>No currently barbers available</h2></div>)
+                                            )) : (<div className={style.barber_service_error}><p>No currently barbers available</p></div>)
                                     }
 
                                 </div>
@@ -528,7 +519,7 @@ const JoinQueue = () => {
                             {modal2 && <>
                                 <div className={style.select__barber__modal2__head}>
                                     <div onClick={modaltwobackHandler}><BackIcon /></div>
-                                    <h1>Select Services</h1>
+                                    <p>Select Services</p>
                                 </div>
                                 <div className={style.select_barber_services_container}>
                                     {
@@ -541,8 +532,8 @@ const JoinQueue = () => {
                                                 width: "100%"
                                             }}><ColorRing
                                                     visible={true}
-                                                    height="80"
-                                                    width="80"
+                                                    height="60"
+                                                    width="60"
                                                     ariaLabel="color-ring-loading"
                                                     wrapperStyle={{}}
                                                     wrapperClass="color-ring-wrapper"
@@ -551,8 +542,7 @@ const JoinQueue = () => {
                                             getServicesByBarberisSuccess && getServicesByBarberdata?.response?.length > 0 ? getServicesByBarberdata?.response?.map((item) => (
                                                 <div className={style.select_barber_services_item} key={item._id}
                                                     style={{
-                                                        background: selectedServices.find((select) => select._id === item._id) ? "#0a84ff37" : "var(--secondary-color)",
-                                                        border: selectedServices.find((select) => select._id === item._id) && "1px solid #0a84ff",
+                                                        border: selectedServices.find((select) => select._id === item._id) && "0.1rem solid var(--primary-color)",
                                                     }}
                                                 >
                                                     <div className={style.select_barber_services_item_header}>
@@ -570,16 +560,10 @@ const JoinQueue = () => {
                                                         {
                                                             selectedServices.find((select) => select._id === item._id) ?
                                                                 <div onClick={() => deleteSelectServicesHandler(item._id)}
-                                                                    style={{
-                                                                        border: "1px solid rgba(0,0,0,0.2)",
-                                                                        color: "red"
-                                                                    }}
+                                                                className={style.delete_btn}
                                                                 ><DeleteIcon /></div> :
                                                                 <div onClick={() => selectedServicesHandler(item)}
-                                                                    style={{
-                                                                        border: "1px solid rgba(0,0,0,0.2)",
-                                                                        color: "#1e2f97"
-                                                                    }}
+                                                                    className={style.add_btn}
                                                                 ><AddIcon /></div>
                                                         }
 
@@ -589,7 +573,7 @@ const JoinQueue = () => {
                                                 </div>
                                             )) :
                                                 <div className={style.select_barber_services_item_error}>
-                                                    <h2>No services available</h2>
+                                                    <p>No services available</p>
                                                 </div>
                                     }
 
@@ -598,7 +582,7 @@ const JoinQueue = () => {
                             </>}
 
                             {modal3 && <>
-                                <h1>Select Services</h1>
+                                <p className={style.modal_header}>Select Services</p>
                                 <div className={style.select_barber_services_container}>
                                     {
                                         getAllSalonServicesloading ? <div style={{
@@ -609,8 +593,8 @@ const JoinQueue = () => {
                                             width: "100%"
                                         }}><ColorRing
                                                 visible={true}
-                                                height="80"
-                                                width="80"
+                                                height="60"
+                                                width="60"
                                                 ariaLabel="color-ring-loading"
                                                 wrapperStyle={{}}
                                                 wrapperClass="color-ring-wrapper"
@@ -619,8 +603,7 @@ const JoinQueue = () => {
                                             getAllSalonServicesisSuccess && getAllSalonServicesdata?.response?.length > 0 ? getAllSalonServicesdata?.response?.map((item) => (
                                                 <div className={style.select_barber_services_item} key={item._id}
                                                     style={{
-                                                        background: selectedServices.find((select) => select._id === item._id) ? "#0a84ff37" : "var(--secondary-color)",
-                                                        border: selectedServices.find((select) => select._id === item._id) && "1px solid #0a84ff",
+                                                        border: selectedServices.find((select) => select._id === item._id) && "0.1rem solid var(--primary-color)",
                                                     }}
                                                 >
                                                     <div className={style.select_barber_services_item_header}>
@@ -638,16 +621,10 @@ const JoinQueue = () => {
                                                         {
                                                             selectedServices.find((select) => select._id === item._id) ?
                                                                 <div onClick={() => deleteSelectServicesHandler(item._id)}
-                                                                    style={{
-                                                                        border: "1px solid rgba(0,0,0,0.2)",
-                                                                        color: "red"
-                                                                    }}
+                                                                    className={style.delete_btn}
                                                                 ><DeleteIcon /></div> :
                                                                 <div onClick={() => selectedServicesHandler(item)}
-                                                                    style={{
-                                                                        border: "1px solid rgba(0,0,0,0.2)",
-                                                                        color: "#1e2f97"
-                                                                    }}
+                                                                    className={style.add_btn}
                                                                 ><AddIcon /></div>
                                                         }
 
@@ -657,7 +634,7 @@ const JoinQueue = () => {
                                                 </div>
                                             )) :
                                                 <div className={style.select_barber_services_item_error}>
-                                                    <h2>No services available</h2>
+                                                    <p>No services available</p>
                                                 </div>
 
                                     }
@@ -669,7 +646,7 @@ const JoinQueue = () => {
                             {modal4 && <>
                                 <div className={style.select__barber__modal2__head}>
                                     <div onClick={modalfourbackHandler}><BackIcon /></div>
-                                    <h1>Select Barber </h1>
+                                    <p>Select Barber </p>
                                 </div>
                                 <div className={style.select_barber_container}>
                                     {
@@ -681,8 +658,8 @@ const JoinQueue = () => {
                                             width: "100%"
                                         }}><ColorRing
                                                 visible={true}
-                                                height="80"
-                                                width="80"
+                                                height="60"
+                                                width="60"
                                                 ariaLabel="color-ring-loading"
                                                 wrapperStyle={{}}
                                                 wrapperClass="color-ring-wrapper"
@@ -690,8 +667,7 @@ const JoinQueue = () => {
                                             /></div> : getBarberByServicesKioskisSuccess && getBarberByServicesKioskdata?.response?.length > 0 ? getBarberByServicesKioskdata?.response?.map((b) => (
                                                 <div className={style.select_barber_item}
                                                     style={{
-                                                        background: selectedBarber === b.name ? "#0a84ff37" : "var(--secondary-color)",
-                                                        border: selectedBarber === b.name && "1px solid #0a84ff",
+                                                        border: selectedBarber === b.name && "0.1rem solid var(--primary-color)",
                                                     }}
                                                     key={b._id}
                                                     onClick={() => searchSelectedBarber(b)}
@@ -710,7 +686,7 @@ const JoinQueue = () => {
                                                             <div>
                                                                 <div>
                                                                     <p>{b?.name}</p>
-                                                                    <p>{b?.barberServices?.[0]?.serviceName.length > 15 ? b?.barberServices?.[0]?.serviceName + "..." : b?.barberServices?.[0]?.serviceName} &nbsp; +{b?.barberServices?.length} more</p>
+                                                                    <p>{b?.barberServices?.[0]?.serviceName} {b?.barberServices?.length - 1 === 0 ? null : <span>+ {b?.barberServices?.length - 1} more</span>}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -737,13 +713,7 @@ const JoinQueue = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            )) : (<div style={{
-                                                display: "flex",
-                                                justifyContent: "center",
-                                                alignItems: "center",
-                                                height: "100%",
-                                                width: "100%"
-                                            }}><h2>No currently barbers available</h2></div>)
+                                            )) : (<div className={style.barber_service_error}><p>No currently barbers available</p></div>)
                                     }
 
                                 </div>

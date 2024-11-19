@@ -41,8 +41,8 @@
 
         &>div:nth-child(1) {
             position: relative;
-            width: 25rem;
-            height: 25rem;
+            width: 20rem;
+            height: 20rem;
             border-radius: 50%;
             -webkit-border-radius: 50%;
             -moz-border-radius: 50%;
@@ -244,11 +244,13 @@
         -ms-border-radius: 0rem;
         -o-border-radius: 0rem;
         border-right: none;
+        overflow: auto;
+        padding-block: 2rem;
 
         &>div:nth-child(1) {
             &>div:nth-child(1) {
-                height: 15rem;
-                width: 15rem;
+                height: 10rem;
+                width: 10rem;
 
                 .barber_online {
                     top: 1.2rem;
@@ -292,11 +294,13 @@
         -ms-border-radius: 0rem;
         -o-border-radius: 0rem;
         border-right: none;
+        overflow: auto;
+        padding-block: 2rem;
 
         &>div:nth-child(1) {
             &>div:nth-child(1) {
-                height: 15rem;
-                width: 15rem;
+                height: 10rem;
+                width: 10rem;
 
                 .barber_online {
                     top: 1.2rem;

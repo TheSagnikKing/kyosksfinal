@@ -75,11 +75,15 @@ const App = () => {
     <Toaster />
     <BrowserRouter>
       <Suspense fallback={
-        <div className='page_loader'>
-          <div>
-            <Loader />
-          </div>
-        </div>
+        <div
+          style={{
+            width: "100vw",
+            height: "100vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            background: "#fff"
+          }}><Loader /></div>
       }>
         <Routes>
 

@@ -1,64 +1,102 @@
 .joinqueue_container {
-    height: calc(100vh - 7rem);
-    width: 100vw;
-    background-color: var(--secondary-color);
+    width: 100%;
+    height: var(--primary-height);
     display: grid;
-    grid-template-columns: 65rem calc(100% - 65rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .joinqueue_container_left {
-    background-color: var(--secondary-color);
-    box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+    height: var(--primary-height);
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    border-right: 0.1rem solid rgba(0, 0, 0, 0.2);
+
+    &>img {
+        width: 70%;
+        height: auto;
+    }
 }
 
-.joinqueue_container_left>img {
-    width: 100%;
-    height: auto;
-}
 
 .joinqueue_container_right {
+    height: var(--primary-height);
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
+
+
+
+.joinqueue__main__right__form {
+    width: 75%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+
+    &>p:nth-child(1) {
+        text-align: center;
+        font-size: var(--primary-text);
+        font-weight: 600;
+    }
+}
+
+.joinqueue__main__right__form_top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    /* margin-bottom: 2rem */
+}
+
+.joinqueue__main__right__form_middle {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.joinqueue__main__right__form_bottom {
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: 1fr 1fr;
+}
+
 
 
 .common_input_container {
     height: 4rem;
-    margin-bottom: 2rem;
 
     &>input {
         width: 100%;
         height: 100%;
         border: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-        font-size: 0.9vw;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.6);
+        font-size: var(--content-text);
+        outline: none
     }
 
     &>input[type="text"]:focus {
-        border-bottom: 1px solid #0A84FF;
+        border-bottom: 0.1rem solid var(--primary-color);
     }
 }
 
 .common_input_type2_container {
     height: 4rem;
-    margin-bottom: 2rem;
     position: relative;
 
     &>input {
         width: 100%;
         height: 100%;
         border: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-        font-size: 1vw;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.6);
+        font-size: var(--content-text);
+        outline: none
     }
 
     &>input[type="text"]:focus {
-        border-bottom: 1px solid #0A84FF;
+        border-bottom: 0.1rem solid var(--primary-color);
     }
 
     &>div {
@@ -69,8 +107,8 @@
         -moz-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
         -o-transform: translateY(-50%);
-        right: 5px;
-        font-size: 2.4rem;
+        right: 0.4rem;
+        font-size: var(--content-text);
         cursor: pointer;
     }
 
@@ -79,125 +117,67 @@
 
 .phone_input_container {
     height: 4rem;
-    margin-bottom: 2rem;
-    /* background-color: gray; */
-}
-
-
-.joinqueue__main__right__form>h1 {
-    font-size: 4rem;
-    font-weight: bold;
-    margin-bottom: 5rem;
-    text-align: center;
-}
-
-.joinqueue__main__right__form {
-    height: 60vh;
-    width: 67.4rem;
-}
-
-.joinqueue__main__right__form_top {
-    display: grid;
-    grid-template-columns: 31.7rem 31.7rem;
-    gap: 4rem;
-    margin-bottom: 2rem
-}
-
-.joinqueue__main__right__form_middle {
-    display: grid;
-    grid-template-columns: 67.4rem;
-    margin-bottom: 2rem
-}
-
-.joinqueue__main__right__form_bottom {
-    display: grid;
-    grid-template-columns: 31.7rem 31.7rem;
-    gap: 4rem;
-    margin-bottom: 2rem
-}
-
-
-.joinqueue__main__right__form {
-    &>h1 {
-        font-size: 1.8vw;
-        font-weight: 500;
-    }
-}
-
-.joinqueue__main__right__form_bottom>div>div>div {
-    width: 15%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3rem;
 }
 
 .joinqueuebtn {
-    height: 5rem;
-    width: 25rem;
-    display: block;
-    margin: auto;
-    margin-top: 4rem;
-    background-color: #0A84FF;
-    color: #fff;
-    font-weight: 500;
-    border: none;
-    border-radius: 6px;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    -ms-border-radius: 6px;
-    -o-border-radius: 6px;
-    font-size: 1vw;
+    height: 4rem;
+    width: 100%;
+    margin-top: 1rem;
+    border: 0.1rem solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    outline: none;
     cursor: pointer;
-    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--tertiary-radius);
+    -webkit-border-radius: var(--tertiary-radius);
+    -moz-border-radius: var(--tertiary-radius);
+    -ms-border-radius: var(--tertiary-radius);
+    -o-border-radius: var(--tertiary-radius);
+    transition: var(--btn-transition);
+    -webkit-transition: var(--btn-transition);
+    -moz-transition: var(--btn-transition);
+    -ms-transition: var(--btn-transition);
+    -o-transition: var(--btn-transition);
+    font-size: var(--content-text);
 
     &:hover {
-        background-color: #0a84ffc4;
+        background-color: var(--primary-color);
+        color: #fff;
     }
 }
 
+.modal_header {
+    font-size: var(--primary-text);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
 .select_barber_container {
-    /* margin-top: 2rem; */
-    /* height: 78%; */
-    height: 44rem;
+    background-color: #efefef;
+    border: 0.1rem solid rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    height: 46rem;
     width: 100%;
     overflow-y: scroll;
 
-    &::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: #fff;
-        border-radius: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: #efefef;
-        border-radius: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-        background-color: #555;
-    }
 }
 
 
 .select_barber_item {
     height: 20rem;
-    width: 97%;
+    width: 100%;
     margin: auto;
-    margin-top: 1rem;
-    background-color: var(--secondary-color);
+    background-color: #ffff;
     border: 1px solid rgba(0, 0, 0, 0.2);
     margin-bottom: 2rem;
-    border-radius: 6px;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    -ms-border-radius: 6px;
-    -o-border-radius: 6px;
+    border-radius: var(--primary-radius, 0.6rem);
+    -webkit-border-radius: var(--primary-radius, 0.6rem);
+    -moz-border-radius: var(--primary-radius, 0.6rem);
+    -ms-border-radius: var(--primary-radius, 0.6rem);
+    -o-border-radius: var(--primary-radius, 0.6rem);
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -206,7 +186,7 @@
 
 .select_barber_item_top {
     flex: 1.5;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
 
     display: flex;
     align-items: center;
@@ -233,7 +213,7 @@
                 -moz-border-radius: 50%;
                 -ms-border-radius: 50%;
                 -o-border-radius: 50%;
-                border: 1px solid rgba(0, 0, 0, 0.2);
+                border: 0.1rem solid rgba(0, 0, 0, 0.2);
 
                 &>img {
                     width: 100%;
@@ -255,14 +235,14 @@
 
             &>div {
                 &>p:nth-child(1) {
-                    font-size: 1vw;
-                    font-weight: 500;
+                    font-size: var(--content-text);
+                    font-weight: 600;
                     margin-bottom: 1rem;
                     text-transform: capitalize;
                 }
 
                 &>p:nth-child(2) {
-                    font-size: 0.9vw;
+                    font-size: var(--tertiary-text);
                     font-weight: 500;
                     color: gray;
                 }
@@ -279,14 +259,14 @@
 
         &>div {
             &>p:nth-child(1) {
-                font-size: 0.8vw;
+                font-size: var(--content-text);
                 font-weight: 500;
                 color: gray;
             }
 
             &>p:nth-child(2) {
-                font-size: 1.4vw;
-                font-weight: 500;
+                font-size: var(--primary-text);
+                font-weight: 600;
                 text-align: center;
                 margin-top: 0.5rem;
             }
@@ -307,14 +287,14 @@
 
         &>div {
             &>p:nth-child(1) {
-                font-size: 0.8vw;
+                font-size: var(--content-text);
                 font-weight: 500;
                 color: gray;
             }
 
             &>p:nth-child(2) {
-                font-size: 1vw;
-                font-weight: 500;
+                font-size: var(--primary-text);
+                font-weight: 600;
                 text-align: center;
                 margin-top: 0.5rem;
             }
@@ -329,14 +309,14 @@
 
         &>div {
             &>p:nth-child(1) {
-                font-size: 0.8vw;
+                font-size: var(--content-text);
                 font-weight: 500;
                 color: gray;
             }
 
             &>p:nth-child(2) {
-                font-size: 1vw;
-                font-weight: 500;
+                font-size: var(--primary-text);
+                font-weight: 600;
                 text-align: center;
                 margin-top: 0.5rem;
             }
@@ -345,102 +325,115 @@
 }
 
 
-
-
 .select_barber_services_btn {
-    width: 19.3rem;
-    height: 4.8rem;
-    margin: auto;
-    margin-top: 0rem;
-    cursor: pointer;
+    width: 100%;
+    display: flex;
 }
 
-.select_barber_services_item_error {
+.select_barber_services_btn>button {
+    height: 4rem;
+    width: 19rem;
+    margin-top: 2rem;
+    margin-inline: auto;
+    border: 0.1rem solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--secondary-radius);
+    -webkit-border-radius: var(--secondary-radius);
+    -moz-border-radius: var(--secondary-radius);
+    -ms-border-radius: var(--secondary-radius);
+    -o-border-radius: var(--secondary-radius);
+    transition: var(--btn-transition);
+    -webkit-transition: var(--btn-transition);
+    -moz-transition: var(--btn-transition);
+    -ms-transition: var(--btn-transition);
+    -o-transition: var(--btn-transition);
+    font-size: var(--content-text);
+
+    &:hover {
+        background-color: var(--primary-color);
+        color: #fff;
+    }
+}
+
+.barber_service_error {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &>p {
+        font-size: var(--content-error-text);
+        font-weight: 500;
+    }
 }
 
-.select_barber_services_btn {
-    width: 100%;
-    height: 6rem;
+
+.select__barber__modal2__head {
     display: flex;
-}
+    align-items: center;
+    gap: 2rem;
 
-.select_barber_services_btn>button {
-    width: 19.3rem;
-    height: 4.8rem;
-    border-radius: 6px;
-    border: none;
-    background-color: #0A84FF;
-    color: #fff;
-    font-size: 1.1vw;
-    font-weight: 500;
-    cursor: pointer;
-    margin: auto;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    -ms-border-radius: 6px;
-    -o-border-radius: 6px;
+    &>p {
+        font-size: var(--primary-text);
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    &>div {
+        font-size: var(--primary-text);
+        cursor: pointer;
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .select_barber_services_container {
-    margin-top: 2rem;
-    height: 44rem;
+    background-color: #efefef;
+    border: 0.1rem solid rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    height: 46rem;
     width: 100%;
     overflow-y: scroll;
-
-
-    &::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: #fff;
-        border-radius: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: #efefef;
-        border-radius: 10px;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-        background-color: #555;
-    }
 }
 
 .select_barber_services_item {
     height: 12rem;
-    width: 97%;
-    margin: auto;
-    margin-top: 1rem;
-    background-color: var(--secondary-color);
-    /* box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.6); */
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    width: 100%;
+    background-color: #fff;
+    border-radius: var(--primary-radius, 0.6rem);
+    -webkit-border-radius: var(--primary-radius, 0.6rem);
+    -moz-border-radius: var(--primary-radius, 0.6rem);
+    -ms-border-radius: var(--primary-radius, 0.6rem);
+    -o-border-radius: var(--primary-radius, 0.6rem);
     margin-bottom: 2rem;
-    border-radius: 1.2rem;
     padding: 2rem;
 }
 
 .select_barber_services_item_header {
-    height: 30px;
+    height: 3rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 0.5fr 0.3fr;
     gap: 0.5rem;
 }
 
 .select_barber_services_item_header>p {
-    font-size: 1vw;
+    font-size: var(--content-text);
     font-weight: 600;
     display: flex;
     align-items: center;
 }
 
 .select_barber_services_item_content {
-    height: 30px;
+    height: 3rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 0.5fr 0.3fr;
     gap: 0.5rem
@@ -448,7 +441,7 @@
 
 .select_barber_services_item_content>p {
     font-weight: 500;
-    font-size: 1vw;
+    font-size: var(--tertiary-text);
     display: flex;
     align-items: center;
 }
@@ -456,9 +449,9 @@
 
 .select_barber_services_item_content>div:nth-child(4) {
     height: 3.5rem;
-    font-size: 1.4vw;
+    font-size: var(--content-text);
     color: #000;
-    margin-right: 20px;
+    margin-right: 2rem;
     background: transparent;
 }
 
@@ -473,14 +466,13 @@
 }
 
 .select_barber_services_item>div:nth-child(3)>p {
-    font-size: 0.9vw;
+    font-size: var(--content-text);
     font-weight: 500;
 }
 
 .select_barber_services_item_content>div {
-    background-color: var(--secondary-color);
     cursor: pointer;
-    font-size: 1.2vw;
+    font-size: var(--content-text);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -489,60 +481,52 @@
     height: 3.5rem;
 }
 
-.select__barber__modal2__head {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+.add_btn{
+    background-color: var(--secondary-color);
+    border: 0.1rem solid var(--primary-color);
+    color: var(--primary-color);
+    transition: var(--btn-transition);
+    -webkit-transition: var(--btn-transition);
+    -moz-transition: var(--btn-transition);
+    -ms-transition: var(--btn-transition);
+    -o-transition: var(--btn-transition);
+
+    &:hover{
+        background-color: var(--primary-color);
+        color: #fff;
+    }
 }
 
-.select__barber__modal2__head>div {
-    height: 2.5rem;
-    width: 2.5rem;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.6);
-    font-size: 1.4rem;
-    border-radius: 50%;
+.delete_btn{
+    background-color: var(--quaternery-color);
+    border: 0.1rem solid var(--tertiary-color);
+    color: var(--tertiary-color);
+    transition: var(--btn-transition);
+    -webkit-transition: var(--btn-transition);
+    -moz-transition: var(--btn-transition);
+    -ms-transition: var(--btn-transition);
+    -o-transition: var(--btn-transition);
+
+    &:hover{
+        background-color: var(--tertiary-color);
+        color: #fff;
+    }
+}
+
+.select_barber_services_item_error{
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-}
 
-.homeiconClass {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    font-size: 4rem;
-    color: black;
-    padding: 1rem;
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb:active {
-    background: #666;
-}
-
-@media screen and (min-width:0px) and (max-width:430px) {
-
-    .joinqueue__main__right__form {
-        &>h1 {
-            font-size: 5vw;
-        }
+    &>p{
+        font-size: var(--content-text);
+        font-weight: 500;
     }
+}
+
+@media screen and (min-width:0px) and (max-width:430px){
 
     .joinqueue_container {
         grid-template-columns: 1fr;
@@ -553,7 +537,7 @@
     }
 
     .joinqueue__main__right__form {
-        width: 90%;
+        width: 85vw;
     }
 
     .joinqueue__main__right__form_top {
@@ -568,59 +552,26 @@
         grid-template-columns: 1fr;
     }
 
-    .common_input_container {
-        height: 7rem;
 
-        &>input {
-            height: 100%;
-            font-size: 4vw;
+    .select_barber_container,
+    .select_barber_services_container{
+        padding: 1rem;
+    }
+
+    .select_barber_item_top{
+        &>div:nth-child(1){
+            &>div:nth-child(1){
+                &>div{
+                    width: 6rem;
+                    height: 6rem;
+                }
+            }
         }
-    }
-
-    .common_input_type2_container {
-        margin-bottom: 0rem;
-        height: 7rem;
-
-        &>input {
-            height: 100%;
-            font-size: 4vw;
-        }
-
-        &>div{
-            font-size: 5vw;
-        }
-    }
-
-    .joinqueuebtn {
-        font-size: 4vw;
-        height: 6rem;
-    }
-
-
-
-    .select_barber_services_btn>button {
-        font-size: 3vw;
-    }
-
-    .select_barber_services_item {
-        height: auto;
-    }
-
-    .select_barber_services_item_header>p {
-        font-size: 2.8vw;
-    }
-
-    .select_barber_services_item_content>p {
-        font-size: 2.8vw;
-    }
-
-    .select_barber_services_item_content>div:nth-child(4) {
-        font-size: 2.8vw;
     }
 
     .select_barber_item_top {
         flex: 1.5;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
 
         display: flex;
         align-items: center;
@@ -629,10 +580,9 @@
 
             &>div:nth-child(2) {
                 &>div {
-                    &>p:nth-child(1) {
-                        font-size: 4vw;
+                    &>p:nth-child(1){
+                        font-size: 3.5vw;
                     }
-
                     &>p:nth-child(2) {
                         font-size: 3vw;
                     }
@@ -680,16 +630,23 @@
             }
         }
     }
+
+    .select_barber_services_item {
+        height: auto;
+    }
+
+    .select_barber_services_item_header>p {
+        font-size: 3.5vw;
+    }
+
+    .select_barber_services_item_content>p {
+        font-size: 3vw;
+    }
+
 }
 
 @media screen and (min-width:431px) and (max-width:768px) {
 
-    .joinqueue__main__right__form {
-        &>h1 {
-            font-size: 3vw;
-        }
-    }
-
     .joinqueue_container {
         grid-template-columns: 1fr;
     }
@@ -699,7 +656,7 @@
     }
 
     .joinqueue__main__right__form {
-        width: 70%;
+        width: 85vw;
     }
 
     .joinqueue__main__right__form_top {
@@ -714,116 +671,26 @@
         grid-template-columns: 1fr;
     }
 
-    .common_input_container {
-        &>input {
-            font-size: 2vw;
-        }
+
+
+    .select_barber_container,
+    .select_barber_services_container{
+        padding: 1rem;
     }
 
-    .common_input_type2_container {
-        &>input {
-            font-size: 2vw;
-        }
-    }
-
-    .joinqueuebtn {
-        font-size: 2vw;
-    }
-
-
-    .select_barber_services_btn>button {
-        font-size: 1.8vw;
-    }
-
-    .select_barber_services_item {
-        height: auto;
-    }
-
-    .select_barber_services_item_header>p {
-        font-size: 2.2vw;
-    }
-
-    .select_barber_services_item_content>p {
-        font-size: 1.8vw;
-    }
-
-    .select_barber_services_item_content>div:nth-child(4) {
-        font-size: 1.8vw;
-    }
-
-
-    .select_barber_item_top {
-        flex: 1.5;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
-        display: flex;
-        align-items: center;
-
-        &>div:nth-child(1) {
-
-            &>div:nth-child(2) {
-                &>div {
-                    &>p:nth-child(1) {
-                        font-size: 2vw;
-                    }
-
-                    &>p:nth-child(2) {
-                        font-size: 1.6vw;
-                    }
-                }
-            }
-        }
-
-        &>div:nth-child(2) {
-            &>div {
-                &>p:nth-child(1) {
-                    font-size: 1.6vw;
-                }
-
-                &>p:nth-child(2) {
-                    font-size: 2vw;
-                }
-            }
-        }
-    }
-
-    .select_barber_item_bottom {
-
-        &>div:nth-child(1) {
-
-            &>div {
-                &>p:nth-child(1) {
-                    font-size: 1.6vw;
-                }
-
-                &>p:nth-child(2) {
-                    font-size: 2vw;
-                }
-            }
-        }
-
-        &>div:nth-child(2) {
-            &>div {
-                &>p:nth-child(1) {
-                    font-size: 1.6vw;
-                }
-
-                &>p:nth-child(2) {
-                    font-size: 2vw;
+    .select_barber_item_top{
+        &>div:nth-child(1){
+            &>div:nth-child(1){
+                &>div{
+                    width: 6rem;
+                    height: 6rem;
                 }
             }
         }
     }
 }
 
-@media screen and (min-width:769px) and (max-width:834px) {
-
-    .joinqueue__main__right__form {
-        &>h1 {
-            font-size: 3vw;
-        }
-    }
-
+@media screen and (min-width:769px) and (max-width:1000px){
     .joinqueue_container {
         grid-template-columns: 1fr;
     }
@@ -833,7 +700,7 @@
     }
 
     .joinqueue__main__right__form {
-        width: 70%;
+        width: 85vw;
     }
 
     .joinqueue__main__right__form_top {
@@ -847,232 +714,13 @@
     .joinqueue__main__right__form_bottom {
         grid-template-columns: 1fr;
     }
-
-    .common_input_container {
-        &>input {
-            font-size: 2vw;
-        }
-    }
-
-    .common_input_type2_container {
-        &>input {
-            font-size: 2vw;
-        }
-    }
-
-    .joinqueuebtn {
-        font-size: 2vw;
-    }
-
-
-    .select_barber_services_btn>button {
-        font-size: 1.8vw;
-    }
-
-    .select_barber_services_item {
-        height: auto;
-    }
-
-    .select_barber_services_item_header>p {
-        font-size: 1.6vw;
-    }
-
-    .select_barber_services_item_content>p {
-        font-size: 1.6vw;
-    }
-
-    .select_barber_services_item_content>div:nth-child(4) {
-        font-size: 1.8vw;
-    }
-
-
-    .select_barber_item_top {
-        flex: 1.5;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
-        display: flex;
-        align-items: center;
-
-        &>div:nth-child(1) {
-
-            &>div:nth-child(2) {
-                &>div {
-                    &>p:nth-child(1) {
-                        font-size: 2vw;
-                    }
-
-                    &>p:nth-child(2) {
-                        font-size: 1.6vw;
-                    }
-                }
-            }
-        }
-
-        &>div:nth-child(2) {
-            &>div {
-                &>p:nth-child(1) {
-                    font-size: 1.6vw;
-                }
-
-                &>p:nth-child(2) {
-                    font-size: 2vw;
-                }
-            }
-        }
-    }
-
-    .select_barber_item_bottom {
-
-        &>div:nth-child(1) {
-
-            &>div {
-                &>p:nth-child(1) {
-                    font-size: 1.6vw;
-                }
-
-                &>p:nth-child(2) {
-                    font-size: 2vw;
-                }
-            }
-        }
-
-        &>div:nth-child(2) {
-            &>div {
-                &>p:nth-child(1) {
-                    font-size: 1.6vw;
-                }
-
-                &>p:nth-child(2) {
-                    font-size: 2vw;
-                }
-            }
-        }
-    }
 }
 
-@media screen and (min-width:835px) and (max-width:1134px) {
+@media screen and (min-width:1001px) and (max-width:1250px){
     .joinqueue__main__right__form {
-        &>h1 {
-            font-size: 3vw;
-        }
-    }
-
-    .joinqueue_container {
-        grid-template-columns: 1fr;
-    }
-
-    .joinqueue_container_left {
-        display: none;
-    }
-
-    .joinqueue__main__right__form {
-        width: 70%;
-    }
-
-    .joinqueue__main__right__form_top {
-        grid-template-columns: 1fr;
-    }
-
-    .joinqueue__main__right__form_middle {
-        grid-template-columns: 1fr;
-    }
-
-    .joinqueue__main__right__form_bottom {
-        grid-template-columns: 1fr;
-    }
-
-    .common_input_container {
-        &>input {
-            font-size: 1.6vw;
-        }
-    }
-
-    .common_input_type2_container {
-        &>input {
-            font-size: 1.6vw;
-        }
-    }
-
-    .joinqueuebtn {
-        font-size: 1.6vw;
-    }
-
-    .select_barber_services_btn>button {
-        font-size: 1.4vw;
-    }
-
-
-
-    .select_barber_item_top {
-        flex: 1.5;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
-        display: flex;
-        align-items: center;
-
-        &>div:nth-child(1) {
-
-            &>div:nth-child(2) {
-                &>div {
-                    &>p:nth-child(1) {
-                        font-size: 1.6vw;
-                    }
-
-                    &>p:nth-child(2) {
-                        font-size: 1.2vw;
-                    }
-                }
-            }
-        }
-
-        &>div:nth-child(2) {
-            &>div {
-                &>p:nth-child(1) {
-                    font-size: 1.2vw;
-                }
-
-                &>p:nth-child(2) {
-                    font-size: 1.6vw;
-                }
-            }
-        }
-    }
-
-    .select_barber_item_bottom {
-
-        &>div:nth-child(1) {
-
-            &>div {
-                &>p:nth-child(1) {
-                    font-size: 1.2vw;
-                }
-
-                &>p:nth-child(2) {
-                    font-size: 1.6vw;
-                }
-            }
-        }
-
-        &>div:nth-child(2) {
-            &>div {
-                &>p:nth-child(1) {
-                    font-size: 1.2vw;
-                }
-
-                &>p:nth-child(2) {
-                    font-size: 1.6vw;
-                }
-            }
-        }
-    }
-
-    .select_barber_services_btn {
-        height: 4.8rem;
+        width: 90%;
     }
 }
 
-@media screen and (min-width:1135px) and (max-width:1250px) {
-    .joinqueue_container {
-        grid-template-columns: 50rem calc(100% - 50rem);
-    }
-}
+
+

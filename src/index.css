@@ -129,12 +129,12 @@ body {
 }
 
 .react-international-phone-input-container .react-international-phone-input {
-  font-size: 0.9vw !important;
+  font-size: var(--content-text) !important;
 }
 
 .react-international-phone-input-container {
   height: 4rem !important;
-  font-size: 3vw !important;
+  font-size: var(--content-text) !important;
 }
 
 

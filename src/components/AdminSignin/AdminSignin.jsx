@@ -83,13 +83,13 @@ const AdminSignin = () => {
 
     const loginHandler = async () => {
         const data = { email, password, role }
-        console.log(data)
+        // console.log(data)
 
         login(data)
     }
 
     const responseMessage = async (response) => {
-        console.log(response.credential)
+        // console.log(response.credential)
         googleAdminLoginKiosk(response.credential)
     };
 
