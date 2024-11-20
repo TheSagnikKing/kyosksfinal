@@ -243,7 +243,7 @@ const JoinQueue = () => {
             setCustomerName("")
             setCustomerEmail("")
             setMobileNumber("")
-            navigate('/kiyosk')
+            navigate('/kiosk')
         } else if (joinQueueKioskisError) {
             toast.error(joinQueueKioskerror?.data?.message, {
                 duration: 3000,
