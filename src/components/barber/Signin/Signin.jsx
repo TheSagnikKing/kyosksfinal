@@ -91,10 +91,15 @@ const Signin = () => {
 
     const barberSigninHandler = () => {
         const barberdata = { email: barberemail, password }
-        console.log(barberdata)
         barberLoginKiosk(barberdata)
 
     }
+
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+            barberSigninHandler();
+        }
+    };
 
     const [drop, setDrop] = useState(false)
 
@@ -158,6 +163,7 @@ const Signin = () => {
                                 placeholder='Search Barber'
                                 value={barberemail}
                                 onChange={(e) => setBarberEmailHandler(e)}
+                                onKeyDown={handleKeyPress}
                             />
                             <div>
                                 <DropdownIcon />
@@ -203,6 +209,7 @@ const Signin = () => {
                             placeholder='Enter Your Password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            onKeyDown={handleKeyPress}
                         />
                         <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                     </div>

@@ -89,13 +89,19 @@ const BarberServeLogin = () => {
             _id: location?.state?._id
         }
 
-        console.log("Console ", queueData)
+        // console.log("Console ", queueData)
 
         if (confirm) {
             servequeuefunction(queueData)
         }
 
     }
+
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+            serveQueueHandler();
+        }
+    };
 
     const [drop, setDrop] = useState(false)
 
@@ -140,6 +146,7 @@ const BarberServeLogin = () => {
                                 value={barberemail}
                                 onChange={(e) => setBarberEmail(e.target.value)}
                                 placeholder='Enter Your Email'
+                                onKeyDown={handleKeyPress}
                             />
 
                         </div>
@@ -151,6 +158,7 @@ const BarberServeLogin = () => {
                                 placeholder='Enter Your Password'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                onKeyDown={handleKeyPress}
                             />
                             <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                         </div>

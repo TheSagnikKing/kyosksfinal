@@ -50,11 +50,15 @@ const SalonSignin = () => {
 
     const loginHandler = async () => {
         const data = { email, password, role, salonId: adminInfo?.salonId }
-        console.log(data)
-
         salonAccountLogin(data)
 
     }
+
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+            loginHandler();
+        }
+    };
 
     const [showPassword, setShowPassword] = useState(false)
 
@@ -76,6 +80,7 @@ const SalonSignin = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder='Enter Your Email'
+                            onKeyDown={handleKeyPress}
                         />
 
                     </div>
@@ -87,6 +92,7 @@ const SalonSignin = () => {
                             placeholder='Enter Your Password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            onKeyDown={handleKeyPress}
                         />
                         <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                     </div>
@@ -98,6 +104,7 @@ const SalonSignin = () => {
                                     type="checkbox"
                                     checked={role === "Admin" ? true : false}
                                     onChange={() => setRole("Admin")}
+                                    onKeyDown={handleKeyPress}
                                 />
                                 <p>Admin</p>
                             </div>
@@ -107,6 +114,7 @@ const SalonSignin = () => {
                                     type="checkbox"
                                     checked={role === "Barber" ? true : false}
                                     onChange={() => setRole("Barber")}
+                                    onKeyDown={handleKeyPress}
                                 />
                                 <p>Barber</p>
                             </div>

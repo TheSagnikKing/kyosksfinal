@@ -89,12 +89,18 @@ const CancelServeLogin = () => {
             _id: location?.state?._id
         }
 
-        console.log("Console ", cancelqueuedata)
+        // console.log("Console ", cancelqueuedata)
 
         if (confirm) {
             cancelqueuefunction(cancelqueuedata)
         }
     }
+
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+            cancelQueueHandler();
+        }
+    };
 
     const [drop, setDrop] = useState(false)
 
@@ -138,6 +144,7 @@ const CancelServeLogin = () => {
                                 value={barberemail}
                                 onChange={(e) => setBarberEmail(e.target.value)}
                                 placeholder='Enter Your Email'
+                                onKeyDown={handleKeyPress}
                             />
 
                         </div>
@@ -149,6 +156,7 @@ const CancelServeLogin = () => {
                                 placeholder='Enter Your Password'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                onKeyDown={handleKeyPress}
                             />
                             <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                         </div>

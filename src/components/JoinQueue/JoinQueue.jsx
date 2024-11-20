@@ -301,10 +301,17 @@ const JoinQueue = () => {
                 },
             });
         } else {
-            console.log("Join Kiosk Data ", joinqueuedata)
+            // console.log("Join Kiosk Data ", joinqueuedata)
             joinQueueKiosk(joinqueuedata)
         }
+
     }
+
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+            joinqueueHandler();
+        }
+    };
 
     const modelcolorfnc = (b) => {
         const modelcolor = selectedBarber === b.name ? "var(--primary-color)" : "var(--primary-color)"
@@ -369,6 +376,7 @@ const JoinQueue = () => {
                                 placeholder='Enter Your Full Name'
                                 value={customerName}
                                 onChange={(e) => setCustomerName(e.target.value)}
+                                onKeyDown={handleKeyPress}
                             />
 
                         </div>
@@ -379,6 +387,7 @@ const JoinQueue = () => {
                             style={{
                                 borderBottom: phoneinputborder ? "1px solid #0a84ff" : "1px solid rgba(0,0,0,0.6)"
                             }}
+                            onKeyDown={handleKeyPress}
                         >
                             <PhoneInput
                                 forceDialCode={true}
@@ -397,6 +406,7 @@ const JoinQueue = () => {
                                 placeholder='Enter Your Email ID (Optional)'
                                 value={customerEmail}
                                 onChange={(e) => setCustomerEmail(e.target.value)}
+                                onKeyDown={handleKeyPress}
                             />
 
                         </div>
@@ -408,8 +418,9 @@ const JoinQueue = () => {
                                 type="text"
                                 placeholder="Select Barber"
                                 value={selecteBarberdata === false ? "" : selecteBarberdata}
+                                onClick={SelectBarberDropdownHandler}
                             />
-                            <div onClick={SelectBarberDropdownHandler} style={{ cursor: "pointer" }}><DropdownIcon /></div>
+                            <div style={{ cursor: "pointer" }}><DropdownIcon /></div>
                         </div>
 
                         <div className={style.common_input_type2_container}>
@@ -417,8 +428,9 @@ const JoinQueue = () => {
                                 type="text"
                                 placeholder="Select Services"
                                 value={selectedBarberServices.map((s) => s.serviceName + " ")}
+                                onClick={SelectServicesDropdownHandler}
                             />
-                            <div onClick={SelectServicesDropdownHandler} style={{ cursor: "pointer" }}><DropdownIcon /></div>
+                            <div style={{ cursor: "pointer" }}><DropdownIcon /></div>
                         </div>
 
                     </div>
@@ -554,7 +566,7 @@ const JoinQueue = () => {
                                                         {
                                                             selectedServices.find((select) => select._id === item._id) ?
                                                                 <div onClick={() => deleteSelectServicesHandler(item._id)}
-                                                                className={style.delete_btn}
+                                                                    className={style.delete_btn}
                                                                 ><DeleteIcon /></div> :
                                                                 <div onClick={() => selectedServicesHandler(item)}
                                                                     className={style.add_btn}

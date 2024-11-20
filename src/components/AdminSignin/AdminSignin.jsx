@@ -82,6 +82,12 @@ const AdminSignin = () => {
         login(data)
     }
 
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+            loginHandler();
+        }
+    };
+
     const [showPassword, setShowPassword] = useState(false)
 
     return (
@@ -101,6 +107,7 @@ const AdminSignin = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder='Enter Your Email'
+                            onKeyDown={handleKeyPress}
                         />
 
                     </div>
@@ -112,6 +119,7 @@ const AdminSignin = () => {
                             placeholder='Enter Your Password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            onKeyDown={handleKeyPress}
                         />
                         <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                     </div>
@@ -123,6 +131,7 @@ const AdminSignin = () => {
                                     type="checkbox"
                                     checked={role === "Admin" ? true : false}
                                     onChange={() => setRole("Admin")}
+                                    onKeyDown={handleKeyPress}
                                 />
                                 <p>Admin</p>
                             </div>
@@ -132,6 +141,7 @@ const AdminSignin = () => {
                                     type="checkbox"
                                     checked={role === "Barber" ? true : false}
                                     onChange={() => setRole("Barber")}
+                                    onKeyDown={handleKeyPress}
                                 />
                                 <p>Barber</p>
                             </div>
