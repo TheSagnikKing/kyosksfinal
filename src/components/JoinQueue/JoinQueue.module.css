@@ -72,7 +72,7 @@
         width: 100%;
         height: 100%;
         border: none;
-        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.6);
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.4);
         font-size: var(--content-text);
         outline: none
     }
@@ -90,7 +90,7 @@
         width: 100%;
         height: 100%;
         border: none;
-        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.6);
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.4);
         font-size: var(--content-text);
         outline: none
     }
@@ -171,7 +171,7 @@
     width: 100%;
     margin: auto;
     background-color: #ffff;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 0.1rem solid rgba(0, 0, 0, 0.2);
     margin-bottom: 2rem;
     border-radius: var(--primary-radius, 0.6rem);
     -webkit-border-radius: var(--primary-radius, 0.6rem);
