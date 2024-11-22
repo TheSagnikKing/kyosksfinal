@@ -10,7 +10,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import { useLazyGetQlistBySalonIdKioskQuery } from '../QueueList/QueueApiSlice';
 
 const Public = () => {
-  
+
   const adminInfo = useSelector(selectCurrentAdminInfo)
 
   const [salonId, setSalonId] = useState(adminInfo?.salonId)
@@ -288,10 +288,10 @@ const Public = () => {
             {
               allbarbersdata_isLoading ? (
                 <>
-                  <Skeleton count={1} height={"10rem"} width={"30rem"} style={{borderRadius: "0.6rem" }} />
-                  <Skeleton count={1} height={"10rem"} width={"30rem"} style={{borderRadius: "0.6rem" }} />
-                  <Skeleton count={1} height={"10rem"} width={"30rem"} style={{borderRadius: "0.6rem" }} />
-                  <Skeleton count={1} height={"10rem"} width={"30rem"} style={{borderRadius: "0.6rem" }} />
+                  <Skeleton count={1} height={"10rem"} width={"30rem"} style={{ borderRadius: "0.6rem" }} />
+                  <Skeleton count={1} height={"10rem"} width={"30rem"} style={{ borderRadius: "0.6rem" }} />
+                  <Skeleton count={1} height={"10rem"} width={"30rem"} style={{ borderRadius: "0.6rem" }} />
+                  <Skeleton count={1} height={"10rem"} width={"30rem"} style={{ borderRadius: "0.6rem" }} />
                 </>
               ) : allbarbersdata_isSuccess && allbarbersdata?.getAllBarbers?.length > 0 ? (<>
 
@@ -364,7 +364,8 @@ const Public = () => {
                       )
                     })
                   }
-                </div>) :
+                </div>)
+                :
                 (<div className={style.kiyosk_queuelist_body_error}>
                   <p>No queuelist available</p>
                 </div>)

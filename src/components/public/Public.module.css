@@ -70,6 +70,7 @@
     flex-wrap: wrap;
     gap: 1%;
 }
+
 .barber_online_item {
     background-color: #fff;
     width: 32.4%;
@@ -86,7 +87,7 @@
     align-items: center;
     gap: 2rem;
 
-    &>div:nth-child(1){
+    &>div:nth-child(1) {
         width: 6.5rem;
         height: 6.5rem;
         box-shadow: var(--cmmn-box-shadow-y);
@@ -147,11 +148,11 @@
 
 .kiyosk_body_right {
     box-shadow: var(--cmmn-box-shadow-y);
-    border-radius: var(--primary-radius,0.6rem);
-    -webkit-border-radius: var(--primary-radius,0.6rem);
-    -moz-border-radius: var(--primary-radius,0.6rem);
-    -ms-border-radius: var(--primary-radius,0.6rem);
-    -o-border-radius: var(--primary-radius,0.6rem);
+    border-radius: var(--primary-radius, 0.6rem);
+    -webkit-border-radius: var(--primary-radius, 0.6rem);
+    -moz-border-radius: var(--primary-radius, 0.6rem);
+    -ms-border-radius: var(--primary-radius, 0.6rem);
+    -o-border-radius: var(--primary-radius, 0.6rem);
     background-color: #fff;
 }
 
@@ -278,7 +279,7 @@
             gap: 2rem;
             border-left: 0.5rem solid limegreen;
 
-            &>div:nth-child(1){
+            &>div:nth-child(1) {
                 width: 6.5rem;
                 height: 6.5rem;
                 box-shadow: var(--cmmn-box-shadow-y);
@@ -352,8 +353,8 @@
 
     }
 
-    .kiyosk_queuelist_item {
-        height: 7rem;
+    .kiyosk_body_right {
+        overflow: auto;
     }
 
     .mobile_queuelist,
