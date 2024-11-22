@@ -40,10 +40,12 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
 
     const queuelistClicked = () => {
         navigate('/queuelist')
+        setShowDrop(false)
     }
 
     const joinqueueClicked = () => {
         navigate('/joinqueue')
+        setShowDrop(false)
     }
 
     const logoutHandler = () => {
@@ -59,10 +61,12 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
 
     const salonsettingClicked = () => {
         navigate("/salonsignin")
+        setShowDrop(false)
     }
 
     const barbersigninClicked = () => {
         navigate("/barbersignin")
+        setShowDrop(false)
     }
 
     const location = useLocation()

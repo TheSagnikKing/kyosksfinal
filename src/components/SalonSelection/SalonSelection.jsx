@@ -123,7 +123,7 @@ const SalonSelection = () => {
 
     const continueHandler = () => {
         localStorage.setItem("salonSelect", "true")
-        navigate('/kiyosk')
+        navigate('/kiosk')
         window.location.reload()
     }
 

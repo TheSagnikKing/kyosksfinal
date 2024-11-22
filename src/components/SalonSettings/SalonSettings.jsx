@@ -41,7 +41,7 @@ const SalonSettings = () => {
           borderRadius: '0.3rem',
           background: '#333',
           color: '#fff',
-      },
+        },
       });
 
       setTimeout(() => {
@@ -61,7 +61,7 @@ const SalonSettings = () => {
           borderRadius: '0.3rem',
           background: '#333',
           color: '#fff',
-      },
+        },
       });
       setSalonbtnCheck(adminInfo?.isSalonOnline)
     }
@@ -121,7 +121,7 @@ const SalonSettings = () => {
           borderRadius: '0.3rem',
           background: '#333',
           color: '#fff',
-      },
+        },
       });
 
       setTimeout(() => {
@@ -141,7 +141,7 @@ const SalonSettings = () => {
           borderRadius: '0.3rem',
           background: '#333',
           color: '#fff',
-      },
+        },
       });
       setMobilebtnCheck(adminInfo?.mobileBookingAvailability)
     }
@@ -184,49 +184,49 @@ const SalonSettings = () => {
     }
   }, [adminInfo])
 
-  
+
   return (
-      <section className={style.salon_settings_container}>
-        <div className={style.salon_settings_left}>
-          <img src="./My_Bookings.png" alt="salon_settings_img" />
-        </div>
-        <div className={style.salon_settings_right}>
-          <div className={style.salon_main_container}>
-            <p>Welcome to salon settings</p>
+    <section className={style.salon_settings_container}>
+      <div className={style.salon_settings_left}>
+        <img src="./My_Bookings.png" alt="salon_settings_img" />
+      </div>
+      <div className={style.salon_settings_right}>
+        <div className={style.salon_main_container}>
+          <p>Welcome to salon settings</p>
+          <div>
             <div>
               <div>
-                <div>
-                  <p>Salon Status</p>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus dolore officiis debitis nisi beatae! Facere nihil maiores quod voluptas odio?</p>
-                </div>
-                {
-                  Object.keys(adminInfo).length > 0 &&
-                  <button
-                    className={adminInfo?.isSalonOnline ? style.online_btn : style.offline_btn}
-                    onClick={salonOnlineHandler}
-                  >{adminInfo?.isSalonOnline ? "Online" : "Offline"}</button>
-                }
+                <p>Salon Status</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus dolore officiis debitis nisi beatae! Facere nihil maiores quod voluptas odio?</p>
               </div>
-
-              <div style={{borderBottom: "none"}}>
-                <div>
-                  <p>Mobile Booking</p>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus dolore officiis debitis nisi beatae! Facere nihil maiores quod voluptas odio?</p>
-                </div>
-                {
-                  Object.keys(adminInfo).length > 0 &&
-                  <button
-                    className={adminInfo?.mobileBookingAvailability ? style.online_btn : style.offline_btn}
-                    onClick={mobileBookOnlineHandler}
-                  >{adminInfo?.mobileBookingAvailability ? "Available" : "Unavailable"}</button>
-                }
-
-              </div>
+              {
+                Object.keys(adminInfo).length > 0 &&
+                <button
+                  className={adminInfo?.isSalonOnline ? style.online_btn : style.offline_btn}
+                  onClick={salonOnlineHandler}
+                >{adminInfo?.isSalonOnline ? "Online" : "Offline"}</button>
+              }
             </div>
 
+            <div style={{ borderBottom: "none" }}>
+              <div>
+                <p>Mobile Booking</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus dolore officiis debitis nisi beatae! Facere nihil maiores quod voluptas odio?</p>
+              </div>
+              {
+                Object.keys(adminInfo).length > 0 &&
+                <button
+                  className={adminInfo?.mobileBookingAvailability ? style.online_btn : style.offline_btn}
+                  onClick={mobileBookOnlineHandler}
+                >{adminInfo?.mobileBookingAvailability ? "Available" : "Unavailable"}</button>
+              }
+
+            </div>
           </div>
+
         </div>
-      </section>
+      </div>
+    </section>
   )
 }
 
