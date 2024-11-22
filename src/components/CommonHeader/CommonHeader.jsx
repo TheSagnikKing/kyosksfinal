@@ -145,9 +145,9 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                                             <p>Join Queue</p>
                                         </div>
 
-                                        <div>
+                                        <div onClick={logoutHandler}>
                                             <div><LogoutIcon /></div>
-                                            <p onClick={logoutHandler}>Logout</p>
+                                            <p>Logout</p>
                                         </div>
 
                                         {/* <div
