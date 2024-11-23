@@ -413,22 +413,20 @@ const JoinQueue = () => {
                     </div>
 
                     <div className={style.joinqueue__main__right__form_bottom}>
-                        <div className={style.common_input_type2_container}>
+                        <div className={style.common_input_type2_container} onClick={SelectBarberDropdownHandler}>
                             <input
                                 type="text"
                                 placeholder="Select Barber"
                                 value={selecteBarberdata === false ? "" : selecteBarberdata}
-                                onClick={SelectBarberDropdownHandler}
                             />
                             <div style={{ cursor: "pointer" }}><DropdownIcon /></div>
                         </div>
 
-                        <div className={style.common_input_type2_container}>
+                        <div className={style.common_input_type2_container} onClick={SelectServicesDropdownHandler}>
                             <input
                                 type="text"
                                 placeholder="Select Services"
                                 value={selectedBarberServices.map((s) => s.serviceName + " ")}
-                                onClick={SelectServicesDropdownHandler}
                             />
                             <div style={{ cursor: "pointer" }}><DropdownIcon /></div>
                         </div>
