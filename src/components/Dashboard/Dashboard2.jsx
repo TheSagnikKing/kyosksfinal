@@ -38,21 +38,6 @@ const Dashboard2 = () => {
 
     const [barberbtnCheck, setBarberbtnCheck] = useState(selectCurrentBarberdata?.foundUser?.isClockedIn)
 
-    useEffect(() => {
-        if (getAttendenceByBarberIdKioskisError) {
-            toast.error(getAttendenceByBarberIdKioskerror?.data?.message, {
-                duration: 3000,
-                style: {
-                    fontSize: "var(--tertiary-text)",
-                    borderRadius: '0.3rem',
-                    background: '#333',
-                    color: '#fff',
-                },
-            });
-        }
-    }, [getAttendenceByBarberIdKioskisError])
-
-
 
     useEffect(() => {
         if (barberclockonlineisError) {
@@ -192,99 +177,99 @@ const Dashboard2 = () => {
     }
 
     return (
-            <main className={style.barber_kiyosk_container}>
+        <main className={style.barber_kiyosk_container}>
+            <div>
                 <div>
                     <div>
                         <div>
-                            <div>
-                                <img src={selectCurrentBarberdata?.foundUser?.profile[0]?.url} alt="Barber Profile" />
-                                <div className={style.barber_online}
-                                    style={{
-                                        background: barberOnlineCheck ? "limegreen" : "red"
-                                    }}
-                                ></div>
-                            </div>
-
+                            <img src={selectCurrentBarberdata?.foundUser?.profile[0]?.url} alt="Barber Profile" />
+                            <div className={style.barber_online}
+                                style={{
+                                    background: barberOnlineCheck ? "limegreen" : "red"
+                                }}
+                            ></div>
                         </div>
-                        <div>
-                            <div>
-                                <p>{selectCurrentBarberdata?.foundUser?.name}</p>
-                                <p>{selectCurrentBarberdata?.foundUser?.email}</p>
-                                <p>{selectCurrentBarberdata?.foundUser?.mobileNumber}</p>
-                            </div>
-
-                            <div>
-                                <button
-                                    className={barberOnlineCheck ? style.online_btn : style.offline_btn}
-                                    onClick={barberOnlineHandler}
-                                >{barberOnlineCheck ? "Online" : "Offline"  }</button>
-
-                                <button
-                                    className={barberbtnCheck ? style.online_btn : style.offline_btn}
-                                    onClick={clockHandler}
-                                >{barberbtnCheck ? "Clock-In" : "Clock-Out"  }</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={style.timetable}>
-                        <div>
-                            <p>Day</p>
-                            <p>Date</p>
-                            <p>Time In</p>
-                            <p>Time Out</p>
-                        </div>
-
-                        {
-                            getAttendenceByBarberIdKioskisLoading ? (
-                                <div className={style.attendence_loading_container}>
-                                    <Skeleton
-                                        variant="rectangular"
-                                        className={style.skeleton}
-                                    />
-                                    <Skeleton
-                                        variant="rectangular"
-                                        className={style.skeleton}
-                                    />
-                                    <Skeleton
-                                        variant="rectangular"
-                                        className={style.skeleton}
-                                    />
-                                    <Skeleton
-                                        variant="rectangular"
-                                        className={style.skeleton}
-                                    />
-                                    <Skeleton
-                                        variant="rectangular"
-                                        className={style.skeleton}
-                                    />
-                                    <Skeleton
-                                        variant="rectangular"
-                                        className={style.skeleton}
-                                    />
-                                </div>
-                            ) : getAttendenceByBarberIdKioskisSuccess && getAttendenceByBarberIdKioskdata?.response?.attendance?.length > 0 ? (
-                                <div>
-                                    {getAttendenceByBarberIdKioskdata?.response?.attendance.map((b, i) => (
-                                        <div key={i}>
-                                            <p>{b?.day}</p>
-                                            <p>{b?.date}</p>
-                                            <p>{b?.signInTime === "" ? "-" : b?.signInTime}</p>
-                                            <p>{b?.signOutTime === "" ? "-" : b?.signOutTime}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className={style.attendence_loading_container_error}>
-                                    <p>No attendance available</p>
-                                </div>
-                            )
-                        }
 
                     </div>
+                    <div>
+                        <div>
+                            <p>{selectCurrentBarberdata?.foundUser?.name}</p>
+                            <p>{selectCurrentBarberdata?.foundUser?.email}</p>
+                            <p>{selectCurrentBarberdata?.foundUser?.mobileNumber}</p>
+                        </div>
+
+                        <div>
+                            <button
+                                className={barberOnlineCheck ? style.online_btn : style.offline_btn}
+                                onClick={barberOnlineHandler}
+                            >{barberOnlineCheck ? "Online" : "Offline"}</button>
+
+                            <button
+                                className={barberbtnCheck ? style.online_btn : style.offline_btn}
+                                onClick={clockHandler}
+                            >{barberbtnCheck ? "Clock-In" : "Clock-Out"}</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={style.timetable}>
+                    <div>
+                        <p>Day</p>
+                        <p>Date</p>
+                        <p>Time In</p>
+                        <p>Time Out</p>
+                    </div>
+
+                    {
+                        getAttendenceByBarberIdKioskisLoading ? (
+                            <div className={style.attendence_loading_container}>
+                                <Skeleton
+                                    variant="rectangular"
+                                    className={style.skeleton}
+                                />
+                                <Skeleton
+                                    variant="rectangular"
+                                    className={style.skeleton}
+                                />
+                                <Skeleton
+                                    variant="rectangular"
+                                    className={style.skeleton}
+                                />
+                                <Skeleton
+                                    variant="rectangular"
+                                    className={style.skeleton}
+                                />
+                                <Skeleton
+                                    variant="rectangular"
+                                    className={style.skeleton}
+                                />
+                                <Skeleton
+                                    variant="rectangular"
+                                    className={style.skeleton}
+                                />
+                            </div>
+                        ) : getAttendenceByBarberIdKioskisSuccess && getAttendenceByBarberIdKioskdata?.response?.attendance?.length > 0 ? (
+                            <div>
+                                {getAttendenceByBarberIdKioskdata?.response?.attendance.map((b, i) => (
+                                    <div key={i}>
+                                        <p>{b?.day}</p>
+                                        <p>{b?.date}</p>
+                                        <p>{b?.signInTime === "" ? "-" : b?.signInTime}</p>
+                                        <p>{b?.signOutTime === "" ? "-" : b?.signOutTime}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className={style.attendence_loading_container_error}>
+                                <p>No attendance available</p>
+                            </div>
+                        )
+                    }
 
                 </div>
-            </main>
+
+            </div>
+        </main>
     )
 }
 
