@@ -62,7 +62,7 @@
 
             .barber_online {
                 position: absolute;
-                top: 2rem;
+                top: 1rem;
                 right: 2rem;
                 width: 3rem;
                 height: 3rem;
@@ -253,8 +253,8 @@
                 width: 10rem;
 
                 .barber_online {
-                    top: 1.2rem;
-                    right: 1.2rem;
+                    top: 0.5rem;
+                    right: 0.5rem;
                     width: 2rem;
                     height: 2rem;
                 }
@@ -303,8 +303,8 @@
                 width: 10rem;
 
                 .barber_online {
-                    top: 1.2rem;
-                    right: 1.2rem;
+                    top: 0.5rem;
+                    right: 0.5rem;
                     width: 2rem;
                     height: 2rem;
                 }
@@ -334,7 +334,7 @@
 
 @media screen and (min-width:769px) and (max-width:1000px) {
 
-    .barber_kiyosk_container>div{
+    .barber_kiyosk_container>div {
         grid-template-columns: 1.5fr 2fr;
     }
 }
