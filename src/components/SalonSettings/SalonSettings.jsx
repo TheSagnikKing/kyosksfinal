@@ -192,12 +192,12 @@ const SalonSettings = () => {
       </div>
       <div className={style.salon_settings_right}>
         <div className={style.salon_main_container}>
-          <p>Welcome to salon settings</p>
+          <p>Salon settings</p>
           <div>
             <div>
               <div>
                 <p>Salon Status</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus dolore officiis debitis nisi beatae! Facere nihil maiores quod voluptas odio?</p>
+                <p>The system will disable the availability of all barbers and mobile bookings, effectively setting their status to offline or shutting them down.</p>
               </div>
               {
                 Object.keys(adminInfo).length > 0 &&
@@ -211,7 +211,7 @@ const SalonSettings = () => {
             <div style={{ borderBottom: "none" }}>
               <div>
                 <p>Mobile Booking</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus dolore officiis debitis nisi beatae! Facere nihil maiores quod voluptas odio?</p>
+                <p>Mobile booking can be set to online or offline. When offline, customers will not be able to join the queue through the app.</p>
               </div>
               {
                 Object.keys(adminInfo).length > 0 &&
