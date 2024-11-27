@@ -2,7 +2,7 @@
     height: var(--primary-height);
     width: 100vw;
     background-color: var(--primary-bg-color);
-    padding: 2rem;
+    padding: 1rem;
 
     &>p:nth-child(1) {
         line-height: 4rem;
@@ -19,18 +19,17 @@
     width: 100%;
     height: calc(calc(var(--primary-height)) - 4rem - 4rem - 1rem);
     background-color: #fff;
-    border-radius:var(--primary-radius, 0.6rem);
-    -webkit-border-radius:var(--primary-radius, 0.6rem);
-    -moz-border-radius:var(--primary-radius, 0.6rem);
-    -ms-border-radius:var(--primary-radius, 0.6rem);
-    -o-border-radius:var(--primary-radius, 0.6rem);
+    border-radius: var(--primary-radius, 0.6rem);
+    -webkit-border-radius: var(--primary-radius, 0.6rem);
+    -moz-border-radius: var(--primary-radius, 0.6rem);
+    -ms-border-radius: var(--primary-radius, 0.6rem);
+    -o-border-radius: var(--primary-radius, 0.6rem);
     box-shadow: var(--cmmn-box-shadow-y);
     overflow: auto;
 }
 
 .queuelist_table_header {
     position: sticky;
-    left: 0rem;
     top: 0rem;
     right: 0rem;
     background-color: #fff;
@@ -38,9 +37,9 @@
     min-width: 147rem;
     height: 6.5rem;
     border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
     align-items: center;
-    justify-content: space-between;
 
     &>p {
         height: 100%;
@@ -51,10 +50,10 @@
         align-items: center;
         font-size: var(--content-text);
         font-weight: 600;
-        
+
     }
 
-    &>p:nth-child(1){
+    &>p:nth-child(1) {
         position: sticky;
         left: 0rem;
         z-index: 2;
@@ -78,9 +77,9 @@
     min-width: 147rem;
     height: 6.5rem;
     border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
     align-items: center;
-    justify-content: space-between;
 
     &>p {
         height: 100%;
@@ -93,7 +92,7 @@
         font-weight: 500;
     }
 
-    &>p:nth-child(1){
+    &>p:nth-child(1) {
         position: sticky;
         left: 0rem;
         z-index: 2;
@@ -104,7 +103,7 @@
         min-width: 25rem;
     }
 
-    &>div:nth-last-child(4){
+    &>div:nth-last-child(4) {
         height: 100%;
         min-width: 14rem;
         flex: 1;
@@ -136,8 +135,8 @@
     font-size: var(--content-text);
 }
 
-.queuelist_table_item>div:nth-last-child(1)>button{
-    background-color:var(--quaternery-color);
+.queuelist_table_item>div:nth-last-child(1)>button {
+    background-color: var(--quaternery-color);
     border: 0.1rem solid var(--tertiary-color);
     color: var(--tertiary-color);
     font-weight: 500;
@@ -151,10 +150,10 @@
         background-color: var(--tertiary-color);
         color: #fff;
     }
-} 
+}
 
-.queuelist_table_item>div:nth-last-child(2)>button{
-    background-color:var(--secondary-color);
+.queuelist_table_item>div:nth-last-child(2)>button {
+    background-color: var(--secondary-color);
     border: 0.1rem solid var(--primary-color);
     color: var(--primary-color);
     font-weight: 500;
@@ -168,7 +167,7 @@
         background-color: var(--primary-color);
         color: #fff;
     }
-} 
+}
 
 .queuelist_loading {
     width: 100%;
@@ -187,8 +186,7 @@
     }
 }
 
-.skeleton{
+.skeleton {
     height: 6.5rem !important;
     margin-bottom: 1rem;
 }
-
