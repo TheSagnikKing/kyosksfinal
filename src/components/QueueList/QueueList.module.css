@@ -34,93 +34,134 @@
     right: 0rem;
     background-color: #fff;
     z-index: 3;
-    min-width: 147rem;
+    min-width: 108rem;
     height: 6.5rem;
     border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: 1fr 1fr 1fr 0.3fr 0.5fr 1.3fr 0.8fr 0.8fr;
     align-items: center;
 
     &>p {
         height: 100%;
         min-width: 14rem;
-        flex: 1;
         display: flex;
-        justify-content: center;
         align-items: center;
         font-size: var(--content-text);
         font-weight: 600;
 
     }
 
+    &>div {
+        height: 100%;
+        min-width: 14rem;
+        display: flex;
+        align-items: center;
+        font-size: var(--content-text);
+        font-weight: 600;
+    }
+
     &>p:nth-child(1) {
         position: sticky;
         left: 0rem;
         z-index: 2;
         background-color: #fff;
+        padding-left: 2rem;
     }
 
-    &>p:nth-last-child(1) {
-        flex: 0.8;
+    &>p:nth-child(4) {
+        min-width: 10rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    &>p:nth-last-child(2) {
-        flex: 0.8;
+    &>div:nth-child(5) {
+        min-width: 12rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    &>p:nth-last-child(3) {
-        min-width: 25rem;
+    &>p:nth-child(6) {
+        min-width: 20rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+
+    &>div:nth-child(7),
+    &>div:nth-child(8) {
+        min-width: 12rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 }
 
 .queuelist_table_item {
-    min-width: 147rem;
+    min-width: 108rem;
     height: 6.5rem;
     border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: 1fr 1fr 1fr 0.3fr 0.5fr 1.3fr 0.8fr 0.8fr;
     align-items: center;
 
     &>p {
         height: 100%;
         min-width: 14rem;
-        flex: 1;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: var(--content-text);
-        font-weight: 500;
-    }
-
-    &>p:nth-child(1) {
-        position: sticky;
-        left: 0rem;
-        z-index: 2;
-        background-color: #fff;
-    }
-
-    &>p:nth-last-child(3) {
-        min-width: 25rem;
-    }
-
-    &>div:nth-last-child(4) {
-        height: 100%;
-        min-width: 14rem;
-        flex: 1;
-        display: flex;
-        justify-content: center;
         align-items: center;
         font-size: var(--content-text);
         font-weight: 500;
     }
 
     &>div {
+        height: 100%;
         min-width: 14rem;
-        flex: 0.8;
+        display: flex;
+        align-items: center;
+        font-size: var(--content-text);
+        font-weight: 500;
+    }
+
+    &>p:nth-child(1) {
+        position: sticky;
+        left: 0rem;
+        z-index: 2;
+        background-color: #fff;
+        padding-left: 2rem;
+    }
+
+    &>p:nth-child(4) {
+        min-width: 10rem;
         display: flex;
         justify-content: center;
         align-items: center;
     }
+
+    &>div:nth-child(5) {
+        min-width: 12rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &>p:nth-child(6) {
+        min-width: 20rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &>div:nth-child(7),
+    &>div:nth-child(8) {
+        min-width: 12rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 }
 
 .queuelist_table_item>div>button {

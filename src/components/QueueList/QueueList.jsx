@@ -63,10 +63,10 @@ const QueueList = () => {
           <p>Join Time</p>
           <p>Barber</p>
           <p>Position</p>
-          <p>Type</p>
+          <div><p>Type</p></div>
           <p>Services</p>
-          <p>Serve</p>
-          <p>Cancel</p>
+          <div><p>Serve</p></div>
+          <div><p>Cancel</p></div>
         </header>
 
         {isLoading ? (
