@@ -167,7 +167,6 @@ const JoinQueue = () => {
             salonId: adminInfo?.salonId,
             serviceIds: selectedServices.map((s) => s.serviceId)
         }
-        console.log(services)
         getBarberByServicesKiosk(services)
         setModal4(true)
     }
@@ -261,7 +260,7 @@ const JoinQueue = () => {
 
     const joinqueueHandler = () => {
         if (!customerName) {
-            toast.error("Please Enter Customer Name", {
+            toast.error("Please enter customer name", {
                 duration: 3000,
                 style: {
                     fontSize: "var(--tertiary-text)",
@@ -281,7 +280,7 @@ const JoinQueue = () => {
                 },
             });
         } else if (selecteBarberdata === false) {
-            toast.error("Barber Name not Present", {
+            toast.error("Barber name not present", {
                 duration: 3000,
                 style: {
                     fontSize: "var(--tertiary-text)",
@@ -301,7 +300,6 @@ const JoinQueue = () => {
                 },
             });
         } else {
-            // console.log("Join Kiosk Data ", joinqueuedata)
             joinQueueKiosk(joinqueuedata)
         }
 
@@ -339,24 +337,44 @@ const JoinQueue = () => {
 
     const [countryflag, setCountryFlag] = useState("gb")
 
-    const handlePhoneChange = (phone, meta) => {
+    // const handlePhoneChange = (phone, meta) => {
 
-        const { country, inputValue } = meta;
+    //     const { country, inputValue } = meta;
+
+    //     const isValid = isPhoneValid(phone);
+
+    //     if (isValid) {
+    //         setMobileNumber(phone)
+    //         setMobileCountryCode(country?.dialCode)
+    //         setCountryFlag(country?.iso2)
+    //         setInvalidNumber(false)
+    //     } else {
+    //         setInvalidNumber(true)
+    //     }
+
+    // };
+
+    console.log("Invalid Mobile Number ", invalidNumber)
+
+    const handlePhoneChange = (phone, meta) => {
+        const { country } = meta;
+
+        if (phone.length == 3) {
+            setInvalidNumber(false);
+            return;
+        }
 
         const isValid = isPhoneValid(phone);
 
         if (isValid) {
-            console.log(phone)
-            setMobileNumber(phone)
-            setMobileCountryCode(country?.dialCode)
-            setCountryFlag(country?.iso2)
-            setInvalidNumber(false)
+            setMobileNumber(phone);
+            setMobileCountryCode(country?.dialCode);
+            setCountryFlag(country?.iso2);
+            setInvalidNumber(false);
         } else {
-            setInvalidNumber(true)
+            setInvalidNumber(true);
         }
-
     };
-
 
     return (
         <main className={style.joinqueue_container}>
@@ -385,7 +403,7 @@ const JoinQueue = () => {
                             onMouseEnter={() => setPhoneinputBorder(true)}
                             onMouseLeave={() => setPhoneinputBorder(false)}
                             style={{
-                                borderBottom: phoneinputborder ? "1px solid #0a84ff" : "1px solid rgba(0,0,0,0.6)"
+                                borderBottom: phoneinputborder ? "0.1rem solid #0a84ff" : "0.1rem solid rgba(0,0,0,0.6)"
                             }}
                             onKeyDown={handleKeyPress}
                         >
@@ -418,6 +436,7 @@ const JoinQueue = () => {
                                 type="text"
                                 placeholder="Select Barber"
                                 value={selecteBarberdata === false ? "" : selecteBarberdata}
+                                readOnly
                             />
                             <div style={{ cursor: "pointer" }}><DropdownIcon /></div>
                         </div>
@@ -427,6 +446,7 @@ const JoinQueue = () => {
                                 type="text"
                                 placeholder="Select Services"
                                 value={selectedBarberServices.map((s) => s.serviceName + " ")}
+                                readOnly
                             />
                             <div style={{ cursor: "pointer" }}><DropdownIcon /></div>
                         </div>
