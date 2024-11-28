@@ -337,24 +337,6 @@ const JoinQueue = () => {
 
     const [countryflag, setCountryFlag] = useState("gb")
 
-    // const handlePhoneChange = (phone, meta) => {
-
-    //     const { country, inputValue } = meta;
-
-    //     const isValid = isPhoneValid(phone);
-
-    //     if (isValid) {
-    //         setMobileNumber(phone)
-    //         setMobileCountryCode(country?.dialCode)
-    //         setCountryFlag(country?.iso2)
-    //         setInvalidNumber(false)
-    //     } else {
-    //         setInvalidNumber(true)
-    //     }
-
-    // };
-
-    console.log("Invalid Mobile Number ", invalidNumber)
 
     const handlePhoneChange = (phone, meta) => {
         const { country } = meta;
