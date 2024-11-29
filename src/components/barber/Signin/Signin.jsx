@@ -182,9 +182,9 @@ const Signin = () => {
                                             data?.response?.map((b) => {
                                                 return (
                                                     <div className={style.barber_dropdown_item} key={b._id} onClick={() => selectEmailClick(b)}
-                                                    style={{
-                                                        background: barberemail === b.email && "var(--primary-color)",
-                                                    }}
+                                                        style={{
+                                                            background: barberemail === b.email && "var(--primary-color)",
+                                                        }}
                                                     >
                                                         <p style={{ color: barberemail === b.email && "#fff" }}>{b.email}</p>
                                                     </div>
@@ -193,7 +193,7 @@ const Signin = () => {
 
                                         ) :
                                             (<div className={style.barber_email_selection_dropdown_error}>
-                                                <p>No queuelist available</p>
+                                                <p>No barber available</p>
                                             </div>)
                                 }
 
