@@ -119,12 +119,12 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                                     <div className={style.kiyosk_dropbox}>
                                         <div onClick={barbersigninClicked}>
                                             <div><AccountIcon /></div>
-                                            <p>Barber Sign In</p>
+                                            <p>Barber signin</p>
                                         </div>
 
                                         <div onClick={salonsettingClicked}>
                                             <div><SettingsIcon /></div>
-                                            <p>Salon Sign In</p>
+                                            <p>Salon settings</p>
                                         </div>
 
                                         
@@ -134,7 +134,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                                             className={style.mobile_queuelist}
                                         >
                                             <div><QueueIcon /></div>
-                                            <p>Queue List</p>
+                                            <p>Queue list</p>
                                         </div>
 
                                         <div

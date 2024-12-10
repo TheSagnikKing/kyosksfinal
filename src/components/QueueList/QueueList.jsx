@@ -59,10 +59,10 @@ const QueueList = () => {
       <p>Queue List</p>
       <main className={style.queuelist_table}>
         <header className={style.queuelist_table_header}>
+          <p>#</p>
           <p>Name</p>
-          <p>Join Time</p>
           <p>Barber</p>
-          <p>Position</p>
+          <p>Join Time</p>
           <div><p>Type</p></div>
           <p>Services</p>
           <div><p>Serve</p></div>
@@ -89,10 +89,10 @@ const QueueList = () => {
                     borderBottom: data?.response?.length - 1 === index && "none"
                   }}
                 >
-                  <p>{item?.name.length > 18 ? item?.name.slice(0, 18) + "..." : item?.name}</p>
-                  <p>{item?.timeJoinedQ}</p>
-                  <p>{item?.barberName.length > 18 ? item?.barberName.slice(0, 18) + "..." : item?.barberName}</p>
                   <p>{item?.qPosition}</p>
+                  <p>{item?.name.length > 18 ? item?.name.slice(0, 18) + "..." : item?.name}</p>
+                  <p>{item?.barberName.length > 18 ? item?.barberName.slice(0, 18) + "..." : item?.barberName}</p>
+                  <p>{item?.timeJoinedQ}</p>
                   <div>
                     {
                       item?.serviceType === "VIP" ? <RiVipCrownFill /> : "-"

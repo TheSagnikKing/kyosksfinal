@@ -210,8 +210,8 @@ const SalonSettings = () => {
 
             <div style={{ borderBottom: "none" }}>
               <div>
-                <p>Mobile Booking</p>
-                <p>Mobile booking can be set to online or offline. When offline, customers will not be able to join the queue through the app.</p>
+                <p>Mobile Queueing</p>
+                <p>Mobile Queueing can be set to online or offline. When offline, customers will not be able to join the queue through the app.</p>
               </div>
               {
                 Object.keys(adminInfo).length > 0 &&

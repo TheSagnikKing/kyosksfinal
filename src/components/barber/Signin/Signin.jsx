@@ -181,7 +181,11 @@ const Signin = () => {
                                         isSuccess && data?.response.length > 0 ? (
                                             data?.response?.map((b) => {
                                                 return (
-                                                    <div className={style.barber_dropdown_item} key={b._id} onClick={() => selectEmailClick(b)}
+                                                    <div className={style.barber_dropdown_item} key={b._id}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            selectEmailClick(b);
+                                                        }}
                                                         style={{
                                                             background: barberemail === b.email && "var(--primary-color)",
                                                         }}

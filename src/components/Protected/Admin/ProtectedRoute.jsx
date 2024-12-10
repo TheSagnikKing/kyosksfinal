@@ -27,20 +27,16 @@ const ProtectedRoute = () => {
       localStorage.setItem("adminkiyoskloggin", "false")
       navigate('/')
     } else if (isError) {
-      if (error?.data?.message === "Invalid Admin Token" || error?.data?.message === "Forbidden Admin" || error?.data?.message === "Internal Server Error") {
-        localStorage.setItem("adminkiyoskloggin","false")
-        navigate('/')
-      }else if(error?.data?.message === "Expired Admin Token"){
-        window.location.reload()
-        localStorage.setItem("adminkiyoskloggin","false")
+      if (error?.status === 403 || error?.status === 500) {
+        localStorage.setItem("adminkiyoskloggin", "false")
         navigate('/')
       }
     } else if (isSuccess) {
-       dispatch(setAdminCredentials(data))
+      dispatch(setAdminCredentials(data))
     } else {
       loggedinKiosk(kiyosktoken)
     }
-  }, [loggedinuser, kiyosktoken, navigate, isError,isSuccess,dispatch])
+  }, [loggedinuser, kiyosktoken, navigate, isError, isSuccess, dispatch])
 
   //ar adminkiyosktoken jodi valid thake akhane && lagate hbe
 
