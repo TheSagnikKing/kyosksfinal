@@ -54,7 +54,7 @@
             height: 4rem;
             width: 100%;
             position: relative;
-            border-bottom: 0.1rem solid #0866ff;
+            border-bottom: 0.1rem solid var(--primary-color);
             cursor: pointer;
 
             &>p:nth-child(1) {
@@ -82,7 +82,7 @@
                 top: 6rem;
                 left: 0rem;
                 right: 0rem;
-                box-shadow:var(--cmmn-box-shadow-y);
+                box-shadow: var(--cmmn-box-shadow-y);
                 padding: 1rem;
                 border-radius: var(--tertiary-radius);
                 -webkit-border-radius: var(--tertiary-radius);
@@ -94,15 +94,15 @@
                 gap: 1rem;
                 overflow: auto;
 
-                &>div{
+                &>div {
                     min-height: 4rem;
                     padding-inline: 1rem;
                     align-content: center;
-                    transition:var(--btn-transition);
-                    -webkit-transition:var(--btn-transition);
-                    -moz-transition:var(--btn-transition);
-                    -ms-transition:var(--btn-transition);
-                    -o-transition:var(--btn-transition);
+                    transition: var(--btn-transition);
+                    -webkit-transition: var(--btn-transition);
+                    -moz-transition: var(--btn-transition);
+                    -ms-transition: var(--btn-transition);
+                    -o-transition: var(--btn-transition);
                     cursor: pointer;
                     border-radius: var(--tertiary-radius);
                     -webkit-border-radius: var(--tertiary-radius);
@@ -110,12 +110,12 @@
                     -ms-border-radius: var(--tertiary-radius);
                     -o-border-radius: var(--tertiary-radius);
 
-                    &>p{
+                    &>p {
                         font-size: var(--content-text);
                     }
 
                     &:hover {
-                        background-color: #0866ff;
+                        background-color: var(--primary-color);
 
                         &>p {
                             color: #fff;
@@ -132,8 +132,8 @@
     height: 4rem;
     width: 100%;
     margin-top: 2.5rem;
-    border: 0.1rem solid #0866ff;
-    color: #0866ff;
+    border: 0.1rem solid var(--primary-color);
+    color: var(--primary-color);
     background-color: #0867ff25;
     outline: none;
     cursor: pointer;
@@ -152,13 +152,13 @@
     -o-transition: var(--btn-transition);
     font-size: var(--content-text);
 
-    &:hover{
-        background-color: #0866ff;
+    &:hover {
+        background-color: var(--primary-color);
         color: #fff;
     }
 }
 
-@media screen and (min-width:0px) and (max-width:430px){
+@media screen and (min-width:0px) and (max-width:430px) {
     .select_salon_container {
         grid-template-columns: 1fr;
     }
@@ -172,7 +172,7 @@
     }
 }
 
-@media screen and (min-width:431px) and (max-width:768px){
+@media screen and (min-width:431px) and (max-width:768px) {
     .select_salon_container {
         grid-template-columns: 1fr;
     }
@@ -186,7 +186,7 @@
     }
 }
 
-@media screen and (min-width:769px) and (max-width:1000px){
+@media screen and (min-width:769px) and (max-width:1000px) {
     .select_salon_container {
         grid-template-columns: 1fr;
     }
@@ -200,7 +200,7 @@
     }
 }
 
-@media screen and (min-width:1001px) and (max-width:1250px){
+@media screen and (min-width:1001px) and (max-width:1250px) {
     .salon_selection_container {
         width: 65%;
     }
