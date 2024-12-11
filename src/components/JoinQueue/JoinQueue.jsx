@@ -265,10 +265,10 @@ const JoinQueue = () => {
     const [emailError, setEmailError] = useState("")
     const [servicesError, setServicesError] = useState("")
     const [barberError, setBarberError] = useState("")
-
-    console.log("Invalid Number ", invalidNumber)
+    const [mobileNumberError, setMobileNumberError] = useState("")
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 
     const joinqueueHandler = () => {
         if (!customerName) {
@@ -298,7 +298,9 @@ const JoinQueue = () => {
             return setNameError("Customer name must be between 1 to 20 characters");
         }
 
-        if (invalidNumber) {
+
+
+        if (mobileNumberError.length > 3 && invalidNumber) {
             toast.error("Invalid Number", {
                 duration: 3000,
                 style: {
@@ -311,6 +313,7 @@ const JoinQueue = () => {
 
             return setInvalidNumberError("Invalid Number")
         }
+
 
         if (customerEmail && !emailRegex.test(customerEmail)) {
             toast.error("Invalid email format", {
@@ -350,7 +353,6 @@ const JoinQueue = () => {
             });
             return setServicesError("Please provide a service")
         }
-
 
         joinQueueKiosk(joinqueuedata)
 
@@ -397,6 +399,7 @@ const JoinQueue = () => {
         //     setInvalidNumber(false);
         //     return;
         // }
+        setMobileNumberError(phone)
 
         const isValid = isPhoneValid(phone);
 
@@ -538,12 +541,13 @@ const JoinQueue = () => {
                                                 wrapperStyle={{}}
                                                 wrapperClass="color-ring-wrapper"
                                                 colors={["#000"]}
-                                            /></div> : getavailablebarberisSuccess && getavailablebarberdata?.response?.length > 0 ? getavailablebarberdata?.response?.map((b) => (
+                                            /></div> :
+                                            getavailablebarberisSuccess && getavailablebarberdata?.response?.length > 0 ? getavailablebarberdata?.response?.map((b) => (
                                                 <div className={style.select_barber_item}
                                                     style={{
                                                         border: selectedBarber === b.name && "0.1rem solid var(--primary-color)",
                                                     }}
-                                                    key={b._id}
+                                                    key={b.barberId}
                                                     onClick={() => searchSelectedBarber(b)}
                                                 >
                                                     <div className={style.select_barber_item_top}>

@@ -191,7 +191,8 @@ const BarberServeLogin = () => {
                                                                 selectEmailClick(b);
                                                             }}
                                                             style={{
-                                                                borderLeft: b.isOnline ? "0.5rem solid limegreen" : "0.5rem solid red"
+                                                                borderLeft: b.isOnline ? "0.5rem solid limegreen" : "0.5rem solid red",
+                                                                outline: chooseBarberEmail === b?.email ? "0.1rem solid #000" : "none"
                                                             }}
                                                         >
                                                             <div>
