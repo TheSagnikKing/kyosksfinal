@@ -10,6 +10,7 @@
     display: grid;
     grid-template-columns: 58vw 1fr;
     gap: 2rem;
+    background-color: var(--secondary-color);
 }
 
 

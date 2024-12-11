@@ -134,7 +134,7 @@
     margin-top: 2.5rem;
     border: 0.1rem solid var(--primary-color);
     color: var(--primary-color);
-    background-color: #0867ff25;
+    background-color: var(--secondary-color);
     outline: none;
     cursor: pointer;
     display: flex;

@@ -34,8 +34,8 @@ p {
 
   /* light theme color */
   --primary-color: #000;
-  --secondary-color: #0867ff25;
-  --primary-bg-color:  #dbe9ff;
+  --secondary-color: #efefef;
+  --primary-bg-color:  #efefef;
 
   --tertiary-color: red;
   --quaternery-color:  rgba(255, 0, 0, 0.144);

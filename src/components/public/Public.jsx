@@ -179,7 +179,7 @@ const Public = () => {
 
       <main className={style.kiyosk_body}
         style={{
-          background: themecolor ? "#9ebbc9" : "#dbe9ff"
+          // background: themecolor ? "#9ebbc9" : "#dbe9ff"
         }}
       >
         <div className={style.kiyosk_body_left}>
