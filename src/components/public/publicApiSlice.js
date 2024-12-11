@@ -32,8 +32,8 @@ export const publicApiSlice = apiSlice.injectEndpoints({
             })
         }),
         GetAllBarbersBySalonId: builder.query({
-            query: (salonId) => ({
-                url: `/kiosk/getAllBarbersBySalonId?salonId=${salonId}`,
+            query: (data) => ({
+                url: `/kiosk/getAllBarbersBySalonId?salonId=${data.salonId}&email=${data.email}`,
                 method: "GET",
             })
         })

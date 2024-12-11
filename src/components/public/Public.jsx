@@ -150,7 +150,7 @@ const Public = () => {
 
   useEffect(() => {
     if (adminInfo && adminInfo?.salonId) {
-      useLazyGetAllBarbersBySalonIdKioskQuery(adminInfo?.salonId)
+      useLazyGetAllBarbersBySalonIdKioskQuery({email: "", salonId:adminInfo?.salonId})
     }
 
   }, [adminInfo])

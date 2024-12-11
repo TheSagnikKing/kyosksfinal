@@ -137,7 +137,7 @@ const BarberServeLogin = () => {
             setChooseBarberEmail(value);
             const salonId = adminInfo?.salonId
             // email: value
-            getAllBarbersBySalonId(salonId);
+            getAllBarbersBySalonId({ email: value, salonId });
         }, 500));
     };
 
