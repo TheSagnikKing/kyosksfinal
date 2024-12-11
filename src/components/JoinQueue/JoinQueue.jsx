@@ -115,6 +115,7 @@ const JoinQueue = () => {
     const [selectedBarberId, setSelectedBarberId] = useState(false)
 
     const SelectBarberDropdownHandler = () => {
+        setBarberError("")
         setIsOpen(true)
         setModal1(true)
         getavailablebarber({ salonId: adminInfo?.salonId })
@@ -148,6 +149,7 @@ const JoinQueue = () => {
 
 
     const SelectServicesDropdownHandler = () => {
+        setServicesError("")
         setIsOpen(true)
         setModal1(false)
         setModal2(false)
@@ -258,6 +260,16 @@ const JoinQueue = () => {
 
     const [invalidNumber, setInvalidNumber] = useState(false)
 
+    const [nameError, setNameError] = useState("")
+    const [invalidNumberError, setInvalidNumberError] = useState("")
+    const [emailError, setEmailError] = useState("")
+    const [servicesError, setServicesError] = useState("")
+    const [barberError, setBarberError] = useState("")
+
+    console.log("Invalid Number ", invalidNumber)
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     const joinqueueHandler = () => {
         if (!customerName) {
             toast.error("Please enter customer name", {
@@ -269,39 +281,78 @@ const JoinQueue = () => {
                     color: '#fff',
                 },
             });
-        } else if (selectedBarberServices.length === 0) {
-            toast.error("Please Choose Services", {
-                duration: 3000,
-                style: {
-                    fontSize: "var(--tertiary-text)",
-                    borderRadius: '0.3rem',
-                    background: '#333',
-                    color: '#fff',
-                },
-            });
-        } else if (selecteBarberdata === false) {
-            toast.error("Barber name not present", {
-                duration: 3000,
-                style: {
-                    fontSize: "var(--tertiary-text)",
-                    borderRadius: '0.3rem',
-                    background: '#333',
-                    color: '#fff',
-                },
-            });
-        } else if (invalidNumber) {
-            toast.error("Invalid Mobile Number", {
-                duration: 3000,
-                style: {
-                    fontSize: "var(--tertiary-text)",
-                    borderRadius: '0.3rem',
-                    background: '#333',
-                    color: '#fff',
-                },
-            });
-        } else {
-            joinQueueKiosk(joinqueuedata)
+
+            return setNameError("Please enter customer name")
         }
+
+        if (customerName.length === 0 || customerName.length > 20) {
+            toast.error("Customer name must be between 1 to 20 characters", {
+                duration: 3000,
+                style: {
+                    fontSize: "var(--list-modal-header-normal-font)",
+                    borderRadius: '0.3rem',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+            return setNameError("Customer name must be between 1 to 20 characters");
+        }
+
+        if (invalidNumber) {
+            toast.error("Invalid Number", {
+                duration: 3000,
+                style: {
+                    fontSize: "var(--list-modal-header-normal-font)",
+                    borderRadius: '0.3rem',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+
+            return setInvalidNumberError("Invalid Number")
+        }
+
+        if (customerEmail && !emailRegex.test(customerEmail)) {
+            toast.error("Invalid email format", {
+                duration: 3000,
+                style: {
+                    fontSize: "var(--list-modal-header-normal-font)",
+                    borderRadius: "0.3rem",
+                    background: "#333",
+                    color: "#fff",
+                },
+            });
+            return setEmailError("Invalid email format");
+        }
+
+        if (selecteBarberdata === false) {
+            toast.error("Please provide a barber", {
+                duration: 3000,
+                style: {
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+            return setBarberError("Please provide a barber")
+        }
+
+        if (selectedBarberServices.length === 0) {
+            toast.error("Please provide a service", {
+                duration: 3000,
+                style: {
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+            return setServicesError("Please provide a service")
+        }
+
+
+        joinQueueKiosk(joinqueuedata)
 
     }
 
@@ -339,12 +390,13 @@ const JoinQueue = () => {
 
 
     const handlePhoneChange = (phone, meta) => {
+        setInvalidNumberError("")
         const { country } = meta;
 
-        if (phone.length == 3) {
-            setInvalidNumber(false);
-            return;
-        }
+        // if (phone.length == 3) {
+        //     setInvalidNumber(false);
+        //     return;
+        // }
 
         const isValid = isPhoneValid(phone);
 
@@ -375,17 +427,23 @@ const JoinQueue = () => {
                                 type="text"
                                 placeholder='Enter Your Full Name'
                                 value={customerName}
-                                onChange={(e) => setCustomerName(e.target.value)}
+                                onChange={(e) => {
+                                    setNameError("")
+                                    setCustomerName(e.target.value)
+                                }}
                                 onKeyDown={handleKeyPress}
+                                style={{
+                                    borderBottom: nameError && "0.1rem solid red"
+                                }}
                             />
-
+                            <p className={style.error_message}>{nameError}</p>
                         </div>
 
                         <div className={style.phone_input_container}
                             onMouseEnter={() => setPhoneinputBorder(true)}
                             onMouseLeave={() => setPhoneinputBorder(false)}
                             style={{
-                                borderBottom: phoneinputborder ? "0.1rem solid #0a84ff" : "0.1rem solid rgba(0,0,0,0.6)"
+                                borderBottom: phoneinputborder ? "0.1rem solid #000" : invalidNumberError ? "0.1rem solid red" : "0.1rem solid rgba(0,0,0,0.4)"
                             }}
                             onKeyDown={handleKeyPress}
                         >
@@ -395,6 +453,7 @@ const JoinQueue = () => {
                                 value={mobileNumber}
                                 onChange={(phone, meta) => handlePhoneChange(phone, meta)}
                             />
+                            <p className={style.error_message}>{invalidNumberError}</p>
                         </div>
                     </div>
 
@@ -405,10 +464,16 @@ const JoinQueue = () => {
                                 type="text"
                                 placeholder='Enter Your Email ID (Optional)'
                                 value={customerEmail}
-                                onChange={(e) => setCustomerEmail(e.target.value)}
+                                onChange={(e) => {
+                                    setEmailError("")
+                                    setCustomerEmail(e.target.value)
+                                }}
                                 onKeyDown={handleKeyPress}
+                                style={{
+                                    borderBottom: emailError && "0.1rem solid red"
+                                }}
                             />
-
+                            <p className={style.error_message}>{emailError}</p>
                         </div>
                     </div>
 
@@ -419,7 +484,11 @@ const JoinQueue = () => {
                                 placeholder="Select Barber"
                                 value={selecteBarberdata === false ? "" : selecteBarberdata}
                                 readOnly
+                                style={{
+                                    borderBottom: barberError && "0.1rem solid red"
+                                }}
                             />
+                            <p className={style.error_message}>{barberError}</p>
                             <div style={{ cursor: "pointer" }}><DropdownIcon /></div>
                         </div>
 
@@ -429,7 +498,11 @@ const JoinQueue = () => {
                                 placeholder="Select Services"
                                 value={selectedBarberServices.map((s) => s.serviceName + " ")}
                                 readOnly
+                                style={{
+                                    borderBottom: servicesError && "0.1rem solid red"
+                                }}
                             />
+                            <p className={style.error_message}>{servicesError}</p>
                             <div style={{ cursor: "pointer" }}><DropdownIcon /></div>
                         </div>
 

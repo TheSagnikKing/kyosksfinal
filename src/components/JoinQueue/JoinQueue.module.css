@@ -3,7 +3,7 @@
     height: var(--primary-height);
     display: grid;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 .joinqueue_container_left {
@@ -13,6 +13,7 @@
     justify-content: center;
     align-items: center;
     border-right: 0.1rem solid rgba(0, 0, 0, 0.2);
+    display: none;
 
     &>img {
         width: 70%;
@@ -32,7 +33,7 @@
 
 
 .joinqueue__main__right__form {
-    width: 75%;
+    width: 45%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -526,6 +527,14 @@
     }
 }
 
+
+.error_message {
+    margin-top: 1rem;
+    font-size: 1.2rem !important;
+    color: red;
+    font-weight: 500;
+}
+
 @media screen and (min-width:0px) and (max-width:430px){
 
     .joinqueue_container {
@@ -700,7 +709,7 @@
     }
 
     .joinqueue__main__right__form {
-        width: 85vw;
+        width: 65vw;
     }
 
     .joinqueue__main__right__form_top {
@@ -718,7 +727,7 @@
 
 @media screen and (min-width:1001px) and (max-width:1250px){
     .joinqueue__main__right__form {
-        width: 90%;
+        width: 70%;
     }
 }
 
