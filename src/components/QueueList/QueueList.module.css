@@ -34,7 +34,7 @@
     right: 0rem;
     background-color: #fff;
     z-index: 3;
-    min-width: 108rem;
+    min-width: 137rem;
     height: 6.5rem;
     border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
     display: grid;
@@ -62,46 +62,41 @@
     }
 
     &>p:nth-child(1) {
+        min-width: 5rem;
+        padding-left: 2rem;
+    }
+
+    &>p:nth-child(2) {
         position: sticky;
         left: 0rem;
         z-index: 2;
         background-color: #fff;
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         padding-left: 2rem;
     }
 
     &>p:nth-child(4) {
-        min-width: 10rem;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
     &>div:nth-child(5) {
-        min-width: 12rem;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    &>p:nth-child(6) {
+    &>p:nth-child(8) {
         min-width: 20rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    &>div:nth-child(7),
-    &>div:nth-child(8) {
-        min-width: 12rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
 }
 
 .queuelist_table_item {
-    min-width: 108rem;
+    min-width: 137rem;
     height: 6.5rem;
     border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
     display: grid;
@@ -114,7 +109,8 @@
         display: flex;
         align-items: center;
         font-size: var(--content-text);
-        font-weight: 500;
+        font-weight: 600;
+
     }
 
     &>div {
@@ -124,45 +120,41 @@
         align-items: center;
         justify-content: center;
         font-size: var(--content-text);
-        font-weight: 500;
+        font-weight: 600;
     }
 
     &>p:nth-child(1) {
+        min-width: 5rem;
+        padding-left: 2rem;
+    }
+
+    &>p:nth-child(2) {
         position: sticky;
         left: 0rem;
         z-index: 2;
         background-color: #fff;
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         padding-left: 2rem;
     }
 
     &>p:nth-child(4) {
-        min-width: 10rem;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
     &>div:nth-child(5) {
-        min-width: 12rem;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    &>p:nth-child(6) {
+    &>p:nth-child(8) {
         min-width: 20rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
-    &>div:nth-child(7),
-    &>div:nth-child(8) {
-        min-width: 12rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
 }
 
