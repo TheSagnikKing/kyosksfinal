@@ -91,12 +91,12 @@ const QueueList = () => {
                     borderBottom: data?.response?.length - 1 === index && "none"
                   }}
                 >
-                  <p>{item?.qPosition}</p>
+                  <p>{item?.qPosition === 1 ? "Next" : item?.qPosition}</p>
                   <p>{item?.name.length > 18 ? item?.name.slice(0, 18) + "..." : item?.name}</p>
                   <p>{item?.barberName.length > 18 ? item?.barberName.slice(0, 18) + "..." : item?.barberName}</p>
                   <p>{item?.timeJoinedQ}</p>
                   <div><p>{item?.qgCode}</p></div>
-                  <div><p>{item?.serviceEWT}</p></div>
+                  <div><p>{item?.customerEWT}</p></div>
                   <div>
                     {
                       item?.serviceType === "VIP" ? <RiVipCrownFill /> : "-"

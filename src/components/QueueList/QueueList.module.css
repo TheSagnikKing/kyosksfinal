@@ -38,7 +38,7 @@
     height: 6.5rem;
     border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
     display: grid;
-    grid-template-columns: 0.3fr 1fr 1fr 0.7fr 0.5fr 0.5fr 0.5fr 1.3fr 0.8fr 0.8fr;
+    grid-template-columns: 0.3fr 1fr 1fr 0.7fr 0.5fr 0.5fr 0.5fr 0.8fr 0.8fr 0.8fr;
     align-items: center;
 
     &>p {
@@ -90,7 +90,8 @@
     }
 
     &>p:nth-child(8) {
-        min-width: 20rem;
+        min-width: 15rem;
+        justify-content: center;
     }
 
 }
@@ -100,7 +101,7 @@
     height: 6.5rem;
     border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
     display: grid;
-    grid-template-columns: 0.3fr 1fr 1fr 0.7fr 0.5fr 0.5fr 0.5fr 1.3fr 0.8fr 0.8fr;
+    grid-template-columns: 0.3fr 1fr 1fr 0.7fr 0.5fr 0.5fr 0.5fr 0.8fr 0.8fr 0.8fr;
     align-items: center;
 
     &>p {
@@ -152,7 +153,8 @@
     }
 
     &>p:nth-child(8) {
-        min-width: 20rem;
+        min-width: 15rem;
+        justify-content: center;
     }
 
 

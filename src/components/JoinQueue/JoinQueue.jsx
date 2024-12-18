@@ -14,6 +14,9 @@ import 'react-international-phone/style.css';
 import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
 import { PhoneNumberUtil } from 'google-libphonenumber';
 
+import { Modal as MuiModal } from '@mui/material';
+import { MdClose } from 'react-icons/md'
+
 const JoinQueue = () => {
 
     const adminInfo = useSelector(selectCurrentAdminInfo)
@@ -270,7 +273,7 @@ const JoinQueue = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
-    const joinqueueHandler = () => {
+    const joinqueueCheckHandler = () => {
         if (!customerName) {
             toast.error("Please enter customer name", {
                 duration: 3000,
@@ -354,8 +357,11 @@ const JoinQueue = () => {
             return setServicesError("Please provide a service")
         }
 
-        joinQueueKiosk(joinqueuedata)
 
+        setJoinqueueModalOpen({
+            open: true,
+            data: joinqueuedata
+        })
     }
 
     const handleKeyPress = (e) => {
@@ -412,6 +418,17 @@ const JoinQueue = () => {
             setInvalidNumber(true);
         }
     };
+
+
+    const [joinqueueModalOpen, setJoinqueueModalOpen] = useState({
+        open: false,
+        data: {}
+    })
+
+
+    const joinHandler = () => {
+        joinQueueKiosk(joinqueueModalOpen.data)
+    }
 
     return (
         <main className={style.joinqueue_container}>
@@ -511,15 +528,7 @@ const JoinQueue = () => {
 
                     </div>
 
-                    {joinQueueKioskloading ? <button className={style.joinqueuebtn}><ColorRing
-                        visible={true}
-                        height="4rem"
-                        width="4rem"
-                        ariaLabel="color-ring-loading"
-                        wrapperStyle={{}}
-                        wrapperClass="color-ring-wrapper"
-                        colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
-                    /></button> : <button className={style.joinqueuebtn} onClick={joinqueueHandler}>Join</button>}
+                    <button className={style.joinqueuebtn} onClick={joinqueueCheckHandler}>Join</button>
 
                     {
                         isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen} setModal1={setModal1} setModal2={setModal2} setModal3={setModal3} setModal4={setModal4} setSelectedServices={setSelectedServices} setSelectedBarber={setSelectedBarber}>
@@ -572,7 +581,7 @@ const JoinQueue = () => {
                                                         <div className={style.select_barber_item_top_right}>
                                                             <div>
                                                                 <p>Queueing</p>
-                                                                <p>{b?.queueCount}</p>
+                                                                <p>{b?.queueCount === 0 ? "Next" : b?.queueCount}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -806,6 +815,53 @@ const JoinQueue = () => {
 
                         </Modal>
                     }
+
+                    <MuiModal
+                        open={joinqueueModalOpen.open}
+                        onClose={() => setJoinqueueModalOpen({
+                            open: false,
+                            data: {}
+                        })}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <main className={style.joinqueueModalContainer}>
+                            <div className={style.modal_head_content}>
+                                <p>Are you sure ?</p>
+                                <button onClick={() => setJoinqueueModalOpen({
+                                    open: false,
+                                    data: {}
+                                })} style={{ cursor: "pointer" }}><MdClose /></button>
+                            </div>
+
+                            <div className={style.join_queue_modal_content_container}>
+                                <p>Customer Name - <span>{joinqueueModalOpen?.data?.name}</span></p>
+                                <p>Barber Name - <span>{joinqueueModalOpen?.data?.barberName}</span></p>
+                                <p>Services - </p>
+                                <div>
+                                    {
+                                        joinqueueModalOpen?.data?.services?.map((ser, index) => {
+                                            return (
+                                                <p key={index}>{index + 1}. {ser.serviceName}</p>
+                                            );
+                                        })
+                                    }
+                                </div>
+                            </div>
+
+                            {joinQueueKioskloading ? <button className={style.modaljoinqueue_btn}><ColorRing
+                                visible={true}
+                                height="4rem"
+                                width="4rem"
+                                ariaLabel="color-ring-loading"
+                                wrapperStyle={{}}
+                                wrapperClass="color-ring-wrapper"
+                                colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                            /></button> : <button className={style.modaljoinqueue_btn} onClick={joinHandler}>Join</button>}
+
+                        </main>
+                    </MuiModal>
+
                 </div>
             </div>
         </main>

@@ -356,7 +356,7 @@ const Public = () => {
                           }}
                           key={queue._id}
                         >
-                          <p>{queue.qPosition}</p>
+                          <p>{index === 0 ? "Next" : queue.qPosition}</p>
                           <p>{queue.name}</p>
                           <p>{queue.barberName}</p>
                           <p>{queue.serviceEWT} mins</p>
