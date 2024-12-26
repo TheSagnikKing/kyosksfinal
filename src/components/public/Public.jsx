@@ -150,7 +150,7 @@ const Public = () => {
 
   useEffect(() => {
     if (adminInfo && adminInfo?.salonId) {
-      useLazyGetAllBarbersBySalonIdKioskQuery({email: "", salonId:adminInfo?.salonId})
+      useLazyGetAllBarbersBySalonIdKioskQuery({ email: "", salonId: adminInfo?.salonId })
     }
 
   }, [adminInfo])
@@ -359,7 +359,7 @@ const Public = () => {
                           <p>{queue.qPosition === 1 ? "Next" : queue.qPosition}</p>
                           <p>{queue.name}</p>
                           <p>{queue.barberName}</p>
-                          <p>{queue.serviceEWT} mins</p>
+                          <p>{queue.customerEWT} mins</p>
                         </div>
                       )
                     })
