@@ -30,7 +30,7 @@
 }
 
 .salon_main_container {
-    width: 45%;
+    width: 75%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -49,7 +49,7 @@
         &>div {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1rem;
             justify-content: space-between;
             padding-block: 2rem;
             border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
@@ -69,7 +69,7 @@
 
             &>button {
                 height: 4rem;
-                width: 100%;
+                width: 12rem;
                 margin-top: 1rem;
                 outline: none;
                 cursor: pointer;
@@ -92,7 +92,7 @@
     }
 }
 
-.online_btn{
+.online_btn {
     background-color: rgba(50, 205, 50, 0.088);
     border: 0.1rem solid limegreen !important;
     color: limegreen;
@@ -103,7 +103,7 @@
     }
 }
 
-.offline_btn{
+.offline_btn {
     background-color: #ff000025;
     border: 0.1rem solid red !important;
     color: red;
@@ -119,7 +119,7 @@
         grid-template-columns: 1fr;
     }
 
-    .salon_settings_left{
+    .salon_settings_left {
         display: none;
     }
 
@@ -133,12 +133,12 @@
         grid-template-columns: 1fr;
     }
 
-    .salon_settings_left{
+    .salon_settings_left {
         display: none;
     }
 
     .salon_main_container {
-        width: 65vw;
+        width: 75vw;
     }
 }
 
@@ -147,18 +147,17 @@
         grid-template-columns: 1fr;
     }
 
-    .salon_settings_left{
+    .salon_settings_left {
         display: none;
     }
 
     .salon_main_container {
-        width: 45vw;
+        width: 75vw;
     }
 }
 
 @media screen and (min-width:1001px) and (max-width:1250px) {
     .salon_main_container {
-        width: 65%;
+        width: 75%;
     }
 }
-

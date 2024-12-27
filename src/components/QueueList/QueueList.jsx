@@ -96,7 +96,7 @@ const QueueList = () => {
                   <p>{item?.barberName.length > 18 ? item?.barberName.slice(0, 18) + "..." : item?.barberName}</p>
                   <p>{item?.timeJoinedQ}</p>
                   <div><p>{item?.qgCode}</p></div>
-                  <div><p>{item?.customerEWT}</p></div>
+                  <div><p>{item?.customerEWT} mins</p></div>
                   <div>
                     {
                       item?.serviceType === "VIP" ? <RiVipCrownFill /> : "-"

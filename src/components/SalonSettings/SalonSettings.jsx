@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import style from './SalonSettings.module.css'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
-import { useChangeSalonOnlineStatusKioskMutation, useMobileBookingAvailabilityStatusMutation } from '../Dashboard/dashboardApiSlice'
+import { useChangeSalonOnlineStatusKioskMutation, useKioskBookingAvailabilityStatusMutation, useMobileBookingAvailabilityStatusMutation } from '../Dashboard/dashboardApiSlice'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
@@ -84,21 +84,28 @@ const SalonSettings = () => {
 
   // For the mobile Part
 
-  const [mobilebtnCheck, setMobilebtnCheck] = useState(null)
+  const [mobilebtnCheck, setMobilebtnCheck] = useState(false)
+  const [kioskbtnCheck, setKioskbtnCheck] = useState(false)
 
-  console.log("AdminInfo ", adminInfo?.mobileBookingAvailability)
+  // console.log("AdminInfo ", adminInfo?.mobileBookingAvailability)
 
   useEffect(() => {
     if (adminInfo) {
       setMobilebtnCheck(adminInfo?.mobileBookingAvailability)
+      setKioskbtnCheck(adminInfo?.kioskAvailability)
     }
   }, [adminInfo])
 
   const mobileBookdata = {
     salonId: adminInfo?.salonId,
-    // mobileBookingAvailability: !mobilebtnCheck
     mobileBookingAvailability: !adminInfo?.mobileBookingAvailability
   }
+
+  const kioskBookdata = {
+    salonId: adminInfo?.salonId,
+    kioskAvailability: !adminInfo?.kioskAvailability
+  }
+
 
   const [
     mobileBookingAvailabilityStatus,
@@ -110,6 +117,17 @@ const SalonSettings = () => {
       isLoading: mobilebookisLoading
     }
   ] = useMobileBookingAvailabilityStatusMutation()
+
+  const [
+    kioskBookingAvailabilityStatus,
+    {
+      data: kioskbookdata,
+      isSuccess: kioskbookisSuccess,
+      isError: kioskbookdataisError,
+      error: kioskbookError,
+      isLoading: kioskbookisLoading
+    }
+  ] = useKioskBookingAvailabilityStatusMutation()
 
 
   useEffect(() => {
@@ -156,12 +174,53 @@ const SalonSettings = () => {
     }
 
   }
-  const navigate = useNavigate()
 
-  const logoutSalonHandler = () => {
-    localStorage.setItem("adminsalonsettings", "false")
-    navigate("/salonsignin")
+
+  useEffect(() => {
+    if (kioskbookisSuccess) {
+      toast.success(kioskbookdata?.message, {
+        duration: 3000,
+        style: {
+          fontSize: "var(--tertiary-text)",
+          borderRadius: '0.3rem',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+
+      setTimeout(() => {
+        window.location.reload()
+      }, 500)
+
+      setKioskbtnCheck(kioskBookdata?.response?.kioskAvailability)
+    }
+  }, [kioskbookisSuccess])
+
+  useEffect(() => {
+    if (kioskbookdataisError) {
+      toast.error(kioskbookError?.data?.message, {
+        duration: 3000,
+        style: {
+          fontSize: "var(--tertiary-text)",
+          borderRadius: '0.3rem',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+      setKioskbtnCheck(adminInfo?.kioskAvailability)
+    }
+  }, [kioskbookdataisError])
+
+
+  const kioskBookOnlineHandler = () => {
+    const confirm = window.confirm("Change Kiosk Status ?")
+
+    if (confirm) {
+      kioskBookingAvailabilityStatus(kioskBookdata)
+    }
+
   }
+
 
   const [
     getDefaultSalonByKiosk,
@@ -208,7 +267,7 @@ const SalonSettings = () => {
               }
             </div>
 
-            <div style={{ borderBottom: "none" }}>
+            <div>
               <div>
                 <p>Mobile Queueing</p>
                 <p>Mobile Queueing can be set to online or offline. When offline, customers will not be able to join the queue through the app.</p>
@@ -219,6 +278,21 @@ const SalonSettings = () => {
                   className={adminInfo?.mobileBookingAvailability ? style.online_btn : style.offline_btn}
                   onClick={mobileBookOnlineHandler}
                 >{adminInfo?.mobileBookingAvailability ? "Available" : "Unavailable"}</button>
+              }
+
+            </div>
+
+            <div style={{ borderBottom: "none" }}>
+              <div>
+                <p>Kiosk Queueing</p>
+                <p>Kiosk Queueing can be set to online or offline. When offline, customers will not be able to join the queue through the kiosk.</p>
+              </div>
+              {
+                Object.keys(adminInfo).length > 0 &&
+                <button
+                  className={adminInfo?.kioskAvailability ? style.online_btn : style.offline_btn}
+                  onClick={kioskBookOnlineHandler}
+                >{adminInfo?.kioskAvailability ? "Available" : "Unavailable"}</button>
               }
 
             </div>

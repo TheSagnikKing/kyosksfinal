@@ -1,4 +1,4 @@
-import {apiSlice} from '../app/api/apiSlice'
+import { apiSlice } from '../app/api/apiSlice'
 
 export const dashboardApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
@@ -6,7 +6,7 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
             query: (salondata) => ({
                 url: `/kiosk/changeSalonOnlineStatusKiosk`,
                 method: 'POST',
-                body:salondata
+                body: salondata
             })
         }),
         ChangeBarberClockedInStatusKiosk: builder.mutation({
@@ -27,18 +27,25 @@ export const dashboardApiSlice = apiSlice.injectEndpoints({
             query: (barberdata) => ({
                 url: '/kiosk/changeBarberOnlineStatusKiosk',
                 method: "POST",
-                body:barberdata
+                body: barberdata
             })
         }),
         MobileBookingAvailabilityStatus: builder.mutation({
             query: (mobilebookdata) => ({
                 url: `/kiosk/mobileBookingAvailabilityStatus`,
                 method: 'POST',
-                body:mobilebookdata
+                body: mobilebookdata
             })
         }),
-        
+        KioskBookingAvailabilityStatus: builder.mutation({
+            query: (kisokbookdata) => ({
+                url: `/kiosk/kioskAvailabilityStatus`,
+                method: 'POST',
+                body: kisokbookdata
+            })
+        }),
+
     })
 })
 
-export const { useChangeSalonOnlineStatusKioskMutation, useChangeBarberClockedInStatusKioskMutation, useGetAttendenceByBarberIdKioskMutation,useChangeBarberOnlineStatusKioskMutation,useMobileBookingAvailabilityStatusMutation } = dashboardApiSlice
+export const { useChangeSalonOnlineStatusKioskMutation, useChangeBarberClockedInStatusKioskMutation, useGetAttendenceByBarberIdKioskMutation, useChangeBarberOnlineStatusKioskMutation, useMobileBookingAvailabilityStatusMutation, useKioskBookingAvailabilityStatusMutation } = dashboardApiSlice
