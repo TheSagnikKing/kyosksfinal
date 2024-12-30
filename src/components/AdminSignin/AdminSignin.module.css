@@ -2,7 +2,7 @@
     height: 100svh;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 .admin__signin__main__left {
@@ -17,6 +17,7 @@
         width: 50%;
         height: 50%;
     }
+    display: none;
 }
 
 
@@ -29,7 +30,7 @@
 }
 
 .admin_signin_form_container {
-    width: 45%;
+    width: 30%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -195,7 +196,7 @@
 }
 
 @media screen and (min-width:1001px) and (max-width:1250px) {
-    .admin_signin_form_container {
+    /* .admin_signin_form_container {
         width: 65%;
-    }
+    } */
 }

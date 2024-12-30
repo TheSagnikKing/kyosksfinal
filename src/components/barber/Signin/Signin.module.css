@@ -3,7 +3,7 @@
     height: var(--primary-height);
     display: grid;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 .barber_signin_container_left {
@@ -17,7 +17,9 @@
     &>img {
         width: 50%;
         height: 50%;
-    }
+    };
+
+    display: none;
 }
 
 .barber_signin_container_right {
@@ -29,7 +31,7 @@
 }
 
 .barber_signin_content_main {
-    width: 45%;
+    width: 30%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -251,7 +253,7 @@
 }
 
 @media screen and (min-width:1001px) and (max-width:1250px){
-    .barber_signin_content_main {
+    /* .barber_signin_content_main {
         width: 65%;
-    }
+    } */
 }

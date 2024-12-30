@@ -3,7 +3,7 @@
     height: var(--primary-height);
     display: grid;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 
@@ -19,6 +19,7 @@
         width: 60%;
         height: 40%;
     }
+    display: none;
 }
 
 .salon_settings_right {
@@ -30,7 +31,7 @@
 }
 
 .salon_main_container {
-    width: 75%;
+    width: 50%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -157,7 +158,7 @@
 }
 
 @media screen and (min-width:1001px) and (max-width:1250px) {
-    .salon_main_container {
+    /* .salon_main_container {
         width: 75%;
-    }
+    } */
 }

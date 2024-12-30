@@ -3,7 +3,7 @@
     height: var(--primary-height);
     display: grid;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 
@@ -19,6 +19,8 @@
         width: 50%;
         height: 50%;
     }
+
+    display: none;
 }
 
 .barber_serve_login_right {
@@ -30,7 +32,7 @@
 }
 
 .barber_serve_main {
-    width: 45%;
+    width: 30%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -321,7 +323,7 @@
 }
 
 @media screen and (min-width:1001px) and (max-width:1250px) {
-    .barber_serve_main {
+    /* .barber_serve_main {
         width: 65%;
-    }
+    } */
 }

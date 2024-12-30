@@ -641,14 +641,14 @@ const JoinQueue = () => {
                                                         <p style={{ color: modelcolorfnc2(selectedServices, item) }}>Service</p>
                                                         <p style={{ color: modelcolorfnc2(selectedServices, item) }}>PRICE</p>
                                                         <p style={{ color: modelcolorfnc2(selectedServices, item) }}>EWT</p>
-                                                        <div></div>
+                                                        <p>Type</p>
                                                     </div>
 
                                                     <div className={style.select_barber_services_item_content}>
                                                         <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceName}</p>
                                                         <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{getDefaultSalonByAdmindata?.response?.currency}{item.servicePrice}</p>
                                                         <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.barberServiceEWT}{" "}mins</p>
-                                                        {item.vipService ? <div><RiVipCrownFill /></div> : <div />}
+                                                        {item.vipService ? <div><RiVipCrownFill /></div> : <div>-</div>}
                                                         {
                                                             selectedServices.find((select) => select._id === item._id) ?
                                                                 <div onClick={() => deleteSelectServicesHandler(item._id)}
@@ -702,14 +702,14 @@ const JoinQueue = () => {
                                                         <p style={{ color: modelcolorfnc2(selectedServices, item) }}>Service</p>
                                                         <p style={{ color: modelcolorfnc2(selectedServices, item) }}>PRICE</p>
                                                         <p style={{ color: modelcolorfnc2(selectedServices, item) }}>EWT</p>
-                                                        <div></div>
+                                                        <p>Type</p>
                                                     </div>
 
                                                     <div className={style.select_barber_services_item_content}>
                                                         <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceName}</p>
                                                         <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{getDefaultSalonByAdmindata?.response?.currency}{item.servicePrice}</p>
                                                         <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceEWT}{" "}mins</p>
-                                                        {item.vipService ? <div><RiVipCrownFill /></div> : <div />}
+                                                        {item.vipService ? <div><RiVipCrownFill /></div> : <div>-</div>}
                                                         {
                                                             selectedServices.find((select) => select._id === item._id) ?
                                                                 <div onClick={() => deleteSelectServicesHandler(item._id)}
@@ -842,7 +842,22 @@ const JoinQueue = () => {
                                     {
                                         joinqueueModalOpen?.data?.services?.map((ser, index) => {
                                             return (
-                                                <p key={index}>{index + 1}. {ser.serviceName}</p>
+                                                
+                                                <div className={style.select_barber_services_item_modal} key={index}>
+                                                    <div className={style.select_barber_services_item_header_modal}>
+                                                        <p>Service</p>
+                                                        <p>PRICE</p>
+                                                        <p>EWT</p>
+                                                        <p>Type</p>
+                                                    </div>
+                                                    <div className={style.select_barber_services_item_content_modal}>
+                                                        <p>{ser.serviceName}</p>
+                                                        <p>{getDefaultSalonByAdmindata?.response?.currency}{ser.servicePrice}</p>
+                                                        <p>{ser.barberServiceEWT}{" "}mins</p>
+                                                        {ser.vipService ? <p style={{ display: "flex", justifyContent: "center", alignItems: "center"}}><RiVipCrownFill /></p> : <p style={{ display: "flex", justifyContent: "center", alignItems: "center"}}> - </p>}
+                                                    </div>
+
+                                                </div>
                                             );
                                         })
                                     }

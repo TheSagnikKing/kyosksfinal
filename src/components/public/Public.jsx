@@ -359,7 +359,7 @@ const Public = () => {
                           <p>{queue.qPosition === 1 ? "Next" : queue.qPosition}</p>
                           <p>{queue.name}</p>
                           <p>{queue.barberName}</p>
-                          <p>{queue.customerEWT} mins</p>
+                          <p>{queue.customerEWT === 0 ? "-" : queue.customerEWT + " " + "mins"}</p>
                         </div>
                       )
                     })

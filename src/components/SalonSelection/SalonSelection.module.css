@@ -2,7 +2,7 @@
     height: 100svh;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 .select_salon_container_left {
@@ -17,6 +17,8 @@
         width: 60%;
         height: 50%;
     }
+
+    display: none;
 }
 
 .select_salon_container_right {
@@ -28,7 +30,7 @@
 }
 
 .salon_selection_container {
-    width: 45%;
+    width: 30%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -201,7 +203,7 @@
 }
 
 @media screen and (min-width:1001px) and (max-width:1250px) {
-    .salon_selection_container {
+    /* .salon_selection_container {
         width: 65%;
-    }
+    } */
 }
