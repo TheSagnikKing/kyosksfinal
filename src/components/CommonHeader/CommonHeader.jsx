@@ -71,6 +71,8 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
 
     const location = useLocation()
 
+    console.log(adminInfo.kioskAvailability)
+
     return (
         <header className={style.kiyosk_header}>
             <div>
@@ -107,8 +109,13 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                     : <div>
 
                         <div>
+                            <button className={`${style.sytem_status} ${adminInfo.kioskAvailability ? style.online : style.offline}`}>{adminInfo.kioskAvailability ? "System ON" : "System OFF"}</button>
                             <button onClick={queuelistClicked}>QueueList</button>
-                            <button onClick={joinqueueClicked}>JoinQueue</button>
+                            <button onClick={joinqueueClicked} disabled={!adminInfo.kioskAvailability}
+                            style={{
+                                cursor: adminInfo.kioskAvailability ? "pointer" : "not-allowed"
+                            }}
+                            >JoinQueue</button>
                         </div>
 
                         <ClickAwayListener onClickAway={handleClickAway}>
