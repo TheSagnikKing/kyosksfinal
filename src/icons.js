@@ -10,6 +10,8 @@ import { HiQueueList } from 'react-icons/hi2'
 import { MdJoinInner } from 'react-icons/md'
 import { TbLogout2 } from 'react-icons/tb'
 import { BsExclamationCircle } from "react-icons/bs";
+import { IoPersonSharp } from "react-icons/io5";
+import { BiAddToQueue } from "react-icons/bi";
 
 export const SettingsIcon = IoSettingsSharp;
 export const DropdownIcon = IoMdArrowDropdownCircle
@@ -25,3 +27,6 @@ export const QueueIcon = HiQueueList
 export const JoinIcon = MdJoinInner
 export const LogoutIcon = TbLogout2
 export const ExclamationIcon = BsExclamationCircle
+
+export const PersonIcon = IoPersonSharp
+export const TotalQueueIcon = BiAddToQueue
