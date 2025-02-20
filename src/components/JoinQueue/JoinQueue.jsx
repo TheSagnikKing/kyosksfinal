@@ -10,7 +10,6 @@ import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { ColorRing } from 'react-loader-spinner'
 import { RiVipCrownFill } from 'react-icons/ri'
 import { PhoneInput } from 'react-international-phone';
-import 'react-international-phone/style.css';
 import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
 import { PhoneNumberUtil } from 'google-libphonenumber';
 
@@ -842,7 +841,7 @@ const JoinQueue = () => {
                                     {
                                         joinqueueModalOpen?.data?.services?.map((ser, index) => {
                                             return (
-                                                
+
                                                 <div className={style.select_barber_services_item_modal} key={index}>
                                                     <div className={style.select_barber_services_item_header_modal}>
                                                         <p>Service</p>
@@ -854,7 +853,7 @@ const JoinQueue = () => {
                                                         <p>{ser.serviceName}</p>
                                                         <p>{getDefaultSalonByAdmindata?.response?.currency}{ser.servicePrice}</p>
                                                         <p>{ser.barberServiceEWT}{" "}mins</p>
-                                                        {ser.vipService ? <p style={{ display: "flex", justifyContent: "center", alignItems: "center"}}><RiVipCrownFill /></p> : <p style={{ display: "flex", justifyContent: "center", alignItems: "center"}}> - </p>}
+                                                        {ser.vipService ? <p style={{ display: "flex", justifyContent: "center", alignItems: "center" }}><RiVipCrownFill /></p> : <p style={{ display: "flex", justifyContent: "center", alignItems: "center" }}> - </p>}
                                                     </div>
 
                                                 </div>

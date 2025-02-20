@@ -815,6 +815,7 @@ const Public = () => {
     joinQueueKiosk(joinqueueModalOpen.data)
   }
 
+
   return (
     <main className={style.container}>
       <div className={style.top}>
@@ -875,6 +876,8 @@ const Public = () => {
                 value={mobileNumber}
                 onChange={(phone, meta) => handlePhoneChange(phone, meta)}
               />
+
+              {/* <PhoneInput defaultCountry={"gb"} /> */}
               <p className={style.error_message}>{invalidNumberError}</p>
             </div>
           </div>

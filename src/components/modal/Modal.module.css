@@ -11,6 +11,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    z-index: 2;
 }
 
 .modal__content {
@@ -49,7 +50,7 @@
     font-weight: 500;
     font-size: var(--btn-icon);
 
-    &:hover{
+    &:hover {
         background-color: var(--tertiary-color);
         color: #fff;
     }
@@ -160,6 +161,4 @@
         width: 55vw;
         padding: 2rem;
     }
-} 
-
-
+}

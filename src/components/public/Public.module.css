@@ -400,7 +400,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-block: 2srem;
+    padding-block: 2rem;
 
     &>div {
         display: flex;
@@ -438,10 +438,12 @@
 }
 
 .middle {
-    flex-grow: 1;
+    /* flex-grow: 1; */
+    height: calc(100vh - 8rem - 15rem);
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: red; */
 
 
     .joinqueue__main__right__form {
@@ -532,7 +534,7 @@
     }
 
     .joinqueuebtn {
-        height: 4rem;
+        min-height: 4rem;
         width: 100%;
         margin-top: 1rem;
         border: 0.1rem solid var(--primary-color);
@@ -1205,4 +1207,309 @@
 
 .phone_input_container {
     height: 4rem;
+}
+
+
+
+@media screen and (min-width:0px) and (max-width:430px) {
+
+    .joinqueue_container {
+        grid-template-columns: 1fr;
+    }
+
+    .joinqueue_container_left {
+        display: none;
+    }
+
+    .middle {
+
+        .joinqueue__main__right__form {
+            width: 85vw;
+            overflow: auto;
+            height: calc(100vh - 8rem - 15rem);
+            padding-block: 5rem;
+
+        }
+
+        .joinqueue__main__right__form_top {
+            grid-template-columns: 1fr;
+        }
+
+        .joinqueue__main__right__form_middle {
+            grid-template-columns: 1fr;
+        }
+
+        .joinqueue__main__right__form_bottom {
+            grid-template-columns: 1fr;
+        }
+
+
+
+
+    }
+
+
+    .select_barber_container,
+    .select_barber_services_container {
+        padding: 1rem;
+    }
+
+    .select_barber_item_top {
+        &>div:nth-child(1) {
+            &>div:nth-child(1) {
+                &>div {
+                    width: 6rem;
+                    height: 6rem;
+                }
+            }
+        }
+    }
+
+    .select_barber_item_top {
+        flex: 1.5;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
+
+        display: flex;
+        align-items: center;
+
+        &>div:nth-child(1) {
+
+            &>div:nth-child(2) {
+                &>div {
+                    &>p:nth-child(1) {
+                        font-size: 3.5vw;
+                    }
+
+                    &>p:nth-child(2) {
+                        font-size: 3vw;
+                    }
+                }
+            }
+        }
+
+        &>div:nth-child(2) {
+            &>div {
+                &>p:nth-child(1) {
+                    font-size: 3vw;
+                }
+
+                &>p:nth-child(2) {
+                    font-size: 5vw;
+                }
+            }
+        }
+    }
+
+    .select_barber_item_bottom {
+
+        &>div:nth-child(1) {
+
+            &>div {
+                &>p:nth-child(1) {
+                    font-size: 3vw;
+                }
+
+                &>p:nth-child(2) {
+                    font-size: 3.5vw;
+                }
+            }
+        }
+
+        &>div:nth-child(2) {
+            &>div {
+                &>p:nth-child(1) {
+                    font-size: 3vw;
+                }
+
+                &>p:nth-child(2) {
+                    font-size: 3.5vw;
+                }
+            }
+        }
+    }
+
+    .select_barber_services_item {
+        height: auto;
+    }
+
+    .select_barber_services_item_header>p {
+        font-size: 3.5vw;
+    }
+
+    .select_barber_services_item_content>p {
+        font-size: 3vw;
+    }
+
+    .joinqueueModalContainer {
+        width: 90vw;
+    }
+
+    .top {
+        padding-inline: 1rem;
+
+        &>div {
+            gap: 1rem;
+
+            .top_chip {
+                width: auto;
+                gap: 0.5rem;
+
+                &>div {
+
+                    &>p {
+                        font-size: 1rem;
+                        font-weight: 500;
+                    }
+                }
+
+                &>b {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+
+}
+
+@media screen and (min-width:431px) and (max-width:768px) {
+
+    .joinqueue_container {
+        grid-template-columns: 1fr;
+    }
+
+    .joinqueue_container_left {
+        display: none;
+    }
+
+
+    .middle {
+
+        .joinqueue__main__right__form {
+            width: 85vw;
+            overflow: auto;
+            height: calc(100vh - 8rem - 15rem);
+            padding-block: 5rem;
+
+        }
+
+        .joinqueue__main__right__form_top {
+            grid-template-columns: 1fr;
+        }
+
+        .joinqueue__main__right__form_middle {
+            grid-template-columns: 1fr;
+        }
+
+        .joinqueue__main__right__form_bottom {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+
+    .select_barber_container,
+    .select_barber_services_container {
+        padding: 1rem;
+    }
+
+    .select_barber_item_top {
+        &>div:nth-child(1) {
+            &>div:nth-child(1) {
+                &>div {
+                    width: 6rem;
+                    height: 6rem;
+                }
+            }
+        }
+    }
+
+    .joinqueueModalContainer {
+        width: 70vw;
+    }
+
+    .top {
+        padding-inline: 1rem;
+
+        &>div {
+            gap: 1rem;
+
+            .top_chip {
+                width: auto;
+                gap: 0.5rem;
+
+                &>div {
+
+                    &>p {
+                        font-size: 1.2rem;
+                        font-weight: 500;
+                    }
+                }
+
+                &>b {
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width:769px) and (max-width:1000px) {
+    .joinqueue_container {
+        grid-template-columns: 1fr;
+    }
+
+    .joinqueue_container_left {
+        display: none;
+    }
+
+    /* .joinqueue__main__right__form {
+        width: 65vw;
+    }
+
+    .joinqueue__main__right__form_top {
+        grid-template-columns: 1fr;
+    }
+
+    .joinqueue__main__right__form_middle {
+        grid-template-columns: 1fr;
+    }
+
+    .joinqueue__main__right__form_bottom {
+        grid-template-columns: 1fr;
+    } */
+
+    .middle {
+
+        .joinqueue__main__right__form {
+            width: 85vw;
+            overflow: auto;
+            height: calc(100vh - 8rem - 15rem);
+            padding-block: 5rem;
+
+        }
+
+        .joinqueue__main__right__form_top {
+            grid-template-columns: 1fr;
+        }
+
+        .joinqueue__main__right__form_middle {
+            grid-template-columns: 1fr;
+        }
+
+        .joinqueue__main__right__form_bottom {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+
+    .joinqueueModalContainer {
+        width: 50vw;
+    }
+}
+
+@media screen and (min-width:1001px) and (max-width:1250px) {
+    .joinqueue__main__right__form {
+        width: 70%;
+    }
 }
