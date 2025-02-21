@@ -71,7 +71,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
 
     const location = useLocation()
 
-    console.log(adminInfo.kioskAvailability)
+    // console.log(adminInfo.kioskAvailability)
 
     return (
         <header className={style.kiyosk_header}>
@@ -102,22 +102,22 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
 
             {
                 location.pathname === "/kiyoskdashboard" ?
-                    <button 
-                    className={style.back_btn}
-                    onClick={() => navigate("/barbersignin")}
+                    <button
+                        className={style.back_btn}
+                        onClick={() => navigate("/barbersignin")}
                     >Back</button>
                     : <div>
 
                         <div>
                             <button className={`${style.sytem_status} ${adminInfo.kioskAvailability ? style.online : style.offline}`}>{adminInfo.kioskAvailability ? "System ON" : "System OFF"}</button>
                             <button onClick={queuelistClicked}>QueueList</button>
-                            <button onClick={joinqueueClicked} disabled={!adminInfo.kioskAvailability}
-                            style={{
-                                cursor: adminInfo.kioskAvailability ? "pointer" : "not-allowed"
-                            }}
-                            >JoinQueue</button>
+                            {/* <button onClick={joinqueueClicked} disabled={!adminInfo.kioskAvailability}
+                                style={{
+                                    cursor: adminInfo.kioskAvailability ? "pointer" : "not-allowed"
+                                }}
+                            >JoinQueue</button> */}
                         </div>
-
+                        
                         <ClickAwayListener onClickAway={handleClickAway}>
                             <div>
                                 <SettingsIcon onClick={() => setShowDrop((prev) => !prev)} />
@@ -134,7 +134,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                                             <p>Salon settings</p>
                                         </div>
 
-                                        
+
 
                                         <div
                                             onClick={queuelistClicked}

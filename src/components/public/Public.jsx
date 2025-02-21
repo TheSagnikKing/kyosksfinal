@@ -417,6 +417,17 @@ const Public = () => {
     }
   ] = useGetDefaultSalonByKioskMutation()
 
+  const [
+    joinQueueKiosk,
+    {
+      data: joinQueueKioskdata,
+      isSuccess: joinQueueKioskisSuccess,
+      isError: joinQueueKioskisError,
+      isLoading: joinQueueKioskloading,
+      error: joinQueueKioskerror
+    }
+  ] = useJoinQueueKioskMutation()
+
 
   useEffect(() => {
     if (adminInfo?.email) {
@@ -426,7 +437,15 @@ const Public = () => {
       }
       getDefaultSalonByAdmin(salondata)
     }
-  }, [adminInfo])
+
+    if (joinQueueKioskisSuccess) {
+      const salondata = {
+        email: adminInfo?.email,
+        role: adminInfo?.role
+      }
+      getDefaultSalonByAdmin(salondata)
+    }
+  }, [adminInfo, joinQueueKioskisSuccess])
 
 
   const [
@@ -473,16 +492,7 @@ const Public = () => {
     }
   ] = useGetBarberByServicesKioskMutation()
 
-  const [
-    joinQueueKiosk,
-    {
-      data: joinQueueKioskdata,
-      isSuccess: joinQueueKioskisSuccess,
-      isError: joinQueueKioskisError,
-      isLoading: joinQueueKioskloading,
-      error: joinQueueKioskerror
-    }
-  ] = useJoinQueueKioskMutation()
+
 
   const [customerName, setCustomerName] = useState("")
   const [mobileNumber, setMobileNumber] = useState("")
@@ -501,6 +511,7 @@ const Public = () => {
   const [selectedBarberServices, setSelectedBarberServices] = useState([])
 
   const [selectedBarberId, setSelectedBarberId] = useState(false)
+  const [selectedBarberImg, setSelectedBarberImg] = useState("")
 
   const SelectBarberDropdownHandler = () => {
     setBarberError("")
@@ -573,6 +584,7 @@ const Public = () => {
 
 
   const searchSelectedBarber = (barber) => {
+    setSelectedBarberImg(barber.profile)
     setSelectedBarber(barber.name)
     setSelectedBarberData(barber.name)
     setSelectedBarberId(barber.barberId)
@@ -632,7 +644,12 @@ const Public = () => {
       setCustomerName("")
       setCustomerEmail("")
       setMobileNumber("")
-      navigate('/kiosk')
+      // navigate('/kiosk')
+      setJoinqueueModalOpen({
+        open: false,
+        data: {}
+      })
+
     } else if (joinQueueKioskisError) {
       toast.error(joinQueueKioskerror?.data?.message, {
         duration: 3000,
@@ -826,7 +843,7 @@ const Public = () => {
               <div><TotalQueueIcon /></div>
               <p>Total Queue</p>
             </div>
-            <b>200</b>
+            <b>{getDefaultSalonByAdmindata?.response?.totalQueueCount}</b>
           </div>
 
           <div className={style.top_chip}>
@@ -834,7 +851,7 @@ const Public = () => {
               <div><PersonIcon /></div>
               <p>Barbers on duty</p>
             </div>
-            <b>10</b>
+            <b>{getDefaultSalonByAdmindata?.response?.barbersOnDuty}</b>
           </div>
 
         </div>
@@ -933,7 +950,13 @@ const Public = () => {
 
           </div>
 
-          <button className={style.joinqueuebtn} onClick={joinqueueCheckHandler}>Join</button>
+          <button className={style.joinqueuebtn} 
+          onClick={joinqueueCheckHandler}
+          style={{
+            cursor: adminInfo.kioskAvailability ? "pointer" : "not-allowed"
+          }}
+          disabled={!adminInfo.kioskAvailability}
+          >Join</button>
 
           {
             isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen} setModal1={setModal1} setModal2={setModal2} setModal3={setModal3} setModal4={setModal4} setSelectedServices={setSelectedServices} setSelectedBarber={setSelectedBarber}>
@@ -1240,8 +1263,15 @@ const Public = () => {
               </div>
 
               <div className={style.join_queue_modal_content_container}>
-                <p>Customer Name - <span>{joinqueueModalOpen?.data?.name}</span></p>
-                <p>Barber Name - <span>{joinqueueModalOpen?.data?.barberName}</span></p>
+
+                <div>
+                  <img src={selectedBarberImg?.[0]?.url} alt="" height={60} width={60} />
+                  <div>
+                    <p>{joinqueueModalOpen?.data?.barberName}</p>
+                    <p>{joinqueueModalOpen?.data?.name}</p>
+                  </div>
+                </div>
+
                 <p>Services - </p>
                 <div>
                   {
@@ -1277,7 +1307,9 @@ const Public = () => {
                 wrapperStyle={{}}
                 wrapperClass="color-ring-wrapper"
                 colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
-              /></button> : <button className={style.modaljoinqueue_btn} onClick={joinHandler}>Join</button>}
+              /></button> : <button
+                className={style.modaljoinqueue_btn}
+                onClick={joinHandler}>Join</button>}
 
             </main>
           </MuiModal>
@@ -1292,19 +1324,19 @@ const Public = () => {
           pauseOnHover={true}
           className={style.marquee}
         >
-          {barberlists.map((_, index) => (
-            <div key={index} className={style.marqueeItem}>
+          {getDefaultSalonByAdmindata?.response?.leastQueueBarbers?.map((item, index) => (
+            <div key={item.barberId} className={style.marqueeItem}>
               <div>
-                <div><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZAiN-sSCwI83NmjIYgDdUi8p-xDXlz9HvQw&s" alt="" /></div>
+                <div><img src={item?.profile?.[0]?.url} alt="" /></div>
                 <div>
-                  <p>Adilson Jacinto</p>
-                  <p>Waiting Time - 120mins</p>
+                  <p>{item?.name}</p>
+                  <p>Waiting Time - {item?.barberEWT}mins</p>
                 </div>
               </div>
 
               <div>
-                <p>Q-Position</p>
-                <p>Next</p>
+                <p>Queue Count</p>
+                <p>{item?.queueCount}</p>
               </div>
             </div>
           ))}
