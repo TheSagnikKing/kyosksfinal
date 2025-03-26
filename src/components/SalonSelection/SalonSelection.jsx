@@ -136,19 +136,22 @@ const SalonSelection = () => {
             <div className={style.select_salon_container_right}>
                 <div className={style.salon_selection_container}>
                     {
-                        adminInfo?.role === "Barber" ? <p style={{ textAlign: "center" }}>Welcome Back {adminInfo?.name} !</p> : <p>Welcome Back {adminInfo?.name} !</p>
+                        adminInfo?.role === "Barber" ? <h2 style={{ textAlign: "center" }}>Welcome Back, {adminInfo?.name}</h2> : <h2>Welcome Back, {adminInfo?.name}</h2>
                     }
+                    <p>Kindly select a salon from the available options to proceed.</p>
 
                     <div className={style.selection_box_container}>
-                        {
+                        {/* {
                             adminInfo?.role === "Barber" ? <p style={{ textAlign: "center" }}>Selected Salon, &nbsp;<span>{adminInfo?.salonName}</span></p> : adminInfo?.role === "Admin" ? <p>Selected Salon, &nbsp;<span>{salonName !== "" && salonName}</span></p> : null
                         }
+                         */}
+                         <p></p>
                         {
                             adminInfo?.role === "Barber" ? null : adminInfo?.role === "Admin" ? <div>
                                 <ClickAwayListener onClickAway={() => setSalonListDrop(false)}>
                                     <div onClick={() => setSalonListDrop((prev) => (!prev))}>
                                         <p>{salonName !== "" && salonName}</p>
-                                        <div><IoMdArrowDropdownCircle /></div>
+                                        <div><IoMdArrowDropdownCircle style={{color:"#fff"}}/></div>
 
 
                                         {salonlistdrop && <main
@@ -161,9 +164,9 @@ const SalonSelection = () => {
                                                 getAllSalonsByAdmindata?.salons.map((s, i) => (
                                                     <div key={s._id} onClick={() => salonHandler(s)}
                                                         style={{
-                                                            backgroundColor: salonName === s.salonName ? "var(--primary-color)" : "",
-                                                            borderBottom: i === getAllSalonsByAdmindata?.salons.length - 1 ? "none" : "1px solid #00000",
-                                                            borderTop: i === 0 && "none"
+                                                            // backgroundColor: salonName === s.salonName ? "var(--primary-color)" : "",
+                                                            // borderBottom: i === getAllSalonsByAdmindata?.salons.length - 1 ? "none" : "1px solid #00000",
+                                                            // borderTop: i === 0 && "none"
                                                         }}
                                                     ><p style={{
                                                         color: salonName === s.salonName && "#fff"

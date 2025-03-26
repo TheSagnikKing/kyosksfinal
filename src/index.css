@@ -76,6 +76,51 @@ p {
 
   --cmmn-box-shadow-y: 0rem 0.1rem 0.6rem rgba(0, 0, 0, 0.2);
   --cmmn-box-shadow-x: 0.1rem 0rem 0.6rem rgba(0, 0, 0, 0.2);
+
+
+
+
+
+
+
+  /* New variables */
+
+  --bg-primary: #09090B;
+  --bg-secondary: #e11d48;
+  --bg-tertiary: #585858;
+
+  --bg-hover-primary: #27272A80;
+  --bg-secondary-hover: #e11d48e6;
+  --btn-primary-hover: #27272A;
+
+  --input-bg-color: #27272A80;
+
+  --common-btn-transition: 0.3s all ease;
+
+  --text-primary: #F4F4F5;
+  --text-secondary: #F4F4F5B2;
+
+  --border-primary: #F4F4F5B2;
+  --border-secondary: hsl(240, 3.7%, 15.9%);
+
+  --border-radius-primary: 0.4rem;
+
+  --font-primary: 1.4rem;
+  --font-secondary: 1.2rem;
+  --font-tertiary: 1.6rem;
+
+  --color-1: #8ab4f8;
+  --color-2: #0d58d2;
+  --color-3: #174ea61d;
+  --color-4: #ae0581;
+  --color-5: #72045523;
+  --color-6: rgb(244, 67, 54);
+  --color-7: rgba(244, 67, 54, 0.103);
+  --color-8: #00A36C;
+  --color-9: #00a36d15;
+  --color-10: #CC5500;
+  --color-11: #cc550016;
+
 }
 
 body {

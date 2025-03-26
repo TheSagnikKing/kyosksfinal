@@ -100,6 +100,7 @@ const AdminSignin = () => {
 
                 <div className={style.admin_signin_form_container}>
                     <div><img src="./IQB-Logo.png" alt="iqb_logo" /></div>
+                    <p>Effortlessly manage your salon with IQB! Oversee barbers, adjust settings, and enable easy Barber Login. Customers can join the queue in a tap.</p>
 
                     <div className={style.email_container}>
                         <input
@@ -133,7 +134,7 @@ const AdminSignin = () => {
                                     onChange={() => setRole("Admin")}
                                     onKeyDown={handleKeyPress}
                                 />
-                                <p>Admin sdvsddsvvds</p>
+                                <p>Admin</p>
                             </div>
 
                             <div>

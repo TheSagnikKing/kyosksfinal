@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import Loader from './components/Loader/Loader';
@@ -59,7 +59,25 @@ const ErrorFallbackAuth = () => {
   )
 }
 
+
+
 const App = () => {
+
+
+  useEffect(() => {
+    // This sets globally 
+    const styleElement = document.createElement("style");
+    styleElement.textContent = `
+      p, h1, h2, h3, h4, h5, i, input, textarea, input::placeholder, textarea::placeholder, select, button,b {
+        color: var(--text-primary);
+      }
+    `;
+    document.head.appendChild(styleElement);
+  
+    return () => {
+      document.head.removeChild(styleElement);
+    };
+  }, []);
 
   return (<>
     <Toaster />

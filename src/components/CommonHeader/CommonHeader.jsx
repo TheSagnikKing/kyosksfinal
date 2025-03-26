@@ -92,11 +92,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                     }
                 </div>
                 {
-                    adminInfo?.role === "Barber" ? <p style={{
-                        color: themecolor ? "#fff" : "#000"
-                    }}>{adminInfo?.salonName}</p> : <p style={{
-                        color: themecolor ? "#fff" : "#000"
-                    }}>{data?.response?.salonName}</p>
+                    adminInfo?.role === "Barber" ? <p>{adminInfo?.salonName}</p> : <p>{data?.response?.salonName}</p>
                 }
             </div>
 
@@ -110,7 +106,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
 
                         <div>
                             <button className={`${style.sytem_status} ${adminInfo.kioskAvailability ? style.online : style.offline}`}>{adminInfo.kioskAvailability ? "System ON" : "System OFF"}</button>
-                            <button onClick={queuelistClicked}>QueueList</button>
+                            {/* <button onClick={queuelistClicked}>QueueList</button> */}
                             {/* <button onClick={joinqueueClicked} disabled={!adminInfo.kioskAvailability}
                                 style={{
                                     cursor: adminInfo.kioskAvailability ? "pointer" : "not-allowed"

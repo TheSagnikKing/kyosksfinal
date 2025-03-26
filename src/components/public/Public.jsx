@@ -1322,7 +1322,8 @@ const Public = () => {
           speed={50}
           gradient={true}
           pauseOnHover={true}
-          className={style.marquee}
+          gradientColor={"var(--bg-primary)"}
+          // className={style.marquee}
         >
           {getDefaultSalonByAdmindata?.response?.leastQueueBarbers?.map((item, index) => (
             <div key={item.barberId} className={style.marqueeItem}>

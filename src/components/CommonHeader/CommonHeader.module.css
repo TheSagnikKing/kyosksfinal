@@ -4,14 +4,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
-    background-color: #fff;
-
-    &>div:nth-child(1) {
-        &>p {
-            color: #fff;
-        }
-    }
+    border-bottom: 0.1rem solid var(--border-secondary);
+    background-color: var(--bg-primary);
 }
 
 
@@ -61,47 +55,41 @@
 
         &>button {
             padding: var(--primary-padding);
-            border-radius: var(--secondary-radius);
-            -webkit-border-radius: var(--secondary-radius);
-            -moz-border-radius: var(--secondary-radius);
-            -ms-border-radius: var(--secondary-radius);
-            -o-border-radius: var(--secondary-radius);
+            cursor: not-allowed;
+            font-size: 1.4rem;
             border: none;
-            cursor: pointer;
-            font-size: var(--content-text);
-
-            background-color: var(--secondary-color);
-            border: 0.1rem solid var(--primary-color);
-            color: var(--primary-color);
+            outline: none;
+            border-radius: var(--border-radius-primary);
+            -webkit-border-radius: var(--border-radius-primary);
+            -moz-border-radius: var(--border-radius-primary);
+            -ms-border-radius: var(--border-radius-primary);
+            -o-border-radius: var(--border-radius-primary);
             font-weight: 500;
-            transition: var(--btn-transition);
-            -webkit-transition: var(--btn-transition);
-            -moz-transition: var(--btn-transition);
-            -ms-transition: var(--btn-transition);
-            -o-transition: var(--btn-transition);
-
-            &:hover {
-                background-color: var(--primary-color);
-                color: #fff;
-            }
         }
     }
 
     &>div:nth-child(2) {
-        padding: 0.6em 0.6em;
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        -ms-border-radius: 50%;
-        -o-border-radius: 50%;
+        height: 3.5rem;
+        width: 3.5rem;
+        border-radius: var(--border-radius-primary);
+        -webkit-border-radius: var(--border-radius-primary);
+        -moz-border-radius: var(--border-radius-primary);
+        -ms-border-radius: var(--border-radius-primary);
+        -o-border-radius: var(--border-radius-primary);
         display: grid;
         place-items: center;
-        font-size: var(--content-text);
-        box-shadow: var(--cmmn-box-shadow-y);
-        color: var(--primary-color);
         cursor: pointer;
-        background-color: #fff;
-
+        background: var(--bg-hover-primary);
+        border: 0.1rem solid var(--border-secondary);
+        color: var(--text-primary);
+        font-size: 1.4rem;
+        transition: background-color 0.2s ease-in;
+        -webkit-transition: background-color 0.2s ease-in;
+        -moz-transition: background-color 0.2s ease-in;
+        -ms-transition: background-color 0.2s ease-in;
+        -o-transition: background-color 0.2s ease-in;
+        cursor: pointer;
+        outline: none;
         position: relative;
 
         .kiyosk_dropbox {
@@ -109,55 +97,53 @@
             width: 18rem;
             position: absolute;
             right: 0rem;
-            top: 5rem;
-            background-color: #fff;
+            top: 4.5rem;
+            background-color: var(--bg-primary);
             padding: 1rem;
-            border-radius: var(--tertiary-radius);
-            -webkit-border-radius: var(--tertiary-radius);
-            -moz-border-radius: var(--tertiary-radius);
-            -ms-border-radius: var(--tertiary-radius);
-            -o-border-radius: var(--tertiary-radius);
-            box-shadow: var(--cmmn-box-shadow-y);
+            border: 0.1rem solid var(--border-secondary);
+            border-radius: var(--border-radius-primary);
+            -webkit-border-radius: var(--border-radius-primary);
+            -moz-border-radius: var(--border-radius-primary);
+            -ms-border-radius: var(--border-radius-primary);
+            -o-border-radius: var(--border-radius-primary);
 
             &>div {
                 display: flex;
                 align-items: center;
                 gap: 1rem;
-                height: 4rem;
-                transition: var(--btn-transition);
-                -webkit-transition: var(--btn-transition);
-                -moz-transition: var(--btn-transition);
-                -ms-transition: var(--btn-transition);
-                -o-transition: var(--btn-transition);
+                height: 3.5rem;
 
                 &>div {
                     font-size: var(--btn-icon);
-                    height: 4rem;
-                    width: 4rem;
+                    height: 3.5rem;
+                    width: 3.5rem;
                     display: grid;
                     place-items: center;
-                    color: black;
+                    color: var(--text-secondary);
+                    transition: var(--btn-transition);
+                    -webkit-transition: var(--btn-transition);
+                    -moz-transition: var(--btn-transition);
+                    -ms-transition: var(--btn-transition);
+                    -o-transition: var(--btn-transition);
                 }
 
                 &>p {
-                    font-size: var(--btn-text);
+                    font-size: 1.4rem;
                     font-weight: 500;
+                    color: var(--text-secondary);
+                    transition: var(--btn-transition);
+                    -webkit-transition: var(--btn-transition);
+                    -moz-transition: var(--btn-transition);
+                    -ms-transition: var(--btn-transition);
+                    -o-transition: var(--btn-transition);
                 }
 
                 &:hover {
-                    background-color: var(--primary-color);
-                    border-radius: var(--tertiary-radius);
-                    -webkit-border-radius: var(--tertiary-radius);
-                    -moz-border-radius: var(--tertiary-radius);
-                    -ms-border-radius: var(--tertiary-radius);
-                    -o-border-radius: var(--tertiary-radius);
 
-                    &>div {
-                        color: #fff;
-                    }
-
+                    &>div,
                     &>p {
-                        color: #fff;
+                        color: var(--text-primary);
+                        font-weight: 600;
                     }
                 }
             }
@@ -197,18 +183,12 @@
     display: none !important;
 }
 
-.sytem_status.online{
-    background-color: rgba(50, 205, 50, 0.105) !important;
-    border: 0.1rem solid limegreen !important;
-    color: limegreen !important;
-    cursor: not-allowed !important;
+.sytem_status.online {
+    background-color: var(--color-8);
 }
 
-.sytem_status.offline{
-    background-color: rgba(255, 0, 0, 0.122) !important;
-    border: 0.1rem solid red !important;
-    color: red !important;
-    cursor: not-allowed !important;
+.sytem_status.offline {
+    background-color: var(--color-6);
 }
 
 
