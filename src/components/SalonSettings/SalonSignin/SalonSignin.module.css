@@ -1,13 +1,13 @@
-.admin__salon_signin__main__container {
-    width: 100%;
+.admin__signin__main__container {
     height: var(--primary-height);
-    display: grid;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr;
+    background-color: var(--bg-primary);
 }
 
-.admin__salon_signin__main__left {
-    height: var(--primary-height);
+.admin__signin__main__left {
+    height: 100svh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -18,10 +18,12 @@
         width: 50%;
         height: 50%;
     }
+
     display: none;
 }
 
-.admin__salon_signin__main__right {
+
+.admin__signin__main__right {
     height: var(--primary-height);
     display: flex;
     justify-content: center;
@@ -29,30 +31,52 @@
     width: 100%;
 }
 
-.admin_salon_signin_form_container {
-    width: 30%;
+.admin_signin_form_container {
+    width: min(45rem, 85vw);
     height: auto;
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
 
-    &>p:nth-child(1) {
-        text-align: center;
-        font-size: var(--primary-text);
-        font-weight: 600;
+    &>div:nth-child(1) {
+        height: 12rem;
+        width: 12rem;
+        margin-inline: auto;
+
+        &>img {
+            width: 100%;
+            height: 100%;
+            filter: brightness(0) invert(1);
+        }
+    }
+
+    &>p:nth-child(2) {
+        color: var(--text-secondary);
+        font-size: 1.4rem;
     }
 }
 
 .email_container {
-    height: 4rem;
 
     &>input {
         width: 100%;
-        height: 100%;
-        border: none;
-        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.4);
-        font-size: var(--content-text);
+        height: 3.5rem;
+        padding-inline: 1rem;
+        font-size: 1.4rem;
+        border: 0.1rem solid var(--border-secondary);
+        border-radius: var(--border-radius-primary);
+        -webkit-border-radius: var(--border-radius-primary);
+        -moz-border-radius: var(--border-radius-primary);
+        -ms-border-radius: var(--border-radius-primary);
+        -o-border-radius: var(--border-radius-primary);
+        background-color: var(--input-bg-color);
+        color: var(--text-primary);
         outline: none;
+
+        &::placeholder {
+            color: var(--text-secondary);
+            letter-spacing: 0.01rem;
+        }
     }
 
     &>input[type="text"]:focus {
@@ -61,69 +85,74 @@
 }
 
 .password_container {
-    height: 4rem;
+    border: 0.1rem solid var(--border-secondary);
+    border-radius: var(--border-radius-primary);
+    -webkit-border-radius: var(--border-radius-primary);
+    -moz-border-radius: var(--border-radius-primary);
+    -ms-border-radius: var(--border-radius-primary);
+    -o-border-radius: var(--border-radius-primary);
+    background-color: var(--input-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: relative;
 
     &>input {
-        width: 100%;
-        height: 100%;
+        width: calc(100% - 3rem);
+        height: 3.5rem;
+        padding-inline: 1rem;
+        font-size: 1.4rem;
+        background: transparent;
+        color: var(--text-primary);
         border: none;
-        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.4);
-        font-size: var(--content-text);
         outline: none;
-    }
 
-    &>input[id="input_password"]:focus {
-        border-bottom: 0.1rem solid var(--primary-color);
+        &::placeholder {
+            color: var(--text-secondary);
+            letter-spacing: 0.01rem;
+        }
     }
 
     &>div {
-        height: 4rem;
-        width: 4rem;
-        position: absolute;
-        top: 0rem;
-        right: 0rem;
+        height: 3.5rem;
+        width: 3.5rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: var(--content-text);
+        font-size: 1.4rem;
+        color: var(--text-primary);
         cursor: pointer;
     }
-
 }
 
-
 .signin_btn {
-    height: 4rem;
     width: 100%;
-    margin-top: 1rem;
-    border: 0.1rem solid var(--primary-color);
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
+    height: 3.5rem;
+    padding-inline: 1rem;
+    border-radius: var(--border-radius-primary);
+    -webkit-border-radius: var(--border-radius-primary);
+    -moz-border-radius: var(--border-radius-primary);
+    -ms-border-radius: var(--border-radius-primary);
+    -o-border-radius: var(--border-radius-primary);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: none;
     outline: none;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: var(--tertiary-radius);
-    -webkit-border-radius: var(--tertiary-radius);
-    -moz-border-radius: var(--tertiary-radius);
-    -ms-border-radius: var(--tertiary-radius);
-    -o-border-radius: var(--tertiary-radius);
-    transition: var(--btn-transition);
-    -webkit-transition: var(--btn-transition);
-    -moz-transition: var(--btn-transition);
-    -ms-transition: var(--btn-transition);
-    -o-transition: var(--btn-transition);
-    font-size: var(--content-text);
+    transition: var(--common-btn-transition);
+    -webkit-transition: var(--common-btn-transition);
+    -moz-transition: var(--common-btn-transition);
+    -ms-transition: var(--common-btn-transition);
+    -o-transition: var(--common-btn-transition);
 
-    &:hover{
-        background-color: var(--primary-color);
-        color: #fff;
+    &:hover {
+        background-color: var(--bg-secondary-hover);
     }
 }
 
 .rolediv {
+    margin-block: 1rem;
+
     &>div:nth-child(1) {
         display: flex;
         align-items: center;
@@ -133,11 +162,19 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            background-color: oklch(.205 0 0);
+            border: 0.1rem solid oklch(1 0 0 / 15%);
+            padding: 1rem;
+            border-radius: var(--border-radius-primary);
+            -webkit-border-radius: var(--border-radius-primary);
+            -moz-border-radius: var(--border-radius-primary);
+            -ms-border-radius: var(--border-radius-primary);
+            -o-border-radius: var(--border-radius-primary);
 
             &>input {
-                width: var(--primary-text);
-                height: var(--primary-text);
-                accent-color: var(--primary-color);
+                width: 1.4rem;
+                height: 1.4rem;
+                accent-color: var(--bg-secondary);
                 cursor: pointer;
             }
 
@@ -148,52 +185,3 @@
         }
     }
 }
-
-@media screen and (min-width:0px) and (max-width:430px){
-    .admin__salon_signin__main__container {
-        grid-template-columns: 1fr;
-    }
-
-    .admin__salon_signin__main__left {
-        display: none;
-    }
-
-    .admin_salon_signin_form_container{
-        width: 85vw;
-    }
-}
-
-@media screen and (min-width:431px) and (max-width:768px){
-    .admin__salon_signin__main__container {
-        grid-template-columns: 1fr;
-    }
-
-    .admin__salon_signin__main__left {
-        display: none;
-    }
-
-    .admin_salon_signin_form_container{
-        width: 65vw;
-    }
-}
-
-@media screen and (min-width:769px) and (max-width:1000px){
-    .admin__salon_signin__main__container {
-        grid-template-columns: 1fr;
-    }
-
-    .admin__salon_signin__main__left {
-        display: none;
-    }
-
-    .admin_salon_signin_form_container{
-        width: 45vw;
-    }
-}
-
-@media screen and (min-width:1001px) and (max-width:1250px){
-    /* .admin_salon_signin_form_container{
-        width: 65%;
-    } */
-}
-

@@ -4,6 +4,7 @@ import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useChangeSalonOnlineStatusKioskMutation, useKioskBookingAvailabilityStatusMutation, useMobileBookingAvailabilityStatusMutation } from '../Dashboard/dashboardApiSlice'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
+import Switch from "react-switch";
 import { useNavigate } from 'react-router-dom'
 import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
 
@@ -243,14 +244,14 @@ const SalonSettings = () => {
     }
   }, [adminInfo])
 
-
+const [a, setA] = useState(false)
   return (
     <section className={style.salon_settings_container}>
       <div className={style.salon_settings_left}>
         <img src="./My_Bookings.png" alt="salon_settings_img" />
       </div>
       <div className={style.salon_settings_right}>
-        <div className={style.salon_main_container}>
+        {/* <div className={style.salon_main_container}>
           <p>Salon settings</p>
           <div>
             <div>
@@ -298,7 +299,62 @@ const SalonSettings = () => {
             </div>
           </div>
 
+        </div> */}
+        <h2>Salon Settings</h2>
+
+        <div className={style.salon_main_container}>
+
+          <div className={style.settings_item}>
+            <div>
+              <div>
+                <span>ico</span>
+                <h2>Salon Status</h2>
+                <Switch
+                  width={80}
+                  // height={18}
+                  handleDiameter={20}
+                  offColor="#F44336"
+                  onColor="#00A36C"
+                  uncheckedIcon={
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100%",
+                        fontSize: "1.4rem",
+                        color: "#F4F4F5",
+                        paddingRight: "1.5rem",
+                      }}
+                    >
+                      Offline
+                    </div>
+                  }
+                  checkedIcon={
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100%",
+                        fontSize: "1.4rem",
+                        color: "#F4F4F5",
+                        paddingLeft: "1.5rem"
+                      }}
+                    >
+                      Online
+                    </div>
+                  }
+                  onChange={() => { setA((prev) => !prev) }}
+                  checked={a}
+                />
+              </div>
+            </div>
+            <p>sdv</p>
+          </div>
+
         </div>
+
       </div>
     </section>
   )

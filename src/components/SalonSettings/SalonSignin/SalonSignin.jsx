@@ -64,15 +64,15 @@ const SalonSignin = () => {
 
 
     return (
-        <main className={style.admin__salon_signin__main__container}>
-            <div className={style.admin__salon_signin__main__left}>
+        <main className={style.admin__signin__main__container}>
+            <div className={style.admin__signin__main__left}>
                 <img src="./Signup.png" alt="signin" />
             </div>
 
-            <div className={style.admin__salon_signin__main__right}>
+            <div className={style.admin__signin__main__right}>
 
-                <div className={style.admin_salon_signin_form_container}>
-                    <p>Welcome to Salon Sign-In</p>
+                <div className={style.admin_signin_form_container}>
+                    <h2>Welcome to Salon Sign-In</h2>
 
                     <div className={style.email_container}>
                         <input

@@ -858,7 +858,7 @@ const Public = () => {
       </div>
       <div className={style.middle}>
         <div className={style.joinqueue__main__right__form}>
-          <p>Join Queue</p>
+          <h2>Join Queue</h2>
 
           <div className={style.joinqueue__main__right__form_top}>
 
@@ -876,7 +876,7 @@ const Public = () => {
                   borderBottom: nameError && "0.1rem solid red"
                 }}
               />
-              <p className={style.error_message}>{nameError}</p>
+              {nameError && <p className={style.error_message}>{nameError}</p>}
             </div>
 
             <div className={style.phone_input_container}
@@ -895,7 +895,7 @@ const Public = () => {
               />
 
               {/* <PhoneInput defaultCountry={"gb"} /> */}
-              <p className={style.error_message}>{invalidNumberError}</p>
+              {invalidNumberError && <p className={style.error_message}>{invalidNumberError}</p>}
             </div>
           </div>
 
@@ -915,7 +915,7 @@ const Public = () => {
                   borderBottom: emailError && "0.1rem solid red"
                 }}
               />
-              <p className={style.error_message}>{emailError}</p>
+              {emailError && <p className={style.error_message}>{emailError}</p>}
             </div>
           </div>
 
@@ -944,18 +944,18 @@ const Public = () => {
                   borderBottom: servicesError && "0.1rem solid red"
                 }}
               />
-              <p className={style.error_message}>{servicesError}</p>
+              {servicesError && <p className={style.error_message}>{servicesError}</p>}
               <div style={{ cursor: "pointer" }}><DropdownIcon /></div>
             </div>
 
           </div>
 
-          <button className={style.joinqueuebtn} 
-          onClick={joinqueueCheckHandler}
-          style={{
-            cursor: adminInfo.kioskAvailability ? "pointer" : "not-allowed"
-          }}
-          disabled={!adminInfo.kioskAvailability}
+          <button className={style.joinqueuebtn}
+            onClick={joinqueueCheckHandler}
+            style={{
+              cursor: adminInfo.kioskAvailability ? "pointer" : "not-allowed"
+            }}
+            disabled={!adminInfo.kioskAvailability}
           >Join</button>
 
           {
@@ -977,12 +977,12 @@ const Public = () => {
                         ariaLabel="color-ring-loading"
                         wrapperStyle={{}}
                         wrapperClass="color-ring-wrapper"
-                        colors={["#000"]}
+                        colors={["#fff", "#fff", "#fff", "#fff", "#fff"]}
                       /></div> :
                       getavailablebarberisSuccess && getavailablebarberdata?.response?.length > 0 ? getavailablebarberdata?.response?.map((b) => (
                         <div className={style.select_barber_item}
                           style={{
-                            border: selectedBarber === b.name && "0.1rem solid var(--primary-color)",
+                            border: selectedBarber === b.name && "0.1rem solid var(--text-primary)",
                           }}
                           key={b.barberId}
                           onClick={() => searchSelectedBarber(b)}
@@ -1057,12 +1057,12 @@ const Public = () => {
                           ariaLabel="color-ring-loading"
                           wrapperStyle={{}}
                           wrapperClass="color-ring-wrapper"
-                          colors={["#000"]}
+                          colors={["#fff", "#fff", "#fff", "#fff", "#fff"]}
                         /></div> :
                       getServicesByBarberisSuccess && getServicesByBarberdata?.response?.length > 0 ? getServicesByBarberdata?.response?.map((item) => (
                         <div className={style.select_barber_services_item} key={item._id}
                           style={{
-                            border: selectedServices.find((select) => select._id === item._id) && "0.1rem solid var(--primary-color)",
+                            border: selectedServices.find((select) => select._id === item._id) && "0.1rem solid var(--text-primary)",
                           }}
                         >
                           <div className={style.select_barber_services_item_header}>
@@ -1118,12 +1118,12 @@ const Public = () => {
                         ariaLabel="color-ring-loading"
                         wrapperStyle={{}}
                         wrapperClass="color-ring-wrapper"
-                        colors={["#000"]}
+                        colors={["#fff", "#fff", "#fff", "#fff", "#fff"]}
                       /></div> :
                       getAllSalonServicesisSuccess && getAllSalonServicesdata?.response?.length > 0 ? getAllSalonServicesdata?.response?.map((item) => (
                         <div className={style.select_barber_services_item} key={item._id}
                           style={{
-                            border: selectedServices.find((select) => select._id === item._id) && "0.1rem solid var(--primary-color)",
+                            border: selectedServices.find((select) => select._id === item._id) && "0.1rem solid var(--text-primary)",
                           }}
                         >
                           <div className={style.select_barber_services_item_header}>
@@ -1183,11 +1183,11 @@ const Public = () => {
                         ariaLabel="color-ring-loading"
                         wrapperStyle={{}}
                         wrapperClass="color-ring-wrapper"
-                        colors={["#000"]}
+                        colors={["#fff", "#fff", "#fff", "#fff", "#fff"]}
                       /></div> : getBarberByServicesKioskisSuccess && getBarberByServicesKioskdata?.response?.length > 0 ? getBarberByServicesKioskdata?.response?.map((b) => (
                         <div className={style.select_barber_item}
                           style={{
-                            border: selectedBarber === b.name && "0.1rem solid var(--primary-color)",
+                            border: selectedBarber === b.name && "0.1rem solid var(--text-primary)",
                           }}
                           key={b._id}
                           onClick={() => searchSelectedBarber(b)}
@@ -1323,7 +1323,7 @@ const Public = () => {
           gradient={true}
           pauseOnHover={true}
           gradientColor={"var(--bg-primary)"}
-          // className={style.marquee}
+        // className={style.marquee}
         >
           {getDefaultSalonByAdmindata?.response?.leastQueueBarbers?.map((item, index) => (
             <div key={item.barberId} className={style.marqueeItem}>

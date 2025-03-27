@@ -133,7 +133,7 @@ body {
 }
 
 *:hover::-webkit-scrollbar {
-  width: 0.6rem;
+  width: 0.5rem;
   height: 0.7rem;
 }
 
@@ -142,7 +142,7 @@ body {
 }
 
 *:hover::-webkit-scrollbar-thumb {
-  background: #0867ff48;
+  background: var(--bg-secondary);
   border-radius: var(--primary-radius, 0.6rem);
   -webkit-border-radius: var(--primary-radius, 0.6rem);
   -moz-border-radius: var(--primary-radius, 0.6rem);
@@ -151,7 +151,7 @@ body {
 }
 
 *:hover::-webkit-scrollbar-thumb:hover {
-  background: rgb(0, 98, 255);
+  background: var(--bg-secondary-hover);
 }
 
 *:hover::-webkit-scrollbar-corner {
@@ -167,7 +167,7 @@ body {
 
 }
 
-.react-international-phone-input-container .react-international-phone-input,
+/* .react-international-phone-input-container .react-international-phone-input,
 .react-international-phone-input-container .react-international-phone-country-selector-button {
   border: none !important;
   background: transparent !important;
@@ -180,6 +180,39 @@ body {
 .react-international-phone-input-container {
   height: 4rem !important;
   font-size: var(--content-text) !important;
+} */
+
+
+.react-international-phone-input-container {
+  border-radius: var(--input-border-radius) !important;
+  -webkit-border-radius: var(--input-border-radius) !important;
+  -moz-border-radius: var(--input-border-radius) !important;
+  -ms-border-radius: var(--input-border-radius) !important;
+  -o-border-radius: var(--input-border-radius) !important;
+}
+
+.react-international-phone-input-container .react-international-phone-input {
+  width: 100%;
+  min-height: 3.5rem !important;
+  max-height: 3.5rem !important;
+  background-color: transparent;
+  border: none;
+  font-size: 1.4rem;
+  border-radius: var(--input-border-radius) !important;
+  -webkit-border-radius: var(--input-border-radius) !important;
+  -moz-border-radius: var(--input-border-radius) !important;
+  -ms-border-radius: var(--input-border-radius) !important;
+  -o-border-radius: var(--input-border-radius) !important;
+  color: var(--text-primary);
+}
+
+.react-international-phone-input-container .react-international-phone-country-selector-button {
+  background-color: transparent !important;
+  min-height: 3.5rem !important;
+  width: 6rem !important;
+  border: none !important;
+  border-top-left-radius: var(--input-border-radius) !important;
+  border-bottom-left-radius: var(--input-border-radius) !important;
 }
 
 

@@ -443,24 +443,23 @@
 
 .middle {
     /* flex-grow: 1; */
-    height: calc(100vh - 8rem - 15rem);
+    /* height: calc(100vh - 8rem - 15rem); */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: red; */
+    flex: 1;
+    overflow: auto;
 
 
     .joinqueue__main__right__form {
-        width: 45%;
+        width: min(60rem, 95vw);
         height: auto;
         display: flex;
         flex-direction: column;
         gap: 2.5rem;
 
-        &>p:nth-child(1) {
+        &>h2 {
             text-align: center;
-            font-size: var(--primary-text);
-            font-weight: 600;
         }
     }
 
@@ -484,86 +483,106 @@
 
 
     .common_input_container {
-        height: 4rem;
-
         &>input {
             width: 100%;
-            height: 100%;
-            border: none;
-            border-bottom: 0.1rem solid rgba(0, 0, 0, 0.4);
-            font-size: var(--content-text);
-            outline: none
-        }
+            height: 3.5rem;
+            padding-inline: 1rem;
+            font-size: 1.4rem;
+            border: 0.1rem solid var(--border-secondary);
+            border-radius: var(--border-radius-primary);
+            -webkit-border-radius: var(--border-radius-primary);
+            -moz-border-radius: var(--border-radius-primary);
+            -ms-border-radius: var(--border-radius-primary);
+            -o-border-radius: var(--border-radius-primary);
+            background-color: var(--input-bg-color);
+            color: var(--text-primary);
+            outline: none;
 
-        &>input[type="text"]:focus {
-            border-bottom: 0.1rem solid var(--primary-color);
+            &::placeholder {
+                color: var(--text-secondary);
+                letter-spacing: 0.01rem;
+            }
         }
     }
 
     .common_input_type2_container {
-        height: 4rem;
+        border: 0.1rem solid var(--border-secondary);
+        border-radius: var(--border-radius-primary);
+        -webkit-border-radius: var(--border-radius-primary);
+        -moz-border-radius: var(--border-radius-primary);
+        -ms-border-radius: var(--border-radius-primary);
+        -o-border-radius: var(--border-radius-primary);
+        background-color: var(--input-bg-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         position: relative;
 
         &>input {
-            width: 100%;
-            height: 100%;
+            width: calc(100% - 3rem);
+            height: 3.5rem;
+            padding-inline: 1rem;
+            font-size: 1.4rem;
+            background: transparent;
+            color: var(--text-primary);
             border: none;
-            border-bottom: 0.1rem solid rgba(0, 0, 0, 0.4);
-            font-size: var(--content-text);
-            outline: none
-        }
+            outline: none;
 
-        &>input[type="text"]:focus {
-            border-bottom: 0.1rem solid var(--primary-color);
+            &::placeholder {
+                color: var(--text-secondary);
+                letter-spacing: 0.01rem;
+            }
         }
 
         &>div {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            -webkit-transform: translateY(-50%);
-            -moz-transform: translateY(-50%);
-            -ms-transform: translateY(-50%);
-            -o-transform: translateY(-50%);
-            right: 0.4rem;
-            font-size: var(--content-text);
-            cursor: pointer;
+            height: 3.5rem;
+            width: 3.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            font-family: 'AirbnbCereal_Medium';
         }
 
     }
 
 
     .phone_input_container {
-        height: 4rem;
+        width: 100%;
+        max-height: 3.5rem;
+        background-color: var(--input-bg-color);
+        border: none;
+        border-radius: var(--border-radius-primary);
+        -webkit-border-radius: var(--border-radius-primary);
+        -moz-border-radius: var(--border-radius-primary);
+        -ms-border-radius: var(--border-radius-primary);
+        -o-border-radius: var(--border-radius-primary);
+        border: 0.1rem solid var(--border-secondary);
+        font-size: 1.4rem;
     }
 
     .joinqueuebtn {
-        min-height: 4rem;
-        width: 100%;
-        margin-top: 1rem;
-        border: 0.1rem solid var(--primary-color);
-        color: var(--primary-color);
-        background-color: var(--secondary-color);
+        height: 3.5rem;
+        padding-inline: 1.5rem;
+        border-radius: var(--border-radius-primary);
+        -webkit-border-radius: var(--border-radius-primary);
+        -moz-border-radius: var(--border-radius-primary);
+        -ms-border-radius: var(--border-radius-primary);
+        -o-border-radius: var(--border-radius-primary);
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+        border: none;
         outline: none;
         cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: var(--tertiary-radius);
-        -webkit-border-radius: var(--tertiary-radius);
-        -moz-border-radius: var(--tertiary-radius);
-        -ms-border-radius: var(--tertiary-radius);
-        -o-border-radius: var(--tertiary-radius);
-        transition: var(--btn-transition);
-        -webkit-transition: var(--btn-transition);
-        -moz-transition: var(--btn-transition);
-        -ms-transition: var(--btn-transition);
-        -o-transition: var(--btn-transition);
-        font-size: var(--content-text);
+        transition: var(--common-btn-transition);
+        -webkit-transition: var(--common-btn-transition);
+        -moz-transition: var(--common-btn-transition);
+        -ms-transition: var(--common-btn-transition);
+        -o-transition: var(--common-btn-transition);
 
         &:hover {
-            background-color: var(--primary-color);
-            color: #fff;
+            background-color: var(--bg-secondary-hover);
         }
     }
 
@@ -618,7 +637,7 @@
             &>div:nth-child(1) {
                 height: 6rem;
                 width: 6rem;
-                border: 0.1rem solid rgba(0, 0, 0, 0.2);
+                border: 0.1rem solid var(--border-secondary);
                 border-radius: 0.4rem;
                 -webkit-border-radius: 0.4rem;
                 -moz-border-radius: 0.4rem;
@@ -643,7 +662,7 @@
 
                 &>p:nth-child(2) {
                     font-size: 1.2rem;
-                    color: gray;
+                    color: var(--text-secondary);
                 }
             }
         }
@@ -675,32 +694,30 @@
 }
 
 .select_barber_container {
-    background-color: #efefef;
-    border: 0.1rem solid rgba(0, 0, 0, 0.2);
+    background-color: var(--input-bg-color);
     padding: 2rem;
     height: 46rem;
     width: 100%;
-    overflow-y: scroll;
+    overflow: auto;
 
 }
 
 
 .select_barber_item {
     height: 20rem;
-    width: 100%;
-    margin: auto;
-    background-color: #ffff;
-    border: 0.1rem solid rgba(0, 0, 0, 0.2);
-    margin-bottom: 2rem;
-    border-radius: var(--primary-radius, 0.6rem);
-    -webkit-border-radius: var(--primary-radius, 0.6rem);
-    -moz-border-radius: var(--primary-radius, 0.6rem);
-    -ms-border-radius: var(--primary-radius, 0.6rem);
-    -o-border-radius: var(--primary-radius, 0.6rem);
+    background-color: var(--bg-primary);
+    border: 0.1rem solid var(--border-secondary);
+    border-radius: var(--border-radius-primary);
+    -webkit-border-radius: var(--border-radius-primary);
+    -moz-border-radius: var(--border-radius-primary);
+    -ms-border-radius: var(--border-radius-primary);
+    -o-border-radius: var(--border-radius-primary);
+    min-width: 45.5rem;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     cursor: pointer;
+    margin-bottom: 1rem;
 }
 
 .select_barber_item_top {
@@ -725,8 +742,8 @@
             align-items: center;
 
             &>div {
-                height: 8rem;
-                width: 8rem;
+                height: 7rem;
+                width: 7rem;
                 border-radius: 50%;
                 -webkit-border-radius: 50%;
                 -moz-border-radius: 50%;
@@ -754,16 +771,16 @@
 
             &>div {
                 &>p:nth-child(1) {
-                    font-size: var(--content-text);
+                    font-size: 1.6rem;
                     font-weight: 600;
                     margin-bottom: 1rem;
                     text-transform: capitalize;
                 }
 
                 &>p:nth-child(2) {
-                    font-size: var(--tertiary-text);
+                    font-size: 1.4rem;
                     font-weight: 500;
-                    color: gray;
+                    color: var(--text-secondary);
                 }
             }
         }
@@ -778,13 +795,13 @@
 
         &>div {
             &>p:nth-child(1) {
-                font-size: var(--content-text);
+                font-size: 1.6rem;
                 font-weight: 500;
-                color: gray;
+                color: var(--text-secondary);
             }
 
             &>p:nth-child(2) {
-                font-size: var(--primary-text);
+                font-size: 1.4rem;
                 font-weight: 600;
                 text-align: center;
                 margin-top: 0.5rem;
@@ -806,13 +823,13 @@
 
         &>div {
             &>p:nth-child(1) {
-                font-size: var(--content-text);
+                font-size: 1.4rem;
                 font-weight: 500;
-                color: gray;
+                color: var(--text-secondary);
             }
 
             &>p:nth-child(2) {
-                font-size: var(--primary-text);
+                font-size: 1.8rem;
                 font-weight: 600;
                 text-align: center;
                 margin-top: 0.5rem;
@@ -828,13 +845,13 @@
 
         &>div {
             &>p:nth-child(1) {
-                font-size: var(--content-text);
+                font-size: 1.4rem;
                 font-weight: 500;
-                color: gray;
+                color: var(--text-secondary);
             }
 
             &>p:nth-child(2) {
-                font-size: var(--primary-text);
+                font-size: 1.8rem;
                 font-weight: 600;
                 text-align: center;
                 margin-top: 0.5rem;
@@ -850,33 +867,28 @@
 }
 
 .select_barber_services_btn>button {
-    height: 4rem;
-    width: 19rem;
-    margin-top: 2rem;
     margin-inline: auto;
-    border: 0.1rem solid var(--primary-color);
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
+    margin-top: 2rem;
+    height: 3.5rem;
+    padding-inline: 1.5rem;
+    border-radius: var(--border-radius-primary);
+    -webkit-border-radius: var(--border-radius-primary);
+    -moz-border-radius: var(--border-radius-primary);
+    -ms-border-radius: var(--border-radius-primary);
+    -o-border-radius: var(--border-radius-primary);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: none;
     outline: none;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: var(--secondary-radius);
-    -webkit-border-radius: var(--secondary-radius);
-    -moz-border-radius: var(--secondary-radius);
-    -ms-border-radius: var(--secondary-radius);
-    -o-border-radius: var(--secondary-radius);
-    transition: var(--btn-transition);
-    -webkit-transition: var(--btn-transition);
-    -moz-transition: var(--btn-transition);
-    -ms-transition: var(--btn-transition);
-    -o-transition: var(--btn-transition);
-    font-size: var(--content-text);
+    transition: var(--common-btn-transition);
+    -webkit-transition: var(--common-btn-transition);
+    -moz-transition: var(--common-btn-transition);
+    -ms-transition: var(--common-btn-transition);
+    -o-transition: var(--common-btn-transition);
 
     &:hover {
-        background-color: var(--primary-color);
-        color: #fff;
+        background-color: var(--bg-secondary-hover);
     }
 }
 
@@ -912,12 +924,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        color: var(--text-primary);
     }
 }
 
 .select_barber_services_container {
-    background-color: #efefef;
-    border: 0.1rem solid rgba(0, 0, 0, 0.2);
+    background-color: var(--input-bg-color);
     padding: 2rem;
     height: 46rem;
     width: 100%;
@@ -927,14 +939,10 @@
 .select_barber_services_item {
     height: 12rem;
     width: 100%;
-    background-color: #fff;
-    border-radius: var(--primary-radius, 0.6rem);
-    -webkit-border-radius: var(--primary-radius, 0.6rem);
-    -moz-border-radius: var(--primary-radius, 0.6rem);
-    -ms-border-radius: var(--primary-radius, 0.6rem);
-    -o-border-radius: var(--primary-radius, 0.6rem);
+    background-color: var(--bg-primary);
     margin-bottom: 2rem;
     padding: 2rem;
+    min-width: 45.5rem;
 }
 
 .select_barber_services_item_header {
@@ -969,7 +977,7 @@
 .select_barber_services_item_content>div:nth-child(4) {
     height: 3.5rem;
     font-size: var(--content-text);
-    color: #000;
+    color: #fff;
     margin-right: 2rem;
     background: transparent;
 }
@@ -1001,35 +1009,23 @@
 }
 
 .add_btn {
-    background-color: var(--secondary-color);
-    border: 0.1rem solid var(--primary-color);
-    color: var(--primary-color);
+    background-color: #0285c755;
+    color: #fff;
     transition: var(--btn-transition);
     -webkit-transition: var(--btn-transition);
     -moz-transition: var(--btn-transition);
     -ms-transition: var(--btn-transition);
     -o-transition: var(--btn-transition);
-
-    &:hover {
-        background-color: var(--primary-color);
-        color: #fff;
-    }
 }
 
 .delete_btn {
-    background-color: var(--quaternery-color);
-    border: 0.1rem solid var(--tertiary-color);
-    color: var(--tertiary-color);
+    background-color: rgb(244, 67, 54);
+    color: #fff;
     transition: var(--btn-transition);
     -webkit-transition: var(--btn-transition);
     -moz-transition: var(--btn-transition);
     -ms-transition: var(--btn-transition);
     -o-transition: var(--btn-transition);
-
-    &:hover {
-        background-color: var(--tertiary-color);
-        color: #fff;
-    }
 }
 
 
@@ -1261,14 +1257,6 @@
 
     .middle {
 
-        .joinqueue__main__right__form {
-            width: 85vw;
-            overflow: auto;
-            height: calc(100vh - 8rem - 15rem);
-            padding-block: 5rem;
-
-        }
-
         .joinqueue__main__right__form_top {
             grid-template-columns: 1fr;
         }
@@ -1284,102 +1272,6 @@
 
 
 
-    }
-
-
-    .select_barber_container,
-    .select_barber_services_container {
-        padding: 1rem;
-    }
-
-    .select_barber_item_top {
-        &>div:nth-child(1) {
-            &>div:nth-child(1) {
-                &>div {
-                    width: 6rem;
-                    height: 6rem;
-                }
-            }
-        }
-    }
-
-    .select_barber_item_top {
-        flex: 1.5;
-        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
-
-        display: flex;
-        align-items: center;
-
-        &>div:nth-child(1) {
-
-            &>div:nth-child(2) {
-                &>div {
-                    &>p:nth-child(1) {
-                        font-size: 3.5vw;
-                    }
-
-                    &>p:nth-child(2) {
-                        font-size: 3vw;
-                    }
-                }
-            }
-        }
-
-        &>div:nth-child(2) {
-            &>div {
-                &>p:nth-child(1) {
-                    font-size: 3vw;
-                }
-
-                &>p:nth-child(2) {
-                    font-size: 5vw;
-                }
-            }
-        }
-    }
-
-    .select_barber_item_bottom {
-
-        &>div:nth-child(1) {
-
-            &>div {
-                &>p:nth-child(1) {
-                    font-size: 3vw;
-                }
-
-                &>p:nth-child(2) {
-                    font-size: 3.5vw;
-                }
-            }
-        }
-
-        &>div:nth-child(2) {
-            &>div {
-                &>p:nth-child(1) {
-                    font-size: 3vw;
-                }
-
-                &>p:nth-child(2) {
-                    font-size: 3.5vw;
-                }
-            }
-        }
-    }
-
-    .select_barber_services_item {
-        height: auto;
-    }
-
-    .select_barber_services_item_header>p {
-        font-size: 3.5vw;
-    }
-
-    .select_barber_services_item_content>p {
-        font-size: 3vw;
-    }
-
-    .joinqueueModalContainer {
-        width: 90vw;
     }
 
     .top {
@@ -1407,147 +1299,4 @@
         }
     }
 
-}
-
-@media screen and (min-width:431px) and (max-width:768px) {
-
-    .joinqueue_container {
-        grid-template-columns: 1fr;
-    }
-
-    .joinqueue_container_left {
-        display: none;
-    }
-
-
-    .middle {
-
-        .joinqueue__main__right__form {
-            width: 85vw;
-            overflow: auto;
-            height: calc(100vh - 8rem - 15rem);
-            padding-block: 5rem;
-
-        }
-
-        .joinqueue__main__right__form_top {
-            grid-template-columns: 1fr;
-        }
-
-        .joinqueue__main__right__form_middle {
-            grid-template-columns: 1fr;
-        }
-
-        .joinqueue__main__right__form_bottom {
-            grid-template-columns: 1fr;
-        }
-
-    }
-
-
-    .select_barber_container,
-    .select_barber_services_container {
-        padding: 1rem;
-    }
-
-    .select_barber_item_top {
-        &>div:nth-child(1) {
-            &>div:nth-child(1) {
-                &>div {
-                    width: 6rem;
-                    height: 6rem;
-                }
-            }
-        }
-    }
-
-    .joinqueueModalContainer {
-        width: 70vw;
-    }
-
-    .top {
-        padding-inline: 1rem;
-
-        &>div {
-            gap: 1rem;
-
-            .top_chip {
-                width: auto;
-                gap: 0.5rem;
-
-                &>div {
-
-                    &>p {
-                        font-size: 1.2rem;
-                        font-weight: 500;
-                    }
-                }
-
-                &>b {
-                    font-size: 1.4rem;
-                }
-            }
-        }
-    }
-}
-
-@media screen and (min-width:769px) and (max-width:1000px) {
-    .joinqueue_container {
-        grid-template-columns: 1fr;
-    }
-
-    .joinqueue_container_left {
-        display: none;
-    }
-
-    /* .joinqueue__main__right__form {
-        width: 65vw;
-    }
-
-    .joinqueue__main__right__form_top {
-        grid-template-columns: 1fr;
-    }
-
-    .joinqueue__main__right__form_middle {
-        grid-template-columns: 1fr;
-    }
-
-    .joinqueue__main__right__form_bottom {
-        grid-template-columns: 1fr;
-    } */
-
-    .middle {
-
-        .joinqueue__main__right__form {
-            width: 85vw;
-            overflow: auto;
-            height: calc(100vh - 8rem - 15rem);
-            padding-block: 5rem;
-
-        }
-
-        .joinqueue__main__right__form_top {
-            grid-template-columns: 1fr;
-        }
-
-        .joinqueue__main__right__form_middle {
-            grid-template-columns: 1fr;
-        }
-
-        .joinqueue__main__right__form_bottom {
-            grid-template-columns: 1fr;
-        }
-
-    }
-
-
-    .joinqueueModalContainer {
-        width: 50vw;
-    }
-}
-
-@media screen and (min-width:1001px) and (max-width:1250px) {
-    .joinqueue__main__right__form {
-        width: 70%;
-    }
 }
