@@ -930,8 +930,10 @@ const Public = () => {
                   borderBottom: barberError && "0.1rem solid red"
                 }}
               />
-              <p className={style.error_message}>{barberError}</p>
+             
               <div style={{ cursor: "pointer" }}><DropdownIcon /></div>
+
+              {barberError && <p className={style.error_message}>{barberError}</p>}
             </div>
 
             <div className={style.common_input_type2_container} onClick={SelectServicesDropdownHandler}>
@@ -944,8 +946,10 @@ const Public = () => {
                   borderBottom: servicesError && "0.1rem solid red"
                 }}
               />
-              {servicesError && <p className={style.error_message}>{servicesError}</p>}
+              
               <div style={{ cursor: "pointer" }}><DropdownIcon /></div>
+
+              {servicesError && <p className={style.error_message}>{servicesError}</p>}
             </div>
 
           </div>

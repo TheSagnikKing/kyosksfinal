@@ -154,7 +154,7 @@ const Signin = () => {
             </div>
             <div className={style.barber_signin_container_right}>
                 <main className={style.barber_signin_content_main}>
-                    <p>Welcome to Barber Sign-In</p>
+                    <h2>Welcome to Barber SignIn</h2>
 
                     <ClickAwayListener onClickAway={() => setDrop(false)}>
                         <div className={style.barber_email_selection_container} onClick={dropdownHandler}>
@@ -187,10 +187,10 @@ const Signin = () => {
                                                             selectEmailClick(b);
                                                         }}
                                                         style={{
-                                                            background: barberemail === b.email && "var(--primary-color)",
+                                                            // background: barberemail === b.email && "var(--primary-color)",
                                                         }}
                                                     >
-                                                        <p style={{ color: barberemail === b.email && "#fff" }}>{b.email}</p>
+                                                        <p style={{ color: barberemail === b.email && "var(--text-primary)" }}>{b.email}</p>
                                                     </div>
                                                 )
                                             })

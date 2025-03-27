@@ -244,115 +244,107 @@ const SalonSettings = () => {
     }
   }, [adminInfo])
 
-const [a, setA] = useState(false)
+  const settingsData = [
+    {
+      id: 1,
+      name: "Salon Status",
+      desc: "The system will disable the availability of all barbers and mobile bookings, effectively setting their Status to offline or shutting them down.",
+      value: adminInfo?.isSalonOnline,
+      img: "./shop.png",
+      handler: salonOnlineHandler
+    },
+    {
+      id: 2,
+      name: "Mobile Queuing",
+      desc: "Mobile Queuing can be set to online or offline. When offline, will not be able to join the queue through the app.",
+      value: adminInfo?.mobileBookingAvailability,
+      img: "./mobile.png",
+      handler: mobileBookOnlineHandler
+    },
+    {
+      id: 3,
+      name: "Kiosk Queuing",
+      desc: "Kiosk Queuing can be set to online or offline. When offline, Customers will not be able to join the queue through the kiosk.",
+      value: adminInfo?.kioskAvailability,
+      img: "./Kiosk.png",
+      handler: kioskBookOnlineHandler
+    },
+  ]
+
+  const [a, setA] = useState(false)
   return (
     <section className={style.salon_settings_container}>
       <div className={style.salon_settings_left}>
         <img src="./My_Bookings.png" alt="salon_settings_img" />
       </div>
       <div className={style.salon_settings_right}>
-        {/* <div className={style.salon_main_container}>
-          <p>Salon settings</p>
-          <div>
-            <div>
-              <div>
-                <p>Salon Status</p>
-                <p>The system will disable the availability of all barbers and mobile bookings, effectively setting their status to offline or shutting them down.</p>
-              </div>
-              {
-                Object.keys(adminInfo).length > 0 &&
-                <button
-                  className={adminInfo?.isSalonOnline ? style.online_btn : style.offline_btn}
-                  onClick={salonOnlineHandler}
-                >{adminInfo?.isSalonOnline ? "Online" : "Offline"}</button>
-              }
-            </div>
-
-            <div>
-              <div>
-                <p>Mobile Queueing</p>
-                <p>Mobile Queueing can be set to online or offline. When offline, customers will not be able to join the queue through the app.</p>
-              </div>
-              {
-                Object.keys(adminInfo).length > 0 &&
-                <button
-                  className={adminInfo?.mobileBookingAvailability ? style.online_btn : style.offline_btn}
-                  onClick={mobileBookOnlineHandler}
-                >{adminInfo?.mobileBookingAvailability ? "Available" : "Unavailable"}</button>
-              }
-
-            </div>
-
-            <div style={{ borderBottom: "none" }}>
-              <div>
-                <p>Kiosk Queueing</p>
-                <p>Kiosk Queueing can be set to online or offline. When offline, customers will not be able to join the queue through the kiosk.</p>
-              </div>
-              {
-                Object.keys(adminInfo).length > 0 &&
-                <button
-                  className={adminInfo?.kioskAvailability ? style.online_btn : style.offline_btn}
-                  onClick={kioskBookOnlineHandler}
-                >{adminInfo?.kioskAvailability ? "Available" : "Unavailable"}</button>
-              }
-
-            </div>
-          </div>
-
-        </div> */}
         <h2>Salon Settings</h2>
 
         <div className={style.salon_main_container}>
 
-          <div className={style.settings_item}>
-            <div>
-              <div>
-                <span>ico</span>
-                <h2>Salon Status</h2>
-                <Switch
-                  width={80}
-                  // height={18}
-                  handleDiameter={20}
-                  offColor="#F44336"
-                  onColor="#00A36C"
-                  uncheckedIcon={
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        height: "100%",
-                        fontSize: "1.4rem",
-                        color: "#F4F4F5",
-                        paddingRight: "1.5rem",
-                      }}
-                    >
-                      Offline
+          <div>
+            {
+              settingsData.map((item) => {
+                return (
+                  <div className={style.settings_item} key={item.id}>
+                    <div>
+                      <div>
+                        <div><img src={item.img} alt="" /></div>
+                        <h2>{item.name}</h2>
+                        <div>
+                          <Switch
+                            width={80}
+                            handleDiameter={20}
+                            offColor="#F44336"
+                            onColor="#00A36C"
+                            uncheckedIcon={
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  height: "100%",
+                                  fontSize: "1.4rem",
+                                  fontWeight: "600",
+                                  color: "#F4F4F5",
+                                  paddingRight: "1.5rem",
+                                }}
+                              >
+                                Offline
+                              </div>
+                            }
+                            checkedIcon={
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  height: "100%",
+                                  fontSize: "1.4rem",
+                                  fontWeight: "600",
+                                  color: "#F4F4F5",
+                                  paddingLeft: "1.5rem"
+                                }}
+                              >
+                                Online
+                              </div>
+                            }
+                            onChange={() => item?.handler()}
+                            checked={item.value}
+                          />
+                        </div>
+                      </div>
                     </div>
-                  }
-                  checkedIcon={
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        height: "100%",
-                        fontSize: "1.4rem",
-                        color: "#F4F4F5",
-                        paddingLeft: "1.5rem"
-                      }}
-                    >
-                      Online
+                    <div>
+                      <p>{item.desc}</p>
                     </div>
-                  }
-                  onChange={() => { setA((prev) => !prev) }}
-                  checked={a}
-                />
-              </div>
-            </div>
-            <p>sdv</p>
-          </div>
+                  </div>
+                )
+              })
+            }
 
+
+          </div>
         </div>
 
       </div>
