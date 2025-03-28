@@ -132,21 +132,21 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
 
 
 
-                                        <div
+                                        {/* <div
                                             onClick={queuelistClicked}
                                             className={style.mobile_queuelist}
                                         >
                                             <div><QueueIcon /></div>
                                             <p>Queue list</p>
-                                        </div>
+                                        </div> */}
 
-                                        <div
+                                        {/* <div
                                             onClick={joinqueueClicked}
                                             className={style.mobile_joinequeue}
                                         >
                                             <div><JoinIcon /></div>
                                             <p>Join Queue</p>
-                                        </div>
+                                        </div> */}
 
                                         <div onClick={logoutHandler}>
                                             <div><LogoutIcon /></div>
