@@ -7,11 +7,12 @@ import { RxCross2 } from "react-icons/rx";
 
 import { RiAccountCircleFill } from 'react-icons/ri'
 import { HiQueueList } from 'react-icons/hi2'
-import { MdJoinInner } from 'react-icons/md'
-import { TbLogout2 } from 'react-icons/tb'
+import { MdJoinInner, MdPhoneInTalk } from 'react-icons/md'
+import { TbArrowBackUp, TbLogout2 } from 'react-icons/tb'
 import { BsExclamationCircle } from "react-icons/bs";
 import { IoPersonSharp } from "react-icons/io5";
 import { BiAddToQueue } from "react-icons/bi";
+import { TfiEmail } from "react-icons/tfi";
 
 export const SettingsIcon = IoSettingsSharp;
 export const DropdownIcon = IoMdArrowDropdownCircle
@@ -30,3 +31,6 @@ export const ExclamationIcon = BsExclamationCircle
 
 export const PersonIcon = IoPersonSharp
 export const TotalQueueIcon = BiAddToQueue
+export const EmailIcon = TfiEmail
+export const PhoneIcon = MdPhoneInTalk 
+export const BackIconNew = TbArrowBackUp 

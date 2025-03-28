@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import style from './CommonHeader.module.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ClickAwayListener } from '@mui/material';
-import { AccountIcon, JoinIcon, LogoutIcon, QueueIcon, SettingsIcon } from '../../icons';
+import { AccountIcon, BackIconNew, JoinIcon, LogoutIcon, QueueIcon, SettingsIcon } from '../../icons';
 import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice';
 import { useSelector } from 'react-redux';
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice';
@@ -101,7 +101,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                     <button
                         className={style.back_btn}
                         onClick={() => navigate("/barbersignin")}
-                    >Back</button>
+                    ><BackIconNew/></button>
                     : <div>
 
                         <div>

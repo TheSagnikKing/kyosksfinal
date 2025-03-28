@@ -178,7 +178,7 @@ const Signin = () => {
                                         <Skeleton variant="rectangular" className={style.skeleton} />
                                         <Skeleton variant="rectangular" className={style.skeleton} />
                                     </div>) :
-                                        isSuccess && data?.response.length > 0 ? (
+                                        isSuccess && data?.response?.length > 0 ? (
                                             data?.response?.map((b) => {
                                                 return (
                                                     <div className={style.barber_dropdown_item} key={b._id}

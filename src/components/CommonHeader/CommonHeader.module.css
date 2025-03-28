@@ -152,30 +152,22 @@
 }
 
 .back_btn {
-    padding: var(--primary-padding);
-    border-radius: var(--secondary-radius);
-    -webkit-border-radius: var(--secondary-radius);
-    -moz-border-radius: var(--secondary-radius);
-    -ms-border-radius: var(--secondary-radius);
-    -o-border-radius: var(--secondary-radius);
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
     border: none;
+    outline: none;
+    color: var(--text-primary);
+    background-color: rgb(244, 67, 54);
     cursor: pointer;
-    font-size: var(--content-text);
-
-    background-color: var(--quaternery-color);
-    border: 0.1rem solid var(--tertiary-color);
-    color: var(--tertiary-color);
-    font-weight: 500;
-    transition: var(--btn-transition);
-    -webkit-transition: var(--btn-transition);
-    -moz-transition: var(--btn-transition);
-    -ms-transition: var(--btn-transition);
-    -o-transition: var(--btn-transition);
-
-    &:hover {
-        background-color: var(--tertiary-color);
-        color: #fff;
-    }
+    font-size: 2.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .mobile_queuelist,
