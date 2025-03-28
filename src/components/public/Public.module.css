@@ -1029,13 +1029,14 @@
 
 
 .joinqueueModalContainer {
-    width: 30vw;
-    background-color: #fff;
+    width: min(95vw, 50rem);
+    background-color: var(--bg-primary);
     border-radius: var(--tertiary-radius);
     -webkit-border-radius: var(--tertiary-radius);
     -moz-border-radius: var(--tertiary-radius);
     -ms-border-radius: var(--tertiary-radius);
     -o-border-radius: var(--tertiary-radius);
+    border: 0.1rem solid var(--border-secondary);
     position: relative;
     left: 50%;
     top: 50%;
@@ -1047,29 +1048,30 @@
     padding: 2rem;
 
     .modaljoinqueue_btn {
-        width: 12rem;
-        height: 4rem;
         display: block;
-        margin-inline: auto;
-        background-color: #efefef;
-        color: #000;
-        border: 0.1rem solid #000;
-        cursor: pointer;
-        transition: var(--btn-transition);
-        -webkit-transition: var(--btn-transition);
-        -moz-transition: var(--btn-transition);
-        -ms-transition: var(--btn-transition);
-        -o-transition: var(--btn-transition);
+        width: min(100%, 12rem);
         margin-top: 2rem;
-        border-radius: var(--secondary-radius);
-        -webkit-border-radius: var(--secondary-radius);
-        -moz-border-radius: var(--secondary-radius);
-        -ms-border-radius: var(--secondary-radius);
-        -o-border-radius: var(--secondary-radius);
+        margin-inline: auto;
+        height: 3.5rem;
+        padding-inline: 1.5rem;
+        border-radius: var(--border-radius-primary);
+        -webkit-border-radius: var(--border-radius-primary);
+        -moz-border-radius: var(--border-radius-primary);
+        -ms-border-radius: var(--border-radius-primary);
+        -o-border-radius: var(--border-radius-primary);
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: var(--common-btn-transition);
+        -webkit-transition: var(--common-btn-transition);
+        -moz-transition: var(--common-btn-transition);
+        -ms-transition: var(--common-btn-transition);
+        -o-transition: var(--common-btn-transition);
 
         &:hover {
-            background-color: #000;
-            color: #fff;
+            background-color: var(--bg-secondary-hover);
         }
     }
 }
@@ -1087,15 +1089,15 @@
 
     &>button {
         margin-left: auto;
-        width: 4rem;
-        height: 4rem;
+        width: 3.5rem;
+        height: 3.5rem;
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
         border: none;
-        background-color: var(--quaternery-color);
-        border: 0.1rem solid var(--tertiary-color);
+        background-color: transparent;
+        border: 0.1rem solid var(--border-secondary);
         color: var(--tertiary-color);
         transition: var(--btn-transition);
         -webkit-transition: var(--btn-transition);
@@ -1104,18 +1106,17 @@
         -o-transition: var(--btn-transition);
         font-weight: 500;
         font-size: var(--btn-icon);
-
-        &:hover {
-            background-color: var(--tertiary-color);
-            color: #fff;
-        }
+        border-radius: var(--border-radius-primary);
+        -webkit-border-radius: var(--border-radius-primary);
+        -moz-border-radius: var(--border-radius-primary);
+        -ms-border-radius: var(--border-radius-primary);
+        -o-border-radius: var(--border-radius-primary);
     }
 }
 
 .join_queue_modal_content_container {
     margin-top: 1rem;
-    background-color: #efefef;
-    border: 0.1rem solid rgba(0, 0, 0, 0.2);
+    background-color: var(--input-bg-color);
     padding: 2rem;
     height: 35rem;
     width: 100%;
@@ -1131,12 +1132,13 @@
     gap: 2rem;
 
     &>div:nth-child(1) {
-        background-color: #fff;
+        background-color: var(--bg-primary);
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 1rem;
         padding: 1rem;
+        min-width: 40rem;
 
         &>img {
             border-radius: 0.4rem;
@@ -1153,12 +1155,12 @@
             gap: 1rem;
 
             &>p:nth-child(1) {
-                font-size: var(--content-text);
+                font-size: 1.6rem;
                 font-weight: 600;
             }
 
             &>p:nth-child(2) {
-                font-size: var(--content-text);
+                font-size: 1.4rem;
                 font-weight: 500;
             }
         }
@@ -1179,7 +1181,7 @@
         gap: 1rem;
 
         &>p {
-            font-size: var(--content-text);
+            font-size: 1.6rem;
             font-weight: 500;
         }
     }
@@ -1201,7 +1203,7 @@
 .select_barber_services_item_modal {
     height: auto;
     width: 100%;
-    background-color: #fff;
+    background-color: var(--bg-primary);
     border-radius: var(--primary-radius, 0.6rem);
     -webkit-border-radius: var(--primary-radius, 0.6rem);
     -moz-border-radius: var(--primary-radius, 0.6rem);
@@ -1209,6 +1211,7 @@
     -o-border-radius: var(--primary-radius, 0.6rem);
     margin-bottom: 2rem;
     padding: 1.5rem;
+    min-width: 40rem;
 }
 
 .select_barber_services_item_header_modal {
