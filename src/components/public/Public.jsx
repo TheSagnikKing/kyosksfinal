@@ -995,11 +995,7 @@ const Public = () => {
                             <div className={style.select_barber_item_top_left}>
                               <div>
                                 <div>
-                                  {b?.profile?.[0]?.url ? (
-                                    <img src={b.profile[0].url} alt="barbername" />
-                                  ) : (
-                                    <img src="./queue-no-image.jpg" alt="barbername" />
-                                  )}
+                                    <img src={b?.profile?.[0]?.url ?? ""} alt="barbername" />
                                 </div>
                               </div>
                               <div>
