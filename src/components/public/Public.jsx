@@ -831,7 +831,7 @@ const Public = () => {
   return (
     <main className={style.container}
       style={{
-        backgroundColor: colors.color4
+        backgroundColor: colors?.color4
       }}
     >
       <div className={style.top}>
@@ -840,9 +840,9 @@ const Public = () => {
           <div
             className={style.top_chip}
             style={{
-              backgroundColor: colors.inputColor,
-              border: `0.1rem solid ${colors.borderColor}`,
-              color: colors.color3
+              backgroundColor: colors?.inputColor,
+              border: `0.1rem solid ${colors?.borderColor}`,
+              color: colors?.color3
             }}
           >
             <div>
@@ -855,9 +855,9 @@ const Public = () => {
           <div
             className={style.top_chip}
             style={{
-              backgroundColor: colors.inputColor,
-              border: `0.1rem solid ${colors.borderColor}`,
-              color: colors.color3
+              backgroundColor: colors?.inputColor,
+              border: `0.1rem solid ${colors?.borderColor}`,
+              color: colors?.color3
             }}
           >
             <div>
@@ -887,7 +887,7 @@ const Public = () => {
                 onKeyDown={handleKeyPress}
                 style={{
                   border: `0.1rem solid ${colors.borderColor}`,
-                  borderBottom: nameError ? "0.1rem solid red" : `0.1rem solid ${colors.borderColor}`,
+                  borderBottom: nameError ? "0.1rem solid red" : `0.1rem solid ${colors?.borderColor}`,
                   backgroundColor: colors.inputColor
                 }}
               />
@@ -981,7 +981,7 @@ const Public = () => {
             onClick={joinqueueCheckHandler}
             style={{
               cursor: adminInfo.kioskAvailability ? "pointer" : "not-allowed",
-              background: modecolors.color1,
+              background: modecolors?.color1,
             }}
             disabled={!adminInfo.kioskAvailability}
           >Join</button>
@@ -1398,7 +1398,7 @@ const Public = () => {
 
               {joinQueueKioskloading ? <button 
               style={{
-                backgroundColor: modecolors.color1
+                backgroundColor: modecolors?.color1
               }}
               className={style.modaljoinqueue_btn}><ColorRing
                 visible={true}
@@ -1410,7 +1410,7 @@ const Public = () => {
                 colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
               /></button> : <button
               style={{
-                backgroundColor: modecolors.color1
+                backgroundColor: modecolors?.color1
               }}
                 className={style.modaljoinqueue_btn}
                 onClick={joinHandler}>Join</button>}
@@ -1433,8 +1433,8 @@ const Public = () => {
             <div key={item.barberId} 
             className={style.marqueeItem}
             style={{
-              backgroundColor: colors.inputColor,
-              border: `0.1rem solid ${colors.borderColor}`
+              backgroundColor: colors?.inputColor,
+              border: `0.1rem solid ${colors?.borderColor}`
             }}
             >
               <div>
