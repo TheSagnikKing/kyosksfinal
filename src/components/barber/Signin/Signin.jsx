@@ -13,6 +13,9 @@ import { ClickAwayListener, Skeleton } from '@mui/material';
 
 const Signin = () => {
 
+    const { colors, currentTheme } = useSelector(state => state.theme);
+    const { modecolors } = useSelector(state => state.modeColor)
+
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
     const [
@@ -148,7 +151,11 @@ const Signin = () => {
     const [showPassword, setShowPassword] = useState(false)
 
     return (
-        <main className={style.barber_signin_container}>
+        <main className={style.barber_signin_container}
+            style={{
+                backgroundColor: colors.color4
+            }}
+        >
             <div className={style.barber_signin_container_left}>
                 <img src="./Signup.png" alt="signin" />
             </div>
@@ -157,20 +164,33 @@ const Signin = () => {
                     <h2>Welcome to Barber SignIn</h2>
 
                     <ClickAwayListener onClickAway={() => setDrop(false)}>
-                        <div className={style.barber_email_selection_container} onClick={dropdownHandler}>
+                        <div
+
+                            className={style.barber_email_selection_container} onClick={dropdownHandler}>
                             <input
                                 type="text"
                                 placeholder='Search Barber'
                                 value={barberemail}
                                 onChange={(e) => setBarberEmailHandler(e)}
                                 onKeyDown={handleKeyPress}
+                                style={{
+                                    backgroundColor: colors.inputColor,
+                                    border: `0.1rem solid ${colors.borderColor}`
+                                }}
                             />
-                            <div>
+                            <div
+                                style={{ color: colors.color3 }}
+                            >
                                 <DropdownIcon />
                             </div>
 
 
-                            {drop && <main className={style.barber_email_selection_dropdown}>
+                            {drop && <main
+                                style={{
+                                    backgroundColor: colors.color4,
+                                    border: `0.1rem solid ${colors.borderColor}`
+                                }}
+                                className={style.barber_email_selection_dropdown}>
 
                                 {
                                     isLoading ? (<div className={style.barber_email_selection_dropdown_loading}>
@@ -190,7 +210,11 @@ const Signin = () => {
                                                             // background: barberemail === b.email && "var(--primary-color)",
                                                         }}
                                                     >
-                                                        <p style={{ color: barberemail === b.email && "var(--text-primary)" }}>{b.email}</p>
+                                                        <p style={{
+                                                            color: barberemail === b.email && colors.color3,
+                                                            opacity: barberemail === b.email && 1,
+                                                            fontWeight: barberemail === b.email && 600
+                                                        }}>{b.email}</p>
                                                     </div>
                                                 )
                                             })
@@ -206,7 +230,12 @@ const Signin = () => {
                         </div>
                     </ClickAwayListener>
 
-                    <div className={style.password_container}>
+                    <div
+                        style={{
+                            backgroundColor: colors.inputColor,
+                            border: `0.1rem solid ${colors.borderColor}`
+                        }}
+                        className={style.password_container}>
                         <input
                             type={showPassword ? "text" : "password"}
                             id="input_password"
@@ -215,22 +244,29 @@ const Signin = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             onKeyDown={handleKeyPress}
                         />
-                        <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
+                        <div style={{ color: colors.color3 }} onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                     </div>
 
                     {
-                        barberisloading ? (<button className={style.signin_btn}><ColorRing
-                            visible={true}
-                            height="4rem"
-                            width="4rem"
-                            ariaLabel="color-ring-loading"
-                            wrapperStyle={{}}
-                            wrapperClass="color-ring-wrapper"
-                            colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
-                        /></button>) : (<button
-                            className={style.signin_btn}
-                            onClick={barberSigninHandler}
-                        >Sign in</button>)
+                        barberisloading ? (<button
+                            style={{
+                                backgroundColor: modecolors.color1
+                            }}
+                            className={style.signin_btn}><ColorRing
+                                visible={true}
+                                height="4rem"
+                                width="4rem"
+                                ariaLabel="color-ring-loading"
+                                wrapperStyle={{}}
+                                wrapperClass="color-ring-wrapper"
+                                colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                            /></button>) : (<button
+                                style={{
+                                    backgroundColor: modecolors.color1
+                                }}
+                                className={style.signin_btn}
+                                onClick={barberSigninHandler}
+                            >Sign in</button>)
                     }
 
                 </main>

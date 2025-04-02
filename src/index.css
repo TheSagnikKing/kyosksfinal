@@ -203,7 +203,7 @@ body {
   -moz-border-radius: var(--input-border-radius) !important;
   -ms-border-radius: var(--input-border-radius) !important;
   -o-border-radius: var(--input-border-radius) !important;
-  color: var(--text-primary);
+  /* color: var(--text-primary); */
 }
 
 .react-international-phone-input-container .react-international-phone-country-selector-button {

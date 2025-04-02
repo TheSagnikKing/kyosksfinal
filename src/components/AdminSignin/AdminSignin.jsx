@@ -4,11 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import { useLoginKioskMutation, useGoogleAdminLoginKioskMutation } from './adminsigninApiSlice'
 import toast from 'react-hot-toast'
 import { setAdminToken } from './adminauthSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { ColorRing } from 'react-loader-spinner'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
 
 const AdminSignin = () => {
+
+    const { colors, currentTheme } = useSelector(state => state.theme);
+    const { modecolors } = useSelector(state => state.modeColor)
 
     const [role, setRole] = useState("Admin")
 
@@ -91,15 +94,27 @@ const AdminSignin = () => {
     const [showPassword, setShowPassword] = useState(false)
 
     return (
-        <main className={style.admin__signin__main__container}>
-            <div className={style.admin__signin__main__left}>
+        <main
+            className={style.admin__signin__main__container}
+            style={{
+                backgroundColor: colors.color4
+            }}
+        >
+            <div
+                className={style.admin__signin__main__left}>
                 <img src="/Signup.png" alt="signin" />
             </div>
 
             <div className={style.admin__signin__main__right}>
 
                 <div className={style.admin_signin_form_container}>
-                    <div><img src="./IQB-Logo.png" alt="iqb_logo" /></div>
+                    <div><img
+                        src="./IQB-Logo.png" alt="iqb_logo"
+                        style={{
+                            filter: currentTheme === "Dark" ? "brightness(0) invert(1)" : "brightness(0) invert(0)"
+                        }}
+
+                    /></div>
                     <p>Effortlessly manage your salon with IQB! Oversee barbers, adjust settings, and enable easy Barber Login. Customers can join the queue in a tap.</p>
 
                     <div className={style.email_container}>
@@ -109,11 +124,20 @@ const AdminSignin = () => {
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder='Enter Your Email'
                             onKeyDown={handleKeyPress}
+                            style={{
+                                backgroundColor: colors.inputColor,
+                                border: `0.1rem solid ${colors.borderColor}`
+                            }}
                         />
 
                     </div>
 
-                    <div className={style.password_container}>
+                    <div className={style.password_container}
+                        style={{
+                            backgroundColor: colors.inputColor,
+                            border: `0.1rem solid ${colors.borderColor}`
+                        }}
+                    >
                         <input
                             type={showPassword ? "text" : "password"}
                             id="input_password"
@@ -122,34 +146,56 @@ const AdminSignin = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             onKeyDown={handleKeyPress}
                         />
-                        <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
+                        <div 
+                        style={{ color: colors.color3}}
+                        onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                     </div>
 
                     <div className={style.rolediv}>
                         <div>
-                            <div>
+                            <div
+                                style={{
+                                    backgroundColor: colors.inputColor,
+                                    border: `0.1rem solid ${colors.borderColor}`
+                                }}
+                            >
                                 <input
                                     type="checkbox"
                                     checked={role === "Admin" ? true : false}
                                     onChange={() => setRole("Admin")}
                                     onKeyDown={handleKeyPress}
+                                    style={{
+                                        accentColor: modecolors.color1
+                                    }}
                                 />
                                 <p>Admin</p>
                             </div>
 
-                            <div>
+                            <div
+                                style={{
+                                    backgroundColor: colors.inputColor,
+                                    border: `0.1rem solid ${colors.borderColor}`
+                                }}
+                            >
                                 <input
                                     type="checkbox"
                                     checked={role === "Barber" ? true : false}
                                     onChange={() => setRole("Barber")}
                                     onKeyDown={handleKeyPress}
+                                    style={{
+                                        accentColor: modecolors.color1
+                                    }}
                                 />
                                 <p>Barber</p>
                             </div>
                         </div>
                     </div>
 
-                    {isLoading ? <button className={style.signin_btn}><ColorRing
+                    {isLoading ? <button 
+                    style={{
+                        backgroundColor: modecolors.color1
+                    }}
+                    className={style.signin_btn}><ColorRing
                         visible={true}
                         height="4rem"
                         width="4rem"
@@ -157,7 +203,11 @@ const AdminSignin = () => {
                         wrapperStyle={{}}
                         wrapperClass="color-ring-wrapper"
                         colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
-                    /></button> : <button onClick={loginHandler}
+                    /></button> : <button 
+                    style={{
+                        backgroundColor: modecolors.color1
+                    }}
+                    onClick={loginHandler}
                         className={style.signin_btn}
                     >Sign in</button>}
                 </div>

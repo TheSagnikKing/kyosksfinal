@@ -1,5 +1,5 @@
 import { IoSettingsSharp } from "react-icons/io5";
-import { IoMdArrowDropdownCircle } from "react-icons/io";
+import { IoIosColorPalette, IoMdArrowDropdownCircle } from "react-icons/io";
 import { FaCheck, FaPlus, FaRegEyeSlash } from "react-icons/fa6";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { IoArrowBack } from "react-icons/io5"
@@ -7,7 +7,7 @@ import { RxCross2 } from "react-icons/rx";
 
 import { RiAccountCircleFill } from 'react-icons/ri'
 import { HiQueueList } from 'react-icons/hi2'
-import { MdJoinInner, MdPhoneInTalk } from 'react-icons/md'
+import { MdDarkMode, MdJoinInner, MdOutlineWbSunny, MdPhoneInTalk } from 'react-icons/md'
 import { TbArrowBackUp, TbLogout2 } from 'react-icons/tb'
 import { BsExclamationCircle } from "react-icons/bs";
 import { IoPersonSharp } from "react-icons/io5";
@@ -34,3 +34,6 @@ export const TotalQueueIcon = BiAddToQueue
 export const EmailIcon = TfiEmail
 export const PhoneIcon = MdPhoneInTalk 
 export const BackIconNew = TbArrowBackUp 
+export const ThemeIcon = IoIosColorPalette 
+export const LightIcon = MdOutlineWbSunny 
+export const DarkIcon = MdDarkMode 

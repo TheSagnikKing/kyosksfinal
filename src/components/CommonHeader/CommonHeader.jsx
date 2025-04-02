@@ -2,13 +2,30 @@ import React, { useEffect, useState } from 'react'
 import style from './CommonHeader.module.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ClickAwayListener } from '@mui/material';
-import { AccountIcon, BackIconNew, JoinIcon, LogoutIcon, QueueIcon, SettingsIcon } from '../../icons';
+import { AccountIcon, BackIconNew, DarkIcon, JoinIcon, LightIcon, LogoutIcon, QueueIcon, SettingsIcon, ThemeIcon } from '../../icons';
 import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice';
 import Skeleton from 'react-loading-skeleton';
+import { setTheme } from '../app/themeSlice';
+import { setModeColor } from '../app/modeColorSlice';
 
-const CommonHeader = ({ themecolor, setThemeColor }) => {
+const CommonHeader = () => {
+
+    const { currentTheme, colors } = useSelector(state => state.theme);
+    const { availableModeColors} = useSelector(state => state.modeColor)
+
+    const dispatch = useDispatch()
+
+    const [themedropOpen, setThemedropOpen] = useState(false)
+
+    const toggleTheme = (theme) => {
+        dispatch(setTheme(theme));
+    };
+
+    const toggleThemecolor = (themecolor) => {
+        dispatch(setModeColor(themecolor))
+    }
 
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
@@ -74,7 +91,13 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
     // console.log(adminInfo.kioskAvailability)
 
     return (
-        <header className={style.kiyosk_header}>
+        <header 
+        className={style.kiyosk_header}
+        style={{
+            borderBottom: `0.1rem solid ${colors.borderColor}`,
+            backgroundColor: colors.color4
+        }}
+        >
             <div>
                 <div onClick={() => navigate("/kiosk")}>
                     {
@@ -101,7 +124,7 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                     <button
                         className={style.back_btn}
                         onClick={() => navigate("/barbersignin")}
-                    ><BackIconNew/></button>
+                    ><BackIconNew /></button>
                     : <div>
 
                         <div>
@@ -113,13 +136,25 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                                 }}
                             >JoinQueue</button> */}
                         </div>
-                        
+
                         <ClickAwayListener onClickAway={handleClickAway}>
-                            <div>
+                            <div
+                            style={{
+                                background: colors.inputColor,
+                                border: `0.1rem solid ${colors.borderColor}`,
+                                color: colors.color3
+                            }}
+                            >
                                 <SettingsIcon onClick={() => setShowDrop((prev) => !prev)} />
 
                                 {showdrop && (
-                                    <div className={style.kiyosk_dropbox}>
+                                    <div 
+                                    className={style.kiyosk_dropbox}
+                                    style={{
+                                        background: colors.color4,
+                                        border:`0.1rem solid ${colors.borderColor}`
+                                    }}
+                                    >
                                         <div onClick={barbersigninClicked}>
                                             <div><AccountIcon /></div>
                                             <p>Barber signin</p>
@@ -129,6 +164,24 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                                             <div><SettingsIcon /></div>
                                             <p>Salon settings</p>
                                         </div>
+
+                                        <div onClick={() => dispatch(setTheme(currentTheme === "Dark" ? "Light" : "Dark"))}>
+                                            <div>{currentTheme === "Dark" ? <DarkIcon /> : <LightIcon />}</div>
+                                            <p>{currentTheme === "Dark" ? "Dark" : "Light"}</p>
+                                        </div>
+
+                                        {
+                                            Object.entries(availableModeColors)?.map(([key,value]) => {
+                                                return (
+                                                    <div className={style.theme_item} key={key} onClick={() => toggleThemecolor(key)}>
+                                                        <div><div style={{
+                                                            background: value.color1
+                                                        }}></div></div>
+                                                        <p>{key}</p>
+                                                    </div>
+                                                )
+                                            })
+                                        }
 
 
 
@@ -152,32 +205,14 @@ const CommonHeader = ({ themecolor, setThemeColor }) => {
                                             <div><LogoutIcon /></div>
                                             <p>Logout</p>
                                         </div>
-
-                                        {/* <div
-                                            onClick={() => setThemeColor(true)}
-                                            style={{
-                                                background: themecolor ? "#efefef" : "#fff"
-                                            }}
-                                        >
-                                            <div>1.</div>
-                                            <p>Theme One</p>
-                                        </div>
-
-                                        <div
-                                            onClick={() => setThemeColor(false)}
-                                            style={{
-                                                background: !themecolor ? "#efefef" : "#fff"
-                                            }}
-                                        >
-                                            <div>2.</div>
-                                            <p>Theme Two</p>
-                                        </div> */}
                                     </div>
                                 )}
                             </div>
                         </ClickAwayListener>
                     </div>
             }
+
+
 
         </header>
     )

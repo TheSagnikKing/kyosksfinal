@@ -7,6 +7,7 @@ import { ExclamationIcon } from './icons';
 import "./App.css"
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Layout from './components/Layout/Layout';
+import { useSelector } from 'react-redux';
 
 const Public = React.lazy(() => import("./components/public/Public"));
 const JoinQueue = React.lazy(() => import("./components/JoinQueue/JoinQueue"));
@@ -63,21 +64,40 @@ const ErrorFallbackAuth = () => {
 
 const App = () => {
 
+  const { currentTheme,colors } = useSelector(state => state.theme);
+
 
   useEffect(() => {
     // This sets globally 
     const styleElement = document.createElement("style");
     styleElement.textContent = `
-      p, h1, h2, h3, h4, h5, i, input, textarea, input::placeholder, textarea::placeholder, select, button,b {
-        color: var(--text-primary);
+      p, h1, h2, h3, h4, h5, i, input, textarea, select, button,b {
+        color:${currentTheme === "Dark" ? "var(--text-primary)" : "#000"};
+      }
+
+      input::placeholder, textarea::placeholder {
+        color: ${currentTheme === "Dark" ? "var(--text-secondary)" : "#0B0B0AB2"};
       }
     `;
     document.head.appendChild(styleElement);
-  
+
     return () => {
       document.head.removeChild(styleElement);
     };
-  }, []);
+  }, [currentTheme]);
+
+
+  useEffect(() => {
+    const phoneInput = document.querySelector(
+      '.react-international-phone-input-container .react-international-phone-input'
+    );
+
+    if (phoneInput) {
+      phoneInput.style.color = colors.color3;
+    }
+
+
+  }, [currentTheme])
 
   return (<>
     <Toaster />
@@ -105,27 +125,27 @@ const App = () => {
             </Route>
 
             <Route element={<AllRoutesProtect />}>
-            <Route element={<Layout />}>
-              <Route path="/kiosk" element={<Public />} />
-              <Route path="/salonsignin" element={<SalonSignin />} />
+              <Route element={<Layout />}>
+                <Route path="/kiosk" element={<Public />} />
+                <Route path="/salonsignin" element={<SalonSignin />} />
 
-              <Route element={<SalonProtected />}>
-                <Route path="/salonsettings" element={<SalonSettings />} />
-              </Route>
+                <Route element={<SalonProtected />}>
+                  <Route path="/salonsettings" element={<SalonSettings />} />
+                </Route>
 
-              <Route path="/joinqueue" element={<JoinQueue />} />
-              <Route path="/queuelist" element={<QueueList />} />
-              <Route path="/barberservelogn" element={<BarberServeLogin />} />
-              <Route path="/cancelservelogn" element={<CancelServeLogin />} />
-              <Route path="/barbersignin" element={<BarberSignin />} />
-              <Route element={<BarberKiyoskDashboardProtect />}>
-                <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />
+                <Route path="/joinqueue" element={<JoinQueue />} />
+                <Route path="/queuelist" element={<QueueList />} />
+                <Route path="/barberservelogn" element={<BarberServeLogin />} />
+                <Route path="/cancelservelogn" element={<CancelServeLogin />} />
+                <Route path="/barbersignin" element={<BarberSignin />} />
+                <Route element={<BarberKiyoskDashboardProtect />}>
+                  <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />
+                </Route>
               </Route>
-            </Route>
             </Route>
           </Route>
 
-          <Route path="*" element={<ErrorPage/>}/>
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

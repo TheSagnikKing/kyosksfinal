@@ -3,7 +3,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    background-color: var(--bg-primary);
+    /* background-color: var(--bg-primary); */
 }
 
 .barber_signin_container_left {
@@ -54,24 +54,25 @@
         height: 3.5rem;
         padding-inline: 1rem;
         font-size: 1.4rem;
-        border: 0.1rem solid var(--border-secondary);
+        /* border: 0.1rem solid var(--border-secondary); */
         border-radius: var(--border-radius-primary);
         -webkit-border-radius: var(--border-radius-primary);
         -moz-border-radius: var(--border-radius-primary);
         -ms-border-radius: var(--border-radius-primary);
         -o-border-radius: var(--border-radius-primary);
-        background-color: var(--input-bg-color);
-        color: var(--text-primary);
+        /* background-color: var(--input-bg-color); */
+        /* color: var(--text-primary); */
         outline: none;
 
         &::placeholder {
-            color: var(--text-secondary);
+            /* color: var(--text-secondary); */
             letter-spacing: 0.01rem;
+            opacity: 0.6;
         }
     }
 
     &>div{
-        color: var(--text-primary);
+        /* color: var(--text-primary); */
     }
 
 
@@ -93,14 +94,14 @@
         left: 0px;
         right: 0px;
         height: 25rem;
-        border: 0.1rem solid var(--border-secondary);
+        /* border: 0.1rem solid var(--border-secondary); */
         border-radius: var(--primary-radius, 0.6rem);
         -webkit-border-radius: var(--primary-radius, 0.6rem);
         -moz-border-radius: var(--primary-radius, 0.6rem);
         -ms-border-radius: var(--primary-radius, 0.6rem);
         -o-border-radius: var(--primary-radius, 0.6rem);
         padding: 1rem;
-        background-color: var(--bg-primary);
+        /* background-color: var(--bg-primary); */
         z-index: 100;
         overflow: auto;
 
@@ -123,13 +124,16 @@
 
             &:hover{
                 &>p {
-                    color: var(--text-primary);
+                    /* color: var(--text-primary); */
+                    opacity: 1;
+                    font-weight: 600;
                 }
             }
 
             &>p{
                 font-size: 1.4rem;
-            color: var(--text-secondary);
+                opacity: 0.6;
+            /* color: var(--text-secondary); */
             }
         }
     }
@@ -141,13 +145,13 @@
 }
 
 .password_container {
-    border: 0.1rem solid var(--border-secondary);
+    /* border: 0.1rem solid var(--border-secondary); */
     border-radius: var(--border-radius-primary);
     -webkit-border-radius: var(--border-radius-primary);
     -moz-border-radius: var(--border-radius-primary);
     -ms-border-radius: var(--border-radius-primary);
     -o-border-radius: var(--border-radius-primary);
-    background-color: var(--input-bg-color);
+    /* background-color: var(--input-bg-color); */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -159,13 +163,14 @@
         padding-inline: 1rem;
         font-size: 1.4rem;
         background: transparent;
-        color: var(--text-primary);
+        /* color: var(--text-primary); */
         border: none;
         outline: none;
 
         &::placeholder {
-            color: var(--text-secondary);
+            /* color: var(--text-secondary); */
             letter-spacing: 0.01rem;
+            opacity: 0.6;
         }
     }
 
@@ -176,7 +181,7 @@
         justify-content: center;
         align-items: center;
         font-size: 1.4rem;
-        color: var(--text-primary);
+        /* color: var(--text-primary); */
         cursor: pointer;
     }
 }
@@ -190,7 +195,7 @@
     -moz-border-radius: var(--border-radius-primary);
     -ms-border-radius: var(--border-radius-primary);
     -o-border-radius: var(--border-radius-primary);
-    background-color: var(--bg-secondary);
+    /* background-color: var(--bg-secondary); */
     color: var(--text-primary);
     border: none;
     outline: none;
@@ -202,7 +207,7 @@
     -o-transition: var(--common-btn-transition);
 
     &:hover {
-        background-color: var(--bg-secondary-hover);
+        opacity: 0.8;
     }
 }
 

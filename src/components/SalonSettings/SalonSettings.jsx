@@ -10,6 +10,10 @@ import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
 
 const SalonSettings = () => {
 
+  const { colors, currentTheme } = useSelector(state => state.theme);
+  const { modecolors } = useSelector(state => state.modeColor)
+
+
   const adminInfo = useSelector(selectCurrentAdminInfo)
 
   const [salonbtnCheck, setSalonbtnCheck] = useState(null)
@@ -273,7 +277,11 @@ const SalonSettings = () => {
 
   const [a, setA] = useState(false)
   return (
-    <section className={style.salon_settings_container}>
+    <section className={style.salon_settings_container}
+    style={{
+      backgroundColor: colors.color4
+    }}
+    >
       <div className={style.salon_settings_left}>
         <img src="./My_Bookings.png" alt="salon_settings_img" />
       </div>
@@ -286,10 +294,17 @@ const SalonSettings = () => {
             {
               settingsData.map((item) => {
                 return (
-                  <div className={style.settings_item} key={item.id}>
-                    <div>
+                  <div 
+                  style={{
+                    backgroundColor: colors.inputColor,
+                    border: `0.1rem solid ${colors.borderColor}`
+                  }}
+                  className={style.settings_item} key={item.id}>
+                    <div style={{
+                      borderRight: `0.1rem solid ${colors.borderColor}`
+                    }}>
                       <div>
-                        <div><img src={item.img} alt="" /></div>
+                        <div><img src={item.img} alt="" style={{ filter: currentTheme === "Dark" ? "brightness(0) invert(1)" : "brightness(0) invert(0)"}}/></div>
                         <h2>{item.name}</h2>
                         <div>
                           <Switch

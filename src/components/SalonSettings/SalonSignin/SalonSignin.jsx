@@ -11,6 +11,9 @@ import { useSalonAccountLoginMutation } from '../salonSlice'
 
 const SalonSignin = () => {
 
+    const { colors, currentTheme } = useSelector(state => state.theme);
+    const { modecolors } = useSelector(state => state.modeColor)
+
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
     const [email, setEmail] = useState("")
@@ -64,7 +67,11 @@ const SalonSignin = () => {
 
 
     return (
-        <main className={style.admin__signin__main__container}>
+        <main className={style.admin__signin__main__container}
+            style={{
+                backgroundColor: colors.color4
+            }}
+        >
             <div className={style.admin__signin__main__left}>
                 <img src="./Signup.png" alt="signin" />
             </div>
@@ -81,11 +88,20 @@ const SalonSignin = () => {
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder='Enter Your Email'
                             onKeyDown={handleKeyPress}
+                            style={{
+                                backgroundColor: colors.inputColor,
+                                border: `0.1rem solid ${colors.borderColor}`
+                            }}
                         />
 
                     </div>
 
-                    <div className={style.password_container}>
+                    <div className={style.password_container}
+                        style={{
+                            backgroundColor: colors.inputColor,
+                            border: `0.1rem solid ${colors.borderColor}`
+                        }}
+                    >
                         <input
                             type={showPassword ? "text" : "password"}
                             id="input_password"
@@ -94,44 +110,70 @@ const SalonSignin = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             onKeyDown={handleKeyPress}
                         />
-                        <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
+                        <div
+                            style={{ color: colors.color3 }}
+                            onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                     </div>
 
                     <div className={style.rolediv}>
                         <div>
-                            <div>
+                            <div
+                                style={{
+                                    backgroundColor: colors.inputColor,
+                                    border: `0.1rem solid ${colors.borderColor}`
+                                }}
+                            >
                                 <input
                                     type="checkbox"
                                     checked={role === "Admin" ? true : false}
                                     onChange={() => setRole("Admin")}
                                     onKeyDown={handleKeyPress}
+                                    style={{
+                                        accentColor: modecolors.color1
+                                    }}
                                 />
                                 <p>Admin</p>
                             </div>
 
-                            <div>
+                            <div
+                                style={{
+                                    backgroundColor: colors.inputColor,
+                                    border: `0.1rem solid ${colors.borderColor}`
+                                }}
+                            >
                                 <input
                                     type="checkbox"
                                     checked={role === "Barber" ? true : false}
                                     onChange={() => setRole("Barber")}
                                     onKeyDown={handleKeyPress}
+                                    style={{
+                                        accentColor: modecolors.color1
+                                    }}
                                 />
                                 <p>Barber</p>
                             </div>
                         </div>
                     </div>
 
-                    {salonloginisLoading ? <button className={style.signin_btn}><ColorRing
-                        visible={true}
-                        height="4rem"
-                        width="4rem"
-                        ariaLabel="color-ring-loading"
-                        wrapperStyle={{}}
-                        wrapperClass="color-ring-wrapper"
-                        colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
-                    /></button> : <button onClick={loginHandler}
-                        className={style.signin_btn}
-                    >Sign in</button>}
+                    {salonloginisLoading ? <button
+                        style={{
+                            backgroundColor: modecolors.color1
+                        }}
+                        className={style.signin_btn}><ColorRing
+                            visible={true}
+                            height="4rem"
+                            width="4rem"
+                            ariaLabel="color-ring-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="color-ring-wrapper"
+                            colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                        /></button> : <button
+                            style={{
+                                backgroundColor: modecolors.color1
+                            }}
+                            onClick={loginHandler}
+                            className={style.signin_btn}
+                        >Sign in</button>}
                 </div>
 
             </div>

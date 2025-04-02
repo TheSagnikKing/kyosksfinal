@@ -16,10 +16,10 @@
 
 .modal__content {
     width: min(55rem, 95vw);
-    background-color: var(--bg-primary);
+    /* background-color: var(--bg-primary); */
     padding: 2rem;
     position: relative;
-    border: 0.1rem solid var(--border-secondary)
+    /* border: 0.1rem solid var(--border-secondary) */
 }
 
 .modal__content>button {
@@ -31,7 +31,7 @@
     align-items: center;
     justify-content: center;
     width: 3.2rem;
-    border: 0.1rem solid var(--border-secondary);
+    /* border: 0.1rem solid var(--border-secondary); */
     background: transparent;
     cursor: pointer;
     color: var(--color-6);
@@ -43,94 +43,3 @@
     font-size: var(--font-size-2);
     margin-bottom: 1rem;
 }
-
-/* @media((min-width:0px) and (max-width:430px)) {
-    .main__modal__container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 100vh;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .modal__content {
-        width: 95vw;
-        padding: 1rem;
-    }
-
-    .modal__content>button {
-        width: 3rem;
-        height: 3rem;
-    }
-}
-
-@media((min-width:431px) and (max-width:768px)) {
-    .main__modal__container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 100vh;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .modal__content {
-        width: 80vw;
-        padding: 2rem;
-    }
-
-}
-
-@media((min-width:769px) and (max-width:1000px)) {
-    .main__modal__container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 100vh;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .modal__content {
-        width: 70vw;
-        padding: 2rem;
-    }
-
-}
-
-@media((min-width:1001px) and (max-width:1250px)) {
-    .main__modal__container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 100vh;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .modal__content {
-        width: 55vw;
-        padding: 2rem;
-    }
-} */

@@ -11,6 +11,9 @@ import { ClickAwayListener } from '@mui/material'
 
 const SalonSelection = () => {
 
+    const { colors, currentTheme } = useSelector(state => state.theme);
+    const { modecolors } = useSelector(state => state.modeColor)
+
     const navigate = useNavigate()
 
     const [salonId, setSalonId] = useState("")
@@ -128,7 +131,11 @@ const SalonSelection = () => {
     }
 
     return (
-        <main className={style.select_salon_container}>
+        <main className={style.select_salon_container}
+        style={{
+            backgroundColor: colors.color4
+        }}
+        >
             <div className={style.select_salon_container_left}>
                 <img src="./Forgot_Password.png" alt="salon_selection_img" />
             </div>
@@ -145,19 +152,26 @@ const SalonSelection = () => {
                             adminInfo?.role === "Barber" ? <p style={{ textAlign: "center" }}>Selected Salon, &nbsp;<span>{adminInfo?.salonName}</span></p> : adminInfo?.role === "Admin" ? <p>Selected Salon, &nbsp;<span>{salonName !== "" && salonName}</span></p> : null
                         }
                          */}
-                         <p></p>
+                        <p></p>
                         {
                             adminInfo?.role === "Barber" ? null : adminInfo?.role === "Admin" ? <div>
                                 <ClickAwayListener onClickAway={() => setSalonListDrop(false)}>
-                                    <div onClick={() => setSalonListDrop((prev) => (!prev))}>
+                                    <div 
+                                    style={{
+                                        backgroundColor: colors.inputColor,
+                                        border: `0.1rem solid ${colors.borderColor}`
+                                    }}
+                                    onClick={() => setSalonListDrop((prev) => (!prev))}>
                                         <p>{salonName !== "" && salonName}</p>
-                                        <div><IoMdArrowDropdownCircle style={{color:"#fff"}}/></div>
+                                        <div style={{ color: colors.color3}}><IoMdArrowDropdownCircle/></div>
 
 
                                         {salonlistdrop && <main
                                             className={style.salondropdown_box}
                                             style={{
                                                 height: getAllSalonsByAdmindata?.salons?.length > 0 && getAllSalonsByAdmindata?.salons?.length <= 4 ? "auto" : "20rem",
+                                                backgroundColor: colors.color4,
+                                                border: `0.1rem solid ${colors.borderColor}`
                                             }}
                                         >
                                             {getAllSalonsByAdmindata?.salons?.length > 0 &&
@@ -169,7 +183,9 @@ const SalonSelection = () => {
                                                             // borderTop: i === 0 && "none"
                                                         }}
                                                     ><p style={{
-                                                        color: salonName === s.salonName && "#fff"
+                                                        color: salonName === s.salonName && colors.color3,
+                                                        opacity: salonName === s.salonName && 1,
+                                                        fontWeight: salonName === s.salonName && 600
                                                     }}>{s.salonName}</p></div>
                                                 ))
                                             }
@@ -180,7 +196,15 @@ const SalonSelection = () => {
                         }
 
                         {
-                            adminInfo?.role === "Barber" ? <button onClick={continueHandler} className={style.salon_selection_btn}>Continue</button> : adminInfo?.role === "Admin" ? Object.keys(adminInfo).length > 0 && adminConnectKioskisLoading ? <button className={style.salon_selection_btn}><ColorRing
+                            adminInfo?.role === "Barber" ? <button 
+                            style={{
+                                backgroundColor: modecolors.color1
+                            }}
+                            onClick={continueHandler} className={style.salon_selection_btn}>Continue</button> : adminInfo?.role === "Admin" ? Object.keys(adminInfo).length > 0 && adminConnectKioskisLoading ? <button 
+                            style={{
+                                backgroundColor: modecolors.color1
+                            }}
+                            className={style.salon_selection_btn}><ColorRing
                                 visible={true}
                                 height="4rem"
                                 width="4rem"
@@ -188,7 +212,11 @@ const SalonSelection = () => {
                                 wrapperStyle={{}}
                                 wrapperClass="color-ring-wrapper"
                                 colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
-                            /></button> : <button onClick={applySalonHandler} className={style.salon_selection_btn}>Apply</button> : null
+                            /></button> : <button 
+                            style={{
+                                backgroundColor: modecolors.color1
+                            }}
+                            onClick={applySalonHandler} className={style.salon_selection_btn}>Apply</button> : null
                         }
 
                     </div>

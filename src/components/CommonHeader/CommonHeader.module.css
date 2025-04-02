@@ -4,8 +4,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 0.1rem solid var(--border-secondary);
-    background-color: var(--bg-primary);
+    /* border-bottom: 0.1rem solid var(--border-secondary); */
+    /* background-color: var(--bg-primary); */
 }
 
 
@@ -79,15 +79,10 @@
         display: grid;
         place-items: center;
         cursor: pointer;
-        background: var(--bg-hover-primary);
-        border: 0.1rem solid var(--border-secondary);
-        color: var(--text-primary);
+        /* background: var(--bg-hover-primary); */
+        /* border: 0.1rem solid var(--border-secondary); */
+        /* color: var(--text-primary); */
         font-size: 1.4rem;
-        transition: background-color 0.2s ease-in;
-        -webkit-transition: background-color 0.2s ease-in;
-        -moz-transition: background-color 0.2s ease-in;
-        -ms-transition: background-color 0.2s ease-in;
-        -o-transition: background-color 0.2s ease-in;
         cursor: pointer;
         outline: none;
         position: relative;
@@ -98,9 +93,9 @@
             position: absolute;
             right: 0rem;
             top: 4.5rem;
-            background-color: var(--bg-primary);
+            /* background-color: var(--bg-primary); */
             padding: 1rem;
-            border: 0.1rem solid var(--border-secondary);
+            /* border: 0.1rem solid var(--border-secondary); */
             border-radius: var(--border-radius-primary);
             -webkit-border-radius: var(--border-radius-primary);
             -moz-border-radius: var(--border-radius-primary);
@@ -119,30 +114,21 @@
                     width: 3.5rem;
                     display: grid;
                     place-items: center;
-                    color: var(--text-secondary);
-                    transition: var(--btn-transition);
-                    -webkit-transition: var(--btn-transition);
-                    -moz-transition: var(--btn-transition);
-                    -ms-transition: var(--btn-transition);
-                    -o-transition: var(--btn-transition);
+                    opacity: 0.8;
+                    /* color: var(--text-secondary); */
                 }
 
                 &>p {
                     font-size: 1.4rem;
                     font-weight: 500;
-                    color: var(--text-secondary);
-                    transition: var(--btn-transition);
-                    -webkit-transition: var(--btn-transition);
-                    -moz-transition: var(--btn-transition);
-                    -ms-transition: var(--btn-transition);
-                    -o-transition: var(--btn-transition);
+                    opacity: 0.8;
                 }
 
                 &:hover {
 
                     &>div,
                     &>p {
-                        color: var(--text-primary);
+                        opacity: 1;
                         font-weight: 600;
                     }
                 }
@@ -177,10 +163,52 @@
 
 .sytem_status.online {
     background-color: var(--color-8);
+    color: var(--text-primary);
 }
 
 .sytem_status.offline {
     background-color: var(--color-6);
+    color: var(--text-primary);
+}
+
+
+
+
+.theme_item {
+    display: flex !important;
+    align-items: center;
+    height: 3rem;
+    width: 100% !important;
+    gap: 1rem;
+
+    &>div {
+        height: 3.5rem !important;
+        width: 3.5rem !important;
+        position: relative;
+
+        &>div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            height: 1.5rem;
+            width: 1.5rem;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+        }
+    }
+
+    &>p {
+        /* color: var(--text-secondary); */
+        text-transform: capitalize;
+    }
 }
 
 
