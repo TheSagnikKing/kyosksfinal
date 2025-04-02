@@ -379,7 +379,7 @@
 
 // export default Public
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import style from './Public.module.css';
 import { AddIcon, BackIcon, DeleteIcon, DropdownIcon, PersonIcon, TotalQueueIcon } from '../../icons';
 import Marquee from "react-fast-marquee";
@@ -827,6 +827,12 @@ const Public = () => {
     joinQueueKiosk(joinqueueModalOpen.data)
   }
 
+  const phoneInputUseRef = useRef()
+
+  useEffect(() => {
+    phoneInputUseRef.current.style.color = colors.color3
+  }, [colors])
+
 
   return (
     <main className={style.container}
@@ -909,6 +915,7 @@ const Public = () => {
                 defaultCountry={countryflag}
                 value={mobileNumber}
                 onChange={(phone, meta) => handlePhoneChange(phone, meta)}
+                ref={phoneInputUseRef}
               />
 
               {/* <PhoneInput defaultCountry={"gb"} /> */}
@@ -1072,11 +1079,11 @@ const Public = () => {
 
                 </div>
 
-                {selectedBarber && <div className={style.select_barber_services_btn}><button 
-                onClick={selectbarberHandler}
-                style={{
-                  backgroundColor: modecolors.color1
-                }}
+                {selectedBarber && <div className={style.select_barber_services_btn}><button
+                  onClick={selectbarberHandler}
+                  style={{
+                    backgroundColor: modecolors.color1
+                  }}
                 >Select Services</button></div>}
               </>}
 
@@ -1085,11 +1092,11 @@ const Public = () => {
                   <div onClick={modaltwobackHandler}><BackIcon /></div>
                   <p>Select Services</p>
                 </div>
-                <div 
-                className={style.select_barber_services_container}
-                style={{
-                  background: colors.inputColor
-                }}
+                <div
+                  className={style.select_barber_services_container}
+                  style={{
+                    background: colors.inputColor
+                  }}
                 >
                   {
                     getServicesByBarberloading ?
@@ -1148,21 +1155,21 @@ const Public = () => {
                   }
 
                 </div>
-                {selectedServices.length > 0 && <div className={style.select_barber_services_btn}><button 
-                onClick={selectbarbercontinueHandler}
-                style={{
-                  backgroundColor: modecolors.color1
-                }}
+                {selectedServices.length > 0 && <div className={style.select_barber_services_btn}><button
+                  onClick={selectbarbercontinueHandler}
+                  style={{
+                    backgroundColor: modecolors.color1
+                  }}
                 >Continue</button></div>}
               </>}
 
               {modal3 && <>
                 <p className={style.modal_header}>Select Services</p>
-                <div 
-                className={style.select_barber_services_container}
-                style={{
-                  background: colors.inputColor
-                }}
+                <div
+                  className={style.select_barber_services_container}
+                  style={{
+                    background: colors.inputColor
+                  }}
                 >
                   {
                     getAllSalonServicesloading ? <div style={{
@@ -1221,11 +1228,11 @@ const Public = () => {
                   }
 
                 </div>
-                {selectedServices.length > 0 && <div className={style.select_barber_services_btn}><button 
-                onClick={selectserviceHandler}
-                style={{
-                  backgroundColor: modecolors.color1
-                }}
+                {selectedServices.length > 0 && <div className={style.select_barber_services_btn}><button
+                  onClick={selectserviceHandler}
+                  style={{
+                    backgroundColor: modecolors.color1
+                  }}
                 >Select Barber</button></div>}
               </>}
 
@@ -1234,11 +1241,11 @@ const Public = () => {
                   <div onClick={modalfourbackHandler}><BackIcon style={{ color: colors.color3 }} /></div>
                   <p>Select Barber </p>
                 </div>
-                <div 
-                className={style.select_barber_container}
-                style={{
-                  backgroundColor: colors.inputColor
-                }}
+                <div
+                  className={style.select_barber_container}
+                  style={{
+                    backgroundColor: colors.inputColor
+                  }}
                 >
                   {
                     getBarberByServicesKioskloading ? <div style={{
@@ -1310,11 +1317,11 @@ const Public = () => {
 
                 </div>
 
-                {selectedBarber && <div className={style.select_barber_services_btn}><button 
-                style={{
-                  backgroundColor: modecolors.color1
-                }}
-                onClick={() => selectservicecontinueHandler()}>Continue</button></div>}
+                {selectedBarber && <div className={style.select_barber_services_btn}><button
+                  style={{
+                    backgroundColor: modecolors.color1
+                  }}
+                  onClick={() => selectservicecontinueHandler()}>Continue</button></div>}
               </>}
 
             </Modal>
@@ -1329,12 +1336,12 @@ const Public = () => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <main 
-            className={style.joinqueueModalContainer}
-            style={{
-              backgroundColor: colors.color4,
-              border: `0.1rem solid ${colors.borderColor}`
-            }}
+            <main
+              className={style.joinqueueModalContainer}
+              style={{
+                backgroundColor: colors.color4,
+                border: `0.1rem solid ${colors.borderColor}`
+              }}
             >
               <div className={style.modal_head_content}>
                 <p>Are you sure ?</p>
@@ -1344,21 +1351,21 @@ const Public = () => {
                 })} style={{ cursor: "pointer", border: `0.1rem solid ${colors.borderColor}` }}><MdClose /></button>
               </div>
 
-              <div 
-              className={style.join_queue_modal_content_container}
-              style={{
-                backgroundColor: colors.inputColor
-              }}
+              <div
+                className={style.join_queue_modal_content_container}
+                style={{
+                  backgroundColor: colors.inputColor
+                }}
               >
 
                 <div style={{
                   backgroundColor: colors.color4
                 }}>
-                  <img 
-                  style={{
-                    border: `0.1rem solid ${colors.borderColor}`
-                  }}
-                  src={selectedBarberImg?.[0]?.url} alt="" height={60} width={60} />
+                  <img
+                    style={{
+                      border: `0.1rem solid ${colors.borderColor}`
+                    }}
+                    src={selectedBarberImg?.[0]?.url} alt="" height={60} width={60} />
                   <div>
                     <p>{joinqueueModalOpen?.data?.barberName}</p>
                     <p>{joinqueueModalOpen?.data?.name}</p>
@@ -1372,9 +1379,9 @@ const Public = () => {
                       return (
 
                         <div className={style.select_barber_services_item_modal} key={index}
-                        style={{
-                          backgroundColor: colors.color4
-                        }}
+                          style={{
+                            backgroundColor: colors.color4
+                          }}
                         >
                           <div className={style.select_barber_services_item_header_modal}>
                             <p>Service</p>
@@ -1396,24 +1403,24 @@ const Public = () => {
                 </div>
               </div>
 
-              {joinQueueKioskloading ? <button 
-              style={{
-                backgroundColor: modecolors?.color1
-              }}
-              className={style.modaljoinqueue_btn}><ColorRing
-                visible={true}
-                height="4rem"
-                width="4rem"
-                ariaLabel="color-ring-loading"
-                wrapperStyle={{}}
-                wrapperClass="color-ring-wrapper"
-                colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
-              /></button> : <button
-              style={{
-                backgroundColor: modecolors?.color1
-              }}
-                className={style.modaljoinqueue_btn}
-                onClick={joinHandler}>Join</button>}
+              {joinQueueKioskloading ? <button
+                style={{
+                  backgroundColor: modecolors?.color1
+                }}
+                className={style.modaljoinqueue_btn}><ColorRing
+                  visible={true}
+                  height="4rem"
+                  width="4rem"
+                  ariaLabel="color-ring-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="color-ring-wrapper"
+                  colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                /></button> : <button
+                  style={{
+                    backgroundColor: modecolors?.color1
+                  }}
+                  className={style.modaljoinqueue_btn}
+                  onClick={joinHandler}>Join</button>}
 
             </main>
           </MuiModal>
@@ -1430,12 +1437,12 @@ const Public = () => {
         // className={style.marquee}
         >
           {getDefaultSalonByAdmindata?.response?.leastQueueBarbers?.map((item, index) => (
-            <div key={item.barberId} 
-            className={style.marqueeItem}
-            style={{
-              backgroundColor: colors?.inputColor,
-              border: `0.1rem solid ${colors?.borderColor}`
-            }}
+            <div key={item.barberId}
+              className={style.marqueeItem}
+              style={{
+                backgroundColor: colors?.inputColor,
+                border: `0.1rem solid ${colors?.borderColor}`
+              }}
             >
               <div>
                 <div><img src={item?.profile?.[0]?.url} alt="" /></div>

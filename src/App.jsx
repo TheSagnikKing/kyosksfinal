@@ -64,8 +64,8 @@ const ErrorFallbackAuth = () => {
 
 const App = () => {
 
-  const { currentTheme,colors } = useSelector(state => state.theme);
-
+  const { currentTheme, colors } = useSelector(state => state.theme);
+  const { modecolors } = useSelector(state => state.modeColor)
 
   useEffect(() => {
     // This sets globally 
@@ -86,18 +86,12 @@ const App = () => {
     };
   }, [currentTheme]);
 
-
   useEffect(() => {
-    const phoneInput = document.querySelector(
-      '.react-international-phone-input-container .react-international-phone-input'
+    document.documentElement.style.setProperty(
+      "--bg-secondary",
+      modecolors.color1
     );
-
-    if (phoneInput) {
-      phoneInput.style.color = colors.color3;
-    }
-
-
-  }, [currentTheme])
+  }, [modecolors]);
 
   return (<>
     <Toaster />

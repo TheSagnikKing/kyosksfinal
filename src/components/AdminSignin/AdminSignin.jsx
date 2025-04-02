@@ -7,6 +7,8 @@ import { setAdminToken } from './adminauthSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { ColorRing } from 'react-loader-spinner'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
+import { useGoogleLogin } from '@react-oauth/google'
+import axios from 'axios'
 
 const AdminSignin = () => {
 
@@ -61,11 +63,14 @@ const AdminSignin = () => {
         }
     }, [isSuccess, isError, navigate])
 
+
+
     useEffect(() => {
         if (googleAdminLoginKioskisSuccess) {
-            localStorage.setItem('adminkiyosktoken', googleAdminLoginKioskdata?.adminToken)
+            localStorage.setItem('adminkiyosktoken', googleAdminLoginKioskdata?.token)
             localStorage.setItem('adminkiyoskloggin', 'true')
             dispatch(setAdminToken(googleAdminLoginKioskdata))
+            localStorage.setItem("salonSelect", "false")
             navigate("/selectsalon")
         } else if (googleAdminLoginKioskisError) {
             toast.error(googleAdminLoginKioskerror?.data?.message, {
@@ -92,6 +97,31 @@ const AdminSignin = () => {
     };
 
     const [showPassword, setShowPassword] = useState(false)
+
+
+    const googleLogin = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            try {
+                const { access_token } = tokenResponse;
+
+
+                const userInfo = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                });
+
+                // console.log('User Info:', userInfo.data);
+
+                // console.log(role)
+
+                googleAdminLoginKiosk({ email: userInfo.data.email, role })
+
+            } catch (error) {
+                console.error('Error fetching user info:', error);
+            }
+        },
+    });
 
     return (
         <main
@@ -146,9 +176,9 @@ const AdminSignin = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             onKeyDown={handleKeyPress}
                         />
-                        <div 
-                        style={{ color: colors.color3}}
-                        onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
+                        <div
+                            style={{ color: colors.color3 }}
+                            onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                     </div>
 
                     <div className={style.rolediv}>
@@ -191,25 +221,39 @@ const AdminSignin = () => {
                         </div>
                     </div>
 
-                    {isLoading ? <button 
-                    style={{
-                        backgroundColor: modecolors.color1
-                    }}
-                    className={style.signin_btn}><ColorRing
-                        visible={true}
-                        height="4rem"
-                        width="4rem"
-                        ariaLabel="color-ring-loading"
-                        wrapperStyle={{}}
-                        wrapperClass="color-ring-wrapper"
-                        colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
-                    /></button> : <button 
-                    style={{
-                        backgroundColor: modecolors.color1
-                    }}
-                    onClick={loginHandler}
-                        className={style.signin_btn}
-                    >Sign in</button>}
+                    {isLoading ? <button
+                        style={{
+                            backgroundColor: modecolors.color1
+                        }}
+                        className={style.signin_btn}><ColorRing
+                            visible={true}
+                            height="4rem"
+                            width="4rem"
+                            ariaLabel="color-ring-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="color-ring-wrapper"
+                            colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                        /></button> : <button
+                            style={{
+                                backgroundColor: modecolors.color1
+                            }}
+                            onClick={loginHandler}
+                            className={style.signin_btn}
+                        >Sign in</button>}
+
+                    <button onClick={() => googleLogin()}
+                        className={`${style.google_btn}`}
+                        style={{
+                            backgroundColor: colors.inputColor,
+                            border: `0.1rem solid ${colors.borderColor}`
+                        }}
+                    >
+                        <div>
+                            <div><img src="/google_logo.png" alt="logo" /></div>
+                            <p>Sign in with Google </p>
+                        </div>
+                    </button>
+
                 </div>
 
             </div>

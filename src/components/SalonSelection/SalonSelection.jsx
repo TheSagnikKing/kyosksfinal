@@ -142,10 +142,13 @@ const SalonSelection = () => {
 
             <div className={style.select_salon_container_right}>
                 <div className={style.salon_selection_container}>
-                    {
+                    {/* {
                         adminInfo?.role === "Barber" ? <h2 style={{ textAlign: "center" }}>Welcome Back, {adminInfo?.name}</h2> : <h2>Welcome Back, {adminInfo?.name}</h2>
+                    } */}
+                    <h2>Welcome Back, {adminInfo?.name}</h2>
+                    {
+                        adminInfo?.role === "Barber" ? (<p>Continue to access the Kiosk Dashboard</p>) : (<p>Kindly select a salon from the available options to proceed.</p>)
                     }
-                    <p>Kindly select a salon from the available options to proceed.</p>
 
                     <div className={style.selection_box_container}>
                         {/* {

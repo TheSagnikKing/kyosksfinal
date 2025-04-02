@@ -292,6 +292,9 @@ import Switch from "react-switch";
 
 const Dashboard2 = () => {
 
+    const { colors, currentTheme } = useSelector(state => state.theme);
+    const { modecolors } = useSelector(state => state.modeColor)
+
 
     const selectCurrentBarberdata = useSelector(selectCurrentBarberInfo)
     const selectCurrentBarberTokendata = useSelector(selectCurrentBarberToken)
@@ -463,11 +466,20 @@ const Dashboard2 = () => {
     const [clock, setClock] = useState(false)
 
     return (
-        <section className={`${style.section}`}>
+        <section className={`${style.section}`}
+        style={{
+            backgroundColor: colors.color4
+        }}
+        >
             <div>
                 <div>
                     <div>
-                        <img src={selectCurrentBarberdata?.foundUser?.profile[0]?.url} alt="" />
+                        <img src={selectCurrentBarberdata?.foundUser?.profile[0]?.url} 
+                        alt="" 
+                        style={{
+                            border: `0.1rem solid ${colors.borderColor}`
+                        }}
+                        />
                         <div>
                             <h2>{selectCurrentBarberdata?.foundUser?.name}</h2>
                             <p><span><EmailIcon /></span>{selectCurrentBarberdata?.foundUser?.email}</p>
@@ -475,9 +487,13 @@ const Dashboard2 = () => {
                         </div>
                     </div>
                     <div>
-                        <div>
-                            <button onClick={() => clockHandler()} disabled={barberbtnCheck} style={{ cursor: barberbtnCheck ? "not-allowed" : "pointer" }}>Clock In</button>
-                            <button onClick={() => clockHandler()} disabled={!barberbtnCheck} style={{ cursor: !barberbtnCheck ? "not-allowed" : "pointer" }}>Clock Out</button>
+                        <div
+                        style={{
+                            border: `0.1rem solid ${colors.borderColor}`
+                        }}
+                        >
+                            <button onClick={() => clockHandler()} disabled={barberbtnCheck} style={{ cursor: barberbtnCheck ? "not-allowed" : "pointer", color: barberbtnCheck && "#fff" }}>Clock In</button>
+                            <button onClick={() => clockHandler()} disabled={!barberbtnCheck} style={{ cursor: !barberbtnCheck ? "not-allowed" : "pointer", color: !barberbtnCheck && "#fff" }}>Clock Out</button>
                             <div
                                 style={{
                                     left: barberbtnCheck ? 0 : "calc(10rem + 2rem)",
@@ -539,44 +555,77 @@ const Dashboard2 = () => {
                             <Skeleton
                                 variant="rectangular"
                                 className={style.skeleton}
+                                style={{
+                                    backgroundColor: colors.inputColor
+                                }}
                             />
                             <Skeleton
                                 variant="rectangular"
                                 className={style.skeleton}
+                                style={{
+                                    backgroundColor: colors.inputColor
+                                }}
                             />
                             <Skeleton
                                 variant="rectangular"
                                 className={style.skeleton}
+                                style={{
+                                    backgroundColor: colors.inputColor
+                                }}
                             />
                             <Skeleton
                                 variant="rectangular"
                                 className={style.skeleton}
+                                style={{
+                                    backgroundColor: colors.inputColor
+                                }}
                             />
                             <Skeleton
                                 variant="rectangular"
                                 className={style.skeleton}
+                                style={{
+                                    backgroundColor: colors.inputColor
+                                }}
                             />
                             <Skeleton
                                 variant="rectangular"
                                 className={style.skeleton}
+                                style={{
+                                    backgroundColor: colors.inputColor
+                                }}
                             />
                             <Skeleton
                                 variant="rectangular"
                                 className={style.skeleton}
+                                style={{
+                                    backgroundColor: colors.inputColor
+                                }}
                             />
                             <Skeleton
                                 variant="rectangular"
                                 className={style.skeleton}
+                                style={{
+                                    backgroundColor: colors.inputColor
+                                }}
                             />
                         </div>
                     ) : getAttendenceByBarberIdKioskisSuccess && getAttendenceByBarberIdKioskdata?.response?.attendance?.length > 0 ? (
                         <div>
                             {getAttendenceByBarberIdKioskdata?.response?.attendance.map((item, index) => {
                                 return (
-                                    <div className={style.attendence_item} key={index}>
+                                    <div className={style.attendence_item} key={index}
+                                    style={{
+                                        backgroundColor: colors.inputColor,
+                                        border: `0.1rem solid ${colors.borderColor}`
+                                    }}
+                                    >
                                         <div>
                                             <p>{item?.date}</p>
-                                            <div><p>{item?.day}</p></div>
+                                            <div
+                                            style={{
+                                                backgroundColor: colors.color4
+                                            }}
+                                            ><p>{item?.day}</p></div>
                                         </div>
                                         <div>
                                             <div>

@@ -1,7 +1,7 @@
 .section {
     height: var(--primary-height);
     width: 100vw;
-    background-color: var(--bg-primary);
+    /* background-color: var(--bg-primary); */
     overflow: auto;
     display: flex;
     padding-block: 4rem;
@@ -34,7 +34,7 @@
                     -moz-border-radius: 50%;
                     -ms-border-radius: 50%;
                     -o-border-radius: 50%;
-                    border: 0.1rem solid var(--border-secondary);
+                    /* border: 0.1rem solid var(--border-secondary); */
                     object-fit: cover;
                 }
 
@@ -50,7 +50,9 @@
                     &>p {
                         display: flex;
                         gap: 1rem;
-                        color: var(--text-secondary);
+                        opacity: 0.6;
+                        font-weight: 500;
+                        /* color: var(--text-secondary); */
                         font-size: 1.4rem;
 
                         &>span {
@@ -70,7 +72,7 @@
                 &>div:nth-child(1) {
                     display: flex;
                     gap: 2rem;
-                    border: 0.1rem solid var(--border-secondary);
+                    /* border: 0.1rem solid var(--border-secondary); */
                     position: relative;
                     border-radius: 0.4rem;
                     -webkit-border-radius: 0.4rem;
@@ -86,6 +88,7 @@
                         outline: none;
                         cursor: pointer;
                         z-index: 2;
+                        font-weight: 500;
                     }
 
                     &>div {
@@ -121,8 +124,8 @@
                 /* height: 20rem; */
                 max-width: calc(25% - 1.5rem);
                 flex: 1 1 calc(25% - 1.5rem);
-                background-color: oklch(.205 0 0);
-                border: 0.1rem solid oklch(1 0 0 / 15%);
+                /* background-color: oklch(.205 0 0); */
+                /* border: 0.1rem solid oklch(1 0 0 / 15%); */
                 padding: 2rem;
                 border-radius: var(--border-radius-primary);
                 -webkit-border-radius: var(--border-radius-primary);
@@ -143,7 +146,7 @@
                     &>div {
                         height: 3.5rem;
                         width: 12rem;
-                        background-color: var(--bg-primary);
+                        /* background-color: var(--bg-primary); */
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -156,7 +159,8 @@
                         &>p {
                             font-weight: 500;
                             font-size: 1.4rem;
-                            color: var(--text-secondary);
+                            opacity: 0.6;
+                            /* color: var(--text-secondary); */
                         }
                     }
                 }
@@ -174,8 +178,10 @@
                         gap: 1rem;
 
                         &>p:nth-child(1) {
-                            color: var(--text-secondary);
+                            /* color: var(--text-secondary); */
                             font-size: 1.4rem;
+                            font-weight: 500;
+                            opacity: 0.6;
                         }
 
                         &>p:nth-child(2) {
@@ -189,8 +195,8 @@
             .skeleton {
                 flex: 1 1 calc(25% - 1.5rem);
                 height: 20rem;
-                background-color: oklch(.205 0 0);
-                border: 0.1rem solid oklch(1 0 0 / 15%);
+                /* background-color: oklch(.205 0 0); */
+                /* border: 0.1rem solid oklch(1 0 0 / 15%); */
             }
         }
     }
