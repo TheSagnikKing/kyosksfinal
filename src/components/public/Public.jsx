@@ -1133,7 +1133,11 @@ const Public = () => {
                             <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceName}</p>
                             <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{getDefaultSalonByAdmindata?.response?.currency}{item.servicePrice}</p>
                             <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.barberServiceEWT}{" "}mins</p>
-                            {item.vipService ? <div><RiVipCrownFill /></div> : <div>-</div>}
+                            {item.vipService ? <div style={{
+                              color: colors.color3
+                            }}><RiVipCrownFill /></div> : <div style={{
+                              color: colors.color3
+                            }}>-</div>}
                             {
                               selectedServices.find((select) => select._id === item._id) ?
                                 <div onClick={() => deleteSelectServicesHandler(item._id)}
@@ -1205,7 +1209,11 @@ const Public = () => {
                             <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceName}</p>
                             <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{getDefaultSalonByAdmindata?.response?.currency}{item.servicePrice}</p>
                             <p style={{ color: modelcolorfnc2(selectedServices, item) }}>{item.serviceEWT}{" "}mins</p>
-                            {item.vipService ? <div><RiVipCrownFill /></div> : <div>-</div>}
+                            {item.vipService ? <div style={{
+                              color: colors.color3
+                            }}><RiVipCrownFill /></div> : <div style={{
+                              color: colors.color3
+                            }}>-</div>}
                             {
                               selectedServices.find((select) => select._id === item._id) ?
                                 <div onClick={() => deleteSelectServicesHandler(item._id)}
