@@ -10,6 +10,8 @@ import { selectCurrentAdminInfo } from '../../AdminSignin/adminauthSlice'
 import { ColorRing } from 'react-loader-spinner'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
 import { ClickAwayListener, Skeleton } from '@mui/material';
+import { useGoogleLogin } from '@react-oauth/google'
+import axios from 'axios'
 
 const Signin = () => {
 
@@ -32,11 +34,11 @@ const Signin = () => {
     const [
         googleBarberLoginKiosk,
         {
-            data: googleBarberLoginKioskdata,
-            isSuccess: googleBarberLoginKioskisSuccess,
-            isError: googleBarberLoginKioskisError,
-            error: googleBarberLoginKioskerror,
-            isLoading: googleBarberLoginKioskisLoading
+            data: barbergooglelogindata,
+            isSuccess: barbergoogleloginisSuccess,
+            isError: barbergoogleloginisError,
+            error: barbergoogleerror,
+            isLoading: barbergoogleisloading
         }
     ] = useGoogleBarberLoginKioskMutation()
 
@@ -75,12 +77,12 @@ const Signin = () => {
     }, [dispatch, navigate, barberloginisSuccess, barberloginisError])
 
     useEffect(() => {
-        if (googleBarberLoginKioskisSuccess) {
-            dispatch(setCredentials(googleBarberLoginKioskdata))
+        if (barbergoogleloginisSuccess) {
+            dispatch(setCredentials(barbergooglelogindata))
             localStorage.setItem('barberkiyoskloggin', 'true')
             navigate('/kiyoskdashboard')
-        } else if (googleBarberLoginKioskisError) {
-            toast.error(googleBarberLoginKioskerror?.data?.message, {
+        } else if (barbergoogleloginisError) {
+            toast.error(barbergoogleerror?.data?.message, {
                 duration: 3000,
                 style: {
                     fontSize: "var(--tertiary-text)",
@@ -90,7 +92,7 @@ const Signin = () => {
                 },
             });
         }
-    }, [dispatch, navigate, googleBarberLoginKioskisSuccess, googleBarberLoginKioskisError])
+    }, [dispatch, navigate, barbergoogleloginisSuccess, barbergoogleloginisError])
 
     const barberSigninHandler = () => {
         const barberdata = { email: barberemail, password }
@@ -149,6 +151,27 @@ const Signin = () => {
 
 
     const [showPassword, setShowPassword] = useState(false)
+
+    const googleLogin = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            try {
+                const { access_token } = tokenResponse;
+
+                const userInfo = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                });
+
+                const data = { email: userInfo.data.email }
+
+                googleBarberLoginKiosk(data)
+
+            } catch (error) {
+                console.error('Error fetching user info:', error);
+            }
+        },
+    });
 
     return (
         <main className={style.barber_signin_container}
@@ -268,6 +291,19 @@ const Signin = () => {
                                 onClick={barberSigninHandler}
                             >Sign in</button>)
                     }
+
+                    <button onClick={() => googleLogin()}
+                        className={`${style.google_btn}`}
+                        style={{
+                            backgroundColor: colors.inputColor,
+                            border: `0.1rem solid ${colors.borderColor}`
+                        }}
+                    >
+                        <div>
+                            <div><img src="/google_logo.png" alt="logo" /></div>
+                            <p>Sign in with Google </p>
+                        </div>
+                    </button>
 
                 </main>
             </div>

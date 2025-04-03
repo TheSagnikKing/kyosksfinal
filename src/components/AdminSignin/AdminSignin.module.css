@@ -220,7 +220,6 @@
         }
 
         &>p {
-            /* font-size: var(--font-size-3); */
             font-size: 1.4rem;
         }
     }

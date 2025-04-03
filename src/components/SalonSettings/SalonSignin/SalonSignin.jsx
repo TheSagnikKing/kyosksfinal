@@ -7,7 +7,9 @@ import { ColorRing } from 'react-loader-spinner'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
 import { useLoginKioskMutation, useGoogleAdminLoginKioskMutation } from '../../AdminSignin/adminsigninApiSlice'
 import { selectCurrentAdminInfo } from '../../AdminSignin/adminauthSlice'
-import { useSalonAccountLoginMutation } from '../salonSlice'
+import { useGoogleSalonAccountLoginMutation, useSalonAccountLoginMutation } from '../salonSlice'
+import { useGoogleLogin } from '@react-oauth/google'
+import axios from 'axios'
 
 const SalonSignin = () => {
 
@@ -33,6 +35,17 @@ const SalonSignin = () => {
         }
     ] = useSalonAccountLoginMutation()
 
+    const [
+        googleSalonAccountLogin,
+        {
+            data: salongooglelogindata,
+            isSuccess: salongoogleloginisSuccess,
+            isError: salongoogleloginisError,
+            error: salongoogleloginerror,
+            isLoading: salongoogleloginisLoading
+        }
+    ] = useGoogleSalonAccountLoginMutation()
+
 
     useEffect(() => {
         if (salonloginisSuccess) {
@@ -51,6 +64,24 @@ const SalonSignin = () => {
         }
     }, [salonloginisSuccess, salonloginisError, navigate])
 
+
+    useEffect(() => {
+        if (salongoogleloginisSuccess) {
+            localStorage.setItem("adminsalonsettings", "true")
+            navigate("/salonsettings")
+        } else if (salongoogleloginisError) {
+            toast.error(salongoogleloginerror?.data?.message, {
+                duration: 3000,
+                style: {
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        }
+    }, [salongoogleloginisSuccess, salongoogleloginisError, navigate])
+
     const loginHandler = async () => {
         const data = { email, password, role, salonId: adminInfo?.salonId }
         salonAccountLogin(data)
@@ -65,6 +96,26 @@ const SalonSignin = () => {
 
     const [showPassword, setShowPassword] = useState(false)
 
+    const googleLogin = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            try {
+                const { access_token } = tokenResponse;
+
+                const userInfo = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                });
+
+                const data = { email: userInfo.data.email, role, salonId: adminInfo?.salonId }
+
+                googleSalonAccountLogin(data)
+
+            } catch (error) {
+                console.error('Error fetching user info:', error);
+            }
+        },
+    });
 
     return (
         <main className={style.admin__signin__main__container}
@@ -174,6 +225,20 @@ const SalonSignin = () => {
                             onClick={loginHandler}
                             className={style.signin_btn}
                         >Sign in</button>}
+
+
+                    <button onClick={() => googleLogin()}
+                        className={`${style.google_btn}`}
+                        style={{
+                            backgroundColor: colors.inputColor,
+                            border: `0.1rem solid ${colors.borderColor}`
+                        }}
+                    >
+                        <div>
+                            <div><img src="/google_logo.png" alt="logo" /></div>
+                            <p>Sign in with Google </p>
+                        </div>
+                    </button>
                 </div>
 
             </div>
