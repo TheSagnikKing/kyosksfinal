@@ -234,10 +234,11 @@ const AdminSignin = () => {
                             ariaLabel="color-ring-loading"
                             wrapperStyle={{}}
                             wrapperClass="color-ring-wrapper"
-                            colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                            colors={[modecolors?.color2, modecolors?.color2, modecolors?.color2, modecolors?.color2, modecolors?.color2]}
                         /></button> : <button
                             style={{
-                                backgroundColor: modecolors.color1
+                                backgroundColor: modecolors.color1,
+                                color: modecolors?.color2
                             }}
                             onClick={loginHandler}
                             className={style.signin_btn}

@@ -1428,7 +1428,7 @@ const Public = () => {
                   ariaLabel="color-ring-loading"
                   wrapperStyle={{}}
                   wrapperClass="color-ring-wrapper"
-                  colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                  colors={[modecolors?.color2, modecolors?.color2, modecolors?.color2, modecolors?.color2, modecolors?.color2]}
                 /></button> : <button
                   style={{
                     backgroundColor: modecolors?.color1,

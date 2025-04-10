@@ -114,7 +114,7 @@
         &>div:nth-child(2) {
             flex: 1;
             min-height: 50rem;
-            overflow: auto;
+            /* overflow: auto; */
             display: flex;
             flex-wrap: wrap;
             align-content: flex-start;
@@ -206,5 +206,9 @@
     .attendence_item {
       flex: 1 !important;
       max-width: 100% !important;
+    }
+
+    .skeleton{
+        min-width: 90vw;
     }
   }
