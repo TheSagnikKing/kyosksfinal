@@ -145,42 +145,8 @@ const AdminSignin = () => {
                         }}
 
                     /></div>
-                    <p>Effortlessly manage your salon with IQB! Oversee barbers, adjust settings, and enable easy Barber Login. Customers can join the queue in a tap.</p>
-
-                    <div className={style.email_container}>
-                        <input
-                            type="text"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder='Enter Your Email'
-                            onKeyDown={handleKeyPress}
-                            style={{
-                                backgroundColor: colors.inputColor,
-                                border: `0.1rem solid ${colors.borderColor}`
-                            }}
-                        />
-
-                    </div>
-
-                    <div className={style.password_container}
-                        style={{
-                            backgroundColor: colors.inputColor,
-                            border: `0.1rem solid ${colors.borderColor}`
-                        }}
-                    >
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            id="input_password"
-                            placeholder='Enter Your Password'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            onKeyDown={handleKeyPress}
-                        />
-                        <div
-                            style={{ color: colors.color3 }}
-                            onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
-                    </div>
-
+                    {/* <p>Effortlessly manage your salon with IQB! Oversee barbers, adjust settings, and enable easy Barber Login. Customers can join the queue in a tap.</p> */}
+                    
                     <div className={style.rolediv}>
                         <div>
                             <div
@@ -220,6 +186,42 @@ const AdminSignin = () => {
                             </div>
                         </div>
                     </div>
+
+                    <div className={style.email_container}>
+                        <input
+                            type="text"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder='Enter Your Email'
+                            onKeyDown={handleKeyPress}
+                            style={{
+                                backgroundColor: colors.inputColor,
+                                border: `0.1rem solid ${colors.borderColor}`
+                            }}
+                        />
+
+                    </div>
+
+                    <div className={style.password_container}
+                        style={{
+                            backgroundColor: colors.inputColor,
+                            border: `0.1rem solid ${colors.borderColor}`
+                        }}
+                    >
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            id="input_password"
+                            placeholder='Enter Your Password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            onKeyDown={handleKeyPress}
+                        />
+                        <div
+                            style={{ color: colors.color3 }}
+                            onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
+                    </div>
+
+                    
 
                     {isLoading ? <button
                         style={{

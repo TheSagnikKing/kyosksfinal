@@ -8,12 +8,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice';
 import Skeleton from 'react-loading-skeleton';
 import { setTheme } from '../app/themeSlice';
-import { setModeColor } from '../app/modeColorSlice';
+import { setDefaultModeColor, setModeColor } from '../app/modeColorSlice';
 
 const CommonHeader = () => {
 
     const { currentTheme, colors } = useSelector(state => state.theme);
-    const { availableModeColors} = useSelector(state => state.modeColor)
+    const { availableModeColors } = useSelector(state => state.modeColor)
 
     const dispatch = useDispatch()
 
@@ -26,6 +26,12 @@ const CommonHeader = () => {
     const toggleThemecolor = (themecolor) => {
         dispatch(setModeColor(themecolor))
     }
+
+
+    useEffect(() => {
+        dispatch(setDefaultModeColor({ modeColor: "default", theme: currentTheme }))
+    }, [currentTheme])
+
 
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
@@ -91,12 +97,12 @@ const CommonHeader = () => {
     // console.log(adminInfo.kioskAvailability)
 
     return (
-        <header 
-        className={style.kiyosk_header}
-        style={{
-            borderBottom: `0.1rem solid ${colors.borderColor}`,
-            backgroundColor: colors.color4
-        }}
+        <header
+            className={style.kiyosk_header}
+            style={{
+                borderBottom: `0.1rem solid ${colors.borderColor}`,
+                backgroundColor: colors.color4
+            }}
         >
             <div>
                 <div onClick={() => navigate("/kiosk")}>
@@ -139,21 +145,21 @@ const CommonHeader = () => {
 
                         <ClickAwayListener onClickAway={handleClickAway}>
                             <div
-                            style={{
-                                background: colors.inputColor,
-                                border: `0.1rem solid ${colors.borderColor}`,
-                                color: colors.color3
-                            }}
+                                style={{
+                                    background: colors.inputColor,
+                                    border: `0.1rem solid ${colors.borderColor}`,
+                                    color: colors.color3
+                                }}
                             >
                                 <SettingsIcon onClick={() => setShowDrop((prev) => !prev)} />
 
                                 {showdrop && (
-                                    <div 
-                                    className={style.kiyosk_dropbox}
-                                    style={{
-                                        background: colors.color4,
-                                        border:`0.1rem solid ${colors.borderColor}`
-                                    }}
+                                    <div
+                                        className={style.kiyosk_dropbox}
+                                        style={{
+                                            background: colors.color4,
+                                            border: `0.1rem solid ${colors.borderColor}`
+                                        }}
                                     >
                                         <div onClick={barbersigninClicked}>
                                             <div><AccountIcon /></div>
@@ -171,7 +177,7 @@ const CommonHeader = () => {
                                         </div>
 
                                         {
-                                            Object.entries(availableModeColors)?.map(([key,value]) => {
+                                            Object.entries(availableModeColors)?.map(([key, value]) => {
                                                 return (
                                                     <div className={style.theme_item} key={key} onClick={() => toggleThemecolor(key)}>
                                                         <div><div style={{

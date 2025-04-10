@@ -989,6 +989,7 @@ const Public = () => {
             style={{
               cursor: adminInfo.kioskAvailability ? "pointer" : "not-allowed",
               background: modecolors?.color1,
+              color: modecolors?.color2
             }}
             disabled={!adminInfo.kioskAvailability}
           >Join</button>
@@ -1082,7 +1083,8 @@ const Public = () => {
                 {selectedBarber && <div className={style.select_barber_services_btn}><button
                   onClick={selectbarberHandler}
                   style={{
-                    backgroundColor: modecolors.color1
+                    backgroundColor: modecolors.color1,
+                    color: modecolors?.color2
                   }}
                 >Select Services</button></div>}
               </>}
@@ -1162,7 +1164,8 @@ const Public = () => {
                 {selectedServices.length > 0 && <div className={style.select_barber_services_btn}><button
                   onClick={selectbarbercontinueHandler}
                   style={{
-                    backgroundColor: modecolors.color1
+                    backgroundColor: modecolors.color1,
+                    color: modecolors?.color2
                   }}
                 >Continue</button></div>}
               </>}
@@ -1239,7 +1242,8 @@ const Public = () => {
                 {selectedServices.length > 0 && <div className={style.select_barber_services_btn}><button
                   onClick={selectserviceHandler}
                   style={{
-                    backgroundColor: modecolors.color1
+                    backgroundColor: modecolors.color1,
+                    color: modecolors?.color2
                   }}
                 >Select Barber</button></div>}
               </>}
@@ -1327,7 +1331,8 @@ const Public = () => {
 
                 {selectedBarber && <div className={style.select_barber_services_btn}><button
                   style={{
-                    backgroundColor: modecolors.color1
+                    backgroundColor: modecolors.color1,
+                    color: modecolors?.color2
                   }}
                   onClick={() => selectservicecontinueHandler()}>Continue</button></div>}
               </>}
@@ -1413,7 +1418,8 @@ const Public = () => {
 
               {joinQueueKioskloading ? <button
                 style={{
-                  backgroundColor: modecolors?.color1
+                  backgroundColor: modecolors?.color1,
+                  color: modecolors?.color2
                 }}
                 className={style.modaljoinqueue_btn}><ColorRing
                   visible={true}
@@ -1425,7 +1431,8 @@ const Public = () => {
                   colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
                 /></button> : <button
                   style={{
-                    backgroundColor: modecolors?.color1
+                    backgroundColor: modecolors?.color1,
+                    color: modecolors?.color2
                   }}
                   className={style.modaljoinqueue_btn}
                   onClick={joinHandler}>Join</button>}

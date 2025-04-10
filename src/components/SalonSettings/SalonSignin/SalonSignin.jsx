@@ -132,40 +132,6 @@ const SalonSignin = () => {
                 <div className={style.admin_signin_form_container}>
                     <h2>Welcome to Salon Sign-In</h2>
 
-                    <div className={style.email_container}>
-                        <input
-                            type="text"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder='Enter Your Email'
-                            onKeyDown={handleKeyPress}
-                            style={{
-                                backgroundColor: colors.inputColor,
-                                border: `0.1rem solid ${colors.borderColor}`
-                            }}
-                        />
-
-                    </div>
-
-                    <div className={style.password_container}
-                        style={{
-                            backgroundColor: colors.inputColor,
-                            border: `0.1rem solid ${colors.borderColor}`
-                        }}
-                    >
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            id="input_password"
-                            placeholder='Enter Your Password'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            onKeyDown={handleKeyPress}
-                        />
-                        <div
-                            style={{ color: colors.color3 }}
-                            onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
-                    </div>
-
                     <div className={style.rolediv}>
                         <div>
                             <div
@@ -205,6 +171,42 @@ const SalonSignin = () => {
                             </div>
                         </div>
                     </div>
+
+                    <div className={style.email_container}>
+                        <input
+                            type="text"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder='Enter Your Email'
+                            onKeyDown={handleKeyPress}
+                            style={{
+                                backgroundColor: colors.inputColor,
+                                border: `0.1rem solid ${colors.borderColor}`
+                            }}
+                        />
+
+                    </div>
+
+                    <div className={style.password_container}
+                        style={{
+                            backgroundColor: colors.inputColor,
+                            border: `0.1rem solid ${colors.borderColor}`
+                        }}
+                    >
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            id="input_password"
+                            placeholder='Enter Your Password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            onKeyDown={handleKeyPress}
+                        />
+                        <div
+                            style={{ color: colors.color3 }}
+                            onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
+                    </div>
+
+                    
 
                     {salonloginisLoading ? <button
                         style={{

@@ -7,7 +7,7 @@ import { ExclamationIcon } from './icons';
 import "./App.css"
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Layout from './components/Layout/Layout';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Public = React.lazy(() => import("./components/public/Public"));
 const JoinQueue = React.lazy(() => import("./components/JoinQueue/JoinQueue"));
