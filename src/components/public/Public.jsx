@@ -381,7 +381,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import style from './Public.module.css';
-import { AddIcon, BackIcon, DeleteIcon, DropdownIcon, PersonIcon, TotalQueueIcon } from '../../icons';
+import { AddIcon, BackIcon, ClockIcon, DeleteIcon, DropdownIcon, NextQueueIcon, PersonIcon, TotalQueueIcon } from '../../icons';
 import Marquee from "react-fast-marquee";
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -397,6 +397,10 @@ import { ColorRing } from 'react-loader-spinner';
 import { RiVipCrownFill } from 'react-icons/ri';
 import Modal from '../modal/Modal';
 import { GoogleLogin } from '@react-oauth/google'
+
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
 
 const Public = () => {
 
@@ -496,6 +500,8 @@ const Public = () => {
   const [customerName, setCustomerName] = useState("")
   const [mobileNumber, setMobileNumber] = useState("")
   const [customerEmail, setCustomerEmail] = useState("")
+
+
 
   const [isOpen, setIsOpen] = useState(false)
   const [modal1, setModal1] = useState(false)
@@ -830,9 +836,85 @@ const Public = () => {
   const phoneInputUseRef = useRef()
 
   useEffect(() => {
-    phoneInputUseRef.current.style.color = colors.color3
+    if (phoneInputUseRef.current) {
+      phoneInputUseRef.current.style.color = colors.color3
+    }
+
   }, [colors])
 
+  const steps = [
+    'Customer Info',
+    'Select Barber ',
+    'Select Services',
+    'Completed'
+  ];
+
+  const [step, setStep] = useState(0)
+
+  const customerInfoHandler = () => {
+    if (!customerName) {
+      toast.error("Please enter customer name", {
+        duration: 3000,
+        style: {
+          fontSize: "var(--tertiary-text)",
+          borderRadius: '0.3rem',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+
+      return setNameError("Please enter customer name")
+    }
+
+    if (customerName.length === 0 || customerName.length > 20) {
+      toast.error("Customer name must be between 1 to 20 characters", {
+        duration: 3000,
+        style: {
+          fontSize: "var(--list-modal-header-normal-font)",
+          borderRadius: '0.3rem',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+      return setNameError("Customer name must be between 1 to 20 characters");
+    }
+
+
+
+    if (mobileNumberError.length > 3 && invalidNumber) {
+      toast.error("Invalid Number", {
+        duration: 3000,
+        style: {
+          fontSize: "var(--list-modal-header-normal-font)",
+          borderRadius: '0.3rem',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+
+      return setInvalidNumberError("Invalid Number")
+    }
+
+
+    if (customerEmail && !emailRegex.test(customerEmail)) {
+      toast.error("Invalid email format", {
+        duration: 3000,
+        style: {
+          fontSize: "var(--list-modal-header-normal-font)",
+          borderRadius: "0.3rem",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+      return setEmailError("Invalid email format");
+    }
+
+    setStep((prev) => prev + 1)
+  }
+
+  const barberHandler = () => {
+    setStep((prev) => prev + 1)
+  }
 
   return (
     <main className={style.container}
@@ -840,7 +922,7 @@ const Public = () => {
         backgroundColor: colors?.color4
       }}
     >
-      <div className={style.top}>
+      {/* <div className={style.top}>
         <div>
 
           <div
@@ -874,8 +956,9 @@ const Public = () => {
           </div>
 
         </div>
-      </div>
-      <div className={style.middle}>
+      </div> */}
+
+      {/* <div className={style.middle}>
         <div className={style.joinqueue__main__right__form}>
           <h2>Join Queue</h2>
 
@@ -918,7 +1001,6 @@ const Public = () => {
                 ref={phoneInputUseRef}
               />
 
-              {/* <PhoneInput defaultCountry={"gb"} /> */}
               {invalidNumberError && <p className={style.error_message}>{invalidNumberError}</p>}
             </div>
           </div>
@@ -1441,7 +1523,322 @@ const Public = () => {
           </MuiModal>
 
         </div>
-      </div>
+      </div> */}
+
+      <section className={style.middle}>
+        <div className={style.stepper_header}>
+          <Stepper activeStep={step} alternativeLabel>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel
+                  sx={{
+                    '& .MuiStepLabel-label': {
+                      fontSize: '1.4rem',
+                    },
+                    '& .MuiStepIcon-root': {
+                      fontSize: '3rem',
+                    },
+                    '& .MuiStepIcon-text': {
+                      fontSize: '1rem',
+                      fill: modecolors?.color2
+                    },
+                    '& .MuiStepIcon-root.Mui-active': {
+                      color: modecolors?.color1
+                    },
+                    '& .MuiSvgIcon-root-MuiStepIcon-root': {
+                      color: "var(--bg-hover-primary)",
+                      border: `0.1rem solid var(--border-secondary)`,
+                      borderRadius: "50%"
+                    },
+                    '& .MuiStepLabel-labelContainer': {
+                      color: "gray"
+                    },
+                    '& .MuiStepLabel-label.Mui-active': {
+                      color: modecolors?.color1
+                    },
+                  }}
+                >{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+        </div>
+
+        {
+          step === 0 && (
+            <div className={style.stepper_container_one}>
+              {/* .css-p8xe3-MuiStepLabel-labelContainer */}
+              <div>
+                <label htmlFor="fullname">Full Name</label>
+                <input
+                  type="text"
+                  id="fullname"
+                  name="fullname"
+                  placeholder='Enter Your Full Name'
+                  value={customerName}
+                  onChange={(e) => {
+                    setNameError("")
+                    setCustomerName(e.target.value)
+                  }}
+                  onKeyDown={handleKeyPress}
+                  style={{
+                    border: `0.1rem solid ${colors.borderColor}`,
+                    borderBottom: nameError ? "0.1rem solid red" : `0.1rem solid ${colors?.borderColor}`,
+                    backgroundColor: colors.inputColor
+                  }}
+                />
+
+                {nameError && <p className={style.error_message}>{nameError}</p>}
+              </div>
+
+              <div>
+                <label htmlFor="email">Email <span>&#40;Optional&#41;</span></label>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  placeholder='Enter Your Email ID'
+                  value={customerEmail}
+                  onChange={(e) => {
+                    setEmailError("")
+                    setCustomerEmail(e.target.value)
+                  }}
+                  onKeyDown={handleKeyPress}
+                  style={{
+                    border: `0.1rem solid ${colors.borderColor}`,
+                    borderBottom: emailError ? "0.1rem solid red" : `0.1rem solid ${colors.borderColor}`,
+                    backgroundColor: colors.inputColor
+                  }}
+                />
+
+                {emailError && <p className={style.error_message}>{emailError}</p>}
+              </div>
+
+              <div>
+                <label htmlFor="phone">Phone Number <span>&#40;Optional&#41;</span></label>
+                <div
+                  id="phone"
+                  onMouseEnter={() => setPhoneinputBorder(true)}
+                  onMouseLeave={() => setPhoneinputBorder(false)}
+                  style={{
+                    border: `0.1rem solid ${colors.borderColor}`,
+                    borderBottom: invalidNumberError ? "0.1rem solid red" : `0.1rem solid ${colors.borderColor}`,
+                    backgroundColor: colors.inputColor,
+                  }}
+                  onKeyDown={handleKeyPress}
+                >
+                  <PhoneInput
+                    forceDialCode={true}
+                    defaultCountry={countryflag}
+                    value={mobileNumber}
+                    onChange={(phone, meta) => handlePhoneChange(phone, meta)}
+                    ref={phoneInputUseRef}
+                  />
+                </div>
+
+                {invalidNumberError && (
+                  <p className={style.error_message}>{invalidNumberError}</p>
+                )}
+              </div>
+
+              <button
+                style={{
+                  backgroundColor: modecolors?.color1,
+                  color: modecolors?.color2
+                }}
+                onClick={customerInfoHandler}
+              >Continue</button>
+            </div>
+
+          )
+        }
+
+        {
+          step === 1 && (
+            <div
+              style={{
+                backgroundColor: colors?.inputColor,
+                border: `0.1rem solid ${colors?.borderColor}`
+              }}
+              className={style.stepper_container_two}>
+
+              {
+                new Array(15).fill(null).map((_, index) => {
+                  return (
+                    <div
+                      key={index}
+                      style={{
+                        backgroundColor: colors?.color4,
+                        border: `0.1rem solid ${colors?.borderColor}`
+                      }}
+                      className={style.barber_item}>
+
+                      <div>
+                        <img src="https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D" alt="" width={60} height={60} />
+                        <div>
+                          <p>David Paul</p>
+                          <p>Haircut +3</p>
+                        </div>
+                      </div>
+
+
+                      <div>
+                        <p><span><ClockIcon /></span>120 mins</p>
+                        <p><span><NextQueueIcon /></span>Next</p>
+                      </div>
+
+                    </div>
+                  )
+                })
+              }
+
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "0rem",
+                  left: "50%",
+                  transform: "translateX(-50%)"
+                }}
+              >
+                <button
+                  style={{
+                    backgroundColor: modecolors?.color1,
+                    color: modecolors?.color2
+                  }}
+                  onClick={() => setStep((prev) => prev - 1)}
+                >Back</button>
+                <button
+                  style={{
+                    backgroundColor: modecolors?.color1,
+                    color: modecolors?.color2
+                  }}
+                  onClick={barberHandler}
+                >Continue</button>
+              </div>
+
+
+            </div>
+          )
+        }
+
+        {
+          step === 2 && (
+            <div
+              style={{
+                backgroundColor: colors?.inputColor,
+                border: `0.1rem solid ${colors?.borderColor}`
+              }}
+              className={style.stepper_container_three}>
+
+              {
+                new Array(15).fill(null).map((_, index) => {
+                  return (
+                    <div
+                      key={index}
+                      style={{
+                        backgroundColor: colors?.color4,
+                        border: `0.1rem solid ${colors?.borderColor}`
+                      }}
+                      className={style.service_item}>
+
+                      <div>
+                        <img src="https://static.vecteezy.com/system/resources/previews/026/306/591/non_2x/beauty-salon-icon-hairdresser-service-barber-hair-cut-style-scissor-scissors-comb-sign-symbol-black-artwork-graphic-illustration-clipart-eps-vector.jpg" alt="" width={60} height={60} />
+                        <div>
+                          <p>Hair Cutting</p>
+                          <p><span><ClockIcon /></span>120 mins</p>
+                        </div>
+                      </div>
+
+
+                      <p>$ 100</p>
+
+                    </div>
+                  )
+                })
+              }
+
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "0rem",
+                  left: "50%",
+                  transform: "translateX(-50%)"
+                }}
+              >
+                <button
+                  style={{
+                    backgroundColor: modecolors?.color1,
+                    color: modecolors?.color2
+                  }}
+                  onClick={() => setStep((prev) => prev - 1)}
+                >Back</button>
+                <button
+                  style={{
+                    backgroundColor: modecolors?.color1,
+                    color: modecolors?.color2
+                  }}
+                  onClick={barberHandler}
+                >Continue</button>
+              </div>
+
+            </div>
+          )
+        }
+
+        {
+          step === 3 && (
+            <div
+              style={{
+                // backgroundColor: colors?.inputColor,
+                // border: `0.1rem solid ${colors?.borderColor}`
+              }}
+              className={style.stepper_container_four}>
+              <p>Queue Review</p>
+
+              <div>
+                <p>Name :</p>
+                <p>Arghya Ghosh</p>
+              </div>
+
+              <div className={style.double_div}>
+                <div>
+                  <p>Email :</p>
+                  <p>xyz@example.com </p>
+                </div>
+
+                <div>
+                  <p>Phone No. :</p>
+                  <p>+44 1234567890</p>
+                </div>
+              </div>
+
+              <div>
+                <p>Barber :</p>
+                <p>David Paul</p>
+              </div>
+
+              <div>
+                <p>Services :</p>
+                <p>Haircut</p>
+              </div>
+
+              <div className={style.double_div}>
+                <div>
+                  <p>Est. Time:</p>
+                  <p>120 mins</p>
+                </div>
+
+                <div>
+                  <p>Total Price :</p>
+                  <p>$ 120</p>
+                </div>
+              </div>
+
+            </div>
+          )
+        }
+
+
+      </section>
 
       <div className={style.end}>
         <Marquee
@@ -1477,7 +1874,7 @@ const Public = () => {
       </div>
 
 
-    </main>
+    </main >
   );
 }
 

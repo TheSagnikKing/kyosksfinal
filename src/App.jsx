@@ -71,12 +71,12 @@ const App = () => {
     // This sets globally 
     const styleElement = document.createElement("style");
     styleElement.textContent = `
-      p, h1, h2, h3, h4, h5, i, input, textarea, select, button,b {
-        color:${currentTheme === "Dark" ? "var(--text-primary)" : "#000"};
+      p, h1, h2, h3, h4, h5, i, input, textarea, select, button,b, label {
+        color:${currentTheme === "Dark" ? "#F4F4F5" : "#09090B"};
       }
 
       input::placeholder, textarea::placeholder {
-        color: ${currentTheme === "Dark" ? "var(--text-secondary)" : "#0B0B0AB2"};
+        color: ${currentTheme === "Dark" ? "#F4F4F5" : "#09090B"};
       }
     `;
     document.head.appendChild(styleElement);
