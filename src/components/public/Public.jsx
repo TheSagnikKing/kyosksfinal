@@ -534,15 +534,23 @@ const Public = () => {
 
 
 
+  // const selectbarberHandler = async () => {
+  //   setModal1(false)
+  //   setModal2(true)
+  //   await getServicesByBarber({
+  //     salonId: adminInfo?.salonId,
+  //     barberId: selectedBarberId
+  //   })
+  //   setModal3(false)
+  //   setModal4(false)
+  // }
+
+
   const selectbarberHandler = async () => {
-    setModal1(false)
-    setModal2(true)
     await getServicesByBarber({
       salonId: adminInfo?.salonId,
       barberId: selectedBarberId
     })
-    setModal3(false)
-    setModal4(false)
   }
 
   const [selectedServices, setSelectedServices] = useState([])
@@ -920,8 +928,47 @@ const Public = () => {
   }
 
   const barberHandler = () => {
+
+    if (selecteBarberdata === false) {
+      toast.error("Please provide a barber", {
+        duration: 3000,
+        style: {
+          fontSize: "var(--tertiary-text)",
+          borderRadius: '0.3rem',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+      return setBarberError("Please provide a barber")
+    }
+
     setStep((prev) => prev + 1)
+
+    selectbarberHandler()
   }
+
+  const serviceHandler = () => {
+    if (!selectedServices.length) {
+      toast.error("Please provide a service", {
+        duration: 3000,
+        style: {
+          fontSize: "var(--tertiary-text)",
+          borderRadius: '0.3rem',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+      return setServicesError("Please provide a service")
+    }
+
+    setStep((prev) => prev + 1)
+
+    setJoinqueueModalOpen({
+      open: true,
+      data: joinqueuedata
+    })
+  }
+
 
   return (
     <main className={style.container}
@@ -1550,7 +1597,6 @@ const Public = () => {
                     },
 
                     '& .MuiStepIcon-root.Mui-completed': {
-                      // color: "green"
                       background: "green",
                       borderRadius: "50%",
                       color: "#fff",
@@ -1670,7 +1716,8 @@ const Public = () => {
               <button
                 style={{
                   backgroundColor: modecolors?.color1,
-                  color: modecolors?.color2
+                  color: modecolors?.color2,
+                  opacity: (invalidNumberError || emailError || nameError || !customerName) ? 0.4 : 1
                 }}
                 onClick={customerInfoHandler}
               >Continue</button>
@@ -1761,7 +1808,7 @@ const Public = () => {
                         className={style.barber_item}
                         key={b.barberId}
                         onClick={() => searchSelectedBarber(b)}
-                        >
+                      >
 
                         <div>
                           <img src={b?.profile?.[0]?.url || ""} alt="" width={60} height={60} />
@@ -1785,41 +1832,6 @@ const Public = () => {
                 )
               }
 
-              {/* {
-                new Array(15).fill(null).map((_, index) => {
-                  return (
-                    <div
-                      key={index}
-                      style={{
-                        backgroundColor: colors?.color4,
-                        border: `0.1rem solid ${colors?.borderColor}`
-                      }}
-                      className={style.barber_item}>
-
-                      <div>
-                        <img src="https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D" alt="" width={60} height={60} />
-                        <div>
-                          <p>David Paul</p>
-                          <p>Haircut +3</p>
-                        </div>
-                      </div>
-
-
-                      <div>
-                        <p><span><ClockIcon /></span>120 mins</p>
-                        <p><span><NextQueueIcon /></span>Next</p>
-                      </div>
-
-                    </div>
-                  )
-                })
-              } */}
-
-
-
-              {/* <p className={style.empty_message}>No barbers available</p> */}
-
-
               <div
                 style={{
                   position: "absolute",
@@ -1838,7 +1850,8 @@ const Public = () => {
                 <button
                   style={{
                     backgroundColor: modecolors?.color1,
-                    color: modecolors?.color2
+                    color: modecolors?.color2,
+                    opacity: !selecteBarberdata ? 0.4 : 1
                   }}
                   onClick={barberHandler}
                 >Continue</button>
@@ -1855,35 +1868,107 @@ const Public = () => {
               style={{
                 backgroundColor: colors?.inputColor,
                 border: `0.1rem solid ${colors?.borderColor}`,
+                alignContent: (getServicesByBarberloading || getServicesByBarberisSuccess) && "flex-start"
               }}
               className={style.stepper_container_three}>
 
               {
-                new Array(15).fill(null).map((_, index) => {
-                  return (
-                    <div
-                      key={index}
+                getServicesByBarberloading ? (
+                  <>
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
                       style={{
-                        backgroundColor: colors?.color4,
-                        border: `0.1rem solid ${colors?.borderColor}`
+                        backgroundColor: colors.color4
                       }}
-                      className={style.service_item}>
+                    />
 
-                      <div>
-                        <img src="https://static.vecteezy.com/system/resources/previews/026/306/591/non_2x/beauty-salon-icon-hairdresser-service-barber-hair-cut-style-scissor-scissors-comb-sign-symbol-black-artwork-graphic-illustration-clipart-eps-vector.jpg" alt="" width={60} height={60} />
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+                  </>
+                ) : getServicesByBarberisSuccess && getServicesByBarberdata?.response?.length > 0 ? (
+                  getServicesByBarberdata?.response?.map((item, index) => {
+                    return (
+                      <div
+                        onClick={() => {
+                          if (selectedServices.find((select) => select._id === item._id)) {
+                            deleteSelectServicesHandler(item._id)
+                          } else {
+                            selectedServicesHandler(item)
+                          }
+                        }}
+                        key={item._id}
+                        style={{
+                          backgroundColor: colors?.color4,
+                          border: selectedServices.find((select) => select._id === item._id) ? `0.1rem solid ${modecolors.color1}` : `0.1rem solid ${colors?.borderColor}`
+                        }}
+                        className={style.service_item}>
+
                         <div>
-                          <p>Hair Cutting</p>
-                          <p><span><ClockIcon /></span>120 mins</p>
+                          <img src={item?.serviceIcon?.url} alt="" width={60} height={60} />
+                          <div>
+                            <p>{item.serviceName}</p>
+                            <p><span><ClockIcon /></span>{item.barberServiceEWT}&nbsp; mins</p>
+                          </div>
                         </div>
+
+                        <p>{getDefaultSalonByAdmindata?.response?.currency}{item.servicePrice}</p>
+
                       </div>
-
-
-                      <p>$ 100</p>
-
-                    </div>
-                  )
-                })
+                    )
+                  })
+                ) : (
+                  <p className={style.empty_message}>No services available</p>
+                )
               }
+
 
               <div
                 style={{
@@ -1900,12 +1985,14 @@ const Public = () => {
                   }}
                   onClick={() => setStep((prev) => prev - 1)}
                 >Back</button>
+                {/* selectedBarberServices.length === 0 */}
                 <button
                   style={{
                     backgroundColor: modecolors?.color1,
-                    color: modecolors?.color2
+                    color: modecolors?.color2,
+                    opacity: selectedServices.length ? 1 : 0.4
                   }}
-                  onClick={barberHandler}
+                  onClick={serviceHandler}
                 >Continue</button>
               </div>
 
@@ -1930,7 +2017,7 @@ const Public = () => {
                 }}
               >
                 <p>Name :</p>
-                <p>Arghya Ghosh</p>
+                <p>{joinqueueModalOpen?.data?.name}</p>
               </div>
 
               <div className={style.double_div}>
@@ -1962,7 +2049,7 @@ const Public = () => {
                 }}
               >
                 <p>Barber :</p>
-                <p>David Paul</p>
+                <p>{joinqueueModalOpen?.data?.barberName}</p>
               </div>
 
               <div
