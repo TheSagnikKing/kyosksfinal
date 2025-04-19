@@ -677,6 +677,10 @@
         overflow: auto;
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        justify-content: flex-start;
+        /* align-content: flex-start; */
         gap: 1.4rem;
         padding: 1.4rem;
 
@@ -693,6 +697,7 @@
             align-items: center;
             justify-content: space-between;
             box-shadow: rgba(14, 63, 126, 0.06) 0px 0px 0px 1px, rgba(42, 51, 70, 0.03) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 2px 2px -1px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.03) 0px 5px 5px -2.5px, rgba(42, 51, 70, 0.03) 0px 10px 10px -5px, rgba(42, 51, 70, 0.03) 0px 24px 24px -8px;
+            cursor: pointer;
 
             &>div:nth-child(1) {
                 display: flex;
@@ -944,7 +949,6 @@
 
         &>div:not(.double_div) {
             min-height: 3.5rem;
-            border: 0.1rem solid var(--border-secondary);
             border-radius: var(--border-radius-primary);
             -webkit-border-radius: var(--border-radius-primary);
             -moz-border-radius: var(--border-radius-primary);
@@ -967,12 +971,11 @@
         .double_div {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem;
 
             &>div {
                 flex: 1;
                 min-height: 3.5rem;
-                border: 0.1rem solid var(--border-secondary);
                 border-radius: var(--border-radius-primary);
                 -webkit-border-radius: var(--border-radius-primary);
                 -moz-border-radius: var(--border-radius-primary);
@@ -995,6 +998,21 @@
 
     }
 
+    .skeleton {
+        height: 8rem;
+        min-width: calc(50% - 0.7rem);
+        box-shadow: rgba(14, 63, 126, 0.06) 0px 0px 0px 1px, rgba(42, 51, 70, 0.03) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 2px 2px -1px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.03) 0px 5px 5px -2.5px, rgba(42, 51, 70, 0.03) 0px 10px 10px -5px, rgba(42, 51, 70, 0.03) 0px 24px 24px -8px;
+        border-radius: var(--border-radius-primary);
+        -webkit-border-radius: var(--border-radius-primary);
+        -moz-border-radius: var(--border-radius-primary);
+        -ms-border-radius: var(--border-radius-primary);
+        -o-border-radius: var(--border-radius-primary);
+    }
+
+    .empty_message {
+        font-size: 1.6rem;
+        font-weight: 500;
+    }
 
     .error_message {
         font-size: 1.2rem !important;

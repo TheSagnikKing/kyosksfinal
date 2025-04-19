@@ -391,7 +391,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { PhoneNumberUtil } from 'google-libphonenumber';
 import { PhoneInput } from 'react-international-phone';
-import { Modal as MuiModal } from '@mui/material';
+import { Modal as MuiModal, Skeleton } from '@mui/material';
 import { MdClose } from 'react-icons/md'
 import { ColorRing } from 'react-loader-spinner';
 import { RiVipCrownFill } from 'react-icons/ri';
@@ -518,15 +518,20 @@ const Public = () => {
   const [selectedBarberId, setSelectedBarberId] = useState(false)
   const [selectedBarberImg, setSelectedBarberImg] = useState("")
 
+  // const SelectBarberDropdownHandler = () => {
+  //   setBarberError("")
+  //   setIsOpen(true)
+  //   setModal1(true)
+  //   getavailablebarber({ salonId: adminInfo?.salonId })
+  //   setModal2(false)
+  //   setModal3(false)
+  //   setModal4(false)
+  // }
+
   const SelectBarberDropdownHandler = () => {
-    setBarberError("")
-    setIsOpen(true)
-    setModal1(true)
     getavailablebarber({ salonId: adminInfo?.salonId })
-    setModal2(false)
-    setModal3(false)
-    setModal4(false)
   }
+
 
 
   const selectbarberHandler = async () => {
@@ -910,6 +915,8 @@ const Public = () => {
     }
 
     setStep((prev) => prev + 1)
+
+    SelectBarberDropdownHandler()
   }
 
   const barberHandler = () => {
@@ -1532,30 +1539,50 @@ const Public = () => {
               <Step key={label}>
                 <StepLabel
                   sx={{
-                    '& .MuiStepLabel-label': {
-                      fontSize: '1.4rem',
-                    },
+
                     '& .MuiStepIcon-root': {
                       fontSize: '3rem',
+                      color: colors.color2
                     },
-                    '& .MuiStepIcon-text': {
-                      fontSize: '1rem',
-                      fill: modecolors?.color2
-                    },
+
                     '& .MuiStepIcon-root.Mui-active': {
                       color: modecolors?.color1
                     },
-                    '& .MuiSvgIcon-root-MuiStepIcon-root': {
-                      color: "var(--bg-hover-primary)",
-                      border: `0.1rem solid var(--border-secondary)`,
-                      borderRadius: "50%"
+
+                    '& .MuiStepIcon-root.Mui-completed': {
+                      // color: "green"
+                      background: "green",
+                      borderRadius: "50%",
+                      color: "#fff",
+                      padding: "0.5rem"
                     },
-                    '& .MuiStepLabel-labelContainer': {
-                      color: "gray"
+
+                    '& .MuiStepIcon-text': {
+                      fontSize: '1rem',
+                      fill: "#fff"
                     },
+
+                    '& .MuiStepIcon-root.Mui-active .MuiStepIcon-text': {
+                      fill: colors.color4
+                    },
+
+                    '& .MuiStepIcon-root.Mui-completed .MuiStepIcon-text': {
+                      fill: "#fff"
+                    },
+
+                    '& .MuiStepLabel-label': {
+                      color: "gray",
+                      fontSize: '1.4rem',
+                    },
+
                     '& .MuiStepLabel-label.Mui-active': {
-                      color: modecolors?.color1
+                      color: colors.color3
                     },
+
+                    '& .MuiStepLabel-label.Mui-completed': {
+                      color: colors.color3
+                    }
+
                   }}
                 >{label}</StepLabel>
               </Step>
@@ -1657,11 +1684,108 @@ const Public = () => {
             <div
               style={{
                 backgroundColor: colors?.inputColor,
-                border: `0.1rem solid ${colors?.borderColor}`
+                border: `0.1rem solid ${colors?.borderColor}`,
+                alignContent: (getavailablebarberloading || getavailablebarberisSuccess) && "flex-start"
               }}
               className={style.stepper_container_two}>
 
               {
+                getavailablebarberloading ? (
+                  <>
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      className={style.skeleton}
+                      style={{
+                        backgroundColor: colors.color4
+                      }}
+                    />
+                  </>
+                ) : getavailablebarberisSuccess && getavailablebarberdata?.response?.length > 0 ? (
+                  getavailablebarberdata?.response?.map((b, index) => {
+                    return (
+                      <div
+                        style={{
+                          backgroundColor: colors?.color4,
+                          border: selectedBarber === b.name ? `0.1rem solid ${modecolors.color1}` : `0.1rem solid ${colors?.borderColor}`
+                        }}
+                        className={style.barber_item}
+                        key={b.barberId}
+                        onClick={() => searchSelectedBarber(b)}
+                        >
+
+                        <div>
+                          <img src={b?.profile?.[0]?.url || ""} alt="" width={60} height={60} />
+                          <div>
+                            <p>{b?.name}</p>
+                            <p>{b?.barberServices?.[0]?.serviceName} {b?.barberServices?.length - 1 === 0 ? null : <span>+ {b?.barberServices?.length - 1} more</span>}</p>
+                          </div>
+                        </div>
+
+
+                        <div>
+                          <p><span><ClockIcon /></span>{b?.barberEWT} mins</p>
+                          <p><span><NextQueueIcon /></span>{b?.queueCount === 0 ? "Next" : b?.queueCount}</p>
+                        </div>
+
+                      </div>
+                    )
+                  })
+                ) : (
+                  <p className={style.empty_message}>No barbers available</p>
+                )
+              }
+
+              {/* {
                 new Array(15).fill(null).map((_, index) => {
                   return (
                     <div
@@ -1689,7 +1813,12 @@ const Public = () => {
                     </div>
                   )
                 })
-              }
+              } */}
+
+
+
+              {/* <p className={style.empty_message}>No barbers available</p> */}
+
 
               <div
                 style={{
@@ -1725,7 +1854,7 @@ const Public = () => {
             <div
               style={{
                 backgroundColor: colors?.inputColor,
-                border: `0.1rem solid ${colors?.borderColor}`
+                border: `0.1rem solid ${colors?.borderColor}`,
               }}
               className={style.stepper_container_three}>
 
@@ -1794,40 +1923,75 @@ const Public = () => {
               className={style.stepper_container_four}>
               <p>Queue Review</p>
 
-              <div>
+              <div
+                style={{
+                  border: `0.1rem solid ${colors?.borderColor}`,
+                  backgroundColor: colors.inputColor
+                }}
+              >
                 <p>Name :</p>
                 <p>Arghya Ghosh</p>
               </div>
 
               <div className={style.double_div}>
-                <div>
+                <div
+                  style={{
+                    border: `0.1rem solid ${colors?.borderColor}`,
+                    backgroundColor: colors.inputColor
+                  }}
+                >
                   <p>Email :</p>
                   <p>xyz@example.com </p>
                 </div>
 
-                <div>
+                <div
+                  style={{
+                    border: `0.1rem solid ${colors?.borderColor}`,
+                    backgroundColor: colors.inputColor
+                  }}
+                >
                   <p>Phone No. :</p>
                   <p>+44 1234567890</p>
                 </div>
               </div>
 
-              <div>
+              <div
+                style={{
+                  border: `0.1rem solid ${colors?.borderColor}`,
+                  backgroundColor: colors.inputColor
+                }}
+              >
                 <p>Barber :</p>
                 <p>David Paul</p>
               </div>
 
-              <div>
+              <div
+                style={{
+                  border: `0.1rem solid ${colors?.borderColor}`,
+                  backgroundColor: colors.inputColor
+                }}
+              >
                 <p>Services :</p>
                 <p>Haircut</p>
               </div>
 
               <div className={style.double_div}>
-                <div>
+                <div
+                  style={{
+                    border: `0.1rem solid ${colors?.borderColor}`,
+                    backgroundColor: colors.inputColor
+                  }}
+                >
                   <p>Est. Time:</p>
                   <p>120 mins</p>
                 </div>
 
-                <div>
+                <div
+                  style={{
+                    border: `0.1rem solid ${colors?.borderColor}`,
+                    backgroundColor: colors.inputColor
+                  }}
+                >
                   <p>Total Price :</p>
                   <p>$ 120</p>
                 </div>
