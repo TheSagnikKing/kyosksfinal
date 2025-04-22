@@ -937,7 +937,8 @@
         /* background-color: #efefef; */
         margin-inline: auto;
         flex: 0.8;
-        overflow: scroll;
+        overflow-y: scroll !important;
+        overflow-x: hidden !important;
         padding: 1.4rem;
         display: flex;
         flex-direction: column;
