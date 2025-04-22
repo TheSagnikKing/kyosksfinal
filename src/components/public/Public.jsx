@@ -136,7 +136,7 @@ const Public = () => {
   const [selectedBarberServices, setSelectedBarberServices] = useState([])
   const [selectedServices, setSelectedServices] = useState([])
 
-  const [selectedBarberId, setSelectedBarberId] = useState(false)
+  const [selectedBarberId, setSelectedBarberId] = useState("")
   const [selectedBarberImg, setSelectedBarberImg] = useState("")
 
   // const SelectBarberDropdownHandler = () => {
@@ -148,6 +148,8 @@ const Public = () => {
   //   setModal3(false)
   //   setModal4(false)
   // }
+
+
 
   const SelectBarberDropdownHandler = () => {
     getavailablebarber({ salonId: adminInfo?.salonId })
@@ -219,13 +221,16 @@ const Public = () => {
     setModal3(true)
   }
 
+  // console.log("Selected ", selectedBarberId)
 
   const searchSelectedBarber = (barber) => {
-    setSelectedBarberImg(barber.profile)
-    setSelectedBarber(barber.name)
-    setSelectedBarberData(barber.name)
-    setSelectedBarberId(barber.barberId)
+    setSelectedBarberImg(barber?.profile)
+    setSelectedBarber(barber?.name)
+    setSelectedBarberData(barber?.name)
+    setSelectedBarberId(barber?.barberId)
   }
+
+  // console.log("Selected barber Data ", selecteBarberdata)
 
 
   const selectbarbercontinueHandler = () => {
@@ -484,7 +489,7 @@ const Public = () => {
     'Completed'
   ];
 
- 
+
 
   const customerInfoHandler = () => {
     if (!customerName) {
@@ -1427,7 +1432,7 @@ const Public = () => {
                       <div
                         style={{
                           backgroundColor: colors?.color4,
-                          border: selectedBarber === b.name ? `0.1rem solid ${modecolors.color1}` : `0.1rem solid ${colors?.borderColor}`
+                          border: selectedBarberId === b.barberId ? `0.1rem solid ${modecolors.color1}` : `0.1rem solid ${colors?.borderColor}`
                         }}
                         className={style.barber_item}
                         key={b.barberId}
@@ -1475,7 +1480,7 @@ const Public = () => {
                   style={{
                     backgroundColor: modecolors?.color1,
                     color: modecolors?.color2,
-                    opacity: !selecteBarberdata ? 0.4 : 1
+                    opacity: selectedBarberId != null ? 1 : 0.4
                   }}
                   onClick={barberHandler}
                 >Continue</button>
