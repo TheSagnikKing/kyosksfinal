@@ -598,6 +598,7 @@ const Public = () => {
 
 
   console.log("Join queue data ", joinqueuedata)
+  console.log(joinqueueModalOpen?.data?.mobileNumber)
 
   return (
     <main className={style.container}
@@ -1662,7 +1663,7 @@ const Public = () => {
                   }}
                 >
                   <p>Phone No. :</p>
-                  <p>{`+ ${joinqueueModalOpen?.data?.mobileNumber}` || "Not provided"}</p>
+                  <p>{joinqueueModalOpen?.data?.mobileNumber ? `+${joinqueueModalOpen?.data?.mobileNumber}` : "Not provided"}</p>
                 </div>
               </div>
 
