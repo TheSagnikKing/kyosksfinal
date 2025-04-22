@@ -843,13 +843,38 @@
                 align-items: center;
                 gap: 1rem;
 
-                &>img {
-                    border-radius: var(--border-radius-primary);
-                    -webkit-border-radius: var(--border-radius-primary);
-                    -moz-border-radius: var(--border-radius-primary);
-                    -ms-border-radius: var(--border-radius-primary);
-                    -o-border-radius: var(--border-radius-primary);
-                    object-fit: cover;
+                &>div:nth-child(1) {
+                    position: relative;
+
+                    &>img {
+                        border-radius: var(--border-radius-primary);
+                        -webkit-border-radius: var(--border-radius-primary);
+                        -moz-border-radius: var(--border-radius-primary);
+                        -ms-border-radius: var(--border-radius-primary);
+                        -o-border-radius: var(--border-radius-primary);
+                        object-fit: cover;
+                        border: 0.1rem solid var(--border-secondary);
+                    }
+
+                    &>span {
+                        position: absolute;
+                        top: -0.5rem;
+                        right: -0.5rem;
+                        border: 0.1rem solid #FCBF49;
+                        color: #FCBF49;
+                        font-size: 1.2rem;
+                        width: 2.5rem;
+                        height: 2.5rem;
+                        border-radius: var(--border-radius-primary);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: #000;
+                        -webkit-border-radius: var(--border-radius-primary);
+                        -moz-border-radius: var(--border-radius-primary);
+                        -ms-border-radius: var(--border-radius-primary);
+                        -o-border-radius: var(--border-radius-primary);
+                    }
                 }
 
                 &>div {
@@ -886,6 +911,7 @@
                         font-weight: 600;
                     }
                 }
+
             }
 
             &>p {

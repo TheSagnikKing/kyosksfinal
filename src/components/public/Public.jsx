@@ -20,6 +20,7 @@ import { GoogleLogin } from '@react-oauth/google'
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
+import { BiCrown } from 'react-icons/bi';
 
 const Public = () => {
 
@@ -1582,11 +1583,16 @@ const Public = () => {
                         className={style.service_item}>
 
                         <div>
-                          <img src={item?.serviceIcon?.url} alt="" width={60} height={60} />
+                          <div>
+                            <img src={item?.serviceIcon?.url} alt="" width={60} height={60} />
+                            {item?.vipService ? <span><RiVipCrownFill /></span> : null}
+                          </div>
                           <div>
                             <p>{item.serviceName}</p>
                             <p><span><ClockIcon /></span>{item.barberServiceEWT}&nbsp; mins</p>
                           </div>
+
+
                         </div>
 
                         <p>{getDefaultSalonByAdmindata?.response?.currency}{item.servicePrice}</p>
