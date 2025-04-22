@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import style from './CommonHeader.module.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ClickAwayListener } from '@mui/material';
-import { AccountIcon, BackIconNew, DarkIcon, JoinIcon, LightIcon, LogoutIcon, QueueIcon, SettingsIcon, ThemeIcon } from '../../icons';
+import { AccountIcon, BackIconNew, DarkIcon, JoinIcon, LightIcon, LogoutIcon, PersonIcon, QueueIcon, SettingsIcon, ThemeIcon, TotalQueueIcon } from '../../icons';
 import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice';
@@ -11,6 +11,17 @@ import { setTheme } from '../app/themeSlice';
 import { setDefaultModeColor, setModeColor } from '../app/modeColorSlice';
 
 const CommonHeader = () => {
+
+    const [
+        getDefaultSalonByAdmin,
+        {
+            data: getDefaultSalonByAdmindata,
+            isSuccess: getDefaultSalonByAdminisSuccess,
+            isError: getDefaultSalonByAdminisError,
+            error: getDefaultSalonByAdminerror,
+            isLoading: getDefaultSalonByAdminisLoading
+        }
+    ] = useGetDefaultSalonByKioskMutation()
 
     const { currentTheme, colors } = useSelector(state => state.theme);
     const { availableModeColors } = useSelector(state => state.modeColor)
@@ -45,6 +56,17 @@ const CommonHeader = () => {
             isLoading
         }
     ] = useGetDefaultSalonByKioskMutation()
+
+    useEffect(() => {
+        if (adminInfo?.email) {
+            const salondata = {
+                email: adminInfo?.email,
+                role: adminInfo?.role
+            }
+            getDefaultSalonByAdmin(salondata)
+        }
+    }, [adminInfo])
+
 
     useEffect(() => {
         if (adminInfo?.email) {
@@ -124,6 +146,45 @@ const CommonHeader = () => {
                     adminInfo?.role === "Barber" ? <p>{adminInfo?.salonName}</p> : <p>{data?.response?.salonName}</p>
                 }
             </div>
+
+            {Object.keys(adminInfo).length > 0 && (
+                <div className={style.top}>
+                    <div>
+
+                        <div
+                            className={style.top_chip}
+                            style={{
+                                backgroundColor: colors?.inputColor,
+                                border: `0.1rem solid ${colors?.borderColor}`,
+                                color: colors?.color3
+                            }}
+                        >
+                            <div>
+                                <div><TotalQueueIcon /></div>
+                                <p>Total Queue</p>
+                            </div>
+                            <b>{getDefaultSalonByAdmindata?.response?.totalQueueCount}</b>
+                        </div>
+
+                        <div
+                            className={style.top_chip}
+                            style={{
+                                backgroundColor: colors?.inputColor,
+                                border: `0.1rem solid ${colors?.borderColor}`,
+                                color: colors?.color3
+                            }}
+                        >
+                            <div>
+                                <div><PersonIcon /></div>
+                                <p>Barbers on duty</p>
+                            </div>
+                            <b>{getDefaultSalonByAdmindata?.response?.barbersOnDuty}</b>
+                        </div>
+
+                    </div>
+                </div>
+            )}
+
 
             {
                 location.pathname === "/kiyoskdashboard" ?

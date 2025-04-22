@@ -127,7 +127,7 @@ body {
   font-size: 1.6rem;
 }
 
-*::-webkit-scrollbar {
+/* *::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
@@ -156,7 +156,7 @@ body {
 
 *:hover::-webkit-scrollbar-corner {
   background-color: transparent;
-}
+} */
 
 .page_loader {
   height: 100vh;
