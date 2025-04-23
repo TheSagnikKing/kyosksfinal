@@ -558,7 +558,7 @@ const Public = () => {
 
   const barberHandler = () => {
 
-    if (selectedBarberId === "") {
+    if (selectedBarberId === "" || selectedBarberId === undefined || selectedBarberId === null) {
       toast.error("Please provide a barber", {
         duration: 3000,
         style: {
@@ -1480,7 +1480,7 @@ const Public = () => {
                   style={{
                     backgroundColor: modecolors?.color1,
                     color: modecolors?.color2,
-                    opacity: selectedBarberId != null ? 1 : 0.4
+                    opacity: selectedBarberId === "" || selectedBarberId === undefined || selectedBarberId === null ? 0.4 : 1
                   }}
                   onClick={barberHandler}
                 >Continue</button>

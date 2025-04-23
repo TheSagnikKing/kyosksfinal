@@ -132,9 +132,9 @@ const SalonSelection = () => {
 
     return (
         <main className={style.select_salon_container}
-        style={{
-            backgroundColor: colors.color4
-        }}
+            style={{
+                backgroundColor: colors.color4
+            }}
         >
             <div className={style.select_salon_container_left}>
                 <img src="./Forgot_Password.png" alt="salon_selection_img" />
@@ -159,14 +159,14 @@ const SalonSelection = () => {
                         {
                             adminInfo?.role === "Barber" ? null : adminInfo?.role === "Admin" ? <div>
                                 <ClickAwayListener onClickAway={() => setSalonListDrop(false)}>
-                                    <div 
-                                    style={{
-                                        backgroundColor: colors.inputColor,
-                                        border: `0.1rem solid ${colors.borderColor}`
-                                    }}
-                                    onClick={() => setSalonListDrop((prev) => (!prev))}>
+                                    <div
+                                        style={{
+                                            backgroundColor: colors.inputColor,
+                                            border: `0.1rem solid ${colors.borderColor}`
+                                        }}
+                                        onClick={() => setSalonListDrop((prev) => (!prev))}>
                                         <p>{salonName !== "" && salonName}</p>
-                                        <div style={{ color: colors.color3}}><IoMdArrowDropdownCircle/></div>
+                                        <div style={{ color: colors.color3 }}><IoMdArrowDropdownCircle /></div>
 
 
                                         {salonlistdrop && <main
@@ -199,28 +199,30 @@ const SalonSelection = () => {
                         }
 
                         {
-                            adminInfo?.role === "Barber" ? <button 
-                            style={{
-                                backgroundColor: modecolors.color1
-                            }}
-                            onClick={continueHandler} className={style.salon_selection_btn}>Continue</button> : adminInfo?.role === "Admin" ? Object.keys(adminInfo).length > 0 && adminConnectKioskisLoading ? <button 
-                            style={{
-                                backgroundColor: modecolors.color1
-                            }}
-                            className={style.salon_selection_btn}><ColorRing
-                                visible={true}
-                                height="4rem"
-                                width="4rem"
-                                ariaLabel="color-ring-loading"
-                                wrapperStyle={{}}
-                                wrapperClass="color-ring-wrapper"
-                                colors={[modecolors?.color2, modecolors?.color2, modecolors?.color2, modecolors?.color2, modecolors?.color2]}
-                            /></button> : <button 
-                            style={{
-                                backgroundColor: modecolors.color1,
-                                color: modecolors?.color2
-                            }}
-                            onClick={applySalonHandler} className={style.salon_selection_btn}>Apply</button> : null
+                            adminInfo?.role === "Barber" ? <button
+                                style={{
+                                    backgroundColor: modecolors.color1,
+                                    color: modecolors?.color2
+                                }}
+                                onClick={continueHandler} className={style.salon_selection_btn}>Continue</button> : adminInfo?.role === "Admin" ? Object.keys(adminInfo).length > 0 && adminConnectKioskisLoading ? <button
+                                    style={{
+                                        backgroundColor: modecolors.color1,
+                                        color: modecolors?.color2
+                                    }}
+                                    className={style.salon_selection_btn}><ColorRing
+                                        visible={true}
+                                        height="4rem"
+                                        width="4rem"
+                                        ariaLabel="color-ring-loading"
+                                        wrapperStyle={{}}
+                                        wrapperClass="color-ring-wrapper"
+                                        colors={[modecolors?.color2, modecolors?.color2, modecolors?.color2, modecolors?.color2, modecolors?.color2]}
+                                    /></button> : <button
+                                        style={{
+                                            backgroundColor: modecolors.color1,
+                                            color: modecolors?.color2
+                                        }}
+                                        onClick={applySalonHandler} className={style.salon_selection_btn}>Apply</button> : null
                         }
 
                     </div>
