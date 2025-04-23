@@ -287,6 +287,7 @@ const Public = () => {
       setCustomerName("")
       setCustomerEmail("")
       setMobileNumber("")
+      setSelectedBarberId("")
       setStep(0)
       // navigate('/kiosk')
       setJoinqueueModalOpen({
@@ -557,7 +558,7 @@ const Public = () => {
 
   const barberHandler = () => {
 
-    if (selecteBarberdata === false) {
+    if (selectedBarberId === "") {
       toast.error("Please provide a barber", {
         duration: 3000,
         style: {
@@ -597,9 +598,6 @@ const Public = () => {
     })
   }
 
-
-  console.log("Join queue data ", joinqueuedata)
-  console.log(joinqueueModalOpen?.data?.mobileNumber)
 
   return (
     <main className={style.container}
@@ -1792,8 +1790,8 @@ const Public = () => {
                   }}
                   className={style.modaljoinqueue_btn}><ColorRing
                     visible={true}
-                    height="4rem"
-                    width="4rem"
+                    height="3rem"
+                    width="3rem"
                     ariaLabel="color-ring-loading"
                     wrapperStyle={{}}
                     wrapperClass="color-ring-wrapper"

@@ -147,7 +147,7 @@ const CommonHeader = () => {
                 }
             </div>
 
-            {Object.keys(adminInfo).length > 0 && (
+            {Object.keys(adminInfo).length > 0 && data?.response ? (
                 <div className={style.top}>
                     <div>
 
@@ -183,7 +183,7 @@ const CommonHeader = () => {
 
                     </div>
                 </div>
-            )}
+            ) : (<div></div>)}
 
 
             {
