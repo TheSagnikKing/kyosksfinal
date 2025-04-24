@@ -960,7 +960,6 @@
 
     .stepper_container_four {
         width: min(95vw, 60rem);
-        background-color: #efefef;
         margin-inline: auto;
         flex: 1;
         overflow-y: scroll !important;
