@@ -960,9 +960,9 @@
 
     .stepper_container_four {
         width: min(95vw, 60rem);
-        /* background-color: #efefef; */
+        background-color: #efefef;
         margin-inline: auto;
-        flex: 0.8;
+        flex: 1;
         overflow-y: scroll !important;
         overflow-x: hidden !important;
         padding: 1.4rem;
@@ -976,7 +976,7 @@
             font-weight: 600;
         }
 
-        &>div:not(.double_div):not(:nth-last-child(1)) {
+        &>div:not(.double_div):not(:nth-last-child(1)):not(.serviceNames_container) {
             min-height: 3.5rem;
             border-radius: var(--border-radius-primary);
             -webkit-border-radius: var(--border-radius-primary);
@@ -994,6 +994,27 @@
 
             &>p:nth-child(1) {
                 opacity: 0.6;
+            }
+        }
+
+        .serviceNames_container {
+            &>p:nth-child(1) {
+                font-size: 1.4rem;
+            }
+
+            &>textarea {
+                width: 100%;
+                margin-top: 1rem;
+                padding: 1rem;
+                resize: none;
+                overflow: auto;
+                font-size: 1.4rem;
+                border-radius: var(--border-radius-primary);
+                -webkit-border-radius: var(--border-radius-primary);
+                -moz-border-radius: var(--border-radius-primary);
+                -ms-border-radius: var(--border-radius-primary);
+                -o-border-radius: var(--border-radius-primary);
+                outline: none;
             }
         }
 
@@ -1815,10 +1836,6 @@
         .joinqueue__main__right__form_bottom {
             grid-template-columns: 1fr;
         }
-
-
-
-
     }
 
     .top {

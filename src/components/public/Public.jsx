@@ -1682,16 +1682,27 @@ const Public = () => {
               </div>
 
               <div
-                style={{
-                  border: `0.1rem solid ${colors?.borderColor}`,
-                  backgroundColor: colors.inputColor
-                }}
+                className={style.serviceNames_container}
               >
-                <p>Total Services :</p>
-                <p>{joinqueueModalOpen?.data?.services?.length}</p>
+                <p>Services Name :</p>
+
+                <textarea
+                  name="servicesNames"
+                  id="servicesName"
+                  readOnly
+                  rows={3}
+                  style={{
+                    border: `0.1rem solid ${colors?.borderColor}`,
+                    backgroundColor: colors.inputColor
+                  }}
+                  value={
+                    joinqueueModalOpen?.data?.services?.map(item => item?.serviceName).join(', ')
+                  }
+                />
+
               </div>
 
-              {
+              {/* {
                 joinqueueModalOpen?.data?.services?.map((item) => {
                   return (
                     <div
@@ -1706,7 +1717,7 @@ const Public = () => {
                     </div>
                   )
                 })
-              }
+              } */}
 
 
               <div className={style.double_div}>
