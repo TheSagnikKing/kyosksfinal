@@ -278,9 +278,9 @@ const SalonSettings = () => {
   const [a, setA] = useState(false)
   return (
     <section className={style.salon_settings_container}
-    style={{
-      backgroundColor: colors.color4
-    }}
+      style={{
+        backgroundColor: colors.color4
+      }}
     >
       <div className={style.salon_settings_left}>
         <img src="./My_Bookings.png" alt="salon_settings_img" />
@@ -289,22 +289,87 @@ const SalonSettings = () => {
         <h2>Salon Settings</h2>
 
         <div className={style.salon_main_container}>
+          <div
+            style={{
+              backgroundColor: colors.inputColor,
+              border: `0.1rem solid ${colors.borderColor}`
+            }}
+            className={style.settings_item}>
+            <div style={{
+              borderRight: `0.1rem solid ${colors.borderColor}`
+            }}>
+              <div>
+                <div><img src={settingsData[0]?.img} alt="" style={{ filter: currentTheme === "Dark" ? "brightness(0) invert(1)" : "brightness(0) invert(0)" }} /></div>
+                <h2>{settingsData[0].name}</h2>
+                <div>
+                  <Switch
+                    width={80}
+                    handleDiameter={20}
+                    offColor="#F44336"
+                    onColor="#00A36C"
+                    uncheckedIcon={
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "100%",
+                          fontSize: "1.4rem",
+                          fontWeight: "600",
+                          color: "#F4F4F5",
+                          paddingRight: "1.5rem",
+                        }}
+                      >
+                        Offline
+                      </div>
+                    }
+                    checkedIcon={
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "100%",
+                          fontSize: "1.4rem",
+                          fontWeight: "600",
+                          color: "#F4F4F5",
+                          paddingLeft: "1.5rem"
+                        }}
+                      >
+                        Online
+                      </div>
+                    }
+                    onChange={() => settingsData[0]?.handler()}
+                    checked={settingsData[0].value}
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <p>{settingsData[0].desc}</p>
+            </div>
+          </div>
+
 
           <div>
+
+
             {
-              settingsData.map((item) => {
+              settingsData.map((item, index) => {
+                if (index === 0) return null;
+
                 return (
-                  <div 
-                  style={{
-                    backgroundColor: colors.inputColor,
-                    border: `0.1rem solid ${colors.borderColor}`
-                  }}
-                  className={style.settings_item} key={item.id}>
+                  <div
+                    style={{
+                      backgroundColor: colors.inputColor,
+                      border: `0.1rem solid ${colors.borderColor}`
+                    }}
+                    className={style.settings_item} key={item.id}>
                     <div style={{
                       borderRight: `0.1rem solid ${colors.borderColor}`
                     }}>
                       <div>
-                        <div><img src={item.img} alt="" style={{ filter: currentTheme === "Dark" ? "brightness(0) invert(1)" : "brightness(0) invert(0)"}}/></div>
+                        <div><img src={item.img} alt="" style={{ filter: currentTheme === "Dark" ? "brightness(0) invert(1)" : "brightness(0) invert(0)" }} /></div>
                         <h2>{item.name}</h2>
                         <div>
                           <Switch

@@ -7,6 +7,7 @@ import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice';
 import Skeleton from 'react-loading-skeleton';
+import Skeleton2 from '@mui/material/Skeleton';
 import { setTheme } from '../app/themeSlice';
 import { setDefaultModeColor, setModeColor } from '../app/modeColorSlice';
 
@@ -143,11 +144,72 @@ const CommonHeader = () => {
                     }
                 </div>
                 {
-                    adminInfo?.role === "Barber" ? <p>{adminInfo?.salonName}</p> : <p>{data?.response?.salonName}</p>
+                    isLoading ? (
+                        <Skeleton2
+                            variant="rectangular"
+                            className={style.skeleton}
+                        />
+                    ) : (
+                        adminInfo?.role === "Barber" ? <p>{adminInfo?.salonName}</p> : <p>{data?.response?.salonName}</p>
+                    )
+
                 }
             </div>
 
-            {Object.keys(adminInfo).length > 0 && data?.response ? (
+            {
+                isLoading ? (
+                    <div className={style.top}>
+                        <div>
+                            <Skeleton2
+                                variant="rectangular"
+                                className={style.skeleton}
+                            />
+                            <Skeleton2
+                                variant="rectangular"
+                                className={style.skeleton}
+                            />
+                        </div>
+                    </div>
+                ) : Object.keys(adminInfo).length > 0 && data?.response ? (
+                    <div className={style.top}>
+                        <div>
+
+                            <div
+                                className={style.top_chip}
+                                style={{
+                                    backgroundColor: colors?.inputColor,
+                                    border: `0.1rem solid ${colors?.borderColor}`,
+                                    color: colors?.color3
+                                }}
+                            >
+                                <div>
+                                    <div><TotalQueueIcon /></div>
+                                    <p>Total Queue</p>
+                                </div>
+                                <b>{getDefaultSalonByAdmindata?.response?.totalQueueCount}</b>
+                            </div>
+
+                            <div
+                                className={style.top_chip}
+                                style={{
+                                    backgroundColor: colors?.inputColor,
+                                    border: `0.1rem solid ${colors?.borderColor}`,
+                                    color: colors?.color3
+                                }}
+                            >
+                                <div>
+                                    <div><PersonIcon /></div>
+                                    <p>Barbers on duty</p>
+                                </div>
+                                <b>{getDefaultSalonByAdmindata?.response?.barbersOnDuty}</b>
+                            </div>
+
+                        </div>
+                    </div>
+                ) : (<div></div>)
+            }
+
+            {/* {Object.keys(adminInfo).length > 0 && data?.response ? (
                 <div className={style.top}>
                     <div>
 
@@ -183,7 +245,7 @@ const CommonHeader = () => {
 
                     </div>
                 </div>
-            ) : (<div></div>)}
+            ) : (<div></div>)} */}
 
 
             {
@@ -195,7 +257,10 @@ const CommonHeader = () => {
                     : <div>
 
                         <div>
-                            <button className={`${style.sytem_status} ${adminInfo.kioskAvailability ? style.online : style.offline}`}>{adminInfo.kioskAvailability ? "System ON" : "System OFF"}</button>
+                            {isLoading ? <Skeleton2
+                                variant="rectangular"
+                                className={style.skeleton}
+                            /> : Object.keys(adminInfo).length > 0 && data?.response ? <button className={`${style.sytem_status} ${adminInfo.kioskAvailability ? style.online : style.offline}`}>{adminInfo.kioskAvailability ? "System ON" : "System OFF"}</button> : null}
                             {/* <button onClick={queuelistClicked}>QueueList</button> */}
                             {/* <button onClick={joinqueueClicked} disabled={!adminInfo.kioskAvailability}
                                 style={{
