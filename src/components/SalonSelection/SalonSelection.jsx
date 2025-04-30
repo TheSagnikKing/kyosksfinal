@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import style from './SalonSelection.module.css'
 import { useAdminConnectKioskMutation, useGetAllSalonsByAdminMutation, useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-hot-toast';
 import { IoMdArrowDropdownCircle } from 'react-icons/io'
 import { ColorRing } from 'react-loader-spinner'
 import { ClickAwayListener } from '@mui/material'
+import { setDefaultModeColor } from '../app/modeColorSlice'
 
 const SalonSelection = () => {
 
     const { colors, currentTheme } = useSelector(state => state.theme);
     const { modecolors } = useSelector(state => state.modeColor)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(setDefaultModeColor({ modeColor: "default", theme: currentTheme }))
+    }, [currentTheme])
 
     const navigate = useNavigate()
 
@@ -130,6 +137,7 @@ const SalonSelection = () => {
         window.location.reload()
     }
 
+
     return (
         <main className={style.select_salon_container}
             style={{
@@ -142,19 +150,13 @@ const SalonSelection = () => {
 
             <div className={style.select_salon_container_right}>
                 <div className={style.salon_selection_container}>
-                    {/* {
-                        adminInfo?.role === "Barber" ? <h2 style={{ textAlign: "center" }}>Welcome Back, {adminInfo?.name}</h2> : <h2>Welcome Back, {adminInfo?.name}</h2>
-                    } */}
                     <h2>Welcome Back, {adminInfo?.name}</h2>
+
                     {
                         adminInfo?.role === "Barber" ? (<p>Continue to access the Kiosk Dashboard</p>) : (<p>Kindly select a salon from the available options to proceed.</p>)
                     }
 
                     <div className={style.selection_box_container}>
-                        {/* {
-                            adminInfo?.role === "Barber" ? <p style={{ textAlign: "center" }}>Selected Salon, &nbsp;<span>{adminInfo?.salonName}</span></p> : adminInfo?.role === "Admin" ? <p>Selected Salon, &nbsp;<span>{salonName !== "" && salonName}</span></p> : null
-                        }
-                         */}
                         <p></p>
                         {
                             adminInfo?.role === "Barber" ? null : adminInfo?.role === "Admin" ? <div>

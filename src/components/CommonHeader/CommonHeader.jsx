@@ -337,6 +337,10 @@ const CommonHeader = () => {
                                             <div><LogoutIcon /></div>
                                             <p>Logout</p>
                                         </div>
+                                        <div>
+                                            <div></div>
+                                            <p>v 1.0.1</p>
+                                        </div>
                                     </div>
                                 )}
                             </div>

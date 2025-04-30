@@ -26,6 +26,7 @@ const Public = () => {
 
   const { colors, currentTheme } = useSelector(state => state.theme);
   const { modecolors } = useSelector(state => state.modeColor)
+  
 
   const adminInfo = useSelector(selectCurrentAdminInfo)
 
