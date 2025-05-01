@@ -215,6 +215,13 @@ body {
   border-bottom-left-radius: var(--input-border-radius) !important;
 }
 
+/* input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background-color: none !important;
+} */
+
 
 @media screen and (min-width:1921px) and (max-width:2250px) {
   :root {

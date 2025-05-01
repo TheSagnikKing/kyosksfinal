@@ -148,6 +148,7 @@ const CommonHeader = () => {
                         <Skeleton2
                             variant="rectangular"
                             className={style.skeleton}
+                            sx={{ backgroundColor: colors.borderColor }}
                         />
                     ) : (
                         adminInfo?.role === "Barber" ? <p>{adminInfo?.salonName}</p> : <p>{data?.response?.salonName}</p>
@@ -163,10 +164,12 @@ const CommonHeader = () => {
                             <Skeleton2
                                 variant="rectangular"
                                 className={style.skeleton}
+                                sx={{ backgroundColor: colors.borderColor }}
                             />
                             <Skeleton2
                                 variant="rectangular"
                                 className={style.skeleton}
+                                sx={{ backgroundColor: colors.borderColor }}
                             />
                         </div>
                     </div>
@@ -260,6 +263,7 @@ const CommonHeader = () => {
                             {isLoading ? <Skeleton2
                                 variant="rectangular"
                                 className={style.skeleton}
+                                sx={{ backgroundColor: colors.borderColor }}
                             /> : Object.keys(adminInfo).length > 0 && data?.response ? <button className={`${style.sytem_status} ${adminInfo.kioskAvailability ? style.online : style.offline}`}>{adminInfo.kioskAvailability ? "System ON" : "System OFF"}</button> : null}
                             {/* <button onClick={queuelistClicked}>QueueList</button> */}
                             {/* <button onClick={joinqueueClicked} disabled={!adminInfo.kioskAvailability}

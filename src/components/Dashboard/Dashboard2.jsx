@@ -467,18 +467,18 @@ const Dashboard2 = () => {
 
     return (
         <section className={`${style.section}`}
-        style={{
-            backgroundColor: colors.color4
-        }}
+            style={{
+                backgroundColor: colors.color4
+            }}
         >
             <div>
                 <div>
                     <div>
-                        <img src={selectCurrentBarberdata?.foundUser?.profile[0]?.url} 
-                        alt="" 
-                        style={{
-                            border: `0.1rem solid ${colors.borderColor}`
-                        }}
+                        <img src={selectCurrentBarberdata?.foundUser?.profile[0]?.url}
+                            alt=""
+                            style={{
+                                border: `0.1rem solid ${colors.borderColor}`
+                            }}
                         />
                         <div>
                             <h2>{selectCurrentBarberdata?.foundUser?.name}</h2>
@@ -488,9 +488,9 @@ const Dashboard2 = () => {
                     </div>
                     <div>
                         <div
-                        style={{
-                            border: `0.1rem solid ${colors.borderColor}`
-                        }}
+                            style={{
+                                border: `0.1rem solid ${colors.borderColor}`
+                            }}
                         >
                             <button onClick={() => clockHandler()} disabled={barberbtnCheck} style={{ cursor: barberbtnCheck ? "not-allowed" : "pointer", color: barberbtnCheck && "#fff" }}>Clock In</button>
                             <button onClick={() => clockHandler()} disabled={!barberbtnCheck} style={{ cursor: !barberbtnCheck ? "not-allowed" : "pointer", color: !barberbtnCheck && "#fff" }}>Clock Out</button>
@@ -543,11 +543,9 @@ const Dashboard2 = () => {
                                 checked={barberOnlineCheck}
                                 disabled={!barberbtnCheck}
                             />
-
                         </div>
                     </div>
                 </div>
-
 
                 {
                     getAttendenceByBarberIdKioskisLoading ? (
@@ -614,17 +612,17 @@ const Dashboard2 = () => {
                             {getAttendenceByBarberIdKioskdata?.response?.attendance.map((item, index) => {
                                 return (
                                     <div className={style.attendence_item} key={index}
-                                    style={{
-                                        backgroundColor: colors.inputColor,
-                                        border: `0.1rem solid ${colors.borderColor}`
-                                    }}
+                                        style={{
+                                            backgroundColor: colors.inputColor,
+                                            border: `0.1rem solid ${colors.borderColor}`
+                                        }}
                                     >
                                         <div>
                                             <p>{item?.date}</p>
                                             <div
-                                            style={{
-                                                backgroundColor: colors.color4
-                                            }}
+                                                style={{
+                                                    backgroundColor: colors.color4
+                                                }}
                                             ><p>{item?.day}</p></div>
                                         </div>
                                         <div>
@@ -654,73 +652,6 @@ const Dashboard2 = () => {
                     )
                 }
 
-                {/* <div>
-                    <Skeleton
-                        variant="rectangular"
-                        className={style.skeleton}
-                    />
-                    <Skeleton
-                        variant="rectangular"
-                        className={style.skeleton}
-                    />
-                    <Skeleton
-                        variant="rectangular"
-                        className={style.skeleton}
-                    />
-                    <Skeleton
-                        variant="rectangular"
-                        className={style.skeleton}
-                    />
-                    <Skeleton
-                        variant="rectangular"
-                        className={style.skeleton}
-                    />
-                    <Skeleton
-                        variant="rectangular"
-                        className={style.skeleton}
-                    />
-                    <Skeleton
-                        variant="rectangular"
-                        className={style.skeleton}
-                    />
-                    <Skeleton
-                        variant="rectangular"
-                        className={style.skeleton}
-                    />
-                </div> */}
-
-                {/* <div>
-                    {Array.from({ length: 20 }).map((item, index) => {
-                        return (
-                            <div className={style.attendence_item} key={index}>
-                                <div>
-                                    <p>March 07, 25</p>
-                                    <div><p>Friday</p></div>
-                                </div>
-                                <div>
-                                    <div>
-                                        <p>Time in</p>
-                                        <p>08:46</p>
-                                    </div>
-
-                                    <div>
-                                        <p>Time out</p>
-                                        <p>10:30</p>
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    })}
-                </div> */}
-
-                {/* <div style={{
-                    display: "flex",
-                    flexWrap:"nowrap",
-                    alignItems:"center",
-                    justifyContent:"center"
-                }}>
-                    <p>No attendance available</p>
-                </div> */}
             </div>
         </section>
     )

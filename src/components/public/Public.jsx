@@ -26,7 +26,7 @@ const Public = () => {
 
   const { colors, currentTheme } = useSelector(state => state.theme);
   const { modecolors } = useSelector(state => state.modeColor)
-  
+
 
   const adminInfo = useSelector(selectCurrentAdminInfo)
 
@@ -1240,7 +1240,8 @@ const Public = () => {
                       style={{
                         height: "8rem",
                         width: "35rem",
-                        marginRight: "1rem"
+                        marginRight: "1rem",
+                        backgroundColor: colors.borderColor
                       }}
                     />
                   )
