@@ -343,7 +343,7 @@ const CommonHeader = () => {
                                         </div>
                                         <div>
                                             <div></div>
-                                            <p>v 1.0.1</p>
+                                            <p>v 1.0.2</p>
                                         </div>
                                     </div>
                                 )}
