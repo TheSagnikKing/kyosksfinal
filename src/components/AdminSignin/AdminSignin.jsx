@@ -9,6 +9,7 @@ import { ColorRing } from 'react-loader-spinner'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
 import { useGoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
+import { setDefaultModeColor } from '../app/modeColorSlice'
 
 const AdminSignin = () => {
 
@@ -24,6 +25,7 @@ const AdminSignin = () => {
         isLoading,
         error
     }] = useLoginKioskMutation()
+
 
 
     const [
@@ -42,6 +44,10 @@ const AdminSignin = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(setDefaultModeColor({ modeColor: "default", theme: currentTheme }))
+    }, [currentTheme])
 
     useEffect(() => {
         if (isSuccess) {
@@ -146,7 +152,7 @@ const AdminSignin = () => {
 
                     /></div>
                     {/* <p>Effortlessly manage your salon with IQB! Oversee barbers, adjust settings, and enable easy Barber Login. Customers can join the queue in a tap.</p> */}
-                    
+
                     <div className={style.rolediv}>
                         <div>
                             <div
@@ -221,7 +227,7 @@ const AdminSignin = () => {
                             onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                     </div>
 
-                    
+
 
                     {isLoading ? <button
                         style={{
