@@ -167,7 +167,7 @@ const AdminSignin = () => {
                                     onChange={() => setRole("Admin")}
                                     onKeyDown={handleKeyPress}
                                     style={{
-                                        accentColor: modecolors.color1
+                                        accentColor: "red"
                                     }}
                                 />
                                 <p>Admin</p>
