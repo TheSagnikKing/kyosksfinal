@@ -146,7 +146,7 @@ const SalonSignin = () => {
                                     onChange={() => setRole("Admin")}
                                     onKeyDown={handleKeyPress}
                                     style={{
-                                        accentColor: modecolors.color1
+                                        accentColor: "red"
                                     }}
                                 />
                                 <p>Admin</p>
@@ -164,7 +164,7 @@ const SalonSignin = () => {
                                     onChange={() => setRole("Barber")}
                                     onKeyDown={handleKeyPress}
                                     style={{
-                                        accentColor: modecolors.color1
+                                        accentColor: "red"
                                     }}
                                 />
                                 <p>Barber</p>
@@ -206,7 +206,7 @@ const SalonSignin = () => {
                             onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                     </div>
 
-                    
+
 
                     {salonloginisLoading ? <button
                         style={{
