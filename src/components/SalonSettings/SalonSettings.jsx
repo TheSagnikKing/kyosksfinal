@@ -302,46 +302,53 @@ const SalonSettings = () => {
                 <div><img src={settingsData[0]?.img} alt="" style={{ filter: currentTheme === "Dark" ? "brightness(0) invert(1)" : "brightness(0) invert(0)" }} /></div>
                 <h2>{settingsData[0].name}</h2>
                 <div>
-                  <Switch
-                    width={80}
-                    handleDiameter={20}
-                    offColor="#F44336"
-                    onColor="#00A36C"
-                    uncheckedIcon={
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          height: "100%",
-                          fontSize: "1.4rem",
-                          fontWeight: "600",
-                          color: "#F4F4F5",
-                          paddingRight: "1.5rem",
-                        }}
-                      >
-                        Offline
-                      </div>
-                    }
-                    checkedIcon={
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          height: "100%",
-                          fontSize: "1.4rem",
-                          fontWeight: "600",
-                          color: "#F4F4F5",
-                          paddingLeft: "1.5rem"
-                        }}
-                      >
-                        Online
-                      </div>
-                    }
-                    onChange={() => settingsData[0]?.handler()}
-                    checked={settingsData[0].value}
-                  />
+                  {
+                    typeof settingsData[0].value === 'boolean' ? (
+                      <Switch
+                        width={80}
+                        handleDiameter={20}
+                        offColor="#F44336"
+                        onColor="#00A36C"
+                        uncheckedIcon={
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              height: "100%",
+                              fontSize: "1.4rem",
+                              fontWeight: "600",
+                              color: "#F4F4F5",
+                              paddingRight: "1.5rem",
+                            }}
+                          >
+                            Offline
+                          </div>
+                        }
+                        checkedIcon={
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              height: "100%",
+                              fontSize: "1.4rem",
+                              fontWeight: "600",
+                              color: "#F4F4F5",
+                              paddingLeft: "1.5rem"
+                            }}
+                          >
+                            Online
+                          </div>
+                        }
+                        onChange={() => settingsData[0]?.handler()}
+                        checked={settingsData[0].value}
+                      />
+                    ) : (
+                      <div style={{ height: "2.8rem" }} />
+                    )
+                  }
+
                 </div>
               </div>
             </div>
@@ -372,7 +379,7 @@ const SalonSettings = () => {
                         <div><img src={item.img} alt="" style={{ filter: currentTheme === "Dark" ? "brightness(0) invert(1)" : "brightness(0) invert(0)" }} /></div>
                         <h2>{item.name}</h2>
                         <div>
-                          <Switch
+                          {/* <Switch
                             width={80}
                             handleDiameter={20}
                             offColor="#F44336"
@@ -411,7 +418,51 @@ const SalonSettings = () => {
                             }
                             onChange={() => item?.handler()}
                             checked={item.value}
-                          />
+                          /> */}
+
+                          {typeof item?.value === 'boolean' ? (
+                            <Switch
+                              width={80}
+                              handleDiameter={20}
+                              offColor="#F44336"
+                              onColor="#00A36C"
+                              uncheckedIcon={
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    height: "100%",
+                                    fontSize: "1.4rem",
+                                    fontWeight: "600",
+                                    color: "#F4F4F5",
+                                    paddingRight: "1.5rem",
+                                  }}
+                                >
+                                  Offline
+                                </div>
+                              }
+                              checkedIcon={
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    height: "100%",
+                                    fontSize: "1.4rem",
+                                    fontWeight: "600",
+                                    color: "#F4F4F5",
+                                    paddingLeft: "1.5rem",
+                                  }}
+                                >
+                                  Online
+                                </div>
+                              }
+                              onChange={() => item?.handler()}
+                              checked={item.value}
+                            />
+
+                          ) : (<div style={{ height: "2.8rem" }} />)}
                         </div>
                       </div>
                     </div>

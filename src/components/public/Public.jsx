@@ -30,6 +30,7 @@ const Public = () => {
 
   const adminInfo = useSelector(selectCurrentAdminInfo)
 
+
   const [
     getDefaultSalonByAdmin,
     {
@@ -495,6 +496,19 @@ const Public = () => {
 
 
   const customerInfoHandler = () => {
+
+    if (!adminInfo.kioskAvailability) {
+      return toast.error("System is offline", {
+        duration: 3000,
+        style: {
+          fontSize: "var(--tertiary-text)",
+          borderRadius: '0.3rem',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+    }
+
     if (!customerName) {
       toast.error("Please enter customer name", {
         duration: 3000,
@@ -744,7 +758,7 @@ const Public = () => {
                 style={{
                   backgroundColor: modecolors?.color1,
                   color: modecolors?.color2,
-                  opacity: (invalidNumberError || emailError || nameError || !customerName) ? 0.4 : 1
+                  opacity: (!adminInfo.kioskAvailability || invalidNumberError || emailError || nameError || !customerName) ? 0.4 : 1
                 }}
                 onClick={customerInfoHandler}
               >Continue</button>

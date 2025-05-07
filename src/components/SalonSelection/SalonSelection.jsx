@@ -192,7 +192,10 @@ const SalonSelection = () => {
                                                 >
                                                     {getAllSalonsByAdmindata?.salons?.length > 0 &&
                                                         getAllSalonsByAdmindata?.salons.map((s, i) => (
-                                                            <div key={s._id} onClick={() => salonHandler(s)}
+                                                            <div key={s._id} onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                salonHandler(s);
+                                                            }}
                                                                 style={{
                                                                     // backgroundColor: salonName === s.salonName ? "var(--primary-color)" : "",
                                                                     // borderBottom: i === getAllSalonsByAdmindata?.salons.length - 1 ? "none" : "1px solid #00000",
