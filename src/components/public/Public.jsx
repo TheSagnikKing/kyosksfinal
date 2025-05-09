@@ -1181,12 +1181,22 @@ const Public = () => {
         {
           step === 4 && (
             <div className={style.stepper_container_five}>
-              <p>All steps has been successfully <span>completed</span>. Click the <span
-                style={{
-                  color: modecolors?.color1,
-                  fontWeight: "600"
-                }}
-              >button</span> to join in queuelist</p>
+              {/* <p>All steps has been successfully <span>completed</span>.
+                Please click the <span
+                  style={{
+                    color: modecolors?.color1,
+                    fontWeight: "600"
+                  }}
+                >join queue button</span> to join the queue list</p> */}
+
+              <p style={{ textAlign: "center" }}>
+                Please click the <span
+                  style={{
+                    color: modecolors?.color1,
+                    fontWeight: "700",
+                  }}
+                >Join Queue </span>button to join the queue list
+              </p>
 
 
               {/* <button
