@@ -301,10 +301,14 @@ const CommonHeader = () => {
                                             <p>Salon settings</p>
                                         </div>
 
+                                        <p>Theme</p>
+
                                         <div onClick={() => dispatch(setTheme(currentTheme === "Dark" ? "Light" : "Dark"))}>
                                             <div>{currentTheme === "Dark" ? <DarkIcon /> : <LightIcon />}</div>
                                             <p>{currentTheme === "Dark" ? "Dark" : "Light"}</p>
                                         </div>
+
+                                        <p>Colors</p>
 
                                         {
                                             Object.entries(availableModeColors)?.map(([key, value]) => {
@@ -341,9 +345,9 @@ const CommonHeader = () => {
                                             <div><LogoutIcon /></div>
                                             <p>Logout</p>
                                         </div>
-                                        <div>
+                                        <div style={{ cursor: "default" }}>
                                             <div></div>
-                                            <p>v 1.0.2</p>
+                                            <p style={{ color: "gray"}}>v 1.0.3</p>
                                         </div>
                                     </div>
                                 )}
