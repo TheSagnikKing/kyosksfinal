@@ -28,6 +28,8 @@ const SalonProtected = React.lazy(() => import("./components/SalonSettings/Salon
 const BarberKiyoskDashboardProtect = React.lazy(() => import("./components/Protected/Barber/BarberKiyoskDashboardProtect"))
 const JoinForm = React.lazy(() => import("./components/JoinForm/JoinForm"))
 const SalonServices = React.lazy(() => import("./components/SalonServices/SalonServices"))
+const SalonBarbers = React.lazy(() => import("./components/SalonBarbers/SalonBarbers"))
+const JoinQueuePage = React.lazy(() => import("./components/JoinQueuePage/JoinQueuePage"))
 
 const ErrorFallback = ({ error }) => {
 
@@ -124,6 +126,8 @@ const App = () => {
                 <Route path="/kiosk" element={<Public />} />
                 <Route path="/joinForm" element={<JoinForm/>}/>
                 <Route path="/salonServices" element={<SalonServices/>}/>
+                <Route path="/salonBarbers" element={<SalonBarbers/>}/>
+                <Route path="/joinQueuePage" element={<JoinQueuePage/>}/>
                 <Route path="/salonsignin" element={<SalonSignin />} />
 
                 <Route element={<SalonProtected />}>

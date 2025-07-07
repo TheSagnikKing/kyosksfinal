@@ -1,6 +1,7 @@
 import React from 'react'
 import style from './SalonServices.module.css';
 import { AddIcon, ClockIcon, SearchIcon } from '../../icons';
+import { useNavigate } from 'react-router-dom';
 
 const SalonServices = () => {
 
@@ -13,6 +14,8 @@ const SalonServices = () => {
     "Massage",
     "Hair Wash"
   ]
+
+  const navigate = useNavigate()
 
   return (
     <main className={style.container}>
@@ -115,7 +118,9 @@ const SalonServices = () => {
 
       </div>
 
-      <button className={style.btn}>Continue</button>
+      <button 
+      onClick={() => navigate("/salonBarbers")}
+      className={style.btn}>Continue</button>
 
     </main>
   )
