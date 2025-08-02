@@ -1,15 +1,108 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import style from './JoinQueuePage.module.css';
+import { useSelector } from 'react-redux';
+import { useGlobal } from '../../context/GlobalContext';
+import { formatMinutesToHrMin } from '../../utils/formatMinutesToHrMin';
+import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice';
+import { useJoinQueueKioskMutation } from '../JoinQueue/joinqueueApiSlice';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { ColorRing } from 'react-loader-spinner';
 
 const JoinQueuePage = () => {
+
+    const adminInfo = useSelector(selectCurrentAdminInfo);
+
+    const navigate = useNavigate()
+
+    const {
+        selectedServices,
+        setSelectedServices,
+        selectBarber,
+        setSelectedBarber,
+        customerName,
+        setCustomerName,
+        customerEmail,
+        setCustomerEmail,
+        mobileNumber,
+        setMobileNumber,
+        countryflag,
+        setCountryFlag,
+        mobileCountryCode,
+        setMobileCountryCode
+    } = useGlobal()
+    const { colors } = useSelector(state => state.theme);
+
+    const [
+        joinQueueKiosk,
+        {
+            data: joinQueueKioskdata,
+            isSuccess: joinQueueKioskisSuccess,
+            isError: joinQueueKioskisError,
+            isLoading: joinQueueKioskloading,
+            error: joinQueueKioskerror
+        }
+    ] = useJoinQueueKioskMutation()
+
+    useEffect(() => {
+        if (joinQueueKioskisSuccess) {
+
+            toast.success("Join queue successfully", {
+                duration: 3000,
+                style: {
+                    fontSize: "var(--list-modal-header-normal-font)",
+                    borderRadius: "0.3rem",
+                    background: "#333",
+                    color: "#fff",
+                },
+            });
+
+            setSelectedServices([])
+            setSelectedBarber("")
+            setCustomerName("")
+            setCustomerEmail("")
+            setMobileNumber("")
+            setCountryFlag("gb")
+            setMobileCountryCode("")
+
+            navigate("/kiosk")
+
+        }
+    }, [joinQueueKioskisSuccess])
+
+    const joinHandler = () => {
+        const joinqueuedata = {
+            salonId: adminInfo?.salonId,
+            name: customerName,
+            customerEmail: customerEmail,
+            joinedQType: "Single-Join",
+            methodUsed: "Walk-In",
+            mobileNumber: Number(mobileNumber),
+            mobileCountryCode: Number(mobileCountryCode),
+            barberName: selectBarber?.name,
+            barberId: selectBarber?.barberId,
+            services: selectedServices
+        }
+
+        // console.log(joinqueuedata)
+
+        joinQueueKiosk(joinqueuedata)
+        // joinQueueKiosk(joinqueueModalOpen.data)
+    }
+
     return (
-        <main className={style.container}>
-            <p
+        <main
+            className={style.container}
             style={{
-                fontSize: "5rem",
-                fontWeight: "600",
-                marginTop: "7rem"
+                backgroundColor: colors.color4,
             }}
+        >
+            <p
+                style={{
+                    fontSize: "5rem",
+                    fontWeight: "600",
+                    marginTop: "7rem"
+                }}
             >Preview</p>
 
             <div style={{
@@ -27,25 +120,25 @@ const JoinQueuePage = () => {
                         gap: "1.4rem"
                     }}
                 >
-                    {
-                        [0].map((item, index) => {
-                            return (
-                                <div
-                                    key={index}
-                                    className={style.serviceCard}>
-                                    <div>
-                                        <img src="https://media.istockphoto.com/id/640274128/photo/barber-using-scissors-and-comb.jpg?s=612x612&w=0&k=20&c=mjdP6NhDA40WBorr8kyyI69waMs1EyzLkSmT6lQRvGU=" alt="" />
-                                        <p>David Wanner</p>
-                                        <p style={{
-                                            fontSize: "1.2rem",
-                                            textAlign: "center"
-                                        }}>availability in 35 mins</p>
-                                    </div>
+                    <div
+                        className={style.serviceCard}
+                        style={{
+                            backgroundColor: colors.color4,
+                            border: `0.1rem solid ${colors.borderColor}`
+                        }}
+                    >
+                        <div>
+                            <img src={selectBarber?.profile?.[0]?.url} alt="" style={{ border: "0.1rem solid #efefef" }} />
+                            <p>{selectBarber?.name}</p>
+                            <p style={{
+                                fontSize: "1.2rem",
+                                textAlign: "center"
+                            }}>~{formatMinutesToHrMin(selectBarber?.barberEWT)}</p>
+                        </div>
 
-                                </div>
-                            )
-                        })
-                    }
+                    </div>
+
+
                 </div>
             </div>
 
@@ -66,18 +159,23 @@ const JoinQueuePage = () => {
                     }}
                 >
                     {
-                        [0, 1].map((item, index) => {
+                        selectedServices.map((item, index) => {
                             return (
                                 <div
                                     key={index}
-                                    className={style.serviceCard}>
+                                    className={style.serviceCard}
+                                    style={{
+                                        backgroundColor: colors.color4,
+                                        border: `0.1rem solid ${colors.borderColor}`
+                                    }}
+                                >
                                     <div>
-                                        <img src="https://media.istockphoto.com/id/640274128/photo/barber-using-scissors-and-comb.jpg?s=612x612&w=0&k=20&c=mjdP6NhDA40WBorr8kyyI69waMs1EyzLkSmT6lQRvGU=" alt="" />
-                                        <p>David Wanner</p>
+                                        <img src={item?.serviceIcon?.url} alt="" style={{ border: "0.1rem solid #efefef" }} />
+                                        <p>{item.serviceName}</p>
                                         <p style={{
                                             fontSize: "1.2rem",
                                             textAlign: "center"
-                                        }}>availability in 35 mins</p>
+                                        }}>~{formatMinutesToHrMin(item.serviceEWT)}</p>
                                     </div>
 
                                 </div>
@@ -86,16 +184,33 @@ const JoinQueuePage = () => {
                     }
                 </div>
             </div>
-            
-            <button
-            className={style.btn}
-            >Join Queue</button>
+
+            {
+                joinQueueKioskloading ? (
+                    <button
+                        className={style.btn}><ColorRing
+                            visible={true}
+                            height="4.5rem"
+                            width="4.5rem"
+                            ariaLabel="color-ring-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="color-ring-wrapper"
+                            colors={["#fff", "#fff", "#fff", "#fff", "#fff"]}
+                        /></button>
+                ) : (
+                    <button
+                        onClick={joinHandler}
+                        className={style.btn}
+                    >Join Queue</button>
+                )
+            }
+
 
 
             <div className={style.wavebg}>
             </div>
 
-        </main>
+        </main >
     )
 }
 

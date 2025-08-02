@@ -8,6 +8,7 @@ import "./App.css"
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Layout from './components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
+import { GlobalProvider } from './context/GlobalContext';
 
 const Public = React.lazy(() => import("./components/public/Public"));
 const JoinQueue = React.lazy(() => import("./components/JoinQueue/JoinQueue"));
@@ -98,58 +99,61 @@ const App = () => {
 
   return (<>
     <Toaster />
-    <BrowserRouter>
-      <Suspense fallback={
-        <div
-          style={{
-            width: "100vw",
-            height: "100svh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            background: "#fff"
-          }}><Loader /></div>
-      }>
-        <Routes>
+    <GlobalProvider>
+      <BrowserRouter>
+        <Suspense fallback={
+          <div
+            style={{
+              width: "100vw",
+              height: "100svh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              background: "#fff"
+            }}><Loader /></div>
+        }>
+          <Routes>
 
-          <Route element={<ErrorBoundary FallbackComponent={ErrorFallbackAuth}><ProtectedAuthRoute /></ErrorBoundary>}>
-            <Route path="/" element={<AdminSignin />} />
-          </Route>
-
-          <Route element={<ErrorBoundary FallbackComponent={ErrorFallback}><ProtectedRoute /></ErrorBoundary>}>
-            <Route element={<SalonProtectRoute />}>
-              <Route path="/selectsalon" element={<SalonSelection />} />
+            <Route element={<ErrorBoundary FallbackComponent={ErrorFallbackAuth}><ProtectedAuthRoute /></ErrorBoundary>}>
+              <Route path="/" element={<AdminSignin />} />
             </Route>
 
-            <Route element={<AllRoutesProtect />}>
-              <Route element={<Layout />}>
-                <Route path="/kiosk" element={<Public />} />
-                <Route path="/joinForm" element={<JoinForm/>}/>
-                <Route path="/salonServices" element={<SalonServices/>}/>
-                <Route path="/salonBarbers" element={<SalonBarbers/>}/>
-                <Route path="/joinQueuePage" element={<JoinQueuePage/>}/>
-                <Route path="/salonsignin" element={<SalonSignin />} />
+            <Route element={<ErrorBoundary FallbackComponent={ErrorFallback}><ProtectedRoute /></ErrorBoundary>}>
+              <Route element={<SalonProtectRoute />}>
+                <Route path="/selectsalon" element={<SalonSelection />} />
+              </Route>
 
-                <Route element={<SalonProtected />}>
-                  <Route path="/salonsettings" element={<SalonSettings />} />
-                </Route>
+              <Route element={<AllRoutesProtect />}>
 
-                <Route path="/joinqueue" element={<JoinQueue />} />
-                <Route path="/queuelist" element={<QueueList />} />
-                <Route path="/barberservelogn" element={<BarberServeLogin />} />
-                <Route path="/cancelservelogn" element={<CancelServeLogin />} />
-                <Route path="/barbersignin" element={<BarberSignin />} />
-                <Route element={<BarberKiyoskDashboardProtect />}>
-                  <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />
+                <Route element={<Layout />}>
+                  <Route path="/kiosk" element={<Public />} />
+                  <Route path="/joinForm" element={<JoinForm />} />
+                  <Route path="/salonServices" element={<SalonServices />} />
+                  <Route path="/salonBarbers" element={<SalonBarbers />} />
+                  <Route path="/joinQueuePage" element={<JoinQueuePage />} />
+                  <Route path="/salonsignin" element={<SalonSignin />} />
+
+                  <Route element={<SalonProtected />}>
+                    <Route path="/salonsettings" element={<SalonSettings />} />
+                  </Route>
+
+                  <Route path="/joinqueue" element={<JoinQueue />} />
+                  <Route path="/queuelist" element={<QueueList />} />
+                  <Route path="/barberservelogn" element={<BarberServeLogin />} />
+                  <Route path="/cancelservelogn" element={<CancelServeLogin />} />
+                  <Route path="/barbersignin" element={<BarberSignin />} />
+                  <Route element={<BarberKiyoskDashboardProtect />}>
+                    <Route path="/kiyoskdashboard" element={<KiyoskDashboard />} />
+                  </Route>
                 </Route>
               </Route>
             </Route>
-          </Route>
 
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </GlobalProvider>
   </>
   );
 };

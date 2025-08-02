@@ -17,7 +17,7 @@ import { Modal as MuiModal } from '@mui/material';
 import { MdClose } from 'react-icons/md'
 
 const JoinQueue = () => {
-
+    
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
     const [

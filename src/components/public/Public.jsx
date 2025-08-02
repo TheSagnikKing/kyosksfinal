@@ -54,14 +54,14 @@
 //   ] = useJoinQueueKioskMutation()
 
 
-//   useEffect(() => {
-//     if (adminInfo?.email) {
-//       const salondata = {
-//         email: adminInfo?.email,
-//         role: adminInfo?.role
-//       }
-//       getDefaultSalonByAdmin(salondata)
-//     }
+  // useEffect(() => {
+  //   if (adminInfo?.email) {
+  //     const salondata = {
+  //       email: adminInfo?.email,
+  //       role: adminInfo?.role
+  //     }
+  //     getDefaultSalonByAdmin(salondata)
+  //   }
 
 //     if (joinQueueKioskisSuccess) {
 //       const salondata = {
@@ -479,12 +479,12 @@
 
 //   const phoneInputUseRef = useRef()
 
-  // useEffect(() => {
-  //   if (phoneInputUseRef.current) {
-  //     phoneInputUseRef.current.style.color = colors.color3
-  //   }
+//   useEffect(() => {
+//     if (phoneInputUseRef.current) {
+//       phoneInputUseRef.current.style.color = colors.color3
+//     }
 
-  // }, [colors, step])
+//   }, [colors, step])
 
 //   const steps = [
 //     'Customer Info',
@@ -727,32 +727,32 @@
 //                 {emailError && <p className={style.error_message}>{emailError}</p>}
 //               </div>
 
-              // <div>
-              //   <label htmlFor="phone">Phone Number <span>&#40;Optional&#41;</span></label>
-              //   <div
-              //     id="phone"
-              //     onMouseEnter={() => setPhoneinputBorder(true)}
-              //     onMouseLeave={() => setPhoneinputBorder(false)}
-              //     style={{
-              //       border: `0.1rem solid ${colors.borderColor}`,
-              //       borderBottom: invalidNumberError ? "0.1rem solid red" : `0.1rem solid ${colors.borderColor}`,
-              //       backgroundColor: colors.inputColor,
-              //     }}
-              //     onKeyDown={handleKeyPress}
-              //   >
-              //     <PhoneInput
-              //       forceDialCode={true}
-              //       defaultCountry={countryflag}
-              //       value={mobileNumber}
-              //       onChange={(phone, meta) => handlePhoneChange(phone, meta)}
-              //       ref={phoneInputUseRef}
-              //     />
-              //   </div>
+//               <div>
+//                 <label htmlFor="phone">Phone Number <span>&#40;Optional&#41;</span></label>
+//                 <div
+//                   id="phone"
+//                   onMouseEnter={() => setPhoneinputBorder(true)}
+//                   onMouseLeave={() => setPhoneinputBorder(false)}
+//                   style={{
+//                     border: `0.1rem solid ${colors.borderColor}`,
+//                     borderBottom: invalidNumberError ? "0.1rem solid red" : `0.1rem solid ${colors.borderColor}`,
+//                     backgroundColor: colors.inputColor,
+//                   }}
+//                   onKeyDown={handleKeyPress}
+//                 >
+//                   <PhoneInput
+//                     forceDialCode={true}
+//                     defaultCountry={countryflag}
+//                     value={mobileNumber}
+//                     onChange={(phone, meta) => handlePhoneChange(phone, meta)}
+//                     ref={phoneInputUseRef}
+//                   />
+//                 </div>
 
-              //   {invalidNumberError && (
-              //     <p className={style.error_message}>{invalidNumberError}</p>
-              //   )}
-              // </div>
+//                 {invalidNumberError && (
+//                   <p className={style.error_message}>{invalidNumberError}</p>
+//                 )}
+//               </div>
 
 //               <button
 //                 style={{
@@ -1331,7 +1331,7 @@ const Public = () => {
           navigate("/joinForm")
         }}
         className={style.button}>
-        <TouchIcon size={"2.5rem"} />
+        <TouchIcon size={"2.5rem"} color='#fff'/>
         <p>Touch to Join Queue</p>
       </button>
     </main>

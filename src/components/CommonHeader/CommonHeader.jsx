@@ -117,14 +117,13 @@ const CommonHeader = () => {
 
     const location = useLocation()
 
-    // console.log(adminInfo.kioskAvailability)
-
     return (
         <header
             className={style.kiyosk_header}
             style={{
                 borderBottom: `0.1rem solid ${colors.borderColor}`,
                 backgroundColor: colors.color4
+                // backgroundColor: location.pathname === "/kiosk" ? "#000" : colors.color4
             }}
         >
             <div>
@@ -347,7 +346,7 @@ const CommonHeader = () => {
                                         </div>
                                         <div style={{ cursor: "default" }}>
                                             <div></div>
-                                            <p style={{ color: "gray"}}>v 1.0.3</p>
+                                            <p style={{ color: "gray" }}>v 1.0.3</p>
                                         </div>
                                     </div>
                                 )}
