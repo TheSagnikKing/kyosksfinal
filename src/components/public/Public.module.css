@@ -1,6 +1,6 @@
 .container {
     height: var(--primary-height);
-    background-image: url('./src/assets/dashboardImage.png');
+    background-image: url('./dashboardImage.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
