@@ -1335,6 +1335,14 @@ const Public = () => {
         <TouchIcon size={"2.5rem"} color='#fff' />
         <p>Touch to Join Queue</p>
       </button>
+
+      <img
+        src='./dashboardImage.png'
+        style={{
+          width: "50rem",
+          height: "50rem"
+        }}
+      />
     </main >
   )
 }
