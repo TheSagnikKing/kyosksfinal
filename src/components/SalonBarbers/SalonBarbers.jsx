@@ -60,55 +60,59 @@ const SalonBarbers = () => {
 
 
     return (
-        <main
-            className={style.container}
-            style={{
-                backgroundColor: colors.color4,
-            }}
-        >
-            <div style={{
-                marginBottom: "7rem"
-            }}>
-                {
-                    getBarberByServicesKioskisLoading ? (
-                        <>
-                            <Skeleton variant="rectangular" className={style.serviceCardLoader} />
-                            <Skeleton variant="rectangular" className={style.serviceCardLoader} />
-                            <Skeleton variant="rectangular" className={style.serviceCardLoader} />
-                            <Skeleton variant="rectangular" className={style.serviceCardLoader} />
-                        </>
-                    ) : getBarberByServicesKioskData?.response?.length > 0 ? (
-                        getBarberByServicesKioskData?.response?.map((item, index) => {
-                            return (
-                                <button
-                                    onClick={() => {
-                                        setSelectedBarber(item)
-                                    }}
-                                    key={item?.barberId}
-                                    className={style.serviceCard}
-                                    style={{
-                                        backgroundColor: colors.color4,
-                                        border: selectBarber?.barberId === item?.barberId ? `0.2rem solid #0BA3AD` : `0.1rem solid ${colors.borderColor}`
-                                    }}
-                                >
-                                    <div>
-                                        <img src={item?.profile?.[0]?.url} alt="" style={{ border: "0.1rem solid #efefef" }} />
-                                        <p>{item?.name}</p>
-                                        <p style={{
-                                            fontSize: "1.2rem",
-                                            textAlign: "center"
-                                        }}>~{formatMinutesToHrMin(item?.barberEWT)}</p>
-                                    </div>
+        <>
+            <main
+                className={style.container}
+                style={{
+                    backgroundColor: colors.color4,
+                }}
+            >
+                <div style={{
+                    marginBottom: "7rem"
+                }}>
+                    {
+                        getBarberByServicesKioskisLoading ? (
+                            <>
+                                <Skeleton variant="rectangular" className={style.serviceCardLoader} />
+                                <Skeleton variant="rectangular" className={style.serviceCardLoader} />
+                                <Skeleton variant="rectangular" className={style.serviceCardLoader} />
+                                <Skeleton variant="rectangular" className={style.serviceCardLoader} />
+                            </>
+                        ) : getBarberByServicesKioskData?.response?.length > 0 ? (
+                            getBarberByServicesKioskData?.response?.map((item, index) => {
+                                return (
+                                    <button
+                                        onClick={() => {
+                                            setSelectedBarber(item)
+                                        }}
+                                        key={item?.barberId}
+                                        className={style.barberCard}
+                                        style={{
+                                            backgroundColor: colors.color4,
+                                            border: selectBarber?.barberId === item?.barberId ? `0.2rem solid #0BA3AD` : `0.1rem solid ${colors.borderColor}`
+                                        }}
+                                    >
+                                        <div>
+                                            <img src={item?.profile?.[0]?.url} alt="" style={{ border: `0.1rem solid ${colors.borderColor}` }} />
+                                            <h4>{item?.name}</h4>
+                                            <p style={{
+                                                fontSize: "1.4rem",
+                                                textAlign: "center"
+                                            }}>~{formatMinutesToHrMin(item?.barberEWT)}</p>
+                                        </div>
 
-                                </button>
-                            )
-                        })
-                    ) : (
-                        <p>No Barbers available</p>
-                    )
+                                    </button>
+                                )
+                            })
+                        ) : (
+                            <p>No Barbers available</p>
+                        )
 
-                }
-            </div>
+                    }
+                </div>
+
+
+            </main>
 
             {
                 selectedServices.length > 0 && (
@@ -145,7 +149,7 @@ const SalonBarbers = () => {
                     </div>
                 )
             }
-        </main>
+        </>
     )
 }
 

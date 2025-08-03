@@ -1,13 +1,13 @@
 .container {
     height: var(--primary-height);
-    background-image: url('./dashboardImage.png');
+    background-image: url('./src/assets/dashboardImage.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     position: relative;
 }
 
-.button{
+.button {
     position: absolute;
     bottom: 0rem;
     width: 100%;
@@ -19,9 +19,10 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    cursor: pointer;
 
-    &>p{
+    &>p {
         font-size: 2rem;
         color: #fff;
     }
-}   
+}

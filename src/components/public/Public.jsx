@@ -54,14 +54,14 @@
 //   ] = useJoinQueueKioskMutation()
 
 
-  // useEffect(() => {
-  //   if (adminInfo?.email) {
-  //     const salondata = {
-  //       email: adminInfo?.email,
-  //       role: adminInfo?.role
-  //     }
-  //     getDefaultSalonByAdmin(salondata)
-  //   }
+// useEffect(() => {
+//   if (adminInfo?.email) {
+//     const salondata = {
+//       email: adminInfo?.email,
+//       role: adminInfo?.role
+//     }
+//     getDefaultSalonByAdmin(salondata)
+//   }
 
 //     if (joinQueueKioskisSuccess) {
 //       const salondata = {
@@ -1315,7 +1315,7 @@
 
 // export default Public;
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import style from './Public.module.css';
 import { TouchIcon } from '../../icons';
 import { useNavigate } from 'react-router-dom';
@@ -1328,13 +1328,14 @@ const Public = () => {
     <main className={style.container}>
       <button
         onClick={() => {
+          localStorage.setItem("joinQueue", JSON.stringify(true))
           navigate("/joinForm")
         }}
         className={style.button}>
-        <TouchIcon size={"2.5rem"} color='#fff'/>
+        <TouchIcon size={"2.5rem"} color='#fff' />
         <p>Touch to Join Queue</p>
       </button>
-    </main>
+    </main >
   )
 }
 

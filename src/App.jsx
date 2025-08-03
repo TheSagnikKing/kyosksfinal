@@ -9,6 +9,7 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 import Layout from './components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { GlobalProvider } from './context/GlobalContext';
+import JoinQueueProtect from './components/JoinQueueProtect/JoinQueueProtect';
 
 const Public = React.lazy(() => import("./components/public/Public"));
 const JoinQueue = React.lazy(() => import("./components/JoinQueue/JoinQueue"));
@@ -80,7 +81,7 @@ const App = () => {
       }
 
       input::placeholder, textarea::placeholder {
-        color: ${currentTheme === "Dark" ? "#F4F4F5" : "#09090B"};
+        color: ${currentTheme === "Dark" ? "#f4f4f583" : "#09090b71"};
       }
     `;
     document.head.appendChild(styleElement);
@@ -127,10 +128,14 @@ const App = () => {
 
                 <Route element={<Layout />}>
                   <Route path="/kiosk" element={<Public />} />
-                  <Route path="/joinForm" element={<JoinForm />} />
-                  <Route path="/salonServices" element={<SalonServices />} />
-                  <Route path="/salonBarbers" element={<SalonBarbers />} />
-                  <Route path="/joinQueuePage" element={<JoinQueuePage />} />
+
+                  <Route element={<JoinQueueProtect />}>
+                    <Route path="/joinForm" element={<JoinForm />} />
+                    <Route path="/salonServices" element={<SalonServices />} />
+                    <Route path="/salonBarbers" element={<SalonBarbers />} />
+                    <Route path="/joinQueuePage" element={<JoinQueuePage />} />
+                  </Route>
+
                   <Route path="/salonsignin" element={<SalonSignin />} />
 
                   <Route element={<SalonProtected />}>

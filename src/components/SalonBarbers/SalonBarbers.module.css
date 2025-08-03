@@ -1,5 +1,5 @@
 .container {
-    height: var(--primary-height);
+    height: calc(var(--primary-height) - 7rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,17 +15,16 @@
         align-content: flex-start;
         overflow: auto;
         gap: 1.4rem;
-        padding: 1rem;
 
-        .serviceCard {
+        .barberCard {
             width: 31.5%;
-            box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
             border-radius: 3rem;
             -webkit-border-radius: 3rem;
             -moz-border-radius: 3rem;
             -ms-border-radius: 3rem;
             -o-border-radius: 3rem;
-            padding: 3rem;
+            padding: 2rem;
+            cursor: pointer;
 
             &>div:nth-child(1) {
                 margin-inline: auto;
@@ -36,8 +35,8 @@
                 gap: 1rem;
 
                 &>img {
-                    width: 12rem;
-                    height: 12rem;
+                    width: 13rem;
+                    height: 13rem;
                     border-radius: 50%;
                     -webkit-border-radius: 50%;
                     -moz-border-radius: 50%;
@@ -52,7 +51,7 @@
             }
         }
 
-        .serviceCardLoader {
+        .barberCardLoader {
             width: 31.5%;
             height: 23.4rem;
             border-radius: 3rem;
@@ -63,31 +62,33 @@
         }
     }
 
-    .bottomContainer {
-        position: absolute;
+
+}
+
+.bottomContainer {
+    /* position: absolute;
         left: 0;
         right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 8rem;
-        box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-        padding-inline: 5rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        bottom: 0; */
+    width: 100%;
+    height: 7rem;
+    padding-inline: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-        .btn {
-            border-radius: 1rem;
-            -webkit-border-radius: 1rem;
-            -moz-border-radius: 1rem;
-            -ms-border-radius: 1rem;
-            -o-border-radius: 1rem;
-            border: none;
-            outline: none;
-            background: #0BA3AD;
-            color: #fff;
-            width: 10rem;
-            height: 4rem;
-        }
+    .btn {
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        border: none;
+        outline: none;
+        background: #0BA3AD;
+        color: #fff;
+        width: 10rem;
+        height: 4rem;
+        cursor: pointer;
     }
 }

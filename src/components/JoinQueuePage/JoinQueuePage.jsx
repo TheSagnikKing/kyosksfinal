@@ -8,6 +8,7 @@ import { useJoinQueueKioskMutation } from '../JoinQueue/joinqueueApiSlice';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { ColorRing } from 'react-loader-spinner';
+import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice';
 
 const JoinQueuePage = () => {
 
@@ -44,6 +45,13 @@ const JoinQueuePage = () => {
         }
     ] = useJoinQueueKioskMutation()
 
+    const [
+        getDefaultSalonByAdmin,
+        {
+            data: getDefaultSalonByAdmindata
+        }
+    ] = useGetDefaultSalonByKioskMutation();
+
     useEffect(() => {
         if (joinQueueKioskisSuccess) {
 
@@ -65,6 +73,7 @@ const JoinQueuePage = () => {
             setCountryFlag("gb")
             setMobileCountryCode("")
 
+            localStorage.setItem("joinQueue", JSON.stringify(false))
             navigate("/kiosk")
 
         }
@@ -121,7 +130,7 @@ const JoinQueuePage = () => {
                     }}
                 >
                     <div
-                        className={style.serviceCard}
+                        className={style.barberCard}
                         style={{
                             backgroundColor: colors.color4,
                             border: `0.1rem solid ${colors.borderColor}`
@@ -129,9 +138,9 @@ const JoinQueuePage = () => {
                     >
                         <div>
                             <img src={selectBarber?.profile?.[0]?.url} alt="" style={{ border: "0.1rem solid #efefef" }} />
-                            <p>{selectBarber?.name}</p>
+                            <h4>{selectBarber?.name}</h4>
                             <p style={{
-                                fontSize: "1.2rem",
+                                fontSize: "1.4rem",
                                 textAlign: "center"
                             }}>~{formatMinutesToHrMin(selectBarber?.barberEWT)}</p>
                         </div>
@@ -170,12 +179,14 @@ const JoinQueuePage = () => {
                                     }}
                                 >
                                     <div>
-                                        <img src={item?.serviceIcon?.url} alt="" style={{ border: "0.1rem solid #efefef" }} />
-                                        <p>{item.serviceName}</p>
-                                        <p style={{
-                                            fontSize: "1.2rem",
-                                            textAlign: "center"
-                                        }}>~{formatMinutesToHrMin(item.serviceEWT)}</p>
+                                        <div>
+                                            <img src={item?.serviceIcon?.url} alt="" style={{ border: "0.1rem solid #efefef" }} />
+                                        </div>
+                                        <h4>{item.serviceName}</h4>
+                                        <p>~{formatMinutesToHrMin(item.serviceEWT)}</p>
+                                        <h3>
+                                            {getDefaultSalonByAdmindata?.response?.currency} {item.servicePrice}
+                                        </h3>
                                     </div>
 
                                 </div>
