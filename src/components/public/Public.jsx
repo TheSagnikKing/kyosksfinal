@@ -1319,13 +1319,19 @@ import React, { useEffect } from 'react'
 import style from './Public.module.css';
 import { TouchIcon } from '../../icons';
 import { useNavigate } from 'react-router-dom';
+import dashboardImage from '../../assets/dashboardImage.png'
 
 const Public = () => {
 
   const navigate = useNavigate()
 
   return (
-    <main className={style.container}>
+    <main
+      className={style.container}
+      style={{
+        backgroundImage: `url(${dashboardImage})`,
+      }}
+    >
       <button
         onClick={() => {
           localStorage.setItem("joinQueue", JSON.stringify(true))
@@ -1336,13 +1342,13 @@ const Public = () => {
         <p>Touch to Join Queue</p>
       </button>
 
-      <img
+      {/* <img
         src='./dashboardImage.png'
         style={{
           width: "50rem",
           height: "50rem"
         }}
-      />
+      /> */}
     </main >
   )
 }
