@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './SalonBarbers.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -7,15 +7,91 @@ import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice';
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice';
 import { formatMinutesToHrMin } from '../../utils/formatMinutesToHrMin';
 import { useGetBarberByServicesKioskMutation } from './salonBarbersApiSlice';
-import { Skeleton } from '@mui/material';
+import { Box, Modal, Skeleton, Typography } from '@mui/material';
 import toast from 'react-hot-toast';
+import { CheckIcon } from '../../icons';
+import { useJoinQueueKioskMutation } from '../JoinQueue/joinqueueApiSlice';
+import { ColorRing } from 'react-loader-spinner';
 
 const SalonBarbers = () => {
 
-    const { selectedServices, selectBarber, setSelectedBarber } = useGlobal()
-    const adminInfo = useSelector(selectCurrentAdminInfo);
+    const {
+        selectedServices,
+        setSelectedServices,
+        selectBarber,
+        setSelectedBarber,
+        customerName,
+        setCustomerName,
+        customerEmail,
+        setCustomerEmail,
+        mobileNumber,
+        setMobileNumber,
+        countryflag,
+        setCountryFlag,
+        mobileCountryCode,
+        setMobileCountryCode
+    } = useGlobal()
 
-    // console.log(selectedServices)
+    const [
+        joinQueueKiosk,
+        {
+            data: joinQueueKioskdata,
+            isSuccess: joinQueueKioskisSuccess,
+            isError: joinQueueKioskisError,
+            isLoading: joinQueueKioskloading,
+            error: joinQueueKioskerror
+        }
+    ] = useJoinQueueKioskMutation()
+
+    useEffect(() => {
+        if (joinQueueKioskisSuccess) {
+
+            toast.success("Join queue successfully", {
+                duration: 3000,
+                style: {
+                    fontSize: "var(--list-modal-header-normal-font)",
+                    borderRadius: "0.3rem",
+                    background: "#333",
+                    color: "#fff",
+                },
+            });
+
+            setSelectedServices([])
+            setSelectedBarber("")
+            setCustomerName("")
+            setCustomerEmail("")
+            setMobileNumber("")
+            setCountryFlag("gb")
+            setMobileCountryCode("")
+            setPreviewModal(false)
+            navigate("/joinQueueSuccess")
+
+        }
+    }, [joinQueueKioskisSuccess])
+
+
+    const joinHandler = () => {
+        const joinqueuedata = {
+            salonId: adminInfo?.salonId,
+            name: customerName,
+            customerEmail: customerEmail,
+            joinedQType: "Single-Join",
+            methodUsed: "Walk-In",
+            mobileNumber: Number(mobileNumber),
+            mobileCountryCode: Number(mobileCountryCode),
+            barberName: selectBarber?.name,
+            barberId: selectBarber?.barberId,
+            services: selectedServices
+        }
+
+        // console.log(joinqueuedata)
+
+        joinQueueKiosk(joinqueuedata)
+        // joinQueueKiosk(joinqueueModalOpen.data)
+    }
+
+
+    const adminInfo = useSelector(selectCurrentAdminInfo);
 
     const navigate = useNavigate()
     const { colors } = useSelector(state => state.theme);
@@ -58,6 +134,8 @@ const SalonBarbers = () => {
 
     }, [adminInfo])
 
+
+    const [previewModal, setPreviewModal] = useState(false)
 
     return (
         <>
@@ -143,12 +221,83 @@ const SalonBarbers = () => {
                                     });
                                     return
                                 }
-                                navigate("/joinQueuePage")
+                                setPreviewModal(true)
+                                // navigate("/joinQueuePage")
                             }}
                             className={style.btn}>Continue</button>
                     </div>
                 )
             }
+
+            <Modal
+                open={previewModal}
+                onClose={() => setPreviewModal(false)}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: "60%",
+                    bgcolor: colors.color4,
+                    borderRadius: "1rem",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1.5rem",
+                    boxShadow: 5,
+                    p: 2,
+                }}>
+                    <div className={style.modalHeader}>
+                        <div>
+                            <CheckIcon color="#000" />
+                        </div>
+                        <h3>Please Confirm</h3>
+                    </div>
+
+                    <p>Are you sure you want to proceed ?</p>
+
+                    <div className={style.modalBody}>
+                        <h4>{selectBarber?.name}</h4>
+                        <div>
+                            <h3>{getDefaultSalonByAdmindata?.response?.currency} {totalPrice.toFixed(2)}</h3>
+                            <p>( {totalServices}{totalServices === 1 ? "service" : "services"} |{" "}
+                                {formatMinutesToHrMin(totalTime)} )</p>
+                        </div>
+                    </div>
+
+                    <div className={style.modalBtnGroup}>
+                        <div />
+                        <div>
+                            <button
+                                onClick={() => setPreviewModal(false)}
+                            >No</button>
+                            {/* <button
+                                onClick={joinHandler}
+                            >Yes</button> */}
+
+                            {
+                                joinQueueKioskloading ? (
+                                    <button><ColorRing
+                                        visible={true}
+                                        height="2.4rem"
+                                        width="2.4rem"
+                                        ariaLabel="color-ring-loading"
+                                        wrapperStyle={{}}
+                                        wrapperClass="color-ring-wrapper"
+                                        colors={["#fff", "#fff", "#fff", "#fff", "#fff"]}
+                                    /></button>
+                                ) : (
+                                    <button
+                                        onClick={joinHandler}
+                                    >Yes</button>
+                                )
+                            }
+                        </div>
+                    </div>
+                </Box>
+            </Modal>
         </>
     )
 }

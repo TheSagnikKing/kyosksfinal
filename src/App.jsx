@@ -32,6 +32,7 @@ const JoinForm = React.lazy(() => import("./components/JoinForm/JoinForm"))
 const SalonServices = React.lazy(() => import("./components/SalonServices/SalonServices"))
 const SalonBarbers = React.lazy(() => import("./components/SalonBarbers/SalonBarbers"))
 const JoinQueuePage = React.lazy(() => import("./components/JoinQueuePage/JoinQueuePage"))
+const JoinQueueSuccess = React.lazy(() => import("./components/JoinQueueSuccess/JoinQueueSuccess"))
 
 const ErrorFallback = ({ error }) => {
 
@@ -134,6 +135,7 @@ const App = () => {
                     <Route path="/salonServices" element={<SalonServices />} />
                     <Route path="/salonBarbers" element={<SalonBarbers />} />
                     <Route path="/joinQueuePage" element={<JoinQueuePage />} />
+                    <Route path="/joinQueueSuccess" element={<JoinQueueSuccess />} />
                   </Route>
 
                   <Route path="/salonsignin" element={<SalonSignin />} />

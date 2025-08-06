@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import style from './SalonServices.module.css';
-import { AddIcon, ClockIcon, DeleteIcon, SearchIcon } from '../../icons';
+import { AddIcon, CheckIcon, ClockIcon, DeleteIcon, SearchIcon } from '../../icons';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
@@ -113,7 +113,8 @@ const SalonServices = () => {
   return (
     <>
       <main className={style.container} style={{
-        backgroundColor: colors.color4
+        backgroundColor: colors.color4,
+        height: selectedServices.length > 0 ? "calc(var(--primary-height) - 7rem)" : "var(--primary-height)"
       }}>
         <div>
           <div>
@@ -209,7 +210,7 @@ const SalonServices = () => {
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
-                            background: isSelected ? "red" : "#0BA3AD",
+                            background: isSelected ? "#0BA3AD" : "#0BA3AD",
                             borderRadius: "50%",
                             border: "none",
                             cursor: "pointer"
@@ -220,7 +221,7 @@ const SalonServices = () => {
                               : addServiceHandler(item)
                           }
                         >
-                          {isSelected ? <DeleteIcon color="#fff" /> : <AddIcon color='#fff' />}
+                          {isSelected ? <CheckIcon color="#fff" /> : <AddIcon color='#fff' />}
                         </button>
 
                       </div>
