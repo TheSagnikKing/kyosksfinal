@@ -174,8 +174,8 @@ const SalonSelection = () => {
                                         <ClickAwayListener onClickAway={() => setSalonListDrop(false)}>
                                             <div
                                                 style={{
-                                                    backgroundColor: colors.inputColor,
-                                                    border: `0.1rem solid ${colors.borderColor}`
+                                                    backgroundColor: colors.cardColor,
+                                                    border: `0.1rem solid ${colors.queueBorder}`
                                                 }}
                                                 onClick={() => setSalonListDrop((prev) => (!prev))}>
                                                 <p>{salonName !== "" && salonName}</p>
@@ -187,7 +187,7 @@ const SalonSelection = () => {
                                                     style={{
                                                         height: getAllSalonsByAdmindata?.salons?.length > 0 && getAllSalonsByAdmindata?.salons?.length <= 4 ? "auto" : "20rem",
                                                         backgroundColor: colors.color4,
-                                                        border: `0.1rem solid ${colors.borderColor}`
+                                                        border: `0.1rem solid ${colors.queueBorder}`
                                                     }}
                                                 >
                                                     {getAllSalonsByAdmindata?.salons?.length > 0 &&

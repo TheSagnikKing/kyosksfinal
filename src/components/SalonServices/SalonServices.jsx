@@ -20,6 +20,7 @@ const SalonServices = () => {
 
   const adminInfo = useSelector(selectCurrentAdminInfo);
   const { colors } = useSelector(state => state.theme);
+  const { modecolors } = useSelector(state => state.modeColor)
 
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchServiceQuery, setSearchServiceQuery] = useState("");
@@ -110,6 +111,10 @@ const SalonServices = () => {
   const totalTime = selectedServices.reduce((acc, service) => acc + service.serviceEWT, 0);
   const totalServices = selectedServices.length;
 
+  const { currentTheme } = useSelector(state => state.theme);
+
+  console.log("modecolors ", modecolors)
+
   return (
     <>
       <main className={style.container} style={{
@@ -121,12 +126,17 @@ const SalonServices = () => {
             <input
               placeholder='Search services by category'
               style={{
-                backgroundColor: colors.color1,
+                backgroundColor: colors.cardColor,
+                border: `0.1rem solid ${colors.queueBorder}`
               }}
               value={searchServiceQuery}
               onChange={(e) => setSearchServiceQuery(e.target.value)}
             />
-            <div><SearchIcon color='#fff' size="2rem" /></div>
+            <div
+              style={{
+                backgroundColor: modecolors.color1
+              }}
+            ><SearchIcon color='#fff' size="2rem" /></div>
           </div>
         </div>
 
@@ -146,10 +156,10 @@ const SalonServices = () => {
                   style={{
                     height: "4rem",
                     paddingInline: "2rem",
-                    background: selectedCategory === item.serviceCategoryName ? "#0BA3AD" : "#0BA3AD1A",
+                    background: selectedCategory === item.serviceCategoryName ? modecolors.color1 : modecolors.color3,
                     border: "none",
                     borderRadius: "0.4rem",
-                    color: selectedCategory === item.serviceCategoryName ? "#fff" : "#0BA3AD",
+                    color: selectedCategory === item.serviceCategoryName ? "#fff" : modecolors.color1,
                     fontSize: "1.6rem",
                     display: "flex",
                     alignItems: "center",
@@ -164,7 +174,7 @@ const SalonServices = () => {
                     style={{
                       width: "2.2rem",
                       height: "2.2rem",
-                      border: `0.1rem solid ${colors.color4}`,
+                      border: `0.1rem solid ${colors.queueBorder}`,
                       objectFit: "cover",
                       borderRadius: "50%",
                     }}
@@ -192,13 +202,13 @@ const SalonServices = () => {
                     key={item.serviceId}
                     className={style.serviceCard}
                     style={{
-                      backgroundColor: colors.color4,
-                      border: isSelected ? `0.2rem solid #0BA3AD` : `0.1rem solid ${colors.borderColor}`
+                      backgroundColor: colors.cardColor,
+                      border: isSelected ? `0.2rem solid ${modecolors.color1}` : `0.1rem solid ${colors.queueBorder}`
                     }}
                   >
                     <div>
                       <div>
-                        <img src={item?.serviceIcon?.url} alt="service" style={{ border: `0.1rem solid ${colors.borderColor}` }} />
+                        <img src={item?.serviceIcon?.url} alt="service" style={{ border: `0.1rem solid ${colors.queueBorder}` }} />
 
                         <button
                           style={{
@@ -210,7 +220,7 @@ const SalonServices = () => {
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
-                            background: isSelected ? "#0BA3AD" : "#0BA3AD",
+                            background: isSelected ? modecolors.color1 : modecolors.color1,
                             borderRadius: "50%",
                             border: "none",
                             cursor: "pointer"
@@ -249,8 +259,8 @@ const SalonServices = () => {
           <div
             className={style.serviceDetailContainer}
             style={{
-              backgroundColor: colors.color4,
-              borderTop: `0.1rem solid ${colors.borderColor}`
+              backgroundColor: colors.cardColor,
+              borderTop: `0.1rem solid ${colors.queueBorder}`
             }}
           >
             <div>
@@ -260,6 +270,9 @@ const SalonServices = () => {
             </div>
 
             <button
+              style={{
+                backgroundColor: modecolors.color1
+              }}
               onClick={() => {
                 if (selectedServices.length === 0) {
                   toast.error("Atleast one service need to be selected", {

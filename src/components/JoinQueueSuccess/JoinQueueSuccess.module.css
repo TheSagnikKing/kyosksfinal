@@ -19,7 +19,7 @@
         &>div:nth-child(1) {
             width: 7rem;
             height: 7rem;
-            background-color: #efefef;
+            /* background-color: #efefef; */
             display: grid;
             place-items: center;
             border-radius: 50%;
@@ -38,7 +38,7 @@
         &>button {
             height: 4rem;
             width: 100%;
-            background-color: #0BA3AD;
+            /* background-color: #0BA3AD; */
             border: none;
             outline: none;
             border-radius: 0.5rem;
@@ -46,7 +46,7 @@
             -moz-border-radius: 0.5rem;
             -ms-border-radius: 0.5rem;
             -o-border-radius: 0.5rem;
-            color: #fff;
+            /* color: #fff; */
         }
     }
 

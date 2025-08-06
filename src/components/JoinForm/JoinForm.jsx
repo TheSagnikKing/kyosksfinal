@@ -11,6 +11,7 @@ import { useGlobal } from '../../context/GlobalContext';
 const JoinForm = () => {
 
     const { colors } = useSelector(state => state.theme);
+    const { modecolors } = useSelector(state => state.modeColor)
     const navigate = useNavigate()
 
     // const [customerName, setCustomerName] = useState("")
@@ -190,6 +191,10 @@ const JoinForm = () => {
                             setNameError("")
                             setCustomerName(e.target.value)
                         }}
+                        style={{
+                            backgroundColor: colors.cardColor,
+                            border: `0.1rem solid ${colors.queueBorder}`
+                        }}
                     />
 
                     {nameError && <p className={style.error_message}>{nameError}</p>}
@@ -206,6 +211,10 @@ const JoinForm = () => {
                             setEmailError("")
                             setCustomerEmail(e.target.value)
                         }}
+                        style={{
+                            backgroundColor: colors.cardColor,
+                            border: `0.1rem solid ${colors.queueBorder}`
+                        }}
                     />
 
                     {emailError && <p className={style.error_message}>{emailError}</p>}
@@ -213,14 +222,6 @@ const JoinForm = () => {
 
                 <div className={style.mobileInputWrapper}>
                     <p>Phone Number (Optional)</p>
-                    {/* <PhoneInput
-                        forceDialCode={true}
-                        defaultCountry={countryflag}
-                        // value={mobileNumber}
-                        // onChange={(phone, meta) => handlePhoneChange(phone, meta)}
-                        ref={phoneInputUseRef}
-                        className={style.phoneInput}
-                    /> */}
 
                     <PhoneInput
                         forceDialCode={true}
@@ -229,6 +230,10 @@ const JoinForm = () => {
                         onChange={(phone, meta) => handlePhoneChange(phone, meta)}
                         ref={phoneInputUseRef}
                         className={style.phoneInput}
+                        style={{
+                            backgroundColor: colors.cardColor,
+                            border: `0.1rem solid ${colors.queueBorder}`
+                        }}
                     />
 
                     {invalidNumberError && (
@@ -237,7 +242,12 @@ const JoinForm = () => {
 
                 </div>
 
-                <button className={style.btn}
+                <button
+                    className={style.btn}
+                    style={{
+                        backgroundColor: modecolors.color1,
+                        color: modecolors?.color2
+                    }}
                     onClick={() => continueHandler()}
                 >Continue</button>
             </div>

@@ -477,7 +477,7 @@ const Dashboard2 = () => {
                         <img src={selectCurrentBarberdata?.foundUser?.profile[0]?.url}
                             alt=""
                             style={{
-                                border: `0.1rem solid ${colors.borderColor}`
+                                border: `0.1rem solid ${colors.queueBorder}`
                             }}
                         />
                         <div>
@@ -489,7 +489,7 @@ const Dashboard2 = () => {
                     <div>
                         <div
                             style={{
-                                border: `0.1rem solid ${colors.borderColor}`
+                                border: `0.1rem solid ${colors.queueBorder}`
                             }}
                         >
                             <button onClick={() => clockHandler()} disabled={barberbtnCheck} style={{ cursor: barberbtnCheck ? "not-allowed" : "pointer", color: barberbtnCheck && "#fff" }}>Clock In</button>
@@ -613,8 +613,8 @@ const Dashboard2 = () => {
                                 return (
                                     <div className={style.attendence_item} key={index}
                                         style={{
-                                            backgroundColor: colors.inputColor,
-                                            border: `0.1rem solid ${colors.borderColor}`
+                                            backgroundColor: colors.cardColor,
+                                            border: `0.1rem solid ${colors.queueBorder}`
                                         }}
                                     >
                                         <div>

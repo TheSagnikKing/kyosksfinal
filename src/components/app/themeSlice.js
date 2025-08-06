@@ -8,7 +8,11 @@ const themeColors = {
         borderColor: "hsl(240, 3.7%, 15.9%)",
         color3: "#fff",
         textColor: "#F4F4F5B2",
-        color4: "#09090B"
+        color4: "#111827",
+        cardColor: "#1F2937",
+        queueBorder: "#374151",
+        tabBackground: '#151718',
+        secondaryText: "#6b7280",
     },
     Light: {
         color1: "#F6F6F4",
@@ -17,7 +21,11 @@ const themeColors = {
         borderColor: "hsl(60, 3.7%, 85%)",
         color3: "#000",
         textColor: "#0B0B0AB2",
-        color4: "#fff"
+        color4: "#F9FAFB",
+        cardColor: "#fff",
+        queueBorder: "#e5e7eb",
+        tabBackground: '#efefef',
+        secondaryText: "#6b7280",
     }
 };
 

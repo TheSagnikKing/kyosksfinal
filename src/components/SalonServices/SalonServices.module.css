@@ -49,7 +49,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background: #0BA3AD;
+                /* background: #0BA3AD; */
                 color: #fff;
                 -webkit-transform: translateY(-50%);
                 -moz-transform: translateY(-50%);
@@ -161,7 +161,6 @@
         -o-border-radius: 0.5rem;
         border: none;
         outline: none;
-        background: #0BA3AD;
         color: #fff;
         width: 10rem;
         height: 4rem;

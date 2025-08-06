@@ -136,6 +136,8 @@ const SalonBarbers = () => {
 
 
     const [previewModal, setPreviewModal] = useState(false)
+    const { currentTheme } = useSelector(state => state.theme);
+    const { modecolors } = useSelector(state => state.modeColor)
 
     return (
         <>
@@ -151,10 +153,10 @@ const SalonBarbers = () => {
                     {
                         getBarberByServicesKioskisLoading ? (
                             <>
-                                <Skeleton variant="rectangular" className={style.serviceCardLoader} />
-                                <Skeleton variant="rectangular" className={style.serviceCardLoader} />
-                                <Skeleton variant="rectangular" className={style.serviceCardLoader} />
-                                <Skeleton variant="rectangular" className={style.serviceCardLoader} />
+                                <Skeleton variant="rectangular" className={style.barberCardLoader} />
+                                <Skeleton variant="rectangular" className={style.barberCardLoader} />
+                                <Skeleton variant="rectangular" className={style.barberCardLoader} />
+                                {/* <Skeleton variant="rectangular" className={style.barberCardLoader} /> */}
                             </>
                         ) : getBarberByServicesKioskData?.response?.length > 0 ? (
                             getBarberByServicesKioskData?.response?.map((item, index) => {
@@ -166,8 +168,8 @@ const SalonBarbers = () => {
                                         key={item?.barberId}
                                         className={style.barberCard}
                                         style={{
-                                            backgroundColor: colors.color4,
-                                            border: selectBarber?.barberId === item?.barberId ? `0.2rem solid #0BA3AD` : `0.1rem solid ${colors.borderColor}`
+                                            backgroundColor: colors.cardColor,
+                                            border: selectBarber?.barberId === item?.barberId ? `0.2rem solid ${modecolors.color1}` : `0.1rem solid ${colors.queueBorder}`
                                         }}
                                     >
                                         <div>
@@ -197,8 +199,8 @@ const SalonBarbers = () => {
                     <div
                         className={style.bottomContainer}
                         style={{
-                            backgroundColor: colors.color4,
-                            borderTop: `0.1rem solid ${colors.borderColor}`
+                            backgroundColor: colors.cardColor,
+                            borderTop: `0.1rem solid ${colors.queueBorder}`
                         }}
                     >
                         <div>
@@ -208,6 +210,10 @@ const SalonBarbers = () => {
                         </div>
 
                         <button
+                            style={{
+                                backgroundColor: modecolors.color1,
+                                color: modecolors?.color2
+                            }}
                             onClick={() => {
                                 if (!selectBarber) {
                                     toast.error("Please select a barber", {
@@ -248,17 +254,28 @@ const SalonBarbers = () => {
                     gap: "1.5rem",
                     boxShadow: 5,
                     p: 2,
+                    backgroundColor: colors.cardColor,
+                    borderColor: colors.queueBorder
                 }}>
                     <div className={style.modalHeader}>
-                        <div>
-                            <CheckIcon color="#000" />
+                        <div
+                            style={{
+                                background: colors.tabBackground
+                            }}
+                        >
+                            <CheckIcon color={currentTheme === "Dark" ? "#F4F4F5" : "#09090B"} />
                         </div>
                         <h3>Please Confirm</h3>
                     </div>
 
                     <p>Are you sure you want to proceed ?</p>
 
-                    <div className={style.modalBody}>
+                    <div
+                        className={style.modalBody}
+                        style={{
+                            background: colors.tabBackground
+                        }}
+                    >
                         <h4>{selectBarber?.name}</h4>
                         <div>
                             <h3>{getDefaultSalonByAdmindata?.response?.currency} {totalPrice.toFixed(2)}</h3>
@@ -273,23 +290,28 @@ const SalonBarbers = () => {
                             <button
                                 onClick={() => setPreviewModal(false)}
                             >No</button>
-                            {/* <button
-                                onClick={joinHandler}
-                            >Yes</button> */}
 
                             {
                                 joinQueueKioskloading ? (
-                                    <button><ColorRing
-                                        visible={true}
-                                        height="2.4rem"
-                                        width="2.4rem"
-                                        ariaLabel="color-ring-loading"
-                                        wrapperStyle={{}}
-                                        wrapperClass="color-ring-wrapper"
-                                        colors={["#fff", "#fff", "#fff", "#fff", "#fff"]}
-                                    /></button>
+                                    <button
+                                        style={{
+                                            backgroundColor: modecolors.color1,
+                                        }}
+                                    ><ColorRing
+                                            visible={true}
+                                            height="2.4rem"
+                                            width="2.4rem"
+                                            ariaLabel="color-ring-loading"
+                                            wrapperStyle={{}}
+                                            wrapperClass="color-ring-wrapper"
+                                            colors={["#fff", "#fff", "#fff", "#fff", "#fff"]}
+                                        /></button>
                                 ) : (
                                     <button
+                                        style={{
+                                            backgroundColor: modecolors.color1,
+                                            color: modecolors?.color2
+                                        }}
                                         onClick={joinHandler}
                                     >Yes</button>
                                 )

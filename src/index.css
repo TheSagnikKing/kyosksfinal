@@ -184,11 +184,11 @@ body {
 
 
 .react-international-phone-input-container {
-  border-radius: var(--input-border-radius) !important;
-  -webkit-border-radius: var(--input-border-radius) !important;
-  -moz-border-radius: var(--input-border-radius) !important;
-  -ms-border-radius: var(--input-border-radius) !important;
-  -o-border-radius: var(--input-border-radius) !important;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
 }
 
 .react-international-phone-input-container .react-international-phone-input {

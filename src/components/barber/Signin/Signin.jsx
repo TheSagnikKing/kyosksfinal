@@ -197,8 +197,8 @@ const Signin = () => {
                                 onChange={(e) => setBarberEmailHandler(e)}
                                 onKeyDown={handleKeyPress}
                                 style={{
-                                    backgroundColor: colors.inputColor,
-                                    border: `0.1rem solid ${colors.borderColor}`
+                                    backgroundColor: colors.cardColor,
+                                    border: `0.1rem solid ${colors.queueBorder}`
                                 }}
                             />
                             <div
@@ -210,8 +210,8 @@ const Signin = () => {
 
                             {drop && <main
                                 style={{
-                                    backgroundColor: colors.color4,
-                                    border: `0.1rem solid ${colors.borderColor}`
+                                    backgroundColor: colors.cardColor,
+                                    border: `0.1rem solid ${colors.queueBorder}`
                                 }}
                                 className={style.barber_email_selection_dropdown}>
 
@@ -255,8 +255,8 @@ const Signin = () => {
 
                     <div
                         style={{
-                            backgroundColor: colors.inputColor,
-                            border: `0.1rem solid ${colors.borderColor}`
+                            backgroundColor: colors.cardColor,
+                            border: `0.1rem solid ${colors.queueBorder}`
                         }}
                         className={style.password_container}>
                         <input
@@ -273,7 +273,7 @@ const Signin = () => {
                     {
                         barberisloading ? (<button
                             style={{
-                                backgroundColor: modecolors.color1
+                                backgroundColor: modecolors.cardColor
                             }}
                             className={style.signin_btn}><ColorRing
                                 visible={true}
@@ -296,8 +296,8 @@ const Signin = () => {
                     <button onClick={() => googleLogin()}
                         className={`${style.google_btn}`}
                         style={{
-                            backgroundColor: colors.inputColor,
-                            border: `0.1rem solid ${colors.borderColor}`
+                            backgroundColor: colors.cardColor,
+                            border: `0.1rem solid ${colors.queueBorder}`
                         }}
                     >
                         <div>

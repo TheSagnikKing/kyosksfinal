@@ -116,12 +116,13 @@ const CommonHeader = () => {
     }
 
     const location = useLocation()
+    const { modecolors } = useSelector(state => state.modeColor)
 
     return (
         <header
             className={style.kiyosk_header}
             style={{
-                borderBottom: `0.1rem solid ${colors.borderColor}`,
+                borderBottom: `0.1rem solid ${colors.queueBorder}`,
                 backgroundColor: colors.color4
                 // backgroundColor: location.pathname === "/kiosk" ? "#000" : colors.color4
             }}
@@ -179,8 +180,8 @@ const CommonHeader = () => {
                             <div
                                 className={style.top_chip}
                                 style={{
-                                    backgroundColor: colors?.inputColor,
-                                    border: `0.1rem solid ${colors?.borderColor}`,
+                                    backgroundColor: colors?.cardColor,
+                                    border: `0.1rem solid ${colors?.queueBorder}`,
                                     color: colors?.color3
                                 }}
                             >
@@ -194,8 +195,8 @@ const CommonHeader = () => {
                             <div
                                 className={style.top_chip}
                                 style={{
-                                    backgroundColor: colors?.inputColor,
-                                    border: `0.1rem solid ${colors?.borderColor}`,
+                                    backgroundColor: colors?.cardColor,
+                                    border: `0.1rem solid ${colors?.queueBorder}`,
                                     color: colors?.color3
                                 }}
                             >
@@ -275,8 +276,8 @@ const CommonHeader = () => {
                         <ClickAwayListener onClickAway={handleClickAway}>
                             <div
                                 style={{
-                                    background: colors.inputColor,
-                                    border: `0.1rem solid ${colors.borderColor}`,
+                                    background: colors.cardColor,
+                                    border: `0.1rem solid ${colors.queueBorder}`,
                                     color: colors.color3
                                 }}
                             >
@@ -286,8 +287,8 @@ const CommonHeader = () => {
                                     <div
                                         className={style.kiyosk_dropbox}
                                         style={{
-                                            background: colors.color4,
-                                            border: `0.1rem solid ${colors.borderColor}`
+                                            background: colors.cardColor,
+                                            border: `0.1rem solid ${colors.queueBorder}`
                                         }}
                                     >
                                         <div onClick={barbersigninClicked}>

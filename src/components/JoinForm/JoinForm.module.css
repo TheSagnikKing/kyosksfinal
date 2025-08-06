@@ -24,8 +24,7 @@
 
         &>input {
             height: 6rem;
-            background-color: #0BA3AD0D;
-            border: none;
+            /* background-color: #0BA3AD0D; */
             outline: none;
             border-radius: 1rem;
             -webkit-border-radius: 1rem;
@@ -50,19 +49,14 @@
 
         .phoneInput {
             height: 6rem;
-            background-color: #0BA3AD0D;
-            border: none;
+            /*background-color: #0BA3AD0D;
+            */border: none;
             outline: none;
-            border-radius: 1rem;
-            -webkit-border-radius: 1rem;
-            -moz-border-radius: 1rem;
-            -ms-border-radius: 1rem;
-            -o-border-radius: 1rem;
             padding-inline: 1.5rem;
             box-sizing: border-box;
             display: flex;
             align-items: center;
-        }
+}
 
         .phoneInput input {
             border: none !important;
@@ -76,7 +70,7 @@
 
     .btn {
         height: 6rem;
-        background-color: #0BA3AD;
+        /* background-color: #0BA3AD; */
         border: none;
         outline: none;
         border-radius: 1rem;
@@ -86,7 +80,7 @@
         -o-border-radius: 1rem;
         padding-inline: 1.5rem;
         font-weight: 500;
-        color: #fff;
+        /* color: #fff; */
         cursor: pointer;
     }
 }

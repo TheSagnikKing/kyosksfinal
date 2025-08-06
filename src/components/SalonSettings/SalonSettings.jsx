@@ -291,12 +291,12 @@ const SalonSettings = () => {
         <div className={style.salon_main_container}>
           <div
             style={{
-              backgroundColor: colors.inputColor,
-              border: `0.1rem solid ${colors.borderColor}`
+              backgroundColor: colors.cardColor,
+              border: `0.1rem solid ${colors.queueBorder}`
             }}
             className={style.settings_item}>
             <div style={{
-              borderRight: `0.1rem solid ${colors.borderColor}`
+              borderRight: `0.1rem solid ${colors.queueBorder}`
             }}>
               <div>
                 <div><img src={settingsData[0]?.img} alt="" style={{ filter: currentTheme === "Dark" ? "brightness(0) invert(1)" : "brightness(0) invert(0)" }} /></div>
@@ -368,12 +368,12 @@ const SalonSettings = () => {
                 return (
                   <div
                     style={{
-                      backgroundColor: colors.inputColor,
-                      border: `0.1rem solid ${colors.borderColor}`
+                      backgroundColor: colors.cardColor,
+                      border: `0.1rem solid ${colors.queueBorder}`
                     }}
                     className={style.settings_item} key={item.id}>
                     <div style={{
-                      borderRight: `0.1rem solid ${colors.borderColor}`
+                      borderRight: `0.1rem solid ${colors.queueBorder}`
                     }}>
                       <div>
                         <div><img src={item.img} alt="" style={{ filter: currentTheme === "Dark" ? "brightness(0) invert(1)" : "brightness(0) invert(0)" }} /></div>

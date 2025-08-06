@@ -136,8 +136,8 @@ const SalonSignin = () => {
                         <div>
                             <div
                                 style={{
-                                    backgroundColor: colors.inputColor,
-                                    border: `0.1rem solid ${colors.borderColor}`
+                                    backgroundColor: colors.cardColor,
+                                    border: `0.1rem solid ${colors.queueBorder}`
                                 }}
                             >
                                 <input
@@ -154,8 +154,8 @@ const SalonSignin = () => {
 
                             <div
                                 style={{
-                                    backgroundColor: colors.inputColor,
-                                    border: `0.1rem solid ${colors.borderColor}`
+                                    backgroundColor: colors.cardColor,
+                                    border: `0.1rem solid ${colors.queueBorder}`
                                 }}
                             >
                                 <input
@@ -180,8 +180,8 @@ const SalonSignin = () => {
                             placeholder='Enter Your Email'
                             onKeyDown={handleKeyPress}
                             style={{
-                                backgroundColor: colors.inputColor,
-                                border: `0.1rem solid ${colors.borderColor}`
+                                backgroundColor: colors.cardColor,
+                                border: `0.1rem solid ${colors.queueBorder}`
                             }}
                         />
 
@@ -189,8 +189,8 @@ const SalonSignin = () => {
 
                     <div className={style.password_container}
                         style={{
-                            backgroundColor: colors.inputColor,
-                            border: `0.1rem solid ${colors.borderColor}`
+                            backgroundColor: colors.cardColor,
+                            border: `0.1rem solid ${colors.queueBorder}`
                         }}
                     >
                         <input
@@ -233,8 +233,8 @@ const SalonSignin = () => {
                     <button onClick={() => googleLogin()}
                         className={`${style.google_btn}`}
                         style={{
-                            backgroundColor: colors.inputColor,
-                            border: `0.1rem solid ${colors.borderColor}`
+                            backgroundColor: colors.cardColor,
+                            border: `0.1rem solid ${colors.queueBorder}`
                         }}
                     >
                         <div>

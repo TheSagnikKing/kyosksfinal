@@ -200,13 +200,15 @@
     }
 }
 
-@media (max-width: 768px) { /* Adjust breakpoint as needed */
+@media (max-width: 768px) {
+
+    /* Adjust breakpoint as needed */
     .attendence_item {
-      flex: 1 !important;
-      max-width: 100% !important;
+        flex: 1 !important;
+        max-width: 100% !important;
     }
 
-    .skeleton{
+    .skeleton {
         min-width: 90vw;
     }
-  }
+}
