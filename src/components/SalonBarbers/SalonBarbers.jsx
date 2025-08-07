@@ -313,7 +313,7 @@ const SalonBarbers = () => {
                         <h4>{selectBarber?.name}</h4>
                         <div>
                             <h3>{getDefaultSalonByAdmindata?.response?.currency} {totalPrice.toFixed(2)}</h3>
-                            <p>( {totalServices}{totalServices === 1 ? "service" : "services"} |{" "}
+                            <p>( {totalServices} {totalServices === 1 ? "service" : "services"} |{" "}
                                 {formatMinutesToHrMin(totalTime)} )</p>
                         </div>
                     </div>
