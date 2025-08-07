@@ -14,6 +14,7 @@ import { BiAddToQueue } from "react-icons/bi";
 import { TfiEmail } from "react-icons/tfi";
 import { MdOutlineTouchApp } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
+import { IoPersonOutline } from "react-icons/io5";
 
 export const SettingsIcon = IoSettingsSharp;
 export const DropdownIcon = IoMdArrowDropdownCircle
@@ -42,3 +43,4 @@ export const ClockIcon = FaRegClock
 export const NextQueueIcon = MdPeopleAlt
 export const TouchIcon = MdOutlineTouchApp 
 export const SearchIcon = IoSearch 
+export const BarberIcon = IoPersonOutline

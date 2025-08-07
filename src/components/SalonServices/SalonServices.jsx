@@ -156,10 +156,10 @@ const SalonServices = () => {
                   style={{
                     height: "4rem",
                     paddingInline: "2rem",
-                    background: selectedCategory === item.serviceCategoryName ? modecolors.color1 : modecolors.color3,
+                    background: selectedCategory === item.serviceCategoryName ? modecolors.color1 : currentTheme === "Dark" ? "#3f3f46" : "#e4e4e7",
                     border: "none",
                     borderRadius: "0.4rem",
-                    color: selectedCategory === item.serviceCategoryName ? "#fff" : modecolors.color1,
+                    color: selectedCategory === item.serviceCategoryName && "#fff",
                     fontSize: "1.6rem",
                     display: "flex",
                     alignItems: "center",
@@ -203,7 +203,9 @@ const SalonServices = () => {
                     className={style.serviceCard}
                     style={{
                       backgroundColor: colors.cardColor,
-                      border: isSelected ? `0.2rem solid ${modecolors.color1}` : `0.1rem solid ${colors.queueBorder}`
+                      // border: isSelected ? `0.2rem solid ${modecolors.color1}` : `0.1rem solid ${colors.queueBorder}`
+                      border: isSelected && currentTheme === "Dark" && modecolors.color1 === "#000000" ?
+                        '0.2rem solid #fff' : isSelected ? `0.2rem solid ${modecolors.color1}` : `0.1rem solid ${colors.queueBorder}`
                     }}
                   >
                     <div>

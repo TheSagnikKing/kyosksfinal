@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const storedTheme = localStorage.getItem("theme") || "Dark";
 
 const ModeColors = {
-    default: { color1: "#ffffff", color2: "#000000", color3: "#ffffff33" },
+    // default: { color1: "#ffffff", color2: "#000000", color3: "#ffffff33" },
+    default: { color1: "#000000", color2: "#fff", color3: "#ffffff33" },
     rose: { color1: "#e11d48", color2: "#fff", color3: "#e11d4833" },
     blue: { color1: "#1d4ed8", color2: "#fff", color3: "#1d4ed833" },
     orange: { color1: "#EA580C", color2: "#fff", color3: "#EA580C33" },
@@ -31,15 +32,15 @@ const modeColorSlice = createSlice({
         setDefaultModeColor: (state, action) => {
             const { theme } = action.payload;
 
-            const dynamicColor1 = theme === "Dark" ? "#ffffff" : "#000000";
-            const dynamicColor2 = theme === "Dark" ? "#000000" : "#ffffff";
-            const dynamicColor3 = theme === "Dark" ? "#00000033" : "#ffffff33";
+            // const dynamicColor1 = theme === "Dark" ? "#ffffff" : "#000000";
+            // const dynamicColor2 = theme === "Dark" ? "#000000" : "#ffffff";
+            // const dynamicColor3 = theme === "Dark" ? "#00000033" : "#ffffff33";
 
-            state.availableModeColors.default = { color1: dynamicColor1, color2: dynamicColor2, color3: dynamicColor3 };
+            // state.availableModeColors.default = { color1: dynamicColor1, color2: dynamicColor2, color3: dynamicColor3 };
 
-            if (state.currentModeColor === "default") {
-                state.modecolors = state.availableModeColors.default;
-            }
+            // if (state.currentModeColor === "default") {
+            //     state.modecolors = state.availableModeColors.default;
+            // }
         }
 
     },

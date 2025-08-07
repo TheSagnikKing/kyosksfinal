@@ -292,7 +292,7 @@ const SalonSettings = () => {
           <div
             style={{
               backgroundColor: colors.cardColor,
-              border: `0.1rem solid ${colors.queueBorder}`
+              border: `0.1rem solid ${colors.queueBorder}`,
             }}
             className={style.settings_item}>
             <div style={{

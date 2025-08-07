@@ -54,14 +54,13 @@
 .settings_item {
     padding: 2rem 1rem;
     width: min(50rem, 100%);
-    border-radius: var(--border-radius-primary);
-    -webkit-border-radius: var(--border-radius-primary);
-    -moz-border-radius: var(--border-radius-primary);
-    -ms-border-radius: var(--border-radius-primary);
-    -o-border-radius: var(--border-radius-primary);
-
     display: flex;
     align-items: center;
+    border-radius: 0.6rem;
+    -webkit-border-radius: 0.6rem;
+    -moz-border-radius: 0.6rem;
+    -ms-border-radius: 0.6rem;
+    -o-border-radius: 0.6rem;
 
     &>div:nth-child(1) {
         flex: 1;
@@ -133,13 +132,13 @@
     }
 }
 
-@media screen and (min-width:0px) and (max-width:1100px) {
+@media screen and (min-width:0px) and (max-width:1000px) {
     .settings_item {
         flex-direction: column;
         gap: 2rem;
 
         &>div:nth-child(1) {
-            border-right: none;
+            border-right: none !important;
         }
     }
 

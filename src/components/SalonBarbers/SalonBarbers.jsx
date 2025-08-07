@@ -9,7 +9,7 @@ import { formatMinutesToHrMin } from '../../utils/formatMinutesToHrMin';
 import { useGetBarberByServicesKioskMutation } from './salonBarbersApiSlice';
 import { Box, Modal, Skeleton, Typography } from '@mui/material';
 import toast from 'react-hot-toast';
-import { CheckIcon } from '../../icons';
+import { BarberIcon, CheckIcon, NextQueueIcon } from '../../icons';
 import { useJoinQueueKioskMutation } from '../JoinQueue/joinqueueApiSlice';
 import { ColorRing } from 'react-loader-spinner';
 
@@ -148,7 +148,7 @@ const SalonBarbers = () => {
                 }}
             >
                 <div style={{
-                    marginBottom: "7rem"
+                    // marginBottom: "7rem"
                 }}>
                     {
                         getBarberByServicesKioskisLoading ? (
@@ -169,7 +169,8 @@ const SalonBarbers = () => {
                                         className={style.barberCard}
                                         style={{
                                             backgroundColor: colors.cardColor,
-                                            border: selectBarber?.barberId === item?.barberId ? `0.2rem solid ${modecolors.color1}` : `0.1rem solid ${colors.queueBorder}`
+                                            border: selectBarber?.barberId === item?.barberId && currentTheme === "Dark" && modecolors.color1 === "#000000" ?
+                                                '0.2rem solid #fff' : selectBarber?.barberId === item?.barberId ? `0.2rem solid ${modecolors.color1}` : `0.1rem solid ${colors.queueBorder}`
                                         }}
                                     >
                                         <div>
@@ -185,7 +186,40 @@ const SalonBarbers = () => {
                                 )
                             })
                         ) : (
-                            <p>No Barbers available</p>
+                            <div className={style.noBarberContainer}>
+                                <div
+                                    className={style.successbody}
+                                    style={{
+                                        border: `0.1rem solid ${colors.queueBorder}`,
+                                        backgroundColor: colors.cardColor
+                                    }}
+                                >
+                                    <div
+                                        style={{
+                                            background: `${modecolors.color1}1A`
+                                        }}
+                                    >
+                                        <BarberIcon
+                                            style={{
+                                                color: currentTheme === "Dark" && modecolors.color1 === "#000000" ? "#fff" : modecolors.color1
+                                            }}
+                                            size={"3.6rem"} /></div>
+
+                                    <h2>No Stylists</h2>
+                                    <p style={{
+                                        color: colors.secondaryText
+                                    }}>Unfortunately, there are no available stylists for the selected services at the moment.</p>
+                                    <button
+                                        style={{
+                                            backgroundColor: modecolors.color1,
+                                            color: modecolors?.color2
+                                        }}
+                                        onClick={() => {
+                                            navigate("/salonServices")
+                                        }}
+                                    >Choose Services Again</button>
+                                </div>
+                            </div>
                         )
 
                     }

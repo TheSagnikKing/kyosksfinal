@@ -28,9 +28,13 @@ const JoinQueueSuccess = () => {
       >
         <div
           style={{
-            background: colors.tabBackground
+            background: `${modecolors.color1}1A`
           }}
-        ><CheckIcon color={currentTheme === "Dark" ? "#F4F4F5" : "#09090B"} size={"2.6rem"} /></div>
+        ><CheckIcon
+            style={{
+              color: currentTheme === "Dark" &&  modecolors.color1 === "#000000" ? "#fff" : modecolors.color1
+            }}
+            size={"3.6rem"} /></div>
 
         <h2>Queue Joined!</h2>
         <p style={{
