@@ -10,6 +10,8 @@ import Skeleton from 'react-loading-skeleton';
 import Skeleton2 from '@mui/material/Skeleton';
 import { setTheme } from '../app/themeSlice';
 import { setDefaultModeColor, setModeColor } from '../app/modeColorSlice';
+import { useGlobal } from '../../context/GlobalContext';
+import { useSocket } from '../../context/SocketContext';
 
 const CommonHeader = () => {
 
@@ -118,6 +120,20 @@ const CommonHeader = () => {
     const location = useLocation()
     const { modecolors } = useSelector(state => state.modeColor)
 
+    const {
+        setSelectedServices,
+        setSelectedBarber,
+        setCustomerName,
+        setCustomerEmail,
+        setMobileNumber,
+        setCountryFlag,
+        setMobileCountryCode
+    } = useGlobal();
+
+    const { name } = useSocket()
+
+    console.log("Name ", name)
+
     return (
         <header
             className={style.kiyosk_header}
@@ -128,7 +144,16 @@ const CommonHeader = () => {
             }}
         >
             <div>
-                <div onClick={() => navigate("/kiosk")}>
+                <div onClick={() => {
+                    setSelectedServices([]);
+                    setSelectedBarber("");
+                    setCustomerName("");
+                    setCustomerEmail("");
+                    setMobileNumber("");
+                    setCountryFlag("gb");
+                    setMobileCountryCode("");
+                    navigate("/kiosk");
+                }}>
                     {
                         isLoading ? <Skeleton
                             count={1}
@@ -275,13 +300,14 @@ const CommonHeader = () => {
 
                         <ClickAwayListener onClickAway={handleClickAway}>
                             <div
+                                onClick={() => setShowDrop((prev) => !prev)}
                                 style={{
                                     background: colors.cardColor,
                                     border: `0.1rem solid ${colors.queueBorder}`,
                                     color: colors.color3
                                 }}
                             >
-                                <SettingsIcon onClick={() => setShowDrop((prev) => !prev)} />
+                                <SettingsIcon />
 
                                 {showdrop && (
                                     <div

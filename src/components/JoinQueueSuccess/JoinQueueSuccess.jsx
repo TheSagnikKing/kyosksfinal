@@ -1,16 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import style from './JoinQueueSuccess.module.css'
 import { useSelector } from 'react-redux';
 import { CheckIcon } from '../../icons';
 import { useNavigate } from 'react-router-dom';
+import { useGlobal } from '../../context/GlobalContext';
 
 const JoinQueueSuccess = () => {
 
   const { colors } = useSelector(state => state.theme);
   const { currentTheme } = useSelector(state => state.theme);
-  const { modecolors } = useSelector(state => state.modeColor)
+  const { modecolors } = useSelector(state => state.modeColor);
+  const {
+    setSelectedServices,
+    setSelectedBarber,
+    setCustomerName,
+    setCustomerEmail,
+    setMobileNumber,
+    setCountryFlag,
+    setMobileCountryCode
+  } = useGlobal();
 
   const navigate = useNavigate()
+
+  // Navigate after 20 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      localStorage.setItem("joinQueue", JSON.stringify(false));
+      setSelectedServices([]);
+      setSelectedBarber("");
+      setCustomerName("");
+      setCustomerEmail("");
+      setMobileNumber("");
+      setCountryFlag("gb");
+      setMobileCountryCode("");
+      navigate("/kiosk");;
+    }, 20000);
+
+    return () => clearTimeout(timer); // Cleanup on unmount
+  }, [navigate]);
 
   return (
     <main
@@ -32,7 +59,7 @@ const JoinQueueSuccess = () => {
           }}
         ><CheckIcon
             style={{
-              color: currentTheme === "Dark" &&  modecolors.color1 === "#000000" ? "#fff" : modecolors.color1
+              color: currentTheme === "Dark" && modecolors.color1 === "#000000" ? "#fff" : modecolors.color1
             }}
             size={"3.6rem"} /></div>
 
@@ -47,7 +74,14 @@ const JoinQueueSuccess = () => {
           }}
           onClick={() => {
             localStorage.setItem("joinQueue", JSON.stringify(false))
-            navigate("/kiosk")
+            setSelectedServices([]);
+            setSelectedBarber("");
+            setCustomerName("");
+            setCustomerEmail("");
+            setMobileNumber("");
+            setCountryFlag("gb");
+            setMobileCountryCode("");
+            navigate("/kiosk");
           }}
         >Go to home</button>
       </div>

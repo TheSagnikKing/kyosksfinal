@@ -10,6 +10,7 @@ import Layout from './components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { GlobalProvider } from './context/GlobalContext';
 import JoinQueueProtect from './components/JoinQueueProtect/JoinQueueProtect';
+import { SocketProvider } from './context/SocketContext';
 
 const Public = React.lazy(() => import("./components/public/Public"));
 const JoinQueue = React.lazy(() => import("./components/JoinQueue/JoinQueue"));
@@ -127,7 +128,7 @@ const App = () => {
 
               <Route element={<AllRoutesProtect />}>
 
-                <Route element={<Layout />}>
+                <Route element={<SocketProvider><Layout /></SocketProvider>}>
                   <Route path="/kiosk" element={<Public />} />
 
                   <Route element={<JoinQueueProtect />}>
