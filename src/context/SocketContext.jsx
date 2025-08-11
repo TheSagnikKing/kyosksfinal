@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import socketIOClient from 'socket.io-client';
+import { selectCurrentAdminInfo } from '../components/AdminSignin/adminauthSlice';
 
 const SocketContext = createContext();
 
@@ -11,7 +12,13 @@ export function useSocket() {
 
 export function SocketProvider({ children }) {
 
+    const [getDefaultAdminData, setGetDefaultAdminData] = useState("")
 
+    const adminInfo = useSelector(selectCurrentAdminInfo)
+
+    const [salonSocketOnline, setSalonSocketOnline] = useState("")
+    const [mobileSocketOnline, setMobileSocketOnline] = useState("")
+    const [kioskSocketOnline, setKioskSocketOnline] = useState("")
 
     useEffect(() => {
 
@@ -21,12 +28,47 @@ export function SocketProvider({ children }) {
             console.log("✅ Connected to WebSocket");
         });
 
+        if (adminInfo?.salonId) {
+            newSocket.emit("joinSalon", adminInfo?.salonId);
+
+            newSocket.on("liveDefaultSalonData", (defaultSalonData) => {
+                // console.log("defaultSalonData ", defaultSalonData)
+                setGetDefaultAdminData(defaultSalonData)
+            })
+
+            newSocket.on("salonStatusUpdate", (salonStatusData) => {
+                // console.log("salonStatusData ", salonStatusData?.response?.isOnline)
+                setSalonSocketOnline(salonStatusData?.response?.isOnline)
+            })
+
+            newSocket.on("mobileBookingAvailabilityUpdate", (mobileBookData) => {
+                console.log("mobileBookData ", mobileBookData)
+                setMobileSocketOnline(mobileBookData?.response?.mobileBookingAvailability)
+            })
+
+            newSocket.on("kioskAvailabilityUpdate", (kioskData) => {
+                // console.log("kioskData ", kioskData?.response?.kioskAvailability)
+                setKioskSocketOnline(kioskData?.response?.kioskAvailability)
+            })
+
+        }
+
         return () => newSocket.disconnect();
 
-    }, []);
+    }, [adminInfo]);
 
+    const valueData = {
+        getDefaultAdminData,
+        setGetDefaultAdminData,
+        salonSocketOnline,
+        setSalonSocketOnline,
+        mobileSocketOnline,
+        setMobileSocketOnline,
+        kioskSocketOnline,
+        setKioskSocketOnline
+    }
     return (
-        <SocketContext.Provider value={{ name: "Sagnik" }} >
+        <SocketContext.Provider value={valueData} >
             {children}
         </SocketContext.Provider>
     );

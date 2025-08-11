@@ -15,6 +15,8 @@ import { useSocket } from '../../context/SocketContext';
 
 const CommonHeader = () => {
 
+    const { getDefaultAdminData, setGetDefaultAdminData } = useSocket()
+
     const [
         getDefaultSalonByAdmin,
         {
@@ -25,6 +27,20 @@ const CommonHeader = () => {
             isLoading: getDefaultSalonByAdminisLoading
         }
     ] = useGetDefaultSalonByKioskMutation()
+
+    // console.log("From api ", getDefaultSalonByAdmindata)
+
+    useEffect(() => {
+        if (
+            getDefaultSalonByAdmindata?.response &&
+            typeof getDefaultSalonByAdmindata.response === "object" &&
+            !Array.isArray(getDefaultSalonByAdmindata.response)
+        ) {
+            setGetDefaultAdminData(getDefaultSalonByAdmindata?.response)
+        }
+    }, [getDefaultSalonByAdmindata])
+
+    // console.log("Data coming from scoket ", getDefaultAdminData?.totalQueueCount)
 
     const { currentTheme, colors } = useSelector(state => state.theme);
     const { availableModeColors } = useSelector(state => state.modeColor)
@@ -130,9 +146,15 @@ const CommonHeader = () => {
         setMobileCountryCode
     } = useGlobal();
 
-    const { name } = useSocket()
+    const {
+        salonSocketOnline,
+        setSalonSocketOnline,
+        mobileSocketOnline,
+        setMobileSocketOnline,
+        kioskSocketOnline,
+        setKioskSocketOnline
+    } = useSocket()
 
-    console.log("Name ", name)
 
     return (
         <header
@@ -198,7 +220,7 @@ const CommonHeader = () => {
                             />
                         </div>
                     </div>
-                ) : Object.keys(adminInfo).length > 0 && data?.response ? (
+                ) : Object.keys(adminInfo).length > 0 && getDefaultAdminData?.totalQueueCount && getDefaultAdminData?.barbersOnDuty ? (
                     <div className={style.top}>
                         <div>
 
@@ -214,7 +236,7 @@ const CommonHeader = () => {
                                     <div><TotalQueueIcon /></div>
                                     <p>Total Queue</p>
                                 </div>
-                                <b>{getDefaultSalonByAdmindata?.response?.totalQueueCount}</b>
+                                <b>{getDefaultAdminData.totalQueueCount}</b>
                             </div>
 
                             <div
@@ -229,51 +251,13 @@ const CommonHeader = () => {
                                     <div><PersonIcon /></div>
                                     <p>Barbers on duty</p>
                                 </div>
-                                <b>{getDefaultSalonByAdmindata?.response?.barbersOnDuty}</b>
+                                <b>{getDefaultAdminData.barbersOnDuty}</b>
                             </div>
 
                         </div>
                     </div>
                 ) : (<div></div>)
             }
-
-            {/* {Object.keys(adminInfo).length > 0 && data?.response ? (
-                <div className={style.top}>
-                    <div>
-
-                        <div
-                            className={style.top_chip}
-                            style={{
-                                backgroundColor: colors?.inputColor,
-                                border: `0.1rem solid ${colors?.borderColor}`,
-                                color: colors?.color3
-                            }}
-                        >
-                            <div>
-                                <div><TotalQueueIcon /></div>
-                                <p>Total Queue</p>
-                            </div>
-                            <b>{getDefaultSalonByAdmindata?.response?.totalQueueCount}</b>
-                        </div>
-
-                        <div
-                            className={style.top_chip}
-                            style={{
-                                backgroundColor: colors?.inputColor,
-                                border: `0.1rem solid ${colors?.borderColor}`,
-                                color: colors?.color3
-                            }}
-                        >
-                            <div>
-                                <div><PersonIcon /></div>
-                                <p>Barbers on duty</p>
-                            </div>
-                            <b>{getDefaultSalonByAdmindata?.response?.barbersOnDuty}</b>
-                        </div>
-
-                    </div>
-                </div>
-            ) : (<div></div>)} */}
 
 
             {
@@ -290,12 +274,6 @@ const CommonHeader = () => {
                                 className={style.skeleton}
                                 sx={{ backgroundColor: colors.borderColor }}
                             /> : Object.keys(adminInfo).length > 0 && data?.response ? <button className={`${style.sytem_status} ${adminInfo.kioskAvailability ? style.online : style.offline}`}>{adminInfo.kioskAvailability ? "System ON" : "System OFF"}</button> : null}
-                            {/* <button onClick={queuelistClicked}>QueueList</button> */}
-                            {/* <button onClick={joinqueueClicked} disabled={!adminInfo.kioskAvailability}
-                                style={{
-                                    cursor: adminInfo.kioskAvailability ? "pointer" : "not-allowed"
-                                }}
-                            >JoinQueue</button> */}
                         </div>
 
                         <ClickAwayListener onClickAway={handleClickAway}>
@@ -348,24 +326,6 @@ const CommonHeader = () => {
                                                 )
                                             })
                                         }
-
-
-
-                                        {/* <div
-                                            onClick={queuelistClicked}
-                                            className={style.mobile_queuelist}
-                                        >
-                                            <div><QueueIcon /></div>
-                                            <p>Queue list</p>
-                                        </div> */}
-
-                                        {/* <div
-                                            onClick={joinqueueClicked}
-                                            className={style.mobile_joinequeue}
-                                        >
-                                            <div><JoinIcon /></div>
-                                            <p>Join Queue</p>
-                                        </div> */}
 
                                         <div onClick={logoutHandler}>
                                             <div><LogoutIcon /></div>
