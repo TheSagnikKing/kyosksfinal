@@ -42,7 +42,6 @@ const CommonHeader = () => {
         }
     }, [getDefaultSalonByAdmindata])
 
-    // console.log("Data coming from scoket ", getDefaultAdminData?.totalQueueCount)
 
     const { currentTheme, colors } = useSelector(state => state.theme);
     const { availableModeColors } = useSelector(state => state.modeColor)
@@ -256,7 +255,7 @@ const CommonHeader = () => {
                             />
                         </div>
                     </div>
-                ) : Object.keys(adminInfo).length > 0 && getDefaultAdminData?.totalQueueCount && getDefaultAdminData?.barbersOnDuty ? (
+                ) : Object.keys(adminInfo).length > 0 && getDefaultAdminData?.totalQueueCount != null && getDefaultAdminData?.barbersOnDuty != null ? (
                     <div className={style.top}>
                         <div>
 

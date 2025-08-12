@@ -18,8 +18,8 @@ const SalonSignin = () => {
 
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
-    const [email, setEmail] = useState("bikki@yopmail.com")
-    const [password, setPassword] = useState("12345678")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     const [role, setRole] = useState("Admin")
 
     const navigate = useNavigate()
