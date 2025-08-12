@@ -19,6 +19,7 @@ export function SocketProvider({ children }) {
     const [salonSocketOnline, setSalonSocketOnline] = useState("")
     const [mobileSocketOnline, setMobileSocketOnline] = useState("")
     const [kioskSocketOnline, setKioskSocketOnline] = useState("")
+    const [kioskbtnCheck, setKioskbtnCheck] = useState(false)
 
     useEffect(() => {
 
@@ -65,7 +66,9 @@ export function SocketProvider({ children }) {
         mobileSocketOnline,
         setMobileSocketOnline,
         kioskSocketOnline,
-        setKioskSocketOnline
+        setKioskSocketOnline,
+        kioskbtnCheck,
+        setKioskbtnCheck
     }
     return (
         <SocketContext.Provider value={valueData} >

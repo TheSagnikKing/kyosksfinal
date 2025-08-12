@@ -508,6 +508,7 @@ import { useSocket } from '../../context/SocketContext'
 import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
 
 const SalonSettings = () => {
+  
   const [
     getDefaultSalonByKiosk,
     {
@@ -526,6 +527,8 @@ const SalonSettings = () => {
     setKioskSocketOnline,
     mobileSocketOnline,
     setMobileSocketOnline,
+    kioskbtnCheck,
+    setKioskbtnCheck
   } = useSocket()
 
   const [
@@ -565,8 +568,9 @@ const SalonSettings = () => {
   const adminInfo = useSelector(selectCurrentAdminInfo)
 
   const [salonbtnCheck, setSalonbtnCheck] = useState(false)
-  const [kioskbtnCheck, setKioskbtnCheck] = useState(false)
   const [mobilebtnCheck, setMobilebtnCheck] = useState(false)
+
+  console.log("Mobile ", adminInfo?.mobileBookingAvailability)
 
   // Fetch default salon on load
   useEffect(() => {
@@ -575,6 +579,7 @@ const SalonSettings = () => {
         email: adminInfo.email,
         role: adminInfo.role
       })
+      // setMobilebtnCheck(adminInfo?.mobileBookingAvailability)
     }
   }, [adminInfo])
 

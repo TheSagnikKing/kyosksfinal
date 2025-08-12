@@ -12,6 +12,8 @@ import { setTheme } from '../app/themeSlice';
 import { setDefaultModeColor, setModeColor } from '../app/modeColorSlice';
 import { useGlobal } from '../../context/GlobalContext';
 import { useSocket } from '../../context/SocketContext';
+import { useKioskBookingAvailabilityStatusMutation } from '../Dashboard/dashboardApiSlice';
+import toast from 'react-hot-toast';
 
 const CommonHeader = () => {
 
@@ -146,14 +148,53 @@ const CommonHeader = () => {
         setMobileCountryCode
     } = useGlobal();
 
+
     const {
         salonSocketOnline,
         setSalonSocketOnline,
         mobileSocketOnline,
         setMobileSocketOnline,
         kioskSocketOnline,
-        setKioskSocketOnline
+        setKioskSocketOnline,
+        kioskbtnCheck,
+        setKioskbtnCheck
     } = useSocket()
+
+    const [
+        kioskBookingAvailabilityStatus,
+        {
+            data: kioskBookData,
+            isSuccess: kioskBookSuccess,
+            isError: kioskBookError,
+            error: kioskBookErrorData
+        }
+    ] = useKioskBookingAvailabilityStatusMutation()
+
+
+    // Sync kiosk button with socket state
+    useEffect(() => {
+        if (typeof kioskSocketOnline === 'boolean') {
+            setKioskbtnCheck(kioskSocketOnline)
+        }
+    }, [kioskSocketOnline])
+
+    // Update kiosk button when API success
+    useEffect(() => {
+        if (kioskBookSuccess) {
+            toast.success(kioskBookData?.message, toastStyle)
+            setKioskbtnCheck(kioskBookData?.response?.kioskAvailability)
+            setKioskSocketOnline(kioskBookData?.response?.kioskAvailability)
+        }
+    }, [kioskBookSuccess])
+
+
+    // Handle kiosk API error
+    useEffect(() => {
+        if (kioskBookError) {
+            toast.error(kioskBookErrorData?.data?.message, toastStyle)
+            setKioskbtnCheck(adminInfo?.kioskAvailability)
+        }
+    }, [kioskBookError])
 
 
     return (
@@ -273,7 +314,7 @@ const CommonHeader = () => {
                                 variant="rectangular"
                                 className={style.skeleton}
                                 sx={{ backgroundColor: colors.borderColor }}
-                            /> : Object.keys(adminInfo).length > 0 && data?.response ? <button className={`${style.sytem_status} ${adminInfo.kioskAvailability ? style.online : style.offline}`}>{adminInfo.kioskAvailability ? "System ON" : "System OFF"}</button> : null}
+                            /> : Object.keys(adminInfo).length > 0 && data?.response ? <button className={`${style.sytem_status} ${kioskbtnCheck ? style.online : style.offline}`}>{kioskbtnCheck ? "System ON" : "System OFF"}</button> : null}
                         </div>
 
                         <ClickAwayListener onClickAway={handleClickAway}>
