@@ -126,12 +126,12 @@ const CommonHeader = () => {
 
     const salonsettingClicked = () => {
         navigate("/salonsignin")
-        setShowDrop(false)
+        setShowDrop(true)
     }
 
     const barbersigninClicked = () => {
         navigate("/barbersignin")
-        setShowDrop(false)
+        setShowDrop(true)
     }
 
     const location = useLocation()
@@ -297,12 +297,14 @@ const CommonHeader = () => {
 
             {
                 location.pathname === "/kiyoskdashboard" ?
-                    <button
-                        className={style.back_btn}
-                        onClick={() => navigate("/barbersignin")}
-                    ><BackIconNew /></button>
+                    <>
+                        <div />
+                        <button
+                            className={style.back_btn}
+                            onClick={() => navigate("/barbersignin")}
+                        ><BackIconNew /></button>
+                    </>
                     : <div>
-
                         <div>
                             {isLoading ? <Skeleton2
                                 variant="rectangular"
