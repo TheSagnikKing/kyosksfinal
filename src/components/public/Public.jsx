@@ -1320,10 +1320,38 @@ import style from './Public.module.css';
 import { TouchIcon } from '../../icons';
 import { useNavigate } from 'react-router-dom';
 import dashboardImage from '../../assets/dashboardImage.png'
+import { useSelector } from 'react-redux';
+import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice';
+import { useGetDefaultSalonByKioskMutation } from './publicApiSlice';
+import toast from 'react-hot-toast';
 
 const Public = () => {
 
   const navigate = useNavigate()
+  const adminInfo = useSelector(selectCurrentAdminInfo)
+
+  const [
+    getDefaultSalonByAdmin,
+    {
+      data: getDefaultSalonByAdmindata,
+      isSuccess: getDefaultSalonByAdminisSuccess,
+      isError: getDefaultSalonByAdminisError,
+      error: getDefaultSalonByAdminerror,
+      isLoading: getDefaultSalonByAdminisLoading
+    }
+  ] = useGetDefaultSalonByKioskMutation()
+
+  useEffect(() => {
+    if (adminInfo?.email) {
+      const salondata = {
+        email: adminInfo?.email,
+        role: adminInfo?.role
+      };
+      getDefaultSalonByAdmin(salondata);
+    }
+  }, [adminInfo]);
+
+  console.log("getDefaultSalonByAdmindata ", getDefaultSalonByAdmindata)
 
   return (
     <main
@@ -1333,7 +1361,20 @@ const Public = () => {
       }}
     >
       <button
+        disabled={!adminInfo?.email || getDefaultSalonByAdminisLoading}
         onClick={() => {
+          if (!getDefaultSalonByAdmindata?.response?.isQueuing) {
+            return toast.error("Queueing feature is not available at this salon", {
+              duration: 3000,
+              style: {
+                fontSize: "var(--list-modal-header-normal-font)",
+                borderRadius: '0.3rem',
+                background: '#333',
+                color: '#fff',
+              },
+            });
+
+          }
           localStorage.setItem("joinQueue", JSON.stringify(true))
           navigate("/joinForm")
         }}
