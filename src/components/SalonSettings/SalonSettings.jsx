@@ -508,7 +508,7 @@ import { useSocket } from '../../context/SocketContext'
 import { useGetDefaultSalonByKioskMutation } from '../public/publicApiSlice'
 
 const SalonSettings = () => {
-  
+
   const [
     getDefaultSalonByKiosk,
     {
@@ -521,14 +521,12 @@ const SalonSettings = () => {
   ] = useGetDefaultSalonByKioskMutation()
 
   const {
-    salonSocketOnline,
-    setSalonSocketOnline,
-    kioskSocketOnline,
-    setKioskSocketOnline,
-    mobileSocketOnline,
-    setMobileSocketOnline,
     kioskbtnCheck,
-    setKioskbtnCheck
+    setKioskbtnCheck,
+    salonbtnCheck,
+    setSalonbtnCheck,
+    mobilebtnCheck,
+    setMobilebtnCheck
   } = useSocket()
 
   const [
@@ -567,10 +565,6 @@ const SalonSettings = () => {
   const { modecolors } = useSelector(state => state.modeColor)
   const adminInfo = useSelector(selectCurrentAdminInfo)
 
-  const [salonbtnCheck, setSalonbtnCheck] = useState(false)
-  const [mobilebtnCheck, setMobilebtnCheck] = useState(false)
-
-  console.log("Mobile ", adminInfo?.mobileBookingAvailability)
 
   // Fetch default salon on load
   useEffect(() => {
@@ -588,7 +582,6 @@ const SalonSettings = () => {
     if (salonStatusSuccess) {
       toast.success(salonStatusData?.message, toastStyle)
       setSalonbtnCheck(salonStatusData?.response?.isOnline)
-      setSalonSocketOnline(salonStatusData?.response?.isOnline)
     }
   }, [salonStatusSuccess])
 
@@ -600,33 +593,12 @@ const SalonSettings = () => {
     }
   }, [salonStatusError])
 
-  // Sync salon button with socket state
-  useEffect(() => {
-    if (typeof salonSocketOnline === 'boolean') {
-      setSalonbtnCheck(salonSocketOnline)
-    }
-  }, [salonSocketOnline])
-
-  // Sync kiosk button with socket state
-  useEffect(() => {
-    if (typeof kioskSocketOnline === 'boolean') {
-      setKioskbtnCheck(kioskSocketOnline)
-    }
-  }, [kioskSocketOnline])
-
-  // Sync mobile button with socket state
-  useEffect(() => {
-    if (typeof mobileSocketOnline === 'boolean') {
-      setMobilebtnCheck(mobileSocketOnline)
-    }
-  }, [mobileSocketOnline])
 
   // Update kiosk button when API success
   useEffect(() => {
     if (kioskBookSuccess) {
       toast.success(kioskBookData?.message, toastStyle)
       setKioskbtnCheck(kioskBookData?.response?.kioskAvailability)
-      setKioskSocketOnline(kioskBookData?.response?.kioskAvailability)
     }
   }, [kioskBookSuccess])
 
@@ -636,7 +608,6 @@ const SalonSettings = () => {
     if (mobilebookisSuccess) {
       toast.success(mobilebookdata?.message, toastStyle)
       setMobilebtnCheck(mobilebookdata?.response?.mobileBookingAvailability)
-      setMobileSocketOnline(mobilebookdata?.response?.mobileBookingAvailability)
     }
   }, [mobilebookisSuccess])
 
@@ -656,14 +627,6 @@ const SalonSettings = () => {
     }
   }, [mobilebookdataisError])
 
-  // Initial sync from adminInfo
-  useEffect(() => {
-    if (adminInfo) {
-      setSalonbtnCheck(adminInfo?.isSalonOnline)
-      setKioskbtnCheck(adminInfo?.kioskAvailability)
-      setMobilebtnCheck(adminInfo?.mobileBookingAvailability)
-    }
-  }, [adminInfo])
 
   // Salon status toggle handler
   const salonOnlineHandler = () => {

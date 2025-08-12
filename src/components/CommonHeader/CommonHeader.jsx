@@ -150,10 +150,6 @@ const CommonHeader = () => {
 
 
     const {
-        salonSocketOnline,
-        setSalonSocketOnline,
-        mobileSocketOnline,
-        setMobileSocketOnline,
         kioskSocketOnline,
         setKioskSocketOnline,
         kioskbtnCheck,
@@ -183,7 +179,6 @@ const CommonHeader = () => {
         if (kioskBookSuccess) {
             toast.success(kioskBookData?.message, toastStyle)
             setKioskbtnCheck(kioskBookData?.response?.kioskAvailability)
-            setKioskSocketOnline(kioskBookData?.response?.kioskAvailability)
         }
     }, [kioskBookSuccess])
 

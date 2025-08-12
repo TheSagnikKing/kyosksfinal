@@ -16,10 +16,19 @@ export function SocketProvider({ children }) {
 
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
-    const [salonSocketOnline, setSalonSocketOnline] = useState("")
-    const [mobileSocketOnline, setMobileSocketOnline] = useState("")
-    const [kioskSocketOnline, setKioskSocketOnline] = useState("")
+    // Initial sync from adminInfo
+    useEffect(() => {
+        if (adminInfo) {
+            setSalonbtnCheck(adminInfo?.isSalonOnline)
+            setKioskbtnCheck(adminInfo?.kioskAvailability)
+            setMobilebtnCheck(adminInfo?.mobileBookingAvailability)
+        }
+    }, [adminInfo])
+
+
     const [kioskbtnCheck, setKioskbtnCheck] = useState(false)
+    const [salonbtnCheck, setSalonbtnCheck] = useState(false)
+    const [mobilebtnCheck, setMobilebtnCheck] = useState(false)
 
     useEffect(() => {
 
@@ -39,17 +48,17 @@ export function SocketProvider({ children }) {
 
             newSocket.on("salonStatusUpdate", (salonStatusData) => {
                 // console.log("salonStatusData ", salonStatusData?.response?.isOnline)
-                setSalonSocketOnline(salonStatusData?.response?.isOnline)
+                setSalonbtnCheck(salonStatusData?.response?.isOnline)
             })
 
             newSocket.on("mobileBookingAvailabilityUpdate", (mobileBookData) => {
                 console.log("mobileBookData ", mobileBookData)
-                setMobileSocketOnline(mobileBookData?.response?.mobileBookingAvailability)
+                setMobilebtnCheck(mobileBookData?.response?.mobileBookingAvailability)
             })
 
             newSocket.on("kioskAvailabilityUpdate", (kioskData) => {
                 // console.log("kioskData ", kioskData?.response?.kioskAvailability)
-                setKioskSocketOnline(kioskData?.response?.kioskAvailability)
+                setKioskbtnCheck(kioskData?.response?.kioskAvailability)
             })
 
         }
@@ -61,14 +70,13 @@ export function SocketProvider({ children }) {
     const valueData = {
         getDefaultAdminData,
         setGetDefaultAdminData,
-        salonSocketOnline,
-        setSalonSocketOnline,
-        mobileSocketOnline,
-        setMobileSocketOnline,
-        kioskSocketOnline,
-        setKioskSocketOnline,
+
         kioskbtnCheck,
-        setKioskbtnCheck
+        setKioskbtnCheck,
+        salonbtnCheck,
+        setSalonbtnCheck,
+        mobilebtnCheck,
+        setMobilebtnCheck
     }
     return (
         <SocketContext.Provider value={valueData} >
