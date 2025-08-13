@@ -1324,6 +1324,7 @@ import { useSelector } from 'react-redux';
 import { selectCurrentAdminInfo } from '../AdminSignin/adminauthSlice';
 import { useGetDefaultSalonByKioskMutation } from './publicApiSlice';
 import toast from 'react-hot-toast';
+import { useSocket } from '../../context/SocketContext';
 
 const Public = () => {
 
@@ -1351,7 +1352,13 @@ const Public = () => {
     }
   }, [adminInfo]);
 
-  console.log("getDefaultSalonByAdmindata ", getDefaultSalonByAdmindata)
+  // console.log("getDefaultSalonByAdmindata ", getDefaultSalonByAdmindata)
+
+  const {
+    kioskbtnCheck,
+  } = useSocket()
+
+  console.log("kioskbtnCheck ", kioskbtnCheck)
 
   return (
     <main
@@ -1373,8 +1380,20 @@ const Public = () => {
                 color: '#fff',
               },
             });
-
           }
+
+          if (!kioskbtnCheck) {
+            return toast.error("Kiosk is offline", {
+              duration: 3000,
+              style: {
+                fontSize: "var(--list-modal-header-normal-font)",
+                borderRadius: '0.3rem',
+                background: '#333',
+                color: '#fff',
+              },
+            });
+          }
+
           localStorage.setItem("joinQueue", JSON.stringify(true))
           navigate("/joinForm")
         }}
