@@ -52,6 +52,8 @@ const JoinQueuePage = () => {
         }
     ] = useGetDefaultSalonByKioskMutation();
 
+    
+
     useEffect(() => {
         if (joinQueueKioskisSuccess) {
 

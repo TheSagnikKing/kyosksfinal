@@ -66,7 +66,7 @@ const SalonSelection = () => {
         if (adminInfo?.email) {
             const salondata = {
                 email: adminInfo?.email,
-                role: adminInfo?.role
+                role: adminInfo?.role,
             }
             getDefaultSalonByKiosk(salondata)
             getAllSalonsByAdmin(adminInfo?.email)
@@ -78,6 +78,7 @@ const SalonSelection = () => {
             setSalonName(data?.response?.salonName)
             setSalonId(data?.response?.salonId)
         }
+
     }, [adminInfo, isSuccess])
 
     useEffect(() => {
@@ -125,6 +126,7 @@ const SalonSelection = () => {
         }
 
         if (salonId !== "") {
+            localStorage.setItem("ConnectedSalonId", salonId)
             adminConnectKiosk(admindata)
         } else {
             alert("Salon Id cannot be empty")
@@ -178,7 +180,7 @@ const SalonSelection = () => {
                                                     border: `0.1rem solid ${colors.queueBorder}`
                                                 }}
                                                 onClick={() => setSalonListDrop((prev) => (!prev))}>
-                                                <p>{salonName !== "" && salonName}</p>
+                                                <p>{!salonName ? "Select Salon" : salonName}</p>
                                                 <div style={{ color: colors.color3 }}><IoMdArrowDropdownCircle /></div>
 
 

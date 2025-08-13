@@ -565,13 +565,15 @@ const SalonSettings = () => {
   const { modecolors } = useSelector(state => state.modeColor)
   const adminInfo = useSelector(selectCurrentAdminInfo)
 
+  const connectedSalonId = localStorage.getItem("ConnectedSalonId")
 
   // Fetch default salon on load
   useEffect(() => {
     if (adminInfo?.email) {
       getDefaultSalonByKiosk({
         email: adminInfo.email,
-        role: adminInfo.role
+        role: adminInfo.role,
+        salonId: connectedSalonId
       })
       // setMobilebtnCheck(adminInfo?.mobileBookingAvailability)
     }

@@ -1331,6 +1331,10 @@ const Public = () => {
   const navigate = useNavigate()
   const adminInfo = useSelector(selectCurrentAdminInfo)
 
+  const connectedSalonId = localStorage.getItem("ConnectedSalonId")
+
+  console.log("ConnectedSalonId ", connectedSalonId)
+
   const [
     getDefaultSalonByAdmin,
     {
@@ -1346,7 +1350,8 @@ const Public = () => {
     if (adminInfo?.email) {
       const salondata = {
         email: adminInfo?.email,
-        role: adminInfo?.role
+        role: adminInfo?.role,
+        salonId: connectedSalonId
       };
       getDefaultSalonByAdmin(salondata);
     }
@@ -1357,8 +1362,6 @@ const Public = () => {
   const {
     kioskbtnCheck,
   } = useSocket()
-
-  console.log("kioskbtnCheck ", kioskbtnCheck)
 
   return (
     <main

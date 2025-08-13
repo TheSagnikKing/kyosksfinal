@@ -107,11 +107,14 @@ const SalonBarbers = () => {
         }
     ] = useGetDefaultSalonByKioskMutation();
 
+    const connectedSalonId = localStorage.getItem("ConnectedSalonId")
+
     useEffect(() => {
         if (adminInfo?.email) {
             const salondata = {
                 email: adminInfo.email,
-                role: adminInfo.role
+                role: adminInfo.role,
+                salonId: connectedSalonId
             };
             getDefaultSalonByAdmin(salondata);
         }

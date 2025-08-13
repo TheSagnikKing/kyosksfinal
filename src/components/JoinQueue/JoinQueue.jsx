@@ -17,7 +17,7 @@ import { Modal as MuiModal } from '@mui/material';
 import { MdClose } from 'react-icons/md'
 
 const JoinQueue = () => {
-    
+
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
     const [
@@ -31,12 +31,14 @@ const JoinQueue = () => {
         }
     ] = useGetDefaultSalonByKioskMutation()
 
+    const connectedSalonId = localStorage.getItem("ConnectedSalonId")
 
     useEffect(() => {
         if (adminInfo?.email) {
             const salondata = {
                 email: adminInfo?.email,
-                role: adminInfo?.role
+                role: adminInfo?.role,
+                salonId: connectedSalonId
             }
             getDefaultSalonByAdmin(salondata)
         }

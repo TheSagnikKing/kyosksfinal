@@ -77,11 +77,14 @@ const CommonHeader = () => {
         }
     ] = useGetDefaultSalonByKioskMutation()
 
+    const connectedSalonId = localStorage.getItem("ConnectedSalonId")
+
     useEffect(() => {
         if (adminInfo?.email) {
             const salondata = {
                 email: adminInfo?.email,
-                role: adminInfo?.role
+                role: adminInfo?.role,
+                
             }
             getDefaultSalonByAdmin(salondata)
         }
@@ -92,7 +95,8 @@ const CommonHeader = () => {
         if (adminInfo?.email) {
             const salondata = {
                 email: adminInfo?.email,
-                role: adminInfo?.role
+                role: adminInfo?.role,
+                salonId: connectedSalonId
             }
             getDefaultSalonByKiosk(salondata)
         }
