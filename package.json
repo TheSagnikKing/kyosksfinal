@@ -16,7 +16,7 @@
     "@mui/material": "^6.1.5",
     "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.2.1",
-    "axios": "^1.6.7",
+    "axios": "^1.8.4",
     "google-libphonenumber": "^3.2.38",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
@@ -32,7 +32,9 @@
     "react-responsive-carousel": "^3.2.21",
     "react-router-dom": "^6.22.2",
     "react-slick": "^0.30.2",
-    "slick-carousel": "^1.8.1"
+    "react-switch": "^7.1.0",
+    "slick-carousel": "^1.8.1",
+    "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",

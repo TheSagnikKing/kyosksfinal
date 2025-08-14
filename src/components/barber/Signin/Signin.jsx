@@ -10,8 +10,13 @@ import { selectCurrentAdminInfo } from '../../AdminSignin/adminauthSlice'
 import { ColorRing } from 'react-loader-spinner'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
 import { ClickAwayListener, Skeleton } from '@mui/material';
+import { useGoogleLogin } from '@react-oauth/google'
+import axios from 'axios'
 
 const Signin = () => {
+
+    const { colors, currentTheme } = useSelector(state => state.theme);
+    const { modecolors } = useSelector(state => state.modeColor)
 
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
@@ -29,11 +34,11 @@ const Signin = () => {
     const [
         googleBarberLoginKiosk,
         {
-            data: googleBarberLoginKioskdata,
-            isSuccess: googleBarberLoginKioskisSuccess,
-            isError: googleBarberLoginKioskisError,
-            error: googleBarberLoginKioskerror,
-            isLoading: googleBarberLoginKioskisLoading
+            data: barbergooglelogindata,
+            isSuccess: barbergoogleloginisSuccess,
+            isError: barbergoogleloginisError,
+            error: barbergoogleerror,
+            isLoading: barbergoogleisloading
         }
     ] = useGoogleBarberLoginKioskMutation()
 
@@ -72,12 +77,12 @@ const Signin = () => {
     }, [dispatch, navigate, barberloginisSuccess, barberloginisError])
 
     useEffect(() => {
-        if (googleBarberLoginKioskisSuccess) {
-            dispatch(setCredentials(googleBarberLoginKioskdata))
+        if (barbergoogleloginisSuccess) {
+            dispatch(setCredentials(barbergooglelogindata))
             localStorage.setItem('barberkiyoskloggin', 'true')
             navigate('/kiyoskdashboard')
-        } else if (googleBarberLoginKioskisError) {
-            toast.error(googleBarberLoginKioskerror?.data?.message, {
+        } else if (barbergoogleloginisError) {
+            toast.error(barbergoogleerror?.data?.message, {
                 duration: 3000,
                 style: {
                     fontSize: "var(--tertiary-text)",
@@ -87,7 +92,7 @@ const Signin = () => {
                 },
             });
         }
-    }, [dispatch, navigate, googleBarberLoginKioskisSuccess, googleBarberLoginKioskisError])
+    }, [dispatch, navigate, barbergoogleloginisSuccess, barbergoogleloginisError])
 
     const barberSigninHandler = () => {
         const barberdata = { email: barberemail, password }
@@ -147,30 +152,68 @@ const Signin = () => {
 
     const [showPassword, setShowPassword] = useState(false)
 
+    const googleLogin = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            try {
+                const { access_token } = tokenResponse;
+
+                const userInfo = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                });
+
+                const data = { email: userInfo.data.email }
+
+                googleBarberLoginKiosk(data)
+
+            } catch (error) {
+                console.error('Error fetching user info:', error);
+            }
+        },
+    });
+
     return (
-        <main className={style.barber_signin_container}>
+        <main className={style.barber_signin_container}
+            style={{
+                backgroundColor: colors.color4
+            }}
+        >
             <div className={style.barber_signin_container_left}>
                 <img src="./Signup.png" alt="signin" />
             </div>
             <div className={style.barber_signin_container_right}>
                 <main className={style.barber_signin_content_main}>
-                    <p>Welcome to Barber Sign-In</p>
+                    <h2>Welcome to Barber SignIn</h2>
 
                     <ClickAwayListener onClickAway={() => setDrop(false)}>
-                        <div className={style.barber_email_selection_container} onClick={dropdownHandler}>
+                        <div
+
+                            className={style.barber_email_selection_container} onClick={dropdownHandler}>
                             <input
                                 type="text"
                                 placeholder='Search Barber'
                                 value={barberemail}
                                 onChange={(e) => setBarberEmailHandler(e)}
                                 onKeyDown={handleKeyPress}
+                                style={{
+                                    backgroundColor: colors.cardColor,
+                                    border: `0.1rem solid ${colors.queueBorder}`
+                                }}
                             />
-                            <div>
+                            <div
+                                style={{ color: colors.color3 }}
+                            >
                                 <DropdownIcon />
                             </div>
 
 
-                            {drop && <main className={style.barber_email_selection_dropdown}>
+                            {drop && <main
+                                style={{
+                                    backgroundColor: colors.cardColor,
+                                    border: `0.1rem solid ${colors.queueBorder}`
+                                }}
+                                className={style.barber_email_selection_dropdown}>
 
                                 {
                                     isLoading ? (<div className={style.barber_email_selection_dropdown_loading}>
@@ -178,7 +221,7 @@ const Signin = () => {
                                         <Skeleton variant="rectangular" className={style.skeleton} />
                                         <Skeleton variant="rectangular" className={style.skeleton} />
                                     </div>) :
-                                        isSuccess && data?.response.length > 0 ? (
+                                        isSuccess && data?.response?.length > 0 ? (
                                             data?.response?.map((b) => {
                                                 return (
                                                     <div className={style.barber_dropdown_item} key={b._id}
@@ -187,10 +230,14 @@ const Signin = () => {
                                                             selectEmailClick(b);
                                                         }}
                                                         style={{
-                                                            background: barberemail === b.email && "var(--primary-color)",
+                                                            // background: barberemail === b.email && "var(--primary-color)",
                                                         }}
                                                     >
-                                                        <p style={{ color: barberemail === b.email && "#fff" }}>{b.email}</p>
+                                                        <p style={{
+                                                            color: barberemail === b.email && colors.color3,
+                                                            opacity: barberemail === b.email && 1,
+                                                            fontWeight: barberemail === b.email && 600
+                                                        }}>{b.email}</p>
                                                     </div>
                                                 )
                                             })
@@ -206,7 +253,12 @@ const Signin = () => {
                         </div>
                     </ClickAwayListener>
 
-                    <div className={style.password_container}>
+                    <div
+                        style={{
+                            backgroundColor: colors.cardColor,
+                            border: `0.1rem solid ${colors.queueBorder}`
+                        }}
+                        className={style.password_container}>
                         <input
                             type={showPassword ? "text" : "password"}
                             id="input_password"
@@ -215,23 +267,44 @@ const Signin = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             onKeyDown={handleKeyPress}
                         />
-                        <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
+                        <div style={{ color: colors.color3 }} onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                     </div>
 
                     {
-                        barberisloading ? (<button className={style.signin_btn}><ColorRing
-                            visible={true}
-                            height="4rem"
-                            width="4rem"
-                            ariaLabel="color-ring-loading"
-                            wrapperStyle={{}}
-                            wrapperClass="color-ring-wrapper"
-                            colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
-                        /></button>) : (<button
-                            className={style.signin_btn}
-                            onClick={barberSigninHandler}
-                        >Sign in</button>)
+                        barberisloading ? (<button
+                            style={{
+                                backgroundColor: modecolors.cardColor
+                            }}
+                            className={style.signin_btn}><ColorRing
+                                visible={true}
+                                height="4rem"
+                                width="4rem"
+                                ariaLabel="color-ring-loading"
+                                wrapperStyle={{}}
+                                wrapperClass="color-ring-wrapper"
+                                colors={[modecolors?.color2, modecolors?.color2, modecolors?.color2, modecolors?.color2, modecolors?.color2]}
+                            /></button>) : (<button
+                                style={{
+                                    backgroundColor: modecolors.color1,
+                                    color: modecolors?.color2
+                                }}
+                                className={style.signin_btn}
+                                onClick={barberSigninHandler}
+                            >Sign in</button>)
                     }
+
+                    <button onClick={() => googleLogin()}
+                        className={`${style.google_btn}`}
+                        style={{
+                            backgroundColor: colors.cardColor,
+                            border: `0.1rem solid ${colors.queueBorder}`
+                        }}
+                    >
+                        <div>
+                            <div><img src="/google_logo.png" alt="logo" /></div>
+                            <p>Sign in with Google </p>
+                        </div>
+                    </button>
 
                 </main>
             </div>

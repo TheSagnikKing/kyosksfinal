@@ -76,19 +76,64 @@ p {
 
   --cmmn-box-shadow-y: 0rem 0.1rem 0.6rem rgba(0, 0, 0, 0.2);
   --cmmn-box-shadow-x: 0.1rem 0rem 0.6rem rgba(0, 0, 0, 0.2);
+
+
+
+
+
+
+
+  /* New variables */
+
+  --bg-primary: #09090B;
+  --bg-secondary: #e11d48;
+  --bg-tertiary: #585858;
+
+  --bg-hover-primary: #27272A80;
+  --bg-secondary-hover: #e11d48e6;
+  --btn-primary-hover: #27272A;
+
+  --input-bg-color: #27272A80;
+
+  --common-btn-transition: 0.3s all ease;
+
+  --text-primary: #F4F4F5;
+  --text-secondary: #F4F4F5B2;
+
+  --border-primary: #F4F4F5B2;
+  --border-secondary: hsl(240, 3.7%, 15.9%);
+
+  --border-radius-primary: 0.4rem;
+
+  --font-primary: 1.4rem;
+  --font-secondary: 1.2rem;
+  --font-tertiary: 1.6rem;
+
+  --color-1: #8ab4f8;
+  --color-2: #0d58d2;
+  --color-3: #174ea61d;
+  --color-4: #ae0581;
+  --color-5: #72045523;
+  --color-6: rgb(244, 67, 54);
+  --color-7: rgba(244, 67, 54, 0.103);
+  --color-8: #00A36C;
+  --color-9: #00a36d15;
+  --color-10: #CC5500;
+  --color-11: #cc550016;
+
 }
 
 body {
   font-size: 1.6rem;
 }
 
-*::-webkit-scrollbar {
+/* *::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
 
 *:hover::-webkit-scrollbar {
-  width: 0.6rem;
+  width: 0.5rem;
   height: 0.7rem;
 }
 
@@ -97,7 +142,7 @@ body {
 }
 
 *:hover::-webkit-scrollbar-thumb {
-  background: #0867ff48;
+  background: var(--bg-secondary);
   border-radius: var(--primary-radius, 0.6rem);
   -webkit-border-radius: var(--primary-radius, 0.6rem);
   -moz-border-radius: var(--primary-radius, 0.6rem);
@@ -106,12 +151,12 @@ body {
 }
 
 *:hover::-webkit-scrollbar-thumb:hover {
-  background: rgb(0, 98, 255);
+  background: var(--bg-secondary-hover);
 }
 
 *:hover::-webkit-scrollbar-corner {
   background-color: transparent;
-}
+} */
 
 .page_loader {
   height: 100vh;
@@ -122,7 +167,7 @@ body {
 
 }
 
-.react-international-phone-input-container .react-international-phone-input,
+/* .react-international-phone-input-container .react-international-phone-input,
 .react-international-phone-input-container .react-international-phone-country-selector-button {
   border: none !important;
   background: transparent !important;
@@ -135,7 +180,47 @@ body {
 .react-international-phone-input-container {
   height: 4rem !important;
   font-size: var(--content-text) !important;
+} */
+
+
+.react-international-phone-input-container {
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
 }
+
+.react-international-phone-input-container .react-international-phone-input {
+  width: 100%;
+  min-height: 3.5rem !important;
+  max-height: 3.5rem !important;
+  background-color: transparent;
+  border: none;
+  font-size: 1.4rem;
+  border-radius: var(--input-border-radius) !important;
+  -webkit-border-radius: var(--input-border-radius) !important;
+  -moz-border-radius: var(--input-border-radius) !important;
+  -ms-border-radius: var(--input-border-radius) !important;
+  -o-border-radius: var(--input-border-radius) !important;
+  /* color: var(--text-primary); */
+}
+
+.react-international-phone-input-container .react-international-phone-country-selector-button {
+  background-color: transparent !important;
+  min-height: 3.5rem !important;
+  width: 6rem !important;
+  border: none !important;
+  border-top-left-radius: var(--input-border-radius) !important;
+  border-bottom-left-radius: var(--input-border-radius) !important;
+}
+
+/* input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background-color: none !important;
+} */
 
 
 @media screen and (min-width:1921px) and (max-width:2250px) {

@@ -17,9 +17,9 @@ export const signinApiSlice = apiSlice.injectEndpoints({
         }),
         GoogleBarberLoginKiosk: builder.mutation({
             query: (barberdata) => ({
-                url: `/kiosk/googleBarberLoginKiosk?token=${barberdata}`,
+                url: `/kiosk/googleBarberLoginKiosk`,
                 method: 'POST',
-                body: {}
+                body: barberdata
             })
         })
     })

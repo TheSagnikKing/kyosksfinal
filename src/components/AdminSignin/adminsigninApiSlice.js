@@ -10,10 +10,10 @@ export const adminsigninApiSlice = apiSlice.injectEndpoints({
             })
         }),
         GoogleAdminLoginKiosk: builder.mutation({
-            query: (admindata) => ({
-                url:`/kiosk/googleAdminLoginKiosk?token=${admindata}`,
+            query: (data) => ({
+                url:`/kiosk/googleLoginKiosk`,
                 method: 'POST',
-                body: {}
+                body: data
             })
         })
 

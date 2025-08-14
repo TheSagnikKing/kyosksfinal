@@ -7,9 +7,14 @@ import { ColorRing } from 'react-loader-spinner'
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6'
 import { useLoginKioskMutation, useGoogleAdminLoginKioskMutation } from '../../AdminSignin/adminsigninApiSlice'
 import { selectCurrentAdminInfo } from '../../AdminSignin/adminauthSlice'
-import { useSalonAccountLoginMutation } from '../salonSlice'
+import { useGoogleSalonAccountLoginMutation, useSalonAccountLoginMutation } from '../salonSlice'
+import { useGoogleLogin } from '@react-oauth/google'
+import axios from 'axios'
 
 const SalonSignin = () => {
+
+    const { colors, currentTheme } = useSelector(state => state.theme);
+    const { modecolors } = useSelector(state => state.modeColor)
 
     const adminInfo = useSelector(selectCurrentAdminInfo)
 
@@ -30,6 +35,17 @@ const SalonSignin = () => {
         }
     ] = useSalonAccountLoginMutation()
 
+    const [
+        googleSalonAccountLogin,
+        {
+            data: salongooglelogindata,
+            isSuccess: salongoogleloginisSuccess,
+            isError: salongoogleloginisError,
+            error: salongoogleloginerror,
+            isLoading: salongoogleloginisLoading
+        }
+    ] = useGoogleSalonAccountLoginMutation()
+
 
     useEffect(() => {
         if (salonloginisSuccess) {
@@ -48,6 +64,24 @@ const SalonSignin = () => {
         }
     }, [salonloginisSuccess, salonloginisError, navigate])
 
+
+    useEffect(() => {
+        if (salongoogleloginisSuccess) {
+            localStorage.setItem("adminsalonsettings", "true")
+            navigate("/salonsettings")
+        } else if (salongoogleloginisError) {
+            toast.error(salongoogleloginerror?.data?.message, {
+                duration: 3000,
+                style: {
+                    fontSize: "var(--tertiary-text)",
+                    borderRadius: '0.3rem',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        }
+    }, [salongoogleloginisSuccess, salongoogleloginisError, navigate])
+
     const loginHandler = async () => {
         const data = { email, password, role, salonId: adminInfo?.salonId }
         salonAccountLogin(data)
@@ -62,17 +96,81 @@ const SalonSignin = () => {
 
     const [showPassword, setShowPassword] = useState(false)
 
+    const googleLogin = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            try {
+                const { access_token } = tokenResponse;
+
+                const userInfo = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                });
+
+                const data = { email: userInfo.data.email, role, salonId: adminInfo?.salonId }
+
+                googleSalonAccountLogin(data)
+
+            } catch (error) {
+                console.error('Error fetching user info:', error);
+            }
+        },
+    });
 
     return (
-        <main className={style.admin__salon_signin__main__container}>
-            <div className={style.admin__salon_signin__main__left}>
+        <main className={style.admin__signin__main__container}
+            style={{
+                backgroundColor: colors.color4
+            }}
+        >
+            <div className={style.admin__signin__main__left}>
                 <img src="./Signup.png" alt="signin" />
             </div>
 
-            <div className={style.admin__salon_signin__main__right}>
+            <div className={style.admin__signin__main__right}>
 
-                <div className={style.admin_salon_signin_form_container}>
-                    <p>Welcome to Salon Sign-In</p>
+                <div className={style.admin_signin_form_container}>
+                    <h2>Welcome to Salon Sign-In</h2>
+
+                    <div className={style.rolediv}>
+                        <div>
+                            <div
+                                style={{
+                                    backgroundColor: colors.cardColor,
+                                    border: `0.1rem solid ${colors.queueBorder}`
+                                }}
+                            >
+                                <input
+                                    type="checkbox"
+                                    checked={role === "Admin" ? true : false}
+                                    onChange={() => setRole("Admin")}
+                                    onKeyDown={handleKeyPress}
+                                    style={{
+                                        accentColor: "red"
+                                    }}
+                                />
+                                <p>Admin</p>
+                            </div>
+
+                            <div
+                                style={{
+                                    backgroundColor: colors.cardColor,
+                                    border: `0.1rem solid ${colors.queueBorder}`
+                                }}
+                            >
+                                <input
+                                    type="checkbox"
+                                    checked={role === "Barber" ? true : false}
+                                    onChange={() => setRole("Barber")}
+                                    onKeyDown={handleKeyPress}
+                                    style={{
+                                        accentColor: "red"
+                                    }}
+                                />
+                                <p>Barber</p>
+                            </div>
+                        </div>
+                    </div>
 
                     <div className={style.email_container}>
                         <input
@@ -81,11 +179,20 @@ const SalonSignin = () => {
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder='Enter Your Email'
                             onKeyDown={handleKeyPress}
+                            style={{
+                                backgroundColor: colors.cardColor,
+                                border: `0.1rem solid ${colors.queueBorder}`
+                            }}
                         />
 
                     </div>
 
-                    <div className={style.password_container}>
+                    <div className={style.password_container}
+                        style={{
+                            backgroundColor: colors.cardColor,
+                            border: `0.1rem solid ${colors.queueBorder}`
+                        }}
+                    >
                         <input
                             type={showPassword ? "text" : "password"}
                             id="input_password"
@@ -94,44 +201,47 @@ const SalonSignin = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             onKeyDown={handleKeyPress}
                         />
-                        <div onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
+                        <div
+                            style={{ color: colors.color3 }}
+                            onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</div>
                     </div>
 
-                    <div className={style.rolediv}>
+
+
+                    {salonloginisLoading ? <button
+                        style={{
+                            backgroundColor: modecolors.color1
+                        }}
+                        className={style.signin_btn}><ColorRing
+                            visible={true}
+                            height="4rem"
+                            width="4rem"
+                            ariaLabel="color-ring-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="color-ring-wrapper"
+                            colors={[modecolors?.color2, modecolors?.color2, modecolors?.color2, modecolors?.color2, modecolors?.color2]}
+                        /></button> : <button
+                            style={{
+                                backgroundColor: modecolors.color1,
+                                color: modecolors?.color2
+                            }}
+                            onClick={loginHandler}
+                            className={style.signin_btn}
+                        >Sign in</button>}
+
+
+                    <button onClick={() => googleLogin()}
+                        className={`${style.google_btn}`}
+                        style={{
+                            backgroundColor: colors.cardColor,
+                            border: `0.1rem solid ${colors.queueBorder}`
+                        }}
+                    >
                         <div>
-                            <div>
-                                <input
-                                    type="checkbox"
-                                    checked={role === "Admin" ? true : false}
-                                    onChange={() => setRole("Admin")}
-                                    onKeyDown={handleKeyPress}
-                                />
-                                <p>Admin</p>
-                            </div>
-
-                            <div>
-                                <input
-                                    type="checkbox"
-                                    checked={role === "Barber" ? true : false}
-                                    onChange={() => setRole("Barber")}
-                                    onKeyDown={handleKeyPress}
-                                />
-                                <p>Barber</p>
-                            </div>
+                            <div><img src="/google_logo.png" alt="logo" /></div>
+                            <p>Sign in with Google </p>
                         </div>
-                    </div>
-
-                    {salonloginisLoading ? <button className={style.signin_btn}><ColorRing
-                        visible={true}
-                        height="4rem"
-                        width="4rem"
-                        ariaLabel="color-ring-loading"
-                        wrapperStyle={{}}
-                        wrapperClass="color-ring-wrapper"
-                        colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
-                    /></button> : <button onClick={loginHandler}
-                        className={style.signin_btn}
-                    >Sign in</button>}
+                    </button>
                 </div>
 
             </div>

@@ -22,6 +22,7 @@ const ProtectedRoute = () => {
     }
   ] = useLoggedinKioskMutation()
 
+
   useEffect(() => {
     if (loggedinuser === 'false' || loggedinuser === undefined || loggedinuser === 'undefined' || loggedinuser === null || !kiyosktoken || kiyosktoken === null || kiyosktoken === undefined || kiyosktoken === "undefined" || kiyosktoken === "") {
       localStorage.setItem("adminkiyoskloggin", "false")

@@ -1,340 +1,214 @@
-.barber_kiyosk_container {
+.section {
     height: var(--primary-height);
-    width: 100%;
+    width: 100vw;
+    /* background-color: var(--bg-primary); */
+    overflow: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--primary-bg-color);
-    padding: 2rem;
-}
-
-.barber_kiyosk_container>div {
-    width: 100%;
-    height: calc(calc(var(--primary-height)) - 4rem);
-    box-shadow: var(--cmmn-box-shadow-y);
-    display: grid;
-    grid-template-columns: 1.2fr 2fr;
-    position: relative;
-    border-radius: var(--primary-radius, 0.6rem);
-    -webkit-border-radius: var(--primary-radius, 0.6rem);
-    -moz-border-radius: var(--primary-radius, 0.6rem);
-    -ms-border-radius: var(--primary-radius, 0.6rem);
-    -o-border-radius: var(--primary-radius, 0.6rem);
-}
-
-.barber_kiyosk_container>div>div:nth-child(1) {
-    width: 100%;
-    height: calc(calc(var(--primary-height)) - 4rem);
-    background-color: #fff;
-    border-top-left-radius: var(--primary-radius, 0.6rem);
-    border-bottom-left-radius: var(--primary-radius, 0.6rem);
-    border-right: 0.1rem solid rgba(0, 0, 0, 0.2);
+    padding-block: 4rem;
 
 
-    &>div:nth-child(1) {
-        height: 50%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-
-        &>div:nth-child(1) {
-            position: relative;
-            width: 20rem;
-            height: 20rem;
-            border-radius: 50%;
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            -ms-border-radius: 50%;
-            -o-border-radius: 50%;
-            box-shadow: var(--cmmn-box-shadow-y);
-
-            &>img {
-                width: 100%;
-                height: 100%;
-                border-radius: 50%;
-                -webkit-border-radius: 50%;
-                -moz-border-radius: 50%;
-                -ms-border-radius: 50%;
-                -o-border-radius: 50%;
-            }
-
-            .barber_online {
-                position: absolute;
-                top: 1rem;
-                right: 2rem;
-                width: 3rem;
-                height: 3rem;
-                border-radius: 50%;
-                -webkit-border-radius: 50%;
-                -moz-border-radius: 50%;
-                -ms-border-radius: 50%;
-                -o-border-radius: 50%;
-                border: 0.2rem solid #fff;
-            }
-        }
-    }
-
-    &>div:nth-child(2) {
-        height: 50%;
+    &>div {
         display: flex;
         flex-direction: column;
+        gap: 5rem;
+        width: min(90vw, 95vw);
+        margin-inline: auto;
 
         &>div:nth-child(1) {
-
-            &>p:nth-child(1) {
-                font-size: var(--primary-text);
-                font-weight: 600;
-                text-align: center;
-                margin-bottom: 2rem;
-            }
-
-            &>p {
-                margin-top: 1rem;
-                font-size: var(--content-text);
-                font-weight: 500;
-                text-align: center;
-            }
-        }
-
-        &>div:nth-child(2) {
-            width: 100%;
             display: flex;
-            justify-content: space-evenly;
-            margin-top: 1rem;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 4rem;
+            justify-content: space-between;
 
-            &>button {
-                height: 4rem;
-                width: 12rem;
-                margin-top: 1rem;
-                outline: none;
-                cursor: pointer;
+            &>div:nth-child(1) {
                 display: flex;
-                justify-content: center;
+                align-items: flex-end;
+                gap: 2rem;
+
+                &>img {
+                    width: 10rem;
+                    height: 10rem;
+                    border-radius: 50%;
+                    -webkit-border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    -ms-border-radius: 50%;
+                    -o-border-radius: 50%;
+                    /* border: 0.1rem solid var(--border-secondary); */
+                    object-fit: cover;
+                }
+
+                &>div {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5rem;
+
+                    &>h2 {
+                        font-size: clamp(1.8rem, 1vw, 2.4rem);
+                    }
+
+                    &>p {
+                        display: flex;
+                        gap: 1rem;
+                        opacity: 0.6;
+                        font-weight: 500;
+                        /* color: var(--text-secondary); */
+                        font-size: 1.4rem;
+
+                        &>span {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                }
+            }
+
+            &>div:nth-child(2) {
+                display: flex;
+                gap: 2rem;
                 align-items: center;
-                transition: var(--btn-transition);
-                -webkit-transition: var(--btn-transition);
-                -moz-transition: var(--btn-transition);
-                -ms-transition: var(--btn-transition);
-                -o-transition: var(--btn-transition);
-                font-size: var(--content-text);
-                border-radius: var(--secondary-radius);
-                -webkit-border-radius: var(--secondary-radius);
-                -moz-border-radius: var(--secondary-radius);
-                -ms-border-radius: var(--secondary-radius);
-                -o-border-radius: var(--secondary-radius);
-            }
-        }
-    }
-}
 
-.online_btn {
-    background-color: rgba(50, 205, 50, 0.088);
-    border: 0.1rem solid limegreen !important;
-    color: limegreen;
+                &>div:nth-child(1) {
+                    display: flex;
+                    gap: 2rem;
+                    /* border: 0.1rem solid var(--border-secondary); */
+                    position: relative;
+                    border-radius: 0.4rem;
+                    -webkit-border-radius: 0.4rem;
+                    -moz-border-radius: 0.4rem;
+                    -ms-border-radius: 0.4rem;
+                    -o-border-radius: 0.4rem;
 
-    &:hover {
-        background-color: limegreen;
-        color: #fff;
-    }
-}
+                    &>button {
+                        height: 3.5rem;
+                        width: 10rem;
+                        background-color: transparent;
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
+                        z-index: 2;
+                        font-weight: 500;
+                    }
 
-.offline_btn {
-    background-color: #ff000025;
-    border: 0.1rem solid red !important;
-    color: red;
-
-    &:hover {
-        background-color: red;
-        color: #fff;
-    }
-}
-
-
-
-
-.barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(1) {
-    position: sticky;
-    left: 0rem;
-    top: 0rem;
-    right: 0rem;
-    min-width: 50rem;
-    background-color: #fff;
-    display: grid;
-    align-items: center;
-    justify-items: center;
-    grid-template-columns: repeat(4, 1fr);
-    height: 6.5rem;
-    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
-    border-top-right-radius: var(--primary-radius, 0.6rem);
-}
-
-.barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(1)>p {
-    font-weight: 600;
-    font-size: var(--content-text);
-}
-
-.timetable {
-    width: 100%;
-    height: calc(calc(var(--primary-height)) - 4rem);
-    background-color: #fff;
-    border-top-right-radius: var(--primary-radius, 0.6rem);
-    border-bottom-right-radius: var(--primary-radius, 0.6rem);
-    overflow: auto;
-}
-
-
-.barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(2) {
-    height: calc(100% - 6.5rem);
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(2)>div {
-    min-width: 50rem;
-    min-height: 6.5rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    justify-items: center;
-    align-items: center;
-    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
-}
-
-.attendence_loading_container {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-.attendence_loading_container_error {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &>p {
-        font-size: var(--content-error-text);
-        font-weight: 500;
-    }
-}
-
-.barber_kiyosk_container>div>div:nth-child(2)>div:nth-child(2)>div>p {
-    font-weight: 500;
-    font-size: var(--content-text);
-}
-
-.skeleton {
-    min-height: 6.5rem !important;
-    margin-bottom: 1rem;
-}
-
-@media screen and (min-width:0px) and (max-width:430px) {
-    .barber_kiyosk_container>div {
-        display: block;
-    }
-
-    .barber_kiyosk_container>div>div:nth-child(1) {
-        height: 50%;
-        border-radius: 0rem;
-        -webkit-border-radius: 0rem;
-        -moz-border-radius: 0rem;
-        -ms-border-radius: 0rem;
-        -o-border-radius: 0rem;
-        border-right: none;
-        overflow: auto;
-        padding-block: 2rem;
-
-        &>div:nth-child(1) {
-            &>div:nth-child(1) {
-                height: 10rem;
-                width: 10rem;
-
-                .barber_online {
-                    top: 0.5rem;
-                    right: 0.5rem;
-                    width: 2rem;
-                    height: 2rem;
+                    &>div {
+                        width: 10rem;
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        transition: left 0.3s ease-in-out;
+                        border-radius: 0.4rem;
+                        -webkit-border-radius: 0.4rem;
+                        -moz-border-radius: 0.4rem;
+                        -ms-border-radius: 0.4rem;
+                        -o-border-radius: 0.4rem;
+                        -webkit-transition: left 0.3s ease-in-out;
+                        -moz-transition: left 0.3s ease-in-out;
+                        -ms-transition: left 0.3s ease-in-out;
+                        -o-transition: left 0.3s ease-in-out;
+                    }
                 }
             }
         }
 
         &>div:nth-child(2) {
-            &>div:nth-child(2) {
-                justify-content: center;
-                gap: 2rem;
-            }
-        }
+            flex: 1;
+            min-height: 50rem;
+            /* overflow: auto; */
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 1.5rem;
 
-    }
+            .attendence_item {
+                /* height: 20rem; */
+                max-width: calc(25% - 1.5rem);
+                flex: 1 1 calc(25% - 1.5rem);
+                /* background-color: oklch(.205 0 0); */
+                /* border: 0.1rem solid oklch(1 0 0 / 15%); */
+                padding: 2rem;
+                border-radius: var(--border-radius-primary);
+                -webkit-border-radius: var(--border-radius-primary);
+                -moz-border-radius: var(--border-radius-primary);
+                -ms-border-radius: var(--border-radius-primary);
+                -o-border-radius: var(--border-radius-primary);
 
-    .barber_kiyosk_container>div>div:nth-child(2) {
-        height: calc(100% - 50%);
-        border-radius: 0rem;
-        -webkit-border-radius: 0rem;
-        -moz-border-radius: 0rem;
-        -ms-border-radius: 0rem;
-        -o-border-radius: 0rem;
-    }
+                &>div:nth-child(1) {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
 
-}
+                    &>p {
+                        font-size: 1.6rem;
+                        font-weight: 600;
+                    }
 
-@media screen and (min-width:431px) and (max-width:768px) {
-    .barber_kiyosk_container>div {
-        display: block;
-    }
+                    &>div {
+                        height: 3.5rem;
+                        width: 12rem;
+                        /* background-color: var(--bg-primary); */
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 1rem;
+                        -webkit-border-radius: 1rem;
+                        -moz-border-radius: 1rem;
+                        -ms-border-radius: 1rem;
+                        -o-border-radius: 1rem;
 
-    .barber_kiyosk_container>div>div:nth-child(1) {
-        height: 50%;
-        border-radius: 0rem;
-        -webkit-border-radius: 0rem;
-        -moz-border-radius: 0rem;
-        -ms-border-radius: 0rem;
-        -o-border-radius: 0rem;
-        border-right: none;
-        overflow: auto;
-        padding-block: 2rem;
+                        &>p {
+                            font-weight: 500;
+                            font-size: 1.4rem;
+                            opacity: 0.6;
+                            /* color: var(--text-secondary); */
+                        }
+                    }
+                }
 
-        &>div:nth-child(1) {
-            &>div:nth-child(1) {
-                height: 10rem;
-                width: 10rem;
+                &>div:nth-child(2) {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-top: 4rem;
 
-                .barber_online {
-                    top: 0.5rem;
-                    right: 0.5rem;
-                    width: 2rem;
-                    height: 2rem;
+                    &>div {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 1rem;
+
+                        &>p:nth-child(1) {
+                            /* color: var(--text-secondary); */
+                            font-size: 1.4rem;
+                            font-weight: 500;
+                            opacity: 0.6;
+                        }
+
+                        &>p:nth-child(2) {
+                            font-size: 1.8rem;
+                            font-weight: 600;
+                        }
+                    }
                 }
             }
-        }
 
-        &>div:nth-child(2) {
-            &>div:nth-child(2) {
-                justify-content: center;
-                gap: 2rem;
+            .skeleton {
+                flex: 1 1 calc(25% - 1.5rem);
+                height: 20rem;
             }
         }
-
     }
-
-    .barber_kiyosk_container>div>div:nth-child(2) {
-        height: calc(100% - 50%);
-        border-radius: 0rem;
-        -webkit-border-radius: 0rem;
-        -moz-border-radius: 0rem;
-        -ms-border-radius: 0rem;
-        -o-border-radius: 0rem;
-    }
-
 }
 
+@media (max-width: 768px) {
 
-@media screen and (min-width:769px) and (max-width:1000px) {
+    /* Adjust breakpoint as needed */
+    .attendence_item {
+        flex: 1 !important;
+        max-width: 100% !important;
+    }
 
-    .barber_kiyosk_container>div {
-        grid-template-columns: 1.5fr 2fr;
+    .skeleton {
+        min-width: 90vw;
     }
 }

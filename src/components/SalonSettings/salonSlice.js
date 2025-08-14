@@ -9,7 +9,14 @@ export const salonApiSlice = apiSlice.injectEndpoints({
                 body: admindata
             })
         }),
+        GoogleSalonAccountLogin: builder.mutation({
+            query: (admindata) => ({
+                url:`/kiosk/googleSalonAccountLogin`,
+                method: 'POST',
+                body: admindata
+            })
+        })
     })
 })
 
-export const {useSalonAccountLoginMutation} = salonApiSlice
+export const {useSalonAccountLoginMutation, useGoogleSalonAccountLoginMutation} = salonApiSlice

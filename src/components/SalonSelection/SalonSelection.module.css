@@ -3,6 +3,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
+    /* background-color: var(--bg-primary); */
 }
 
 .select_salon_container_left {
@@ -30,20 +31,22 @@
 }
 
 .salon_selection_container {
-    width: 30%;
+    width: min(45rem, 85vw);
     height: auto;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
 
     &>p {
-        font-size: var(--primary-text);
-        font-weight: 600;
+        font-size: 1.4rem;
+        margin-block: 1.5rem 2.5rem;
+        opacity: 0.6;
+        /* color: var(--text-secondary); */
     }
 }
 
 
 .selection_box_container {
+
     &>p:nth-child(1) {
         font-size: var(--content-text);
         font-weight: 500;
@@ -51,20 +54,24 @@
 
     &>div:nth-child(2) {
 
+
         &>div:nth-child(1) {
-            margin-top: 2rem;
-            height: 4rem;
+            height: 3.5rem;
             width: 100%;
             position: relative;
-            border-bottom: 0.1rem solid var(--primary-color);
+            /* background-color: var(--input-bg-color); */
+            /* border: 0.1rem solid var(--border-secondary); */
             cursor: pointer;
-
-            &>p:nth-child(1) {
-                line-height: 4rem;
-                display: flex;
-                align-items: center;
-                font-size: var(--content-text);
-            }
+            padding-inline: 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            border: 0.1rem solid var(--border-secondary);
+            border-radius: var(--border-radius-primary);
+            -webkit-border-radius: var(--border-radius-primary);
+            -moz-border-radius: var(--border-radius-primary);
+            -ms-border-radius: var(--border-radius-primary);
+            -o-border-radius: var(--border-radius-primary);
 
             &>div:nth-child(2) {
                 height: 4rem;
@@ -79,25 +86,25 @@
             }
 
             .salondropdown_box {
-                background-color: #fff;
+                /* background-color: var(--bg-primary); */
                 position: absolute;
-                top: 6rem;
+                top: 4rem;
                 left: 0rem;
                 right: 0rem;
-                box-shadow: var(--cmmn-box-shadow-y);
                 padding: 1rem;
-                border-radius: var(--tertiary-radius);
-                -webkit-border-radius: var(--tertiary-radius);
-                -moz-border-radius: var(--tertiary-radius);
-                -ms-border-radius: var(--tertiary-radius);
-                -o-border-radius: var(--tertiary-radius);
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
                 overflow: auto;
+                /* border: 0.1rem solid var(--border-secondary); */
+                border-radius: var(--border-radius-primary);
+                -webkit-border-radius: var(--border-radius-primary);
+                -moz-border-radius: var(--border-radius-primary);
+                -ms-border-radius: var(--border-radius-primary);
+                -o-border-radius: var(--border-radius-primary);
 
-                &>div {
-                    min-height: 4rem;
+                &>div{
+                    min-height: 3.5rem;
                     padding-inline: 1rem;
                     align-content: center;
                     transition: var(--btn-transition);
@@ -106,21 +113,18 @@
                     -ms-transition: var(--btn-transition);
                     -o-transition: var(--btn-transition);
                     cursor: pointer;
-                    border-radius: var(--tertiary-radius);
-                    -webkit-border-radius: var(--tertiary-radius);
-                    -moz-border-radius: var(--tertiary-radius);
-                    -ms-border-radius: var(--tertiary-radius);
-                    -o-border-radius: var(--tertiary-radius);
 
                     &>p {
-                        font-size: var(--content-text);
+                        font-size: 1.4rem;
+                        opacity: 0.6;
+                        /* color: var(--text-secondary); */
                     }
 
                     &:hover {
-                        background-color: var(--primary-color);
 
                         &>p {
-                            color: #fff;
+                            /* color: var(--text-primary); */
+                            font-weight: 600;
                         }
                     }
                 }
@@ -131,79 +135,28 @@
 }
 
 .salon_selection_btn {
-    height: 4rem;
-    width: 100%;
     margin-top: 2.5rem;
-    border: 0.1rem solid var(--primary-color);
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
+    width: 100%;
+    height: 3.5rem;
+    padding-inline: 1rem;
+    border-radius: var(--border-radius-primary);
+    -webkit-border-radius: var(--border-radius-primary);
+    -moz-border-radius: var(--border-radius-primary);
+    -ms-border-radius: var(--border-radius-primary);
+    -o-border-radius: var(--border-radius-primary);
+    /* background-color: var(--bg-secondary); */
+    color: var(--text-primary);
+    border: none;
     outline: none;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: var(--tertiary-radius);
-    -webkit-border-radius: var(--tertiary-radius);
-    -moz-border-radius: var(--tertiary-radius);
-    -ms-border-radius: var(--tertiary-radius);
-    -o-border-radius: var(--tertiary-radius);
-    transition: var(--btn-transition);
-    -webkit-transition: var(--btn-transition);
-    -moz-transition: var(--btn-transition);
-    -ms-transition: var(--btn-transition);
-    -o-transition: var(--btn-transition);
-    font-size: var(--content-text);
+    transition: var(--common-btn-transition);
+    -webkit-transition: var(--common-btn-transition);
+    -moz-transition: var(--common-btn-transition);
+    -ms-transition: var(--common-btn-transition);
+    -o-transition: var(--common-btn-transition);
 
     &:hover {
-        background-color: var(--primary-color);
-        color: #fff;
-    }
-}
-
-@media screen and (min-width:0px) and (max-width:430px) {
-    .select_salon_container {
-        grid-template-columns: 1fr;
+        opacity: 0.8;
     }
 
-    .select_salon_container_left {
-        display: none;
-    }
-
-    .salon_selection_container {
-        width: 85vw;
-    }
-}
-
-@media screen and (min-width:431px) and (max-width:768px) {
-    .select_salon_container {
-        grid-template-columns: 1fr;
-    }
-
-    .select_salon_container_left {
-        display: none;
-    }
-
-    .salon_selection_container {
-        width: 65vw;
-    }
-}
-
-@media screen and (min-width:769px) and (max-width:1000px) {
-    .select_salon_container {
-        grid-template-columns: 1fr;
-    }
-
-    .select_salon_container_left {
-        display: none;
-    }
-
-    .salon_selection_container {
-        width: 45vw;
-    }
-}
-
-@media screen and (min-width:1001px) and (max-width:1250px) {
-    /* .salon_selection_container {
-        width: 65%;
-    } */
 }
