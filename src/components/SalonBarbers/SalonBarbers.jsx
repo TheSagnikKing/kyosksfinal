@@ -32,6 +32,8 @@ const SalonBarbers = () => {
         setMobileCountryCode
     } = useGlobal()
 
+    const connectedSalonId = localStorage.getItem("ConnectedSalonId")
+
     const [
         joinQueueKiosk,
         {
@@ -72,7 +74,7 @@ const SalonBarbers = () => {
 
     const joinHandler = () => {
         const joinqueuedata = {
-            salonId: adminInfo?.salonId,
+            salonId: connectedSalonId,
             name: customerName,
             customerEmail: customerEmail,
             joinedQType: "Single-Join",
@@ -107,7 +109,7 @@ const SalonBarbers = () => {
         }
     ] = useGetDefaultSalonByKioskMutation();
 
-    const connectedSalonId = localStorage.getItem("ConnectedSalonId")
+
 
     useEffect(() => {
         if (adminInfo?.email) {
@@ -131,11 +133,11 @@ const SalonBarbers = () => {
 
 
     useEffect(() => {
-        if (selectedServices.length > 0 && adminInfo?.salonId) {
-            getBarberByServicesKiosk({ salonId: adminInfo?.salonId, selectedServices })
+        if (selectedServices.length > 0 && connectedSalonId) {
+            getBarberByServicesKiosk({ salonId: connectedSalonId, selectedServices })
         }
 
-    }, [adminInfo])
+    }, [])
 
 
     const [previewModal, setPreviewModal] = useState(false)

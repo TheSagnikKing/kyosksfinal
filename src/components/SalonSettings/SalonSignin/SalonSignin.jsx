@@ -13,6 +13,8 @@ import axios from 'axios'
 
 const SalonSignin = () => {
 
+    const connectedSalonId = localStorage.getItem("ConnectedSalonId")
+
     const { colors, currentTheme } = useSelector(state => state.theme);
     const { modecolors } = useSelector(state => state.modeColor)
 
@@ -83,7 +85,7 @@ const SalonSignin = () => {
     }, [salongoogleloginisSuccess, salongoogleloginisError, navigate])
 
     const loginHandler = async () => {
-        const data = { email, password, role, salonId: adminInfo?.salonId }
+        const data = { email, password, role, salonId: connectedSalonId }
         salonAccountLogin(data)
 
     }
@@ -107,7 +109,7 @@ const SalonSignin = () => {
                     },
                 });
 
-                const data = { email: userInfo.data.email, role, salonId: adminInfo?.salonId }
+                const data = { email: userInfo.data.email, role, salonId: connectedSalonId }
 
                 googleSalonAccountLogin(data)
 

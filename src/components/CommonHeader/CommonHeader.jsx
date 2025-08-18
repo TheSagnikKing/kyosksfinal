@@ -18,6 +18,9 @@ import toast from 'react-hot-toast';
 const CommonHeader = () => {
 
     const { getDefaultAdminData, setGetDefaultAdminData } = useSocket()
+    const connectedSalonId = localStorage.getItem("ConnectedSalonId")
+
+    console.log("Barber Connected Salon ", connectedSalonId)
 
     const [
         getDefaultSalonByAdmin,
@@ -77,14 +80,12 @@ const CommonHeader = () => {
         }
     ] = useGetDefaultSalonByKioskMutation()
 
-    const connectedSalonId = localStorage.getItem("ConnectedSalonId")
-
     useEffect(() => {
         if (adminInfo?.email) {
             const salondata = {
                 email: adminInfo?.email,
                 role: adminInfo?.role,
-                
+                salonId: connectedSalonId
             }
             getDefaultSalonByAdmin(salondata)
         }
@@ -118,6 +119,7 @@ const CommonHeader = () => {
     }
 
     const logoutHandler = () => {
+        localStorage.removeItem("ConnectedSalonId")
         localStorage.setItem('adminkiyoskloggin', 'false')
         localStorage.setItem('adminkiyosktoken', '')
         localStorage.setItem("salonSelect", "false")

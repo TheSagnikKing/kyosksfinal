@@ -24,6 +24,7 @@ const SalonServices = () => {
 
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchServiceQuery, setSearchServiceQuery] = useState("");
+  const connectedSalonId = localStorage.getItem("ConnectedSalonId")
 
 
   const navigate = useNavigate();
@@ -57,7 +58,6 @@ const SalonServices = () => {
     }
   ] = useGetDefaultSalonByKioskMutation();
 
-  const connectedSalonId = localStorage.getItem("ConnectedSalonId")
 
   useEffect(() => {
     if (adminInfo?.email) {
@@ -71,19 +71,19 @@ const SalonServices = () => {
   }, [adminInfo]);
 
   useEffect(() => {
-    if (adminInfo?.salonId) {
-      getAllSalonCategories(adminInfo.salonId);
+    if (connectedSalonId) {
+      getAllSalonCategories(connectedSalonId);
     }
-  }, [adminInfo]);
+  }, []);
 
   useEffect(() => {
-    if (adminInfo?.salonId && selectedCategory) {
+    if (connectedSalonId && selectedCategory) {
       getSalonServicesByCategory({
-        salonId: adminInfo.salonId,
+        salonId: connectedSalonId,
         serviceCategoryName: selectedCategory
       });
     }
-  }, [adminInfo, selectedCategory]);
+  }, [selectedCategory]);
 
   useEffect(() => {
     if (getAllSalonCategoriesData?.response?.length > 0) {
@@ -116,7 +116,6 @@ const SalonServices = () => {
 
   const { currentTheme } = useSelector(state => state.theme);
 
-  console.log("modecolors ", modecolors)
 
   return (
     <>

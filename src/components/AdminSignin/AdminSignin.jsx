@@ -49,13 +49,44 @@ const AdminSignin = () => {
         dispatch(setDefaultModeColor({ modeColor: "default", theme: currentTheme }))
     }, [currentTheme])
 
+    // useEffect(() => {
+    //     if (isSuccess) {
+    //         localStorage.setItem('adminkiyosktoken', data?.token)
+    //         localStorage.setItem('adminkiyoskloggin', 'true')
+    //         dispatch(setAdminToken(data))
+    //         localStorage.setItem("salonSelect", "false")
+    //         navigate("/selectsalon")
+    //     } else if (isError) {
+    //         toast.error(error?.data?.message, {
+    //             duration: 3000,
+    //             style: {
+    //                 fontSize: "var(--tertiary-text)",
+    //                 borderRadius: '0.3rem',
+    //                 background: '#333',
+    //                 color: '#fff',
+    //             },
+    //         });
+    //     }
+    // }, [isSuccess, isError, navigate])
+
+
     useEffect(() => {
-        if (isSuccess) {
+        if (!isSuccess || !data) return;
+
+        if (data?.foundUser?.role === "Admin") {
             localStorage.setItem('adminkiyosktoken', data?.token)
             localStorage.setItem('adminkiyoskloggin', 'true')
             dispatch(setAdminToken(data))
             localStorage.setItem("salonSelect", "false")
             navigate("/selectsalon")
+        } else if (data?.foundUser?.role === "Barber") {
+            localStorage.setItem('adminkiyosktoken', data?.token)
+            localStorage.setItem('adminkiyoskloggin', 'true')
+            localStorage.setItem('ConnectedSalonId', data?.foundUser?.salonId)
+            dispatch(setAdminToken(data))
+            localStorage.setItem("salonSelect", "false")
+            navigate("/selectsalon")
+            console.log("Login Barber");
         } else if (isError) {
             toast.error(error?.data?.message, {
                 duration: 3000,
@@ -67,14 +98,43 @@ const AdminSignin = () => {
                 },
             });
         }
-    }, [isSuccess, isError, navigate])
+    }, [isSuccess, data, isError, navigate]);
 
 
+    // useEffect(() => {
+    //     if (googleAdminLoginKioskisSuccess) {
+    //         localStorage.setItem('adminkiyosktoken', googleAdminLoginKioskdata?.token)
+    //         localStorage.setItem('adminkiyoskloggin', 'true')
+    //         dispatch(setAdminToken(googleAdminLoginKioskdata))
+    //         localStorage.setItem("salonSelect", "false")
+    //         navigate("/selectsalon")
+    //     } else if (googleAdminLoginKioskisError) {
+    //         toast.error(googleAdminLoginKioskerror?.data?.message, {
+    //             duration: 3000,
+    //             style: {
+    //                 fontSize: "var(--tertiary-text)",
+    //                 borderRadius: '0.3rem',
+    //                 background: '#333',
+    //                 color: '#fff',
+    //             },
+    //         });
+    //     }
+    // }, [googleAdminLoginKioskisSuccess, googleAdminLoginKioskisError, navigate])
 
     useEffect(() => {
-        if (googleAdminLoginKioskisSuccess) {
+
+        if (!googleAdminLoginKioskisSuccess || !googleAdminLoginKioskdata) return;
+
+        if (googleAdminLoginKioskdata?.foundUser?.role === "Admin") {
             localStorage.setItem('adminkiyosktoken', googleAdminLoginKioskdata?.token)
             localStorage.setItem('adminkiyoskloggin', 'true')
+            dispatch(setAdminToken(googleAdminLoginKioskdata))
+            localStorage.setItem("salonSelect", "false")
+            navigate("/selectsalon")
+        } else if (googleAdminLoginKioskdata?.foundUser?.role === "Barber") {
+            localStorage.setItem('adminkiyosktoken', googleAdminLoginKioskdata?.token)
+            localStorage.setItem('adminkiyoskloggin', 'true')
+            localStorage.setItem('ConnectedSalonId', googleAdminLoginKioskdata?.foundUser?.salonId)
             dispatch(setAdminToken(googleAdminLoginKioskdata))
             localStorage.setItem("salonSelect", "false")
             navigate("/selectsalon")
@@ -89,7 +149,7 @@ const AdminSignin = () => {
                 },
             });
         }
-    }, [googleAdminLoginKioskisSuccess, googleAdminLoginKioskisError, navigate])
+    }, [googleAdminLoginKioskisSuccess, googleAdminLoginKioskdata, googleAdminLoginKioskisError, navigate])
 
     const loginHandler = async () => {
         const data = { email, password, role }

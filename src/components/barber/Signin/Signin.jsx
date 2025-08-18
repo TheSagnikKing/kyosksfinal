@@ -15,6 +15,8 @@ import axios from 'axios'
 
 const Signin = () => {
 
+    const connectedSalonId = localStorage.getItem("ConnectedSalonId")
+
     const { colors, currentTheme } = useSelector(state => state.theme);
     const { modecolors } = useSelector(state => state.modeColor)
 
@@ -110,7 +112,7 @@ const Signin = () => {
 
     const dropdownHandler = () => {
         setDrop((prev) => !prev)
-        const salonId = adminInfo?.salonId
+        const salonId = connectedSalonId
 
         getAllBarbersKiosk({
             salonId,
@@ -129,7 +131,7 @@ const Signin = () => {
 
         setEmailTimeout(setTimeout(() => {
             setBarberEmail(value);
-            const salonId = adminInfo?.salonId
+            const salonId = connectedSalonId
             getAllBarbersKiosk({ email: value, salonId });
         }, 500));
     };
