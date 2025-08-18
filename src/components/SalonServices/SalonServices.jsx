@@ -201,7 +201,12 @@ const SalonServices = () => {
               filteredServices.map((item, index) => {
                 const isSelected = selectedServices.find(s => s.serviceId === item.serviceId);
                 return (
-                  <div
+                  <button
+                    onClick={() =>
+                      isSelected
+                        ? removeServiceHandler(item)
+                        : addServiceHandler(item)
+                    }
                     key={item.serviceId}
                     className={style.serviceCard}
                     style={{
@@ -246,7 +251,7 @@ const SalonServices = () => {
                         {getDefaultSalonByAdmindata?.response?.currency} {item.servicePrice}
                       </h3>
                     </div>
-                  </div>
+                  </button>
                 );
               })
             ) : (

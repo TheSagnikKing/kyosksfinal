@@ -189,7 +189,9 @@ const SalonSelection = () => {
                                                     style={{
                                                         height: getAllSalonsByAdmindata?.salons?.length > 0 && getAllSalonsByAdmindata?.salons?.length <= 4 ? "auto" : "20rem",
                                                         backgroundColor: colors.color4,
-                                                        border: `0.1rem solid ${colors.queueBorder}`
+                                                        border: `0.1rem solid ${colors.queueBorder}`,
+                                                        zIndex: 999,
+                                                        opacity: 1
                                                     }}
                                                 >
                                                     {getAllSalonsByAdmindata?.salons?.length > 0 &&
@@ -236,9 +238,11 @@ const SalonSelection = () => {
                                                 wrapperClass="color-ring-wrapper"
                                                 colors={[modecolors?.color2, modecolors?.color2, modecolors?.color2, modecolors?.color2, modecolors?.color2]}
                                             /></button> : <button
+                                                disabled={!salonName}
                                                 style={{
                                                     backgroundColor: modecolors.color1,
-                                                    color: modecolors?.color2
+                                                    color: modecolors?.color2,
+                                                    opacity: salonName ? 1 : 0.4
                                                 }}
                                                 onClick={applySalonHandler} className={style.salon_selection_btn}>Apply</button> : null
                                 }

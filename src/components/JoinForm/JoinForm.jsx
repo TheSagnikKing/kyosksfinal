@@ -89,18 +89,6 @@ const JoinForm = () => {
 
     const continueHandler = () => {
 
-        if (!adminInfo.kioskAvailability) {
-            return toast.error("System is offline", {
-                duration: 3000,
-                style: {
-                    fontSize: "var(--tertiary-text)",
-                    borderRadius: '0.3rem',
-                    background: '#333',
-                    color: '#fff',
-                },
-            });
-        }
-
         if (!customerName) {
             toast.error("Please enter customer name", {
                 duration: 3000,
